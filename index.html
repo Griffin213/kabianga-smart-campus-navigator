@@ -1,57 +1,214 @@
-<main>.        <header>
-         <img src="logo.jpg" alt="University of Kabianga Logo" class="logo">
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>University of Kabianga Smart Campus Navigator</title>
 
-      <h1>University of Kabianga</h1>
+    <link rel="stylesheet" href="style.css">
+</head>
 
-    <h2>Smart Campus Navigation System</h2>
+<body>
+
+<header>
+
+    <img src="logo.jpg" alt="University of Kabianga Logo" class="logo">
+
+    <h1>UNIVERSITY OF KABIANGA</h1>
+
+    <p class="subtitle">
+        Smart Campus Navigation System
+    </p>
+
 </header>
 
+<main>
+
 <section class="hero">
-    <h2>Welcome to Smart Campus Navigator</h2>
-    <p>Find lecture halls, offices and campus facilities quickly.</p>
 
-    <input type="text" placeholder="Search for LTB1, LTB2, Library...">
+<h2>Welcome!</h2>
 
-    <button>🔍 Search Venue</button>
-    <button>📷 Scan QR Code</button>
+<p>
+Find lecture halls, offices and important places around the University of Kabianga quickly and easily.
+</p>
+
+<input
+type="text"
+id="searchBox"
+placeholder="Search LTB1, Library, Administration..."
+>
+
+<div class="buttons">
+
+<button id="searchBtn">
+🔍 Search Venue
+</button>
+
+<button id="qrBtn">
+📷 Scan QR Code
+</button>
+
+</div>
+
 </section>
 
-<h2>P<h2>Popular Venues</h2>
+
+<section>
+
+<h2>Popular Venues</h2>
 
 <div class="cards">
 
 <div class="card">
-    <h3>🏫 LTB1</h3>
-    <p>Lecture Theatre Block 1</p>
-    <button>View Details</button>
+<h3>🏫 LTB1</h3>
+
+<p>
+Lecture Theatre Block 1
+</p>
+
+<button>
+View Details
+</button>
+
 </div>
+
 
 <div class="card">
-    <h3>🏫 LTB2</h3>
-    <p>Lecture Theatre Block 2</p>
-    <button>View Details</button>
+
+<h3>🏫 LTB2</h3>
+
+<p>
+Lecture Theatre Block 2
+</p>
+
+<button>
+View Details
+</button>
+
 </div>
+
 
 <div class="card">
-    <h3>🏫 LTB3</h3>
-    <p>Lecture Theatre Block 3</p>
-    <button>View Details</button>
+
+<h3>🏫 LTB3</h3>
+
+<p>
+Lecture Theatre Block 3
+</p>
+
+<button>
+View Details
+</button>
+
 </div>
+
 
 <div class="card">
-    <h3>🏫 LTB4</h3>
-    <p>Lecture Theatre Block 4</p>
-    <button>View Details</button>
+
+<h3>🏫 LTB4</h3>
+
+<p>
+Lecture Theatre Block 4
+</p>
+
+<button>
+View Details
+</button>
+
+</div>
+
+</div>
+
+</section>
+
+
+<section class="map-section">
+
+<h2>Campus Map</h2>
+
+<p>
+Tap a building below to navigate.
+</p>
+
+<div class="campus-map">
+
+<div class="building">
+LTB1
+</div>
+
+<div class="road"></div>
+
+<div class="building">
+LTB2
+</div>
+
+<div class="road-vertical"></div>
+
+<div class="building">
+LTB3
+</div>
+
+<div class="road"></div>
+
+<div class="building">
+LTB4
 </div>
 
 </div>
 
-<h2>Campus Navigation</h2>
+</section>
 
-<p>Select a destination to receive directions.</p>
 
-<button>🗺️ Open Campus Map</button>
+<section class="about">
+
+<h2>About This Project</h2>
+
+<p>
+
+This Smart Campus Navigation System helps students,
+staff and visitors locate lecture halls, offices and
+important facilities around the University of Kabianga.
+
+Future updates will include:
+
+</p>
+
+<ul>
+
+<li>📷 QR Code Navigation</li>
+
+<li>🗺 Interactive Campus Map</li>
+
+<li>🚶 Walking Directions</li>
+
+<li>🔍 Smart Venue Search</li>
+
+<li>📍 Indoor Navigation</li>
+
+</ul>
+
+</section>
 
 </main>
-<img src="logo.jpg" alt="University of Kabianga Logo" width="100">
-<link rel="stylesheet" href="style.css">
+
+
+<footer>
+
+<p>
+
+© 2026 University of Kabianga
+
+</p>
+
+<p>
+
+Developed by Griffin Kipruttoh
+
+</p>
+
+</footer>
+
+<script src="script.js"></script>
+
+</body>
+</html>
