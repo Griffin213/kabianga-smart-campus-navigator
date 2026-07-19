@@ -103,4 +103,11 @@ button:hover{
 /* CARDS */
 
 .cards{
-
+.building-photo{
+    width:100%;
+    max-width:700px;
+    display:block;
+    margin:20px auto;
+    border-radius:15px;
+    box-shadow:0 6px 15px rgba(0,0,0,.2);
+}
