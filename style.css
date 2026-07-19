@@ -1,4 +1,20 @@
-body{
+       {header{
+       background:#0b5ed7;
+       color:white;
+       text-align:center;
+       padding:20px;
+
+
+.logo{
+    width:100px;
+    height:100px;
+    border-radius:50%;
+    display:block;
+    margin:0 auto 15px auto;
+    background:white;
+    padding:5px;
+body}
+    
     margin:0;
     font-family:Arial,sans-serif;
     background:#f4f8fb;
