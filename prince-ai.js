@@ -1,3 +1,4 @@
+let chatMemory = [];
 function speak(text){
 
     const message = new SpeechSynthesisUtterance(text);
