@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Scan QR Code | University of Kabianga</title>
+
+    <link rel="stylesheet" href="style.css">
+
+    <script src="https://unpkg.com/html5-qrcode"></script>
+</head>
+
+<body>
+
+<header>
+
+    <img src="logo.jpg" alt="University of Kabianga Logo" class="logo">
+
+    <h1>UNIVERSITY OF KABIANGA</h1>
+
+    <p class="subtitle">
+        Smart Campus Navigation System
+    </p>
+
+</header>
+
+<main>
+
+    <h2>📷 Scan QR Code</h2>
+
+    <p>
+        Scan the QR code at your current location to begin navigation.
+    </p>
+
+    <div class="navigation-panel">
+
+        <button id="scanBtn">📷 Start Camera</button>
+
+        <br><br>
+
+        <div id="reader" style="width:300px; margin:auto;"></div>
+
+        <br>
+
+        <div id="scanResult" class="card">
+
+            <h3>Current Location</h3>
+
+            <p>No QR code scanned.</p>
+
+        </div>
+
+    </div>
+
+    <br>
+
+    <a href="campus-map.html">
+        <button>🗺 Continue to Campus Map</button>
+    </a>
+
+    <br><br>
+
+    <a href="index.html">
+        <button>⬅ Back Home</button>
+    </a>
+
+</main>
+
+<footer>
+
+<p>© 2026 University of Kabianga</p>
+
+<p>Developed by Griffin Kipruttoh</p>
+
+</footer>
+
+<script src="script.js"></script>
+
+</body>
+
+  </html>
