@@ -51,7 +51,30 @@ placeholder="Search LTB1, Library, Administration..."
 <button id="voiceBtn" onclick="startPrinceAI()">
 🎤 Prince AI
 </button>
+<div class="prince-chat">
 
+    <h2>🤖 Prince AI</h2>
+
+    <div id="chatBox" class="chat-box">
+        <div class="ai-message">
+            Hello 👋 I am Prince AI. How can I help you today?
+        </div>
+    </div>
+
+    <div class="chat-input">
+
+        <input 
+        type="text" 
+        id="userMessage" 
+        placeholder="Type your message...">
+
+        <button onclick="sendMessage()">
+        Send
+        </button>
+
+    </div>
+
+</div>
 </div>
 
 </section>
