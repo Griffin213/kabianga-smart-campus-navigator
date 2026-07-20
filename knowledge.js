@@ -1,43 +1,28 @@
 const campusKnowledge = {
 
+    "library": {
+        name: "University Library",
+        info: "The library provides learning resources and study spaces for students."
+    },
+
+    "cafeteria": {
+        name: "Campus Cafeteria",
+        info: "The cafeteria provides meals and refreshments for students."
+    },
+
     "ltb1": {
         name: "Lecture Theatre Block 1",
-        response: "Lecture Theatre Block 1 is one of the main lecture buildings. Starting navigation.",
-        destination: "LTB1"
+        info: "LTB1 is one of the main lecture theatre blocks."
     },
 
     "ltb2": {
         name: "Lecture Theatre Block 2",
-        response: "Lecture Theatre Block 2 is one of the main lecture buildings. Starting navigation.",
-        destination: "LTB2"
-    },
-
-    "ltb3": {
-        name: "Lecture Theatre Block 3",
-        response: "Lecture Theatre Block 3 is one of the main lecture buildings. Starting navigation.",
-        destination: "LTB3"
-    },
-
-    "ltb4": {
-        name: "Lecture Theatre Block 4",
-        response: "Lecture Theatre Block 4 is one of the main lecture buildings. Starting navigation.",
-        destination: "LTB4"
-    },
-
-    "library": {
-        response: "The library information will be added soon."
+        info: "LTB2 is one of the lecture theatre blocks used for classes."
     },
 
     "administration": {
-        response: "The Administration Block is not yet in my database."
-    },
-
-    "cafeteria": {
-        response: "The cafeteria information will be added soon."
-    },
-
-    "hostel": {
-        response: "Hostel information will be available soon."
+        name: "Administration Block",
+        info: "The administration block handles important university services."
     }
 
 };
