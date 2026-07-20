@@ -85,7 +85,9 @@ if (scanBtn) {
     });
 
 }
+// =========================
 // Voice Assistant
+// =========================
 
 const voiceBtn = document.getElementById("voiceBtn");
 
@@ -99,69 +101,63 @@ if (voiceBtn) {
 
         speechSynthesis.speak(welcome);
 
-        const recognition = new (window.SpeechRecognition || window.webkitSpeechRecognition)();
+        welcome.onend = function () {
 
-        recognition.lang = "en-KE";
-recognition.interimResults = false;
-recognition.maxAlternatives = 1;
-        recognition.start();
+            const SpeechRecognition =
+                window.SpeechRecognition || window.webkitSpeechRecognition;
 
-        recognition.onresult = function(event){
-
-    const destination = event.results[0][0].transcript;
-
-    alert("You said: " + destination);
-
-};
-
-            else if(destination.includes("ltb2")){
-
-                speechSynthesis.speak(
-                    new SpeechSynthesisUtterance(
-                        "Opening navigation to Lecture Theatre Block Two."
-                    )
-                );
-
-                window.location.href="ltb2.html";
-
+            if (!SpeechRecognition) {
+                alert("Speech recognition is not supported on this browser.");
+                return;
             }
 
-            else if(destination.includes("ltb3")){
+            const recognition = new SpeechRecognition();
 
-                speechSynthesis.speak(
-                    new SpeechSynthesisUtterance(
-                        "Opening navigation to Lecture Theatre Block Three."
-                    )
-                );
+            recognition.lang = "en-KE";
+            recognition.interimResults = false;
+            recognition.maxAlternatives = 1;
 
-                window.location.href="ltb3.html";
+            recognition.start();
 
-            }
+            recognition.onresult = function (event) {
 
-            else if(destination.includes("ltb4")){
+                const destination =
+                    event.results[0][0].transcript.toLowerCase();
 
-                speechSynthesis.speak(
-                    new SpeechSynthesisUtterance(
-                        "Opening navigation to Lecture Theatre Block Four."
-                    )
-                );
+                alert("You said: " + destination);
 
-                window.location.href="ltb4.html";
+                if (destination.includes("ltb1")) {
 
-            }
+                    window.location.href = "ltb1.html";
 
-            else{
+                } else if (destination.includes("ltb2")) {
 
-                speechSynthesis.speak(
-                    new SpeechSynthesisUtterance(
-                        "Sorry, I could not find that destination."
-                    )
-                );
+                    window.location.href = "ltb2.html";
 
-            }
+                } else if (destination.includes("ltb3")) {
+
+                    window.location.href = "ltb3.html";
+
+                } else if (destination.includes("ltb4")) {
+
+                    window.location.href = "ltb4.html";
+
+                } else {
+
+                    speechSynthesis.speak(
+                        new SpeechSynthesisUtterance(
+                            "Sorry, I could not find that destination."
+                        )
+                    );
+
+                }
+
+            };
 
         };
 
     });
 
 }
+
+
