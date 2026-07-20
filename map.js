@@ -7,7 +7,7 @@ L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
 }).addTo(map);
 
 // Building markers
-L.marker([-0.3695, 35.2830]).addTo(map).bindPopup("<b>Main Gate</b>");
+L.marker([-0.3989, 35.2429]).addTo(map).bindPopup("<b>Main Gate</b>");
 L.marker([-0.3692, 35.2834]).addTo(map).bindPopup("<b>LTB1</b>");
 L.marker([-0.3689, 35.2837]).addTo(map).bindPopup("<b>LTB2</b>");
 L.marker([-0.3688, 35.2831]).addTo(map).bindPopup("<b>LTB3</b>");
