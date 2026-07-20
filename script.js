@@ -14,11 +14,34 @@ document.addEventListener("DOMContentLoaded", function () {
             if (current === destination) {
                 message = "✅ You are already at " + destination + ".";
             } else {
-                message =
-                "📍 Start from " + current +
-                "<br><br>➡ Follow the main road towards " +
-                destination +
-                ".<br><br>✅ You have arrived at " + destination + ".";
+                if(current==="Main Gate" && destination==="LTB1"){
+
+message="📍 Start at Main Gate.<br><br>⬆ Walk straight along the main road.<br><br>🏫 LTB1 will be on your left.<br><br>✅ You have arrived.";
+
+}
+
+else if(current==="Main Gate" && destination==="LTB2"){
+
+message="📍 Start at Main Gate.<br><br>⬆ Walk straight past LTB1.<br><br>🏫 Continue ahead to LTB2.<br><br>✅ You have arrived.";
+
+}
+
+else if(current==="Main Gate" && destination==="LTB3"){
+
+message="📍 Start at Main Gate.<br><br>⬆ Walk to the central open area.<br><br>➡ Turn right towards LTB3.<br><br>✅ You have arrived.";
+
+}
+
+else if(current==="Main Gate" && destination==="LTB4"){
+
+message="📍 Start at Main Gate.<br><br>⬆ Walk through the central area.<br><br>⬅ Turn left towards LTB4.<br><br>✅ You have arrived.";
+
+}
+
+else{
+
+message="📍 Walk from "+current+" to "+destination+".";
+}
             }
 
             document.getElementById("routeResult").innerHTML =
