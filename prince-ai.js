@@ -35,7 +35,8 @@ function startListening(){
 
     recognition.lang = "en-US";
 
-    recognition.start();
+    speak("I am listening. Please tell me your destination.");
+recognition.start();
 
 
     recognition.onresult = function(event){
