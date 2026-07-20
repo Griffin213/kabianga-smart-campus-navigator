@@ -318,3 +318,14 @@ box-shadow:0 6px 20px rgba(0,0,0,.2);
     background:white;
 
 }
+.back-btn{
+
+    position:absolute;
+    left:15px;
+    top:15px;
+    padding:8px 15px;
+    border:none;
+    border-radius:20px;
+    cursor:pointer;
+
+}
