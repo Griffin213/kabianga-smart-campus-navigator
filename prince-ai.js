@@ -193,7 +193,19 @@ function addMessage(text, className){
 
 
 // Prince AI brain
+
 function princeReply(message){
+
+    // Search campus knowledge
+    for(let place in campusKnowledge){
+
+        if(message.includes(place)){
+
+            return campusKnowledge[place].name + ": " + campusKnowledge[place].info;
+
+        }
+
+    }
 
 
     if(message.includes("hello") || message.includes("hi")){
@@ -202,6 +214,35 @@ function princeReply(message){
 
     }
 
+
+    else if(message.includes("who are you")){
+
+        return "I am Prince AI, created to help students navigate the campus and access information.";
+
+    }
+
+
+    else if(message.includes("help")){
+
+        return "I can help you with campus locations, facilities, and navigation information.";
+
+    }
+
+
+    else if(message.includes("thank")){
+
+        return "You are welcome 😊. I am always ready to help.";
+
+    }
+
+
+    else{
+
+        return "I am still learning about the University of Kabianga campus. Please ask me about a place or facility.";
+
+    }
+
+}
 
     else if(message.includes("who are you")){
 
