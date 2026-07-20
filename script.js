@@ -86,4 +86,8 @@ if (scanBtn) {
 
 }
 
+function openPrinceAI(){
 
+    window.location.href = "prince-ai.html";
+
+}
