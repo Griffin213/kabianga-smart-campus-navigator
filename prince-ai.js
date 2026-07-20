@@ -126,7 +126,10 @@ function sendMessage(){
 
 
     addMessage(message, "user-message");
-
+chatMemory.push({
+    role: "user",
+    text: message
+});
 
     input.value = "";
 
@@ -154,7 +157,10 @@ function sendMessage(){
 
 
         addMessage(reply, "ai-message");
-
+chatMemory.push({
+    role: "ai",
+    text: reply
+});
 
         speak(reply);
 
