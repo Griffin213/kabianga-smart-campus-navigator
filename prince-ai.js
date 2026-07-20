@@ -130,15 +130,35 @@ function sendMessage(){
     input.value = "";
 
 
+    // Typing indicator
+    let typing = document.createElement("div");
+
+    typing.className = "ai-message";
+
+    typing.id = "typing";
+
+    typing.innerHTML = "Prince AI is typing...";
+
+    document.getElementById("chatBox").appendChild(typing);
+
+
+
     setTimeout(function(){
+
+
+        document.getElementById("typing").remove();
+
 
         let reply = princeReply(message.toLowerCase());
 
+
         addMessage(reply, "ai-message");
+
 
         speak(reply);
 
-    },500);
+
+    },1500);
 
 
 }
