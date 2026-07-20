@@ -211,3 +211,8 @@ function princeReply(message){
     }
 
 }
+function goHome(){
+
+    window.location.href = "index.html";
+
+}
