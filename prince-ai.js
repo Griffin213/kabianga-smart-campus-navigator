@@ -1,3 +1,4 @@
+console.log(campusKnowledge);
 let chatMemory = [];
 function speak(text){
 
