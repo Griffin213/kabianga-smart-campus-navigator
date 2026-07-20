@@ -85,31 +85,7 @@ if (scanBtn) {
     });
 
 }
-// =========================
-// Voice Assistant
-// =========================
 
-const voiceBtn = document.getElementById("voiceBtn");
-
-if (voiceBtn) {
-
-    voiceBtn.addEventListener("click", function () {
-
-        const welcome = new SpeechSynthesisUtterance(
-            "Welcome to the University of Kabianga Smart Campus Navigation System. Where would you like to go today?"
-        );
-
-        speechSynthesis.speak(welcome);
-
-        welcome.onend = function () {
-
-            const SpeechRecognition =
-                window.SpeechRecognition || window.webkitSpeechRecognition;
-
-            if (!SpeechRecognition) {
-                alert("Speech recognition is not supported on this browser.");
-                return;
-            }
 
             const recognition = new SpeechRecognition();
 
