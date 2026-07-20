@@ -125,6 +125,7 @@ if (voiceBtn) {
                     event.results[0][0].transcript.toLowerCase();
 
                 alert("You said: " + destination);
+                alert("You said: " + destination);
 
                 if (destination.includes("ltb1")) {
 
