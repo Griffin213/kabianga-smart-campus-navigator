@@ -85,3 +85,89 @@ if (scanBtn) {
     });
 
 }
+// Voice Assistant
+
+const voiceBtn = document.getElementById("voiceBtn");
+
+if (voiceBtn) {
+
+    voiceBtn.addEventListener("click", function () {
+
+        const welcome = new SpeechSynthesisUtterance(
+            "Welcome to the University of Kabianga Smart Campus Navigation System. Where would you like to go today?"
+        );
+
+        speechSynthesis.speak(welcome);
+
+        const recognition = new (window.SpeechRecognition || window.webkitSpeechRecognition)();
+
+        recognition.lang = "en-US";
+        recognition.start();
+
+        recognition.onresult = function(event){
+
+            const destination = event.results[0][0].transcript.toLowerCase();
+
+            if(destination.includes("ltb1")){
+
+                speechSynthesis.speak(
+                    new SpeechSynthesisUtterance(
+                        "Opening navigation to Lecture Theatre Block One."
+                    )
+                );
+
+                window.location.href="ltb1.html";
+
+            }
+
+            else if(destination.includes("ltb2")){
+
+                speechSynthesis.speak(
+                    new SpeechSynthesisUtterance(
+                        "Opening navigation to Lecture Theatre Block Two."
+                    )
+                );
+
+                window.location.href="ltb2.html";
+
+            }
+
+            else if(destination.includes("ltb3")){
+
+                speechSynthesis.speak(
+                    new SpeechSynthesisUtterance(
+                        "Opening navigation to Lecture Theatre Block Three."
+                    )
+                );
+
+                window.location.href="ltb3.html";
+
+            }
+
+            else if(destination.includes("ltb4")){
+
+                speechSynthesis.speak(
+                    new SpeechSynthesisUtterance(
+                        "Opening navigation to Lecture Theatre Block Four."
+                    )
+                );
+
+                window.location.href="ltb4.html";
+
+            }
+
+            else{
+
+                speechSynthesis.speak(
+                    new SpeechSynthesisUtterance(
+                        "Sorry, I could not find that destination."
+                    )
+                );
+
+            }
+
+        };
+
+    });
+
+}
