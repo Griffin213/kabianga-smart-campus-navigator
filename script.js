@@ -128,19 +128,19 @@ if (voiceBtn) {
 
                 if (destination.includes("ltb1")) {
 
-                    window.location.href = "ltb1.html";
+                    window.location.href = "campus-map.html?destination=LTB1";
 
                 } else if (destination.includes("ltb2")) {
 
-                    window.location.href = "ltb2.html";
+                    window.location.href = "campus-map.html?destination=LTB2";
 
                 } else if (destination.includes("ltb3")) {
 
-                    window.location.href = "ltb3.html";
+                    window.location.href = "campus-map.html?destination=LTB3";
 
                 } else if (destination.includes("ltb4")) {
 
-                    window.location.href = "ltb4.html";
+        window.location.href = "campus-map.html?destination=LTB4";
 
                 } else {
 
