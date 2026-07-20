@@ -274,3 +274,47 @@ box-shadow:0 6px 20px rgba(0,0,0,.2);
     cursor: pointer;
 
 }
+.ai-page{
+
+    height:100vh;
+    display:flex;
+    flex-direction:column;
+    background:#f5f7fb;
+
+}
+
+
+.ai-header{
+
+    background:#0b5ed7;
+    color:white;
+    padding:20px;
+    text-align:center;
+    font-size:25px;
+
+}
+
+
+.ai-header p{
+
+    font-size:14px;
+
+}
+
+
+.ai-page .chat-box{
+
+    flex:1;
+    height:auto;
+    border-radius:0;
+    padding:20px;
+
+}
+
+
+.ai-page .chat-input{
+
+    padding:15px;
+    background:white;
+
+}
