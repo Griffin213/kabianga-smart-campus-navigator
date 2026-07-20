@@ -96,7 +96,18 @@
     <p>Developed by Griffin Kipruttoh</p>
 
 </footer>
+<script>
+const params = new URLSearchParams(window.location.search);
+const destination = params.get("destination");
 
+if (destination) {
+
+    document.getElementById("destination").value = destination;
+
+    document.getElementById("navigateBtn").click();
+
+}
+</script>
 <script src="script.js"></script>
 <script src="map.js"></script>
 </body>
