@@ -101,24 +101,18 @@ if (voiceBtn) {
 
         const recognition = new (window.SpeechRecognition || window.webkitSpeechRecognition)();
 
-        recognition.lang = "en-US";
+        recognition.lang = "en-KE";
+recognition.interimResults = false;
+recognition.maxAlternatives = 1;
         recognition.start();
 
         recognition.onresult = function(event){
 
-            const destination = event.results[0][0].transcript.toLowerCase();
+    const destination = event.results[0][0].transcript;
 
-            if(destination.includes("ltb1")){
+    alert("You said: " + destination);
 
-                speechSynthesis.speak(
-                    new SpeechSynthesisUtterance(
-                        "Opening navigation to Lecture Theatre Block One."
-                    )
-                );
-
-                window.location.href="ltb1.html";
-
-            }
+};
 
             else if(destination.includes("ltb2")){
 
