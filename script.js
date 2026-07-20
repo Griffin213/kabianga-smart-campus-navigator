@@ -52,3 +52,36 @@ message="📍 Walk from "+current+" to "+destination+".";
     }
 
 });
+// QR Code Scanner
+
+const scanBtn = document.getElementById("scanBtn");
+
+if (scanBtn) {
+
+    scanBtn.addEventListener("click", function () {
+
+        const qrScanner = new Html5Qrcode("reader");
+
+        qrScanner.start(
+            { facingMode: "environment" },
+            {
+                fps: 10,
+                qrbox: 250
+            },
+            function (decodedText) {
+
+                document.getElementById("scanResult").innerHTML =
+                    "<h3>✅ QR Code Detected</h3>" +
+                    "<p><strong>Current Location:</strong> " + decodedText + "</p>";
+
+                qrScanner.stop();
+
+            },
+            function (errorMessage) {
+                // Ignore scan errors while searching
+            }
+        );
+
+    });
+
+}
