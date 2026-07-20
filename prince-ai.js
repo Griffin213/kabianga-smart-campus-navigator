@@ -10,6 +10,7 @@ function speak(text){
 }
 
 
+// Voice button
 function startPrinceAI(){
 
     speak("Hello, I am Prince AI. Tell me the place you want to find.");
@@ -19,6 +20,7 @@ function startPrinceAI(){
 }
 
 
+// Voice listening
 function startListening(){
 
     const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
@@ -36,9 +38,13 @@ function startListening(){
     recognition.continuous = false;
     recognition.interimResults = false;
 
+
     recognition.onstart = function(){
+
         speak("I am listening. Please say your destination.");
+
     };
+
 
     recognition.onresult = function(event){
 
@@ -50,80 +56,71 @@ function startListening(){
 
     };
 
+
     recognition.onerror = function(event){
 
         console.log("Voice error:", event.error);
+
         speak("I could not hear you. Please try again.");
 
     };
+
 
     recognition.start();
 
 }
 
 
-    const recognition = new SpeechRecognition();
 
-    recognition.lang = "en-US";
-
-    speak("I am listening. Please tell me your destination.");
-recognition.start();
-
-
-    recognition.onresult = function(event){
-
-        const question = event.results[0][0].transcript.toLowerCase();
-
-        answerQuestion(question);
-
-    };
-
-
-}
-
-
+// Voice answers
 function answerQuestion(question){
-
 
     if(question.includes("ltb1")){
 
-        speak("LTB 1 is located near the main lecture block area.");
+        speak("I do not have the exact direction for LTB 1 yet, but I can help you once the campus map is added.");
 
     }
 
     else if(question.includes("ltb2")){
 
-        speak("LTB 2 is located next to LTB 1.");
+        speak("I do not have the exact direction for LTB 2 yet.");
 
     }
 
     else if(question.includes("library")){
 
-        speak("The library is located at the academic section of the campus.");
+        speak("I can help you locate the library once the campus information is fully added.");
 
     }
 
     else if(question.includes("cafeteria") || question.includes("canteen")){
 
-        speak("The cafeteria is located near the student centre.");
+        speak("The cafeteria information will be available after adding campus locations.");
 
     }
 
     else{
 
-        speak("Sorry, I don't know that location yet. Please try another venue.");
+        speak("Sorry, I am still learning about the campus. Please try another question.");
 
     }
 
 }
+
+
+
+// Text chat
 function sendMessage(){
 
     let input = document.getElementById("userMessage");
 
     let message = input.value.trim();
 
+
     if(message === ""){
+
         return;
+
     }
 
 
@@ -139,12 +136,16 @@ function sendMessage(){
 
         addMessage(reply, "ai-message");
 
+        speak(reply);
+
     },500);
+
 
 }
 
 
 
+// Add messages to chat box
 function addMessage(text, className){
 
     let chatBox = document.getElementById("chatBox");
@@ -155,8 +156,8 @@ function addMessage(text, className){
 
     messageDiv.innerHTML = text;
 
-    chatBox.appendChild(messageDiv);
 
+    chatBox.appendChild(messageDiv);
 
     chatBox.scrollTop = chatBox.scrollHeight;
 
@@ -164,6 +165,7 @@ function addMessage(text, className){
 
 
 
+// Prince AI brain
 function princeReply(message){
 
 
@@ -174,27 +176,38 @@ function princeReply(message){
     }
 
 
-    if(message.includes("who are you")){
+    else if(message.includes("who are you")){
 
-        return "I am Prince AI, created to help students navigate and access campus information easily.";
-
-    }
-
-
-    if(message.includes("help")){
-
-        return "I can help you find venues, answer campus questions, and guide you through the navigation system.";
+        return "I am Prince AI, created to help students navigate the campus and find information easily.";
 
     }
 
 
-    if(message.includes("thank")){
+    else if(message.includes("help")){
 
-        return "You are welcome 😊. I am always ready to help.";
+        return "I can help you with campus navigation, venues, and student information.";
 
     }
 
 
-    return "I am still learning about the campus. Please ask me something else.";
+    else if(message.includes("thank")){
+
+        return "You are welcome. I am always ready to help.";
+
+    }
+
+
+    else if(message.includes("name")){
+
+        return "My name is Prince AI.";
+
+    }
+
+
+    else{
+
+        return "I am still learning. More campus information will be added soon.";
+
+    }
 
 }
