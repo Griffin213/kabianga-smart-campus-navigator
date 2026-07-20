@@ -1,28 +1,31 @@
-document.querySelector("button").addEventListener("click", function(){
-    alert("Welcome to the University of Kabianga Smart Campus Navigator!");
-});
-document.getElementById("searchBtn").addEventListener("click", function () {
+document.addEventListener("DOMContentLoaded", function () {
 
-    let search = document.getElementById("searchBox").value.toLowerCase().trim();
+    const navigateBtn = document.getElementById("navigateBtn");
 
-    if (search === "ltb1") {
-        window.location.href = "ltb1.html";
-    }
+    if (navigateBtn) {
 
-    else if (search === "ltb2") {
-        window.location.href = "ltb2.html";
-    }
+        navigateBtn.addEventListener("click", function () {
 
-    else if (search === "ltb3") {
-        window.location.href = "ltb3.html";
-    }
+            const current = document.getElementById("currentLocation").value;
+            const destination = document.getElementById("destination").value;
 
-    else if (search === "ltb4") {
-        window.location.href = "ltb4.html";
-    }
+            let message = "";
 
-    else {
-        alert("Venue not found. Please try again.");
+            if (current === destination) {
+                message = "✅ You are already at " + destination + ".";
+            } else {
+                message =
+                "📍 Start from " + current +
+                "<br><br>➡ Follow the main road towards " +
+                destination +
+                ".<br><br>✅ You have arrived at " + destination + ".";
+            }
+
+            document.getElementById("routeResult").innerHTML =
+                "<h3>Navigation Instructions</h3><p>" + message + "</p>";
+
+        });
+
     }
 
 });
