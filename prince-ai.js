@@ -30,6 +30,37 @@ function startListening(){
 
     }
 
+    const recognition = new SpeechRecognition();
+
+    recognition.lang = "en-US";
+    recognition.continuous = false;
+    recognition.interimResults = false;
+
+    recognition.onstart = function(){
+        speak("I am listening. Please say your destination.");
+    };
+
+    recognition.onresult = function(event){
+
+        const question = event.results[0][0].transcript.toLowerCase();
+
+        console.log("You said:", question);
+
+        answerQuestion(question);
+
+    };
+
+    recognition.onerror = function(event){
+
+        console.log("Voice error:", event.error);
+        speak("I could not hear you. Please try again.");
+
+    };
+
+    recognition.start();
+
+}
+
 
     const recognition = new SpeechRecognition();
 
