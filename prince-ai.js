@@ -73,16 +73,37 @@ function startListening(){
     };
 
 }
-
 function answerQuestion(command){
 
-    if(command.includes("ltb1")){
+    for(const key in campusKnowledge){
 
-        speak("Lecture Theatre Block One is available. Opening navigation.");
+        if(command.includes(key)){
 
-        window.location.href="campus-map.html?destination=LTB1";
+            const place = campusKnowledge[key];
+
+            speak(place.response);
+
+            if(place.destination){
+
+                setTimeout(function(){
+
+                    window.location.href =
+                    "campus-map.html?destination=" + place.destination;
+
+                },3000);
+
+            }
+
+            return;
+
+        }
 
     }
+
+    speak("Sorry, I don't have information about that location yet. My campus database is still being updated.");
+
+}
+
 
     else if(command.includes("ltb2")){
 
