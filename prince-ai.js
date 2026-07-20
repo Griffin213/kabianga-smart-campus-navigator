@@ -116,3 +116,85 @@ function answerQuestion(question){
     }
 
 }
+function sendMessage(){
+
+    let input = document.getElementById("userMessage");
+
+    let message = input.value.trim();
+
+    if(message === ""){
+        return;
+    }
+
+
+    addMessage(message, "user-message");
+
+
+    input.value = "";
+
+
+    setTimeout(function(){
+
+        let reply = princeReply(message.toLowerCase());
+
+        addMessage(reply, "ai-message");
+
+    },500);
+
+}
+
+
+
+function addMessage(text, className){
+
+    let chatBox = document.getElementById("chatBox");
+
+    let messageDiv = document.createElement("div");
+
+    messageDiv.className = className;
+
+    messageDiv.innerHTML = text;
+
+    chatBox.appendChild(messageDiv);
+
+
+    chatBox.scrollTop = chatBox.scrollHeight;
+
+}
+
+
+
+function princeReply(message){
+
+
+    if(message.includes("hello") || message.includes("hi")){
+
+        return "Hello 👋. I am Prince AI, your University of Kabianga smart campus assistant.";
+
+    }
+
+
+    if(message.includes("who are you")){
+
+        return "I am Prince AI, created to help students navigate and access campus information easily.";
+
+    }
+
+
+    if(message.includes("help")){
+
+        return "I can help you find venues, answer campus questions, and guide you through the navigation system.";
+
+    }
+
+
+    if(message.includes("thank")){
+
+        return "You are welcome 😊. I am always ready to help.";
+
+    }
+
+
+    return "I am still learning about the campus. Please ask me something else.";
+
+}
