@@ -111,3 +111,64 @@ button:hover{
     border-radius:15px;
     box-shadow:0 6px 15px rgba(0,0,0,.2);
 }
+.navigation-panel{
+
+background:white;
+
+padding:25px;
+
+border-radius:15px;
+
+box-shadow:0 5px 15px rgba(0,0,0,.15);
+
+margin:30px auto;
+
+max-width:600px;
+
+}
+
+.navigation-panel h3{
+
+color:#0b5ed7;
+
+margin-bottom:20px;
+
+text-align:center;
+
+}
+
+.navigation-panel select{
+
+width:100%;
+
+padding:12px;
+
+border:2px solid #0b5ed7;
+
+border-radius:8px;
+
+font-size:16px;
+
+margin-top:8px;
+
+}
+
+.map-container{
+
+text-align:center;
+
+margin-top:30px;
+
+}
+
+.campus-map-image{
+
+width:100%;
+
+max-width:900px;
+
+border-radius:15px;
+
+box-shadow:0 6px 20px rgba(0,0,0,.2);
+
+}
