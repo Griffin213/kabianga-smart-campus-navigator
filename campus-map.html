@@ -41,7 +41,7 @@ Use the campus map below to locate buildings and navigate around the university.
 
 <label><strong>📍 Current Location</strong></label>
 
-<select>
+<select id="currentLocation">
 
 <option>Main Gate</option>
 
@@ -52,8 +52,7 @@ Use the campus map below to locate buildings and navigate around the university.
 <option>LTB3</option>
 
 <option>LTB4</option>
-
-</select>
+<select id="destination">
 
 <br><br>
 
@@ -73,8 +72,11 @@ Use the campus map below to locate buildings and navigate around the university.
 
 <br><br>
 
-<button>🚀 Start Navigation</button>
-
+<button id="navigateBtn">🚀 Start Navigation</button>
+<div id="routeResult" class="card">
+    <h3>Navigation Instructions</h3>
+    <p>Select your destination and press <strong>Start Navigation</strong>.</p>
+</div>
 </div>
 
 <div class="map-container">
@@ -102,7 +104,7 @@ class="campus-map-image">
 <p>Developed by Griffin Kipruttoh</p>
 
 </footer>
-
+<script src="script.js"></script>
 </body>
 
 </html>
