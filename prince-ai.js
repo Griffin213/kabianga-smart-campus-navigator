@@ -1,43 +1,113 @@
-// ================================
+// ===============================
 // PRINCE AI
 // University of Kabianga
-// ================================
+// ===============================
 
-function speak(text) {
+function speak(text){
+
+    speechSynthesis.cancel();
 
     const speech = new SpeechSynthesisUtterance(text);
 
-    speech.rate = 1;
-    speech.pitch = 1;
-    speech.volume = 1;
+    speech.lang = "en-KE";
+
+    speech.onend = startListening;
 
     speechSynthesis.speak(speech);
 
 }
 
-function startPrinceAI() {
+function startPrinceAI(){
 
     const hour = new Date().getHours();
 
-    let greeting = "";
+    let greeting="";
 
-    if (hour < 12) {
+    if(hour<12){
 
-        greeting = "Good morning.";
+        greeting="Good morning";
 
-    } else if (hour < 18) {
+    }else if(hour<18){
 
-        greeting = "Good afternoon.";
+        greeting="Good afternoon";
 
-    } else {
+    }else{
 
-        greeting = "Good evening.";
+        greeting="Good evening";
 
     }
 
     speak(
         greeting +
-        " Welcome to the University of Kabianga. I am Prince AI, your personal campus assistant. How may I help you today?"
+        ". Welcome to the University of Kabianga. I am Prince AI, your personal campus assistant. How may I help you today?"
     );
+
+}
+
+function startListening(){
+
+    const SpeechRecognition =
+        window.SpeechRecognition || window.webkitSpeechRecognition;
+
+    if(!SpeechRecognition){
+
+        alert("Speech Recognition is not supported.");
+
+        return;
+
+    }
+
+    const recognition = new SpeechRecognition();
+
+    recognition.lang="en-KE";
+
+    recognition.start();
+
+    recognition.onresult=function(event){
+
+        const command =
+        event.results[0][0].transcript.toLowerCase();
+
+        answerQuestion(command);
+
+    };
+
+}
+
+function answerQuestion(command){
+
+    if(command.includes("ltb1")){
+
+        speak("Lecture Theatre Block One is available. Opening navigation.");
+
+        window.location.href="campus-map.html?destination=LTB1";
+
+    }
+
+    else if(command.includes("ltb2")){
+
+        speak("Lecture Theatre Block Two is available. Opening navigation.");
+
+        window.location.href="campus-map.html?destination=LTB2";
+
+    }
+
+    else if(command.includes("library")){
+
+        speak("The library information has not been added yet.");
+
+    }
+
+    else if(command.includes("human resource")){
+
+        speak("The Human Resource Department will be added to my campus database soon.");
+
+    }
+
+    else{
+
+        speak("Sorry. I do not know that location yet. I am still learning the University of Kabianga.");
+
+    }
 
 }
