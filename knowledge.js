@@ -26,3 +26,32 @@ const campusKnowledge = {
     }
 
 };
+campusKnowledge["school of business"] = {
+    name: "School of Business",
+    info: "The School of Business offices are located in LTB3, First Floor."
+};
+
+campusKnowledge["business office"] = {
+    name: "School of Business Office",
+    info: "The School of Business offices are located in LTB3, First Floor."
+};
+
+campusKnowledge["dean of business"] = {
+    name: "Dean, School of Business",
+    info: "The Dean's Office is located in LTB3, First Floor."
+};
+
+campusKnowledge["business dean"] = {
+    name: "Dean, School of Business",
+    info: "The Dean's Office is located in LTB3, First Floor."
+};
+
+campusKnowledge["hod business"] = {
+    name: "Head of Department - School of Business",
+    info: "The HOD Office is located in LTB3, First Floor."
+};
+
+campusKnowledge["head of department business"] = {
+    name: "Head of Department - School of Business",
+    info: "The HOD Office is located in LTB3, First Floor."
+};
