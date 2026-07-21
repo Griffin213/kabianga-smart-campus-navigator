@@ -33,6 +33,7 @@ body{
     align-items:center;
     justify-content:center;
     position:relative;
+    transition:opacity .8s ease;
 }
     .logo{
     width:160px;
@@ -130,7 +131,11 @@ h1{
 
 setTimeout(function(){
 
-    window.location.href="home.html";
+    document.querySelector(".splash").style.opacity="0";
+
+    setTimeout(function(){
+        window.location.href="home.html";
+    },800);
 
 },3000);
 
