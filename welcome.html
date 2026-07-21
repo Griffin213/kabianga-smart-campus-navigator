@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Welcome</title>
+
+<style>
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+body{
+    overflow:hidden;
+    animation:fadeIn 1s;
+}
+
+img{
+    width:100%;
+    height:100vh;
+    object-fit:cover;
+}
+
+.overlay{
+    position:absolute;
+    top:0;
+    left:0;
+    width:100%;
+    height:100%;
+    background:rgba(0,0,0,.35);
+    display:flex;
+    flex-direction:column;
+    justify-content:center;
+    align-items:center;
+    color:white;
+    text-align:center;
+}
+
+.overlay h1{
+    font-size:40px;
+    margin-bottom:10px;
+}
+
+.overlay p{
+    font-size:22px;
+}
+
+@keyframes fadeIn{
+    from{opacity:0;}
+    to{opacity:1;}
+}
+</style>
+</head>
+
+<body>
+
+<img src="welcome.jpg">
+
+<div class="overlay">
+    <h1>Welcome to University of Kabianga</h1>
+    <p>Smart Campus Navigation System</p>
+</div>
+
+<script>
+setTimeout(function(){
+    window.location.href="home.html";
+},2000);
+</script>
+
+</body>
+</html>
