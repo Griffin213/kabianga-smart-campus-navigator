@@ -108,8 +108,6 @@ function sendMessage() {
             text: reply
         });
 
-        speak(reply);
-
     }, 1200);
 
 }
