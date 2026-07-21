@@ -423,3 +423,23 @@ box-shadow:0 6px 20px rgba(0,0,0,.2);
 .chat-header p{
     font-size:18px;
 }
+/* Keep input fixed at bottom */
+
+.chat-page{
+    display:flex;
+    flex-direction:column;
+    height:100vh;
+}
+
+#chatBox{
+    flex:1;
+    overflow-y:auto;
+}
+
+.chat-input{
+    position:sticky;
+    bottom:0;
+    background:white;
+    padding:12px;
+    border-top:1px solid #ddd;
+}
