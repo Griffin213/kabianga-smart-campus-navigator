@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>University of Kabianga</title>
+
+<style>
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:Arial, sans-serif;
+}
+
+body{
+    background:#0057d9;
+    color:white;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    height:100vh;
+}
+
+.splash{
+    text-align:center;
+    width:100%;
+    position:relative;
+}
+
+.logo{
+    width:160px;
+    height:160px;
+    background:white;
+    border-radius:50%;
+    padding:8px;
+    animation:zoom 2s infinite alternate;
+}
+
+h1{
+    margin-top:20px;
+    font-size:32px;
+}
+
+.subtitle{
+    margin-top:10px;
+    font-size:20px;
+}
+
+.powered{
+    margin-top:15px;
+    color:#FFD54F;
+    font-size:20px;
+    font-weight:bold;
+}
+
+.loading{
+    margin-top:35px;
+    font-size:18px;
+    animation:blink 1s infinite;
+}
+
+.developer{
+    position:absolute;
+    bottom:20px;
+    width:100%;
+    text-align:center;
+    font-size:15px;
+    color:#ffffff;
+    line-height:1.6;
+}
+
+@keyframes blink{
+    50%{
+        opacity:.3;
+    }
+}
+
+@keyframes zoom{
+    from{
+        transform:scale(1);
+    }
+    to{
+        transform:scale(1.08);
+    }
+}
+
+</style>
+
+</head>
+
+<body>
+
+<div class="splash">
+
+    <img src="logo.jpg" class="logo">
+
+    <h1>UNIVERSITY OF KABIANGA</h1>
+
+    <p class="subtitle">Smart Campus Navigation System</p>
+
+    <p class="powered">Powered by Prince AI</p>
+
+    <div class="loading">
+        Loading...
+    </div>
+
+    <div class="developer">
+        Developed by<br>
+        <strong>Griffin Kipruttoh</strong><br>
+        <strong>David Dodi</strong>
+    </div>
+
+</div>
+
+<script>
+
+setTimeout(function(){
+
+    window.location.href="index.html";
+
+},3000);
+
+</script>
+
+</body>
+</html>
