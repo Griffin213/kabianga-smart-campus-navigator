@@ -204,3 +204,22 @@ document.addEventListener("DOMContentLoaded", function () {
     }
 
 });
+function newChat() {
+
+    chatMemory = [];
+
+    document.getElementById("chatBox").innerHTML = `
+        <div class="ai-message">
+            Hello 👋 I am Prince AI. How can I help you today?
+        </div>
+    `;
+
+}
+
+function clearChat() {
+
+    if (confirm("Clear this conversation?")) {
+        newChat();
+    }
+
+}
