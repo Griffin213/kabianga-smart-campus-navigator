@@ -55,3 +55,22 @@ campusKnowledge["head of department business"] = {
     name: "Head of Department - School of Business",
     info: "The HOD Office is located in LTB3, First Floor."
 };
+campusKnowledge["dean"] = {
+    name: "Dean, School of Business",
+    info: "The Dean's Office is located in LTB3, First Floor."
+};
+
+campusKnowledge["dean office"] = {
+    name: "Dean, School of Business",
+    info: "The Dean's Office is located in LTB3, First Floor."
+};
+
+campusKnowledge["hod"] = {
+    name: "Head of Department - School of Business",
+    info: "The HOD Office is located in LTB3, First Floor."
+};
+
+campusKnowledge["head of department"] = {
+    name: "Head of Department - School of Business",
+    info: "The HOD Office is located in LTB3, First Floor."
+};
