@@ -37,6 +37,7 @@ img{
     align-items:center;
     color:white;
     text-align:center;
+    transition: opacity 0.8s ease;
 }
 
 .overlay h1{
@@ -97,7 +98,14 @@ img{
 
 <script>
 setTimeout(function(){
-    window.location.href="home.html";
+
+    document.querySelector(".overlay").style.opacity = "0";
+    document.querySelector("img").style.opacity = "0";
+
+    setTimeout(function(){
+        window.location.href = "home.html";
+    },800);
+
 },2000);
 </script>
 
