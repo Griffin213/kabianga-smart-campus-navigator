@@ -135,20 +135,41 @@ function addMessage(text, className) {
 function princeReply(message) {
 
     // Search campus knowledge
-    if (typeof campusKnowledge !== "undefined") {
 
-        for (let place in campusKnowledge) {
+if (typeof campusKnowledge !== "undefined") {
 
-            if (message.includes(place)) {
+    // Understand common questions about the Dean
+    if (
+        message.includes("dean") &&
+        !message.includes("education") &&
+        !message.includes("science")
+    ) {
+        return "📍 Dean, School of Business\n\n🏢 Building: LTB3\n⬆ Floor: First Floor\n\nThe Dean's Office is located on the First Floor of LTB3.";
+    }
 
-                return campusKnowledge[place].name + ": " +
-                       campusKnowledge[place].info;
+    // Understand common questions about the HOD
+    if (
+        message.includes("hod") ||
+        message.includes("head of department")
+    ) {
+        return "📍 Head of Department - School of Business\n\n🏢 Building: LTB3\n⬆ Floor: First Floor\n\nThe HOD Office is located on the First Floor of LTB3.";
+    }
 
-            }
+    // Search all other places
+    for (let place in campusKnowledge) {
+
+        if (message.includes(place)) {
+
+            return "📍 " +
+                campusKnowledge[place].name +
+                "\n\n" +
+                campusKnowledge[place].info;
 
         }
 
     }
+
+}
 
     if (message.includes("hello") || message.includes("hi")) {
 
