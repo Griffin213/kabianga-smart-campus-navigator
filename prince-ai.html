@@ -1,70 +1,88 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 
 <head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Prince AI Assistant</title>
-<div class="chat-actions">
-    <button onclick="newChat()">➕ New Chat</button>
-    <button onclick="clearChat()">🗑️ Clear Chat</button>
-</div>
+<title>Prince AI</title>
+
 <link rel="stylesheet" href="style.css">
-
 </head>
-
 
 <body>
 
+<div class="chat-page">
 
-<div class="ai-page">
+    <div class="chat-header">
 
-<div class="ai-header">
+        <button onclick="goHome()" class="back-btn">
+            ← Home
+        </button>
 
-    <button onclick="goHome()" class="back-btn">
-        ← Home
-    </button>
+        <button onclick="newChat()" class="new-btn">
+            ➕ New Chat
+        </button>
 
-    🤖 Prince AI
+        <h2>🤖 Prince AI</h2>
 
-    <p>Your Smart Campus Assistant</p>
+        <p>Your Smart Campus Assistant</p>
 
-</div>
-
+    </div>
 
     <div id="chatBox" class="chat-box">
 
-        <div class="ai-message">
-            Hello 👋 I am Prince AI. How can I help you today?
+        <div class="bot-message">
+
+            👋 Hello! Welcome to the University of Kabianga.
+
+            <br><br>
+
+            I can help you with:
+
+            <br>📍 Find lecture halls
+
+            <br>🏢 Find departments
+
+            <br>📚 Find offices
+
+            <br>🗺 Campus navigation
+
+            <br>❓ Ask me anything about campus.
+
         </div>
 
     </div>
 
+    <div class="quick-actions">
 
+        <button onclick="quickAsk('Library')">📚 Library</button>
 
-    <div class="chat-input">
+        <button onclick="quickAsk('LTB1')">🏫 LTB1</button>
 
-        <input 
-        type="text" 
-        id="userMessage"
-        placeholder="Message Prince AI...">
+        <button onclick="quickAsk('Hostels')">🏠 Hostels</button>
 
-
-        <button onclick="sendMessage()">
-        Send
-        </button>
-
+        <button onclick="quickAsk('Administration')">🏢 Admin</button>
 
     </div>
 
+    <div class="chat-input">
+
+        <input
+        type="text"
+        id="userInput"
+        placeholder="Ask Prince AI anything...">
+
+        <button onclick="startPrinceAI()">🎤</button>
+
+        <button onclick="sendMessage()">➤</button>
+
+    </div>
 
 </div>
 
-
-
 <script src="knowledge.js"></script>
-
 <script src="prince-ai.js"></script>
-
 
 </body>
 
