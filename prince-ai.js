@@ -45,27 +45,33 @@ function goHome() {
     window.location.href = "index.html";
 
 }
-
 // --------------------
 // Start Voice Assistant
 // --------------------
 function startPrinceAI() {
 
-    voiceMode = true;
-
     if (!greeted) {
 
         greeted = true;
 
-        speak("Hello. I am Prince AI. Welcome to the University of Kabianga. How can I help you today?");
+        voiceMode = true;
+
+        speak("Hello. I am Prince AI. How can I help you today?");
+
+        speechSynthesis.onvoiceschanged = function () {
+            startListening();
+        };
 
     } else {
+
+        voiceMode = true;
 
         startListening();
 
     }
 
 }
+
 
 // --------------------
 // Stop Voice Assistant
