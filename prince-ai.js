@@ -133,7 +133,12 @@ function startListening() {
 
         addMessage(reply, "ai-message");
 
-        speak(reply);
+        if (voiceMode) {
+    speak(reply);
+}
+
+// Stop listening after answering
+voiceMode = false;
 
     };
 
