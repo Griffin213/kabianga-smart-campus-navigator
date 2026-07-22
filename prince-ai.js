@@ -59,12 +59,18 @@ function startListening() {
 
         recognition.onend = function () {
 
-            isListening = false;
+    const btn = document.getElementById("voiceBtn");
+    if (btn) btn.innerHTML = "🎤 Listening...";
 
-            const btn = document.getElementById("voiceBtn");
-            if (btn) btn.innerHTML = "🎤 Prince AI";
+    if (isListening) {
 
-        };
+        setTimeout(function () {
+            recognition.start();
+        }, 300);
+
+    }
+
+};
 
         recognition.onerror = function () {
 
