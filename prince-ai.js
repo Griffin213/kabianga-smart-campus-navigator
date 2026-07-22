@@ -338,7 +338,54 @@ function princeReply(message) {
 
 }
 
-// Press Enter to send
+// =====================================
+// Part 3 - Utilities & Initialization
+// =====================================
+
+// New Chat
+function newChat() {
+
+    chatMemory = [];
+
+    const chatBox = document.getElementById("chatBox");
+
+    chatBox.innerHTML = `
+
+        <div class="ai-message">
+
+            👋 Hello! I am <b>Prince AI</b>.<br><br>
+
+            Welcome to the University of Kabianga Smart Campus Navigator.<br><br>
+
+            Ask me about:
+            <br>📍 Buildings
+            <br>🏢 Offices
+            <br>🎓 Schools
+            <br>📚 Student Services
+            <br>🗺 Campus Navigation
+
+        </div>
+
+    `;
+
+}
+
+
+
+// Clear Chat
+function clearChat() {
+
+    if (confirm("Clear this conversation?")) {
+
+        newChat();
+
+    }
+
+}
+
+
+
+// Send message with Enter key
 document.addEventListener("DOMContentLoaded", function () {
 
     const input = document.getElementById("userMessage");
@@ -358,36 +405,37 @@ document.addEventListener("DOMContentLoaded", function () {
     }
 
 });
-function newChat() {
 
-    chatMemory = [];
 
-    document.getElementById("chatBox").innerHTML = `
-        <div class="ai-message">
-            Hello 👋 I am Prince AI. How can I help you today?
-        </div>
-    `;
 
-}
+// Stop voice when page closes
+window.addEventListener("beforeunload", function () {
 
-function clearChat() {
-
-    if (confirm("Clear this conversation?")) {
-        newChat();
-    }
-
-}
-function stopPrinceAI() {
-
-    isListening = false;
+    voiceMode = false;
 
     if (recognition) {
+
         recognition.stop();
+
     }
 
     window.speechSynthesis.cancel();
 
-    const btn = document.getElementById("voiceBtn");
-    if (btn) btn.innerHTML = "🎤 Prince AI";
+});
 
-}
+
+
+// Start with a welcome chat only
+window.onload = function () {
+
+    newChat();
+
+};
+
+
+
+// =====================================
+// Prince AI v2.0 Loaded
+// =====================================
+
+console.log("✅ Prince AI v2.0 Loaded Successfully");
