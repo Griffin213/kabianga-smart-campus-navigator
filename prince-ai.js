@@ -157,7 +157,11 @@ function startListening() {
 
 }
 
-// Send text message
+// =====================================
+// Part 2 - Chat Engine
+// =====================================
+
+// Send Text Message
 function sendMessage() {
 
     const input = document.getElementById("userMessage");
@@ -175,13 +179,19 @@ function sendMessage() {
 
     input.value = "";
 
-    let typing = document.createElement("div");
+    // Typing Animation
+    const typing = document.createElement("div");
 
     typing.id = "typing";
+
     typing.className = "ai-message";
-    typing.innerHTML = "Prince AI is typing...";
+
+    typing.innerHTML = "🤖 Prince AI is typing...";
 
     document.getElementById("chatBox").appendChild(typing);
+
+    document.getElementById("chatBox").scrollTop =
+        document.getElementById("chatBox").scrollHeight;
 
     setTimeout(function () {
 
@@ -192,102 +202,139 @@ function sendMessage() {
         addMessage(reply, "ai-message");
 
         chatMemory.push({
-            role: "ai",
+            role: "assistant",
             text: reply
         });
 
-    }, 1200);
+        // Speak ONLY when voice mode is active
+        if (voiceMode) {
+
+            speak(reply);
+
+        }
+
+    }, 900);
 
 }
 
-// Add chat bubble
+
+
+// Add Chat Bubble
 function addMessage(text, className) {
 
     const chatBox = document.getElementById("chatBox");
 
-    const div = document.createElement("div");
+    const bubble = document.createElement("div");
 
-    div.className = className;
+    bubble.className = className;
 
-    div.innerHTML = text;
+    bubble.innerHTML = text.replace(/\n/g, "<br>");
 
-    chatBox.appendChild(div);
+    chatBox.appendChild(bubble);
 
     chatBox.scrollTop = chatBox.scrollHeight;
 
 }
 
+
+
+// =====================================
 // Prince AI Brain
+// =====================================
+
 function princeReply(message) {
 
-    // Search campus knowledge
+    message = message.toLowerCase();
 
-if (typeof campusKnowledge !== "undefined") {
 
-    // Understand common questions about the Dean
-    if (
-        message.includes("dean") &&
-        !message.includes("education") &&
-        !message.includes("science")
-    ) {
-        return "📍 Dean, School of Business\n\n🏢 Building: LTB3\n⬆ Floor: First Floor\n\nThe Dean's Office is located on the First Floor of LTB3.";
-    }
 
-    // Understand common questions about the HOD
-    if (
-        message.includes("hod") ||
-        message.includes("head of department")
-    ) {
-        return "📍 Head of Department - School of Business\n\n🏢 Building: LTB3\n⬆ Floor: First Floor\n\nThe HOD Office is located on the First Floor of LTB3.";
-    }
+    // Search Knowledge Base
 
-    // Search all other places
-    for (let place in campusKnowledge) {
+    if (typeof campusKnowledge !== "undefined") {
 
-        if (message.includes(place)) {
+        for (let place in campusKnowledge) {
 
-            return "📍 " +
-                campusKnowledge[place].name +
-                "\n\n" +
-                campusKnowledge[place].info;
+            if (message.includes(place.toLowerCase())) {
+
+                return "📍 <b>" +
+
+                    campusKnowledge[place].name +
+
+                    "</b><br><br>" +
+
+                    campusKnowledge[place].info;
+
+            }
 
         }
 
     }
 
-}
 
-    if (message.includes("hello") || message.includes("hi")) {
 
-        return "Hello 👋. Welcome to the University of Kabianga Smart Campus Navigator. How can I assist you today?";
+    // Greetings
 
-    }
+    if (
 
-    if (message.includes("who are you")) {
+        message.includes("hello") ||
 
-        return "I am Prince AI, your smart campus assistant created to help students and visitors navigate the University of Kabianga.";
+        message.includes("hi") ||
 
-    }
+        message.includes("hey")
 
-    if (message.includes("help")) {
+    ) {
 
-        return "I can help you find campus locations, answer university questions, and provide navigation assistance.";
+        return "Hello 👋 Welcome to the University of Kabianga. How can I assist you today?";
 
     }
 
-    if (message.includes("thank")) {
 
-        return "You're welcome 😊. I'm always happy to help.";
+
+    // About AI
+
+    if (
+
+        message.includes("who are you")
+
+    ) {
+
+        return "I am Prince AI, your Smart Campus Assistant. I help students, staff and visitors navigate and access university services.";
 
     }
 
-    if (message.includes("name")) {
 
-        return "My name is Prince AI.";
+
+    // Help
+
+    if (
+
+        message.includes("help")
+
+    ) {
+
+        return "I can help you find offices, lecture halls, departments, student services, the library, hostels, and many other university facilities.";
 
     }
 
-    return "I'm still learning about the University of Kabianga. More campus information will be added soon.";
+
+
+    // Thanks
+
+    if (
+
+        message.includes("thank")
+
+    ) {
+
+        return "You're welcome 😊 Happy to help.";
+
+    }
+
+
+
+    // Default Reply
+
+    return "Sorry, I don't have information about that yet. We are continuously improving Prince AI. 😊";
 
 }
 
