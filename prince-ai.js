@@ -36,27 +36,14 @@ function goHome() {
     window.location.href = "index.html";
 }
 
-// Voice Assistant
-function startPrinceAI() {
-
-    if (!greeted) {
-        greeted = true;
-        speak("Hello. I am Prince AI. How can I help you today?");
-    }
-
-    startListening();
-
-}
-
 // Voice Recognition
-
-  function startListening() {
+function startListening() {
 
     const SpeechRecognition =
         window.SpeechRecognition || window.webkitSpeechRecognition;
 
     if (!SpeechRecognition) {
-        alert("Speech recognition is not supported.");
+        alert("Sorry, your browser does not support voice recognition.");
         return;
     }
 
@@ -66,20 +53,21 @@ function startPrinceAI() {
 
         recognition.lang = "en-US";
         recognition.interimResults = false;
+        recognition.maxAlternatives = 1;
         recognition.continuous = false;
 
         recognition.onstart = function () {
 
             isListening = true;
 
-            document.getElementById("voiceBtn").innerHTML = "🔴 Listening...";
+            const btn = document.getElementById("voiceBtn");
+            if (btn) btn.innerHTML = "🔴 Listening...";
 
         };
 
-        recognition.onresult = function(event) {
+        recognition.onresult = function (event) {
 
-            const message =
-                event.results[0][0].transcript.toLowerCase();
+            const message = event.results[0][0].transcript.toLowerCase();
 
             addMessage(message, "user-message");
 
@@ -91,19 +79,21 @@ function startPrinceAI() {
 
         };
 
-        recognition.onend = function() {
+        recognition.onend = function () {
 
             isListening = false;
 
-            document.getElementById("voiceBtn").innerHTML = "🎤 Prince AI";
+            const btn = document.getElementById("voiceBtn");
+            if (btn) btn.innerHTML = "🎤 Prince AI";
 
         };
 
-        recognition.onerror = function() {
+        recognition.onerror = function () {
 
             isListening = false;
 
-            document.getElementById("voiceBtn").innerHTML = "🎤 Prince AI";
+            const btn = document.getElementById("voiceBtn");
+            if (btn) btn.innerHTML = "🎤 Prince AI";
 
         };
 
@@ -111,37 +101,14 @@ function startPrinceAI() {
 
     recognition.start();
 
-  }  const recognition = new SpeechRecognition();
+}
 
-    recognition.lang = "en-US";
-    recognition.interimResults = false;
-    recognition.maxAlternatives = 1;
-
-    recognition.onstart = function () {
-        console.log("Listening...");
-    };
-
-    recognition.onresult = function (event) {
-
-        const message =
-            event.results[0][0].transcript.toLowerCase();
-
-        addMessage(message, "user-message");
-
-        let reply = princeReply(message);
-
-        addMessage(reply, "ai-message");
-
-        speak(reply);
-
-    };
-
-    function speak(text) {
+// Speak text
+function speak(text) {
 
     const speech = new SpeechSynthesisUtterance(text);
 
     speech.lang = "en-US";
-
     speech.rate = 1;
 
     speech.onend = function () {
@@ -154,13 +121,9 @@ function startPrinceAI() {
 
     };
 
-    speechSynthesis.cancel();
+    window.speechSynthesis.cancel();
+    window.speechSynthesis.speak(speech);
 
-    speechSynthesis.speak(speech);
-
-    }
-
-    recognition.start();
 }
 
 // Send text message
