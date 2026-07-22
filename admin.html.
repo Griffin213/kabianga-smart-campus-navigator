@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Admin Login | Smart Campus Management System</title>
+
+<link rel="stylesheet" href="style.css">
+
+<style>
+
+body{
+    margin:0;
+    font-family:Arial,sans-serif;
+    background:linear-gradient(135deg,#0b5ed7,#198754);
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    height:100vh;
+}
+
+.login-box{
+
+    width:360px;
+    background:white;
+    border-radius:15px;
+    padding:30px;
+    text-align:center;
+    box-shadow:0 10px 30px rgba(0,0,0,.3);
+
+}
+
+.login-box img{
+
+    width:90px;
+    margin-bottom:15px;
+
+}
+
+.login-box h2{
+
+    color:#0b5ed7;
+    margin-bottom:5px;
+
+}
+
+.login-box p{
+
+    color:#666;
+    margin-bottom:25px;
+
+}
+
+input{
+
+    width:100%;
+    padding:12px;
+    margin:10px 0;
+    border:1px solid #ccc;
+    border-radius:8px;
+    font-size:16px;
+    box-sizing:border-box;
+
+}
+
+button{
+
+    width:100%;
+    padding:12px;
+    margin-top:15px;
+    background:#0b5ed7;
+    color:white;
+    border:none;
+    border-radius:8px;
+    font-size:17px;
+    cursor:pointer;
+
+}
+
+button:hover{
+
+    background:#084298;
+
+}
+
+</style>
+
+</head>
+
+<body>
+
+<div class="login-box">
+
+<img src="logo.png" alt="University Logo">
+
+<h2>University of Kabianga</h2>
+
+<p>Smart Campus Management System</p>
+
+<input
+type="text"
+id="username"
+placeholder="Username">
+
+<input
+type="password"
+id="password"
+placeholder="Password">
+
+<button onclick="loginAdmin()">
+Login
+</button>
+
+</div>
+
+<script>
+
+function loginAdmin(){
+
+const username=document.getElementById("username").value;
+
+const password=document.getElementById("password").value;
+
+if(username==="admin" && password==="1234"){
+
+alert("Login Successful!");
+
+window.location.href="dashboard.html";
+
+}else{
+
+alert("Invalid Username or Password");
+
+}
+
+}
+
+</script>
+
+</body>
+
+</html>
