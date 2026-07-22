@@ -163,3 +163,66 @@ campusKnowledge["academic calendar"] = {
     name: "Academic Calendar",
     info: "The Academic Calendar contains important semester dates, examinations and holidays."
 };
+// ===============================
+// ADMINISTRATION OFFICES
+// ===============================
+
+campusKnowledge["vice chancellor"] = {
+    name: "Vice Chancellor",
+    info: "The Vice Chancellor's Office is located in the Administration Block."
+};
+
+campusKnowledge["vc office"] = {
+    name: "Vice Chancellor",
+    info: "The Vice Chancellor's Office is located in the Administration Block."
+};
+
+campusKnowledge["registrar"] = {
+    name: "Registrar",
+    info: "The Registrar's Office is located in the Administration Block."
+};
+
+campusKnowledge["finance office"] = {
+    name: "Finance Office",
+    info: "The Finance Office is located in the Administration Block. It assists students with fees and financial matters."
+};
+
+campusKnowledge["accounts office"] = {
+    name: "Accounts Office",
+    info: "The Accounts Office is located in the Administration Block."
+};
+
+campusKnowledge["ict"] = {
+    name: "ICT Directorate",
+    info: "The ICT Office is located in the Administration Block. It assists with student emails, portals and ICT services."
+};
+
+campusKnowledge["ict office"] = {
+    name: "ICT Directorate",
+    info: "The ICT Office is located in the Administration Block."
+};
+
+campusKnowledge["dean of students"] = {
+    name: "Dean of Students",
+    info: "The Dean of Students Office is located in the Administration Block."
+};
+
+campusKnowledge["student welfare"] = {
+    name: "Student Welfare",
+    info: "Student Welfare services are available through the Dean of Students Office."
+};
+
+campusKnowledge["procurement"] = {
+    name: "Procurement Office",
+    info: "The Procurement Office is located in the Administration Block."
+};
+
+campusKnowledge["human resource"] = {
+    name: "Human Resource Office",
+    info: "The Human Resource Office is located in the Administration Block."
+};
+
+campusKnowledge["security"] = {
+    name: "University Security",
+    info: "For emergencies, contact the University Security Office or the nearest security officer."
+};
