@@ -3,14 +3,32 @@
 // ===============================
 
 let chatMemory = [];
-
+let recognition;
+let isListening = false;
+let greeted = false;
 // Speak text
 function speak(text) {
+
     const speech = new SpeechSynthesisUtterance(text);
+
     speech.lang = "en-US";
+
     speech.rate = 1;
-    window.speechSynthesis.cancel();
-    window.speechSynthesis.speak(speech);
+
+    speech.onend = function () {
+
+        if (greeted) {
+
+            startListening();
+
+        }
+
+    };
+
+    speechSynthesis.cancel();
+
+    speechSynthesis.speak(speech);
+
 }
 
 // Go back to home page
@@ -20,22 +38,80 @@ function goHome() {
 
 // Voice Assistant
 function startPrinceAI() {
-    speak("Hello. I am Prince AI. How can I help you?");
+
+    if (!greeted) {
+        greeted = true;
+        speak("Hello. I am Prince AI. How can I help you today?");
+    }
+
     startListening();
+
 }
 
 // Voice Recognition
-function startListening() {
+
+  function startListening() {
 
     const SpeechRecognition =
         window.SpeechRecognition || window.webkitSpeechRecognition;
 
     if (!SpeechRecognition) {
-        speak("Sorry, your browser does not support voice recognition.");
+        alert("Speech recognition is not supported.");
         return;
     }
 
-    const recognition = new SpeechRecognition();
+    if (!recognition) {
+
+        recognition = new SpeechRecognition();
+
+        recognition.lang = "en-US";
+        recognition.interimResults = false;
+        recognition.continuous = false;
+
+        recognition.onstart = function () {
+
+            isListening = true;
+
+            document.getElementById("voiceBtn").innerHTML = "🔴 Listening...";
+
+        };
+
+        recognition.onresult = function(event) {
+
+            const message =
+                event.results[0][0].transcript.toLowerCase();
+
+            addMessage(message, "user-message");
+
+            const reply = princeReply(message);
+
+            addMessage(reply, "ai-message");
+
+            speak(reply);
+
+        };
+
+        recognition.onend = function() {
+
+            isListening = false;
+
+            document.getElementById("voiceBtn").innerHTML = "🎤 Prince AI";
+
+        };
+
+        recognition.onerror = function() {
+
+            isListening = false;
+
+            document.getElementById("voiceBtn").innerHTML = "🎤 Prince AI";
+
+        };
+
+    }
+
+    recognition.start();
+
+  }  const recognition = new SpeechRecognition();
 
     recognition.lang = "en-US";
     recognition.interimResults = false;
@@ -60,11 +136,29 @@ function startListening() {
 
     };
 
-    recognition.onerror = function () {
+    function speak(text) {
 
-        speak("Sorry, I did not hear you.");
+    const speech = new SpeechSynthesisUtterance(text);
+
+    speech.lang = "en-US";
+
+    speech.rate = 1;
+
+    speech.onend = function () {
+
+        if (greeted) {
+
+            startListening();
+
+        }
 
     };
+
+    speechSynthesis.cancel();
+
+    speechSynthesis.speak(speech);
+
+    }
 
     recognition.start();
 }
