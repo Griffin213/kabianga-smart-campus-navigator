@@ -1,114 +1,159 @@
-// ===============================
-// Prince AI - University of Kabianga
-// ===============================
+// =====================================
+// Prince AI v2.0
+// University of Kabianga
+// Part 1 - Core + Voice + Chat
+// =====================================
 
+// Chat Memory
 let chatMemory = [];
-let recognition;
-let isListening = false;
+
+// Voice Variables
+let recognition = null;
 let greeted = false;
-// Speak text
+let voiceMode = false;
 
-
-// Go back to home page
-function goHome() {
-    window.location.href = "index.html";
-}
-
-// Voice Recognition
-function startListening() {
-
-    const SpeechRecognition =
-        window.SpeechRecognition || window.webkitSpeechRecognition;
-
-    if (!SpeechRecognition) {
-        alert("Sorry, your browser does not support voice recognition.");
-        return;
-    }
-
-    if (!recognition) {
-
-        recognition = new SpeechRecognition();
-
-        recognition.lang = "en-US";
-        recognition.interimResults = false;
-        recognition.maxAlternatives = 1;
-        recognition.continuous = false;
-
-        recognition.onstart = function () {
-
-            isListening = true;
-
-            const btn = document.getElementById("voiceBtn");
-            if (btn) btn.innerHTML = "🔴 Listening...";
-
-        };
-
-        recognition.onresult = function (event) {
-
-            const message = event.results[0][0].transcript.toLowerCase();
-
-            addMessage(message, "user-message");
-
-            const reply = princeReply(message);
-
-            addMessage(reply, "ai-message");
-
-            speak(reply);
-
-        };
-
-        recognition.onend = function () {
-
-    const btn = document.getElementById("voiceBtn");
-    if (btn) btn.innerHTML = "🎤 Listening...";
-
-    if (isListening) {
-
-        setTimeout(function () {
-            recognition.start();
-        }, 300);
-
-    }
-
-};
-
-        recognition.onerror = function () {
-
-            isListening = false;
-
-            const btn = document.getElementById("voiceBtn");
-            if (btn) btn.innerHTML = "🎤 Prince AI";
-
-        };
-
-    }
-
-    recognition.start();
-
-}
-
-// Speak text
+// --------------------
+// Speak
+// --------------------
 function speak(text) {
 
-    
+    if (!voiceMode) return;
+
+    window.speechSynthesis.cancel();
+
+    const speech = new SpeechSynthesisUtterance(text);
 
     speech.lang = "en-US";
     speech.rate = 1;
+    speech.pitch = 1;
 
     speech.onend = function () {
 
-    if (greeted && isListening) {
+        if (voiceMode) {
+            setTimeout(startListening, 400);
+        }
 
-        setTimeout(function () {
-            startListening();
-        }, 500);
+    };
+
+    window.speechSynthesis.speak(speech);
+
+}
+
+// --------------------
+// Home
+// --------------------
+function goHome() {
+
+    window.location.href = "index.html";
+
+}
+
+// --------------------
+// Start Voice Assistant
+// --------------------
+function startPrinceAI() {
+
+    voiceMode = true;
+
+    if (!greeted) {
+
+        greeted = true;
+
+        speak("Hello. I am Prince AI. Welcome to the University of Kabianga. How can I help you today?");
+
+    } else {
+
+        startListening();
 
     }
 
-};
+}
+
+// --------------------
+// Stop Voice Assistant
+// --------------------
+function stopPrinceAI() {
+
+    voiceMode = false;
 
     window.speechSynthesis.cancel();
-    window.speechSynthesis.speak(speech);
+
+    if (recognition) {
+
+        recognition.stop();
+
+    }
+
+}
+
+// --------------------
+// Voice Recognition
+// --------------------
+function startListening() {
+
+    const SpeechRecognition =
+        window.SpeechRecognition ||
+        window.webkitSpeechRecognition;
+
+    if (!SpeechRecognition) {
+
+        alert("Voice recognition is not supported on this browser.");
+
+        return;
+
+    }
+
+    recognition = new SpeechRecognition();
+
+    recognition.lang = "en-US";
+
+    recognition.interimResults = false;
+
+    recognition.maxAlternatives = 1;
+
+    recognition.onstart = function () {
+
+        console.log("Prince AI Listening...");
+
+    };
+
+    recognition.onresult = function (event) {
+
+        const message =
+            event.results[0][0].transcript;
+
+        addMessage(message, "user-message");
+
+        const reply =
+            princeReply(message.toLowerCase());
+
+        addMessage(reply, "ai-message");
+
+        speak(reply);
+
+    };
+
+    recognition.onerror = function () {
+
+        if (voiceMode) {
+
+            setTimeout(startListening, 500);
+
+        }
+
+    };
+
+    recognition.onend = function () {
+
+        if (voiceMode) {
+
+            setTimeout(startListening, 500);
+
+        }
+
+    };
+
+    recognition.start();
 
 }
 
