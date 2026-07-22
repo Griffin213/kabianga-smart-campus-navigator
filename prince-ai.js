@@ -91,13 +91,15 @@ function speak(text) {
 
     speech.onend = function () {
 
-        if (greeted) {
+    if (greeted && isListening) {
 
+        setTimeout(function () {
             startListening();
+        }, 500);
 
-        }
+    }
 
-    };
+};
 
     window.speechSynthesis.cancel();
     window.speechSynthesis.speak(speech);
