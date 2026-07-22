@@ -112,3 +112,54 @@ campusKnowledge["semester reporting"] = {
     name: "Semester Reporting",
     info: "Log into the Student Portal and complete Semester Reporting before classes begin."
 };
+// Portal Login
+campusKnowledge["login portal"] = {
+    name: "Student Portal Login",
+    info: "Visit the University of Kabianga Student Portal and log in using your Registration Number and password."
+};
+
+campusKnowledge["portal login"] = {
+    name: "Student Portal Login",
+    info: "Use your Registration Number and password to log into the University of Kabianga Student Portal."
+};
+
+// Admission Letter
+campusKnowledge["admission letter"] = {
+    name: "Admission Letter",
+    info: "Log into the Student Portal and download your admission letter from the Admissions section."
+};
+
+// HELB
+campusKnowledge["helb"] = {
+    name: "HELB Assistance",
+    info: "Visit the HELB Desk for assistance. You can also apply through the official HELB Student Portal."
+};
+
+// Student ID
+campusKnowledge["student id"] = {
+    name: "Student ID",
+    info: "Visit the Dean of Students Office for assistance with replacing or collecting your Student ID."
+};
+
+// Accommodation
+campusKnowledge["hostel"] = {
+    name: "Student Accommodation",
+    info: "Visit the Accommodation Office or log into the Student Portal to apply for hostel allocation."
+};
+
+campusKnowledge["accommodation"] = {
+    name: "Student Accommodation",
+    info: "Hostel applications are available through the Student Portal and the Accommodation Office."
+};
+
+// Exams
+campusKnowledge["exam timetable"] = {
+    name: "Examination Timetable",
+    info: "The examination timetable is available on the Student Portal and university notice boards."
+};
+
+// Academic Calendar
+campusKnowledge["academic calendar"] = {
+    name: "Academic Calendar",
+    info: "The Academic Calendar contains important semester dates, examinations and holidays."
+};
