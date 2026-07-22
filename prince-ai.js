@@ -26,14 +26,12 @@ function speak(text) {
     speech.lang = "en-US";
     speech.rate = 1;
     speech.pitch = 1;
-
     speech.onend = function () {
 
-        if (voiceMode) {
-            setTimeout(startListening, 400);
-        }
+    console.log("Prince AI finished speaking.");
 
-    };
+};
+    
 
     window.speechSynthesis.speak(speech);
 
