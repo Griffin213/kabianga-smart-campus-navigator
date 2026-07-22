@@ -226,3 +226,19 @@ campusKnowledge["security"] = {
     name: "University Security",
     info: "For emergencies, contact the University Security Office or the nearest security officer."
 };
+// ======================================
+// HOW TO REGISTER UNITS
+// ======================================
+
+campusKnowledge["register units"] = {
+    name: "📚 How to Register Units",
+    info: "STEP 1️⃣\nOpen the University of Kabianga Student Portal.\n\nSTEP 2️⃣\nLog in using your Registration/Admission Number and Password.\n\nSTEP 3️⃣\nOpen 'Academics' then select 'Course Registration' or 'Unit Registration'.\n\nSTEP 4️⃣\nSelect the Academic Year and Semester.\n\nSTEP 5️⃣\nTick all the units you are supposed to take.\n\nSTEP 6️⃣\nClick 'Submit', 'Save' or 'Register Units'.\n\n✅ Your units will be successfully registered."
+};
+
+campusKnowledge["unit registration"] = campusKnowledge["register units"];
+
+campusKnowledge["course registration"] = campusKnowledge["register units"];
+
+campusKnowledge["how do i register units"] = campusKnowledge["register units"];
+
+campusKnowledge["how to register units"] = campusKnowledge["register units"];
