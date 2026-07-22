@@ -285,3 +285,17 @@ function clearChat() {
     }
 
 }
+function stopPrinceAI() {
+
+    isListening = false;
+
+    if (recognition) {
+        recognition.stop();
+    }
+
+    window.speechSynthesis.cancel();
+
+    const btn = document.getElementById("voiceBtn");
+    if (btn) btn.innerHTML = "🎤 Prince AI";
+
+}
