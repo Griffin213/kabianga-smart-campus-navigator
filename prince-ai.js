@@ -90,7 +90,7 @@ function startListening() {
 // Speak text
 function speak(text) {
 
-    const speech = new SpeechSynthesisUtterance(text);
+    
 
     speech.lang = "en-US";
     speech.rate = 1;
