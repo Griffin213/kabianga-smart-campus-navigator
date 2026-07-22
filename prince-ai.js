@@ -7,29 +7,7 @@ let recognition;
 let isListening = false;
 let greeted = false;
 // Speak text
-function speak(text) {
 
-    const speech = new SpeechSynthesisUtterance(text);
-
-    speech.lang = "en-US";
-
-    speech.rate = 1;
-
-    speech.onend = function () {
-
-        if (greeted) {
-
-            startListening();
-
-        }
-
-    };
-
-    speechSynthesis.cancel();
-
-    speechSynthesis.speak(speech);
-
-}
 
 // Go back to home page
 function goHome() {
