@@ -63,9 +63,7 @@ function startPrinceAI() {
 
         speak("Hello. I am Prince AI. How can I help you today?");
 
-        speechSynthesis.onvoiceschanged = function () {
-            startListening();
-        };
+        startListening();
 
     } else {
 
