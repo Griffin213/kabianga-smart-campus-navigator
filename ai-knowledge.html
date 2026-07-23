@@ -204,7 +204,17 @@ alert("Please enter both the question and the answer.");
 return;
 
 }
+// Save knowledge permanently
 
+let knowledge = JSON.parse(localStorage.getItem("princeKnowledge")) || [];
+
+knowledge.push({
+    question: question,
+    category: category,
+    answer: answer
+});
+
+localStorage.setItem("princeKnowledge", JSON.stringify(knowledge));
 const table=document.querySelector("table");
 
 const row=table.insertRow(-1);
