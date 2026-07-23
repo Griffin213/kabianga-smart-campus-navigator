@@ -96,7 +96,7 @@ function stopPrinceAI() {
 }
 
 // --------------------
-// Voice Recognition
+// Voice Recognition v2.0
 // --------------------
 function startListening() {
 
@@ -106,73 +106,68 @@ function startListening() {
 
     if (!SpeechRecognition) {
 
-        alert("Voice recognition is not supported on this browser.");
+        alert("Your browser does not support voice recognition.");
 
         return;
 
     }
 
-    recognition = new SpeechRecognition();
+    if (!recognition) {
 
-    recognition.lang = "en-US";
+        recognition = new SpeechRecognition();
 
-    recognition.interimResults = false;
+        recognition.lang = "en-US";
+        recognition.continuous = false;
+        recognition.interimResults = false;
+        recognition.maxAlternatives = 1;
 
-    recognition.maxAlternatives = 1;
+        recognition.onstart = function () {
 
-    recognition.onstart = function () {
+            const btn = document.getElementById("voiceBtn");
 
-        console.log("Prince AI Listening...");
+            if(btn){
+                btn.innerHTML = "🔴 Listening...";
+            }
 
-    };
+        };
 
-    recognition.onresult = function (event) {
+        recognition.onresult = function (event) {
 
-        const message =
-            event.results[0][0].transcript;
+            const message = event.results[0][0].transcript.trim();
 
-        addMessage(message, "user-message");
+            addMessage(message, "user-message");
 
-        const reply =
-            princeReply(message.toLowerCase());
+            const reply = princeReply(message.toLowerCase());
 
-        addMessage(reply, "ai-message");
-        voiceMode = false;
-        if (voiceMode) {
-    speak(reply);
-}
+            addMessage(reply, "ai-message");
 
-// Stop listening after answering
+            speak(reply);
 
+        };
 
-    };
+        recognition.onerror = function (event) {
 
-    recognition.onerror = function () {
+            console.log("Voice Error:", event.error);
 
-    voiceMode = false;
+            const btn = document.getElementById("voiceBtn");
 
-    console.log("Voice recognition stopped.");
+            if(btn){
+                btn.innerHTML = "🎤 Ask Prince";
+            }
 
+        };
 
-        
+        recognition.onend = function () {
 
-    };
+            const btn = document.getElementById("voiceBtn");
 
-    recognition.onend = function () {
+            if(btn){
+                btn.innerHTML = "🎤 Ask Prince";
+            }
 
-    voiceMode = false;
+        };
 
-    console.log("Listening finished.");
-
-    const btn = document.getElementById("voiceBtn");
-
-    if(btn){
-        btn.innerHTML = "🎤 Ask Prince";
     }
-
-};
-
-    };
 
     recognition.start();
 
