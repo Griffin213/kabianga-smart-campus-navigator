@@ -187,6 +187,42 @@ placeholder="Type Prince AI's answer here..."></textarea>
 </a>
 
 </div>
+<script>
 
+function saveKnowledge(){
+
+const question=document.querySelector("input").value;
+
+const category=document.querySelector("select").value;
+
+const answer=document.querySelector("textarea").value;
+
+if(question==="" || answer===""){
+
+alert("Please enter both the question and the answer.");
+
+return;
+
+}
+
+const table=document.querySelector("table");
+
+const row=table.insertRow(-1);
+
+row.insertCell(0).innerHTML=question;
+
+row.insertCell(1).innerHTML=category;
+
+row.insertCell(2).innerHTML="✅ Active";
+
+alert("Knowledge saved successfully!");
+
+document.querySelector("input").value="";
+
+document.querySelector("textarea").value="";
+
+}
+
+</script>
 </body>
 </html>
