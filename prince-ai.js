@@ -153,7 +153,6 @@ function startListening() {
 
     console.log("Voice recognition stopped.");
 
-};
 
         
 
