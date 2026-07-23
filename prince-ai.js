@@ -27,7 +27,7 @@ function speak(text) {
     speech.volume = 1;
 
     // Prevent microphone from listening while speaking
-    isListening = false;
+    
 
     speech.onend = function () {
 
