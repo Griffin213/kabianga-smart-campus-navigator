@@ -451,7 +451,7 @@ window.addEventListener("beforeunload", function () {
         recognition.stop();
 
     }
-i7
+
     window.speechSynthesis.cancel();
 
 });
