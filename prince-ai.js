@@ -149,21 +149,29 @@ voiceMode = false;
 
     recognition.onerror = function () {
 
-        if (voiceMode) {
+    voiceMode = false;
 
-            setTimeout(startListening, 500);
+    console.log("Voice recognition stopped.");
 
-        }
+};
+
+        
 
     };
 
     recognition.onend = function () {
 
-        if (voiceMode) {
+    voiceMode = false;
 
-            setTimeout(startListening, 500);
+    console.log("Listening finished.");
 
-        }
+    const btn = document.getElementById("voiceBtn");
+
+    if(btn){
+        btn.innerHTML = "🎤 Ask Prince";
+    }
+
+};
 
     };
 
@@ -444,7 +452,7 @@ window.addEventListener("beforeunload", function () {
         recognition.stop();
 
     }
-
+i7
     window.speechSynthesis.cancel();
 
 });
