@@ -487,44 +487,47 @@ box-shadow:0 6px 20px rgba(0,0,0,.2);
     z-index:1000;
 }
 
-.settings-btn{
-    width:40px;
-    height:40px;
-    border:none;
-    border-radius:50%;
-    background:white;
-    color:#0b5ed7;
-    font-size:20px;
-    cursor:pointer;
-    display:flex;
-    justify-content:center;
-    align-items:center;
-    box-shadow:0 2px 8px rgba(0,0,0,.2);
+.settings-container{
+    position:absolute;
+    top:15px;
+    right:15px;
+    z-index:1000;
 }
 
-.settings-btn:hover{
-    background:#f5f5f5;
+.menu-btn{
+    background:transparent;
+    border:none;
+    color:white;
+    font-size:32px;
+    font-weight:bold;
+    cursor:pointer;
+    padding:5px 10px;
+}
+
+.menu-btn:hover{
+    color:#ffd700;
 }
 
 .admin-menu{
     display:none;
     position:absolute;
-    top:50px;
+    top:45px;
     right:0;
     width:220px;
     background:white;
     border-radius:10px;
-    box-shadow:0 5px 15px rgba(0,0,0,.2);
+    overflow:hidden;
+    box-shadow:0 5px 15px rgba(0,0,0,.25);
 }
 
 .admin-menu a{
     display:block;
-    padding:12px;
-    color:#333;
+    padding:14px;
     text-decoration:none;
+    color:#333;
     font-weight:bold;
 }
 
 .admin-menu a:hover{
-    background:#f0f0f0;
+    background:#f2f2f2;
 }
