@@ -241,21 +241,31 @@ menu.style.display="block";
 
 }
 
-window.onclick=function(event){
+<script>
+function toggleMenu(event){
 
-if(!event.target.matches(".settings-btn")){
+    event.stopPropagation();
 
-const menu=document.getElementById("adminMenu");
+    const menu = document.getElementById("adminMenu");
 
-if(menu){
+    if(menu.style.display === "block"){
 
-menu.style.display="none";
+        menu.style.display = "none";
+
+    }else{
+
+        menu.style.display = "block";
+
+    }
 
 }
 
-}
+document.addEventListener("click", function(){
 
-}
+    document.getElementById("adminMenu").style.display = "none";
+
+});
+</script>
 
 </script>
 
