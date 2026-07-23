@@ -252,7 +252,19 @@ function addMessage(text, className) {
 // =====================================
 
 function princeReply(message) {
+// Check administrator knowledge first
 
+let knowledge = JSON.parse(localStorage.getItem("princeKnowledge")) || [];
+
+for(let item of knowledge){
+
+    if(message.toLowerCase().includes(item.question.toLowerCase())){
+
+        return item.answer;
+
+    }
+
+}
     message = message.toLowerCase();
 
 
