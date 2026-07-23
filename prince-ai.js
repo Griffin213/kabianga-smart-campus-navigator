@@ -137,13 +137,13 @@ function startListening() {
             princeReply(message.toLowerCase());
 
         addMessage(reply, "ai-message");
-
+        voiceMode = false;
         if (voiceMode) {
     speak(reply);
 }
 
 // Stop listening after answering
-voiceMode = false;
+
 
     };
 
