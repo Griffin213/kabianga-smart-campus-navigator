@@ -12,31 +12,36 @@ let recognition = null;
 let greeted = false;
 let voiceMode = false;
 
-// --------------------
-// Speak
-// --------------------
+
+// Speak text
 function speak(text) {
 
-    if (!voiceMode) return;
-
-    window.speechSynthesis.cancel();
+    // Stop anything currently speaking
+    speechSynthesis.cancel();
 
     const speech = new SpeechSynthesisUtterance(text);
 
     speech.lang = "en-US";
-    speech.rate = 1;
+    speech.rate = 1.1;
     speech.pitch = 1;
+    speech.volume = 1;
+
+    // Prevent microphone from listening while speaking
+    isListening = false;
+
     speech.onend = function () {
 
-    console.log("Prince AI finished speaking.");
+        const btn = document.getElementById("voiceBtn");
 
-};
-    
+        if(btn){
+            btn.innerHTML = "🎤 Ask Prince";
+        }
 
-    window.speechSynthesis.speak(speech);
+    };
+
+    speechSynthesis.speak(speech);
 
 }
-
 // --------------------
 // Home
 // --------------------
