@@ -509,11 +509,11 @@ box-shadow:0 6px 20px rgba(0,0,0,.2);
 
 .admin-menu{
     margin-top:10px;
-    background:white;
-    border-radius:10px;
     width:220px;
+    background:#fff;
+    border-radius:10px;
     overflow:hidden;
-    box-shadow:0 5px 15px rgba(0,0,0,.2);
+    box-shadow:0 5px 15px rgba(0,0,0,.25);
 }
 
 .admin-menu a{
