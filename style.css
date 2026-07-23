@@ -495,34 +495,30 @@ box-shadow:0 6px 20px rgba(0,0,0,.2);
 }
 
 .menu-btn{
-    background:transparent;
-    border:none;
-    color:white;
-    font-size:32px;
-    font-weight:bold;
+    list-style:none;
     cursor:pointer;
-    padding:5px 10px;
+    color:white;
+    font-size:28px;
+    font-weight:bold;
+    user-select:none;
 }
 
-.menu-btn:hover{
-    color:#ffd700;
+.menu-btn::-webkit-details-marker{
+    display:none;
 }
 
 .admin-menu{
-    display:none;
-    position:absolute;
-    top:45px;
-    right:0;
-    width:220px;
+    margin-top:10px;
     background:white;
     border-radius:10px;
+    width:220px;
     overflow:hidden;
-    box-shadow:0 5px 15px rgba(0,0,0,.25);
+    box-shadow:0 5px 15px rgba(0,0,0,.2);
 }
 
 .admin-menu a{
     display:block;
-    padding:14px;
+    padding:12px;
     text-decoration:none;
     color:#333;
     font-weight:bold;
