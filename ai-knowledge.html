@@ -232,7 +232,25 @@ document.querySelector("input").value="";
 document.querySelector("textarea").value="";
 
 }
+window.onload = function(){
 
+let knowledge = JSON.parse(localStorage.getItem("princeKnowledge")) || [];
+
+const table = document.querySelector("table");
+
+knowledge.forEach(function(item){
+
+const row = table.insertRow(-1);
+
+row.insertCell(0).innerHTML = item.question;
+
+row.insertCell(1).innerHTML = item.category;
+
+row.insertCell(2).innerHTML = "✅ Active";
+
+});
+
+};
 </script>
 </body>
 </html>
