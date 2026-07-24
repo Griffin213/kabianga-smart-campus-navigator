@@ -211,3 +211,21 @@ function enableNotifications() {
     });
 
 }
+function requestNotificationPermission() {
+
+    if (!("Notification" in window)) {
+        alert("This browser does not support notifications.");
+        return;
+    }
+
+    Notification.requestPermission().then(permission => {
+
+        if (permission === "granted") {
+            alert("✅ Notifications enabled successfully!");
+        } else {
+            alert("❌ Notifications were not enabled.");
+        }
+
+    });
+
+}
