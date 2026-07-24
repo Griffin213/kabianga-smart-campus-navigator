@@ -114,8 +114,16 @@ input{
 
 .buttons{
     display:flex;
+    flex-direction:column;
     gap:15px;
-    flex-wrap:wrap;
+}
+
+.buttons a{
+    width:100%;
+}
+
+.buttons button{
+    width:100%;
 }
 
 button{
