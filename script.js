@@ -213,6 +213,8 @@ function enableNotifications() {
 }
 function requestNotificationPermission() {
 
+    alert("Button clicked");
+
     if (!("Notification" in window)) {
         alert("This browser does not support notifications.");
         return;
