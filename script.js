@@ -270,3 +270,22 @@ function sendAnnouncement() {
     alert("✅ Announcement sent successfully.");
 
 }
+function sendAnnouncement() {
+
+    const message = document.getElementById("announcementText").value.trim();
+
+    if (message === "") {
+        alert("Please type an announcement.");
+        return;
+    }
+
+    // Save announcement
+    localStorage.setItem("uokAnnouncement", message);
+
+    // Notify admin
+    alert("✅ Announcement sent successfully!");
+
+    // Clear the text box
+    document.getElementById("announcementText").value = "";
+
+}
