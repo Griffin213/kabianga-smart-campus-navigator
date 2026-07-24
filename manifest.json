@@ -1,0 +1,22 @@
+{
+  "name": "University of Kabianga Smart Campus Navigator",
+  "short_name": "UOK Navigator",
+  "description": "Smart Campus Navigation System with Prince AI",
+  "start_url": "index.html",
+  "display": "standalone",
+  "background_color": "#ffffff",
+  "theme_color": "#0b5ed7",
+  "orientation": "portrait",
+  "icons": [
+    {
+      "src": "logo.jpg",
+      "sizes": "192x192",
+      "type": "image/jpeg"
+    },
+    {
+      "src": "logo.jpg",
+      "sizes": "512x512",
+      "type": "image/jpeg"
+    }
+  ]
+}
