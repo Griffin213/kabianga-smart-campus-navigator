@@ -91,3 +91,27 @@ function openPrinceAI(){
     window.location.href = "prince-ai.html";
 
 }
+// =============================
+// Register Service Worker
+// =============================
+if ("serviceWorker" in navigator) {
+
+    window.addEventListener("load", function () {
+
+        navigator.serviceWorker.register("service-worker.js")
+
+        .then(function () {
+
+            console.log("✅ Service Worker Registered");
+
+        })
+
+        .catch(function (error) {
+
+            console.log("❌ Service Worker Failed", error);
+
+        });
+
+    });
+
+}
