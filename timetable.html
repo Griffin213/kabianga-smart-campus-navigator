@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Student Timetable</title>
+
+<link rel="stylesheet" href="style.css">
+
+<style>
+
+body{
+    background:#f4f7fb;
+    font-family:Arial,sans-serif;
+}
+
+.header{
+    background:#0b5ed7;
+    color:white;
+    text-align:center;
+    padding:20px;
+}
+
+.header h1{
+    margin-bottom:5px;
+}
+
+.container{
+    max-width:1000px;
+    margin:20px auto;
+    padding:15px;
+}
+
+table{
+    width:100%;
+    border-collapse:collapse;
+    background:white;
+    box-shadow:0 5px 15px rgba(0,0,0,.1);
+}
+
+th{
+    background:#0b5ed7;
+    color:white;
+    padding:12px;
+}
+
+td{
+    padding:12px;
+    border-bottom:1px solid #ddd;
+    text-align:center;
+}
+
+tr:hover{
+    background:#f1f5ff;
+}
+
+button{
+    background:#198754;
+    color:white;
+    border:none;
+    padding:8px 15px;
+    border-radius:6px;
+    cursor:pointer;
+}
+
+button:hover{
+    background:#157347;
+}
+
+.back{
+    margin:20px;
+}
+
+.back a{
+    text-decoration:none;
+    color:#0b5ed7;
+    font-weight:bold;
+}
+
+</style>
+
+</head>
+
+<body>
+
+<div class="header">
+
+<h1>📅 Student Timetable</h1>
+
+<p>University of Kabianga Smart Campus Navigator</p>
+
+</div>
+
+<div class="back">
+
+<a href="home.html">⬅ Back Home</a>
+
+</div>
+
+<div class="container">
+
+<table>
+
+<tr>
+
+<th>Time</th>
+
+<th>Unit</th>
+
+<th>Lecturer</th>
+
+<th>Venue</th>
+
+<th>Navigate</th>
+
+</tr>
+
+<tr>
+
+<td>8:00 - 10:00</td>
+
+<td>Business Law</td>
+
+<td>Dr. Kiptoo</td>
+
+<td>LTB1</td>
+
+<td>
+<button onclick="navigateVenue('LTB1')">
+Navigate
+</button>
+</td>
+
+</tr>
+
+<tr>
+
+<td>10:00 - 12:00</td>
+
+<td>Macroeconomics</td>
+
+<td>Prof. Maina</td>
+
+<td>LTB2</td>
+
+<td>
+<button onclick="navigateVenue('LTB2')">
+Navigate
+</button>
+</td>
+
+</tr>
+
+<tr>
+
+<td>2:00 - 4:00</td>
+
+<td>Human Resource Management</td>
+
+<td>Mrs. Chebet</td>
+
+<td>LTB3</td>
+
+<td>
+<button onclick="navigateVenue('LTB3')">
+Navigate
+</button>
+</td>
+
+</tr>
+
+</table>
+
+</div>
+
+<script>
+
+function navigateVenue(venue){
+
+window.location.href="campus-map.html?destination="+venue;
+
+}
+
+</script>
+
+</body>
+
+</html>
