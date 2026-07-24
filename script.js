@@ -128,3 +128,61 @@ if ("Notification" in window) {
     }
 
 }
+// =============================
+// Smart Timetable Reminder
+// =============================
+
+const timetable = [
+    {
+        unit: "Business Law",
+        lecturer: "Dr. Kiptoo",
+        venue: "LTB1",
+        time: "08:00"
+    },
+    {
+        unit: "Macroeconomics",
+        lecturer: "Prof. Maina",
+        venue: "LTB2",
+        time: "10:00"
+    },
+    {
+        unit: "Human Resource Management",
+        lecturer: "Mrs. Chebet",
+        venue: "LTB3",
+        time: "14:00"
+    }
+];
+
+function checkClassReminder(){
+
+    const now = new Date();
+
+    const currentHour = now.getHours();
+    const currentMinute = now.getMinutes();
+
+    timetable.forEach(function(cls){
+
+        const parts = cls.time.split(":");
+
+        const classHour = parseInt(parts[0]);
+        const classMinute = parseInt(parts[1]);
+
+        if(currentHour === classHour - 1 && currentMinute === classMinute){
+
+            new Notification("📚 Upcoming Class",{
+
+                body:
+                cls.unit +
+                "\n👨‍🏫 " + cls.lecturer +
+                "\n🏫 " + cls.venue +
+                "\nStarts in 1 hour."
+
+            });
+
+        }
+
+    });
+
+}
+
+setInterval(checkClassReminder,60000);
