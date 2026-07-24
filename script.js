@@ -213,35 +213,20 @@ function enableNotifications() {
 }
 function requestNotificationPermission() {
 
-    alert("Current permission: " + Notification.permission);
-
     if (Notification.permission === "granted") {
 
-        new Notification("🎓 University of Kabianga", {
-    body: "Notifications have been enabled successfully!",
-    icon: "logo.jpg"
-});
+        navigator.serviceWorker.ready.then(function(registration) {
+
+            registration.showNotification("🎓 University of Kabianga", {
+                body: "Notifications are working!",
+                icon: "logo.jpg"
+            });
+
+        });
 
         return;
     }
 
-    Notification.requestPermission().then(permission => {
-
-        alert("New permission: " + permission);
-
-        if (permission === "granted") {
-
-            new Notification("🎉 Prince AI", {
-                body: "Notifications enabled successfully!",
-                icon: "logo.jpg"
-            });
-
-        } else {
-
-            alert("Permission denied.");
-
-        }
-
-    });
+    Notification.requestPermission();
 
 }
