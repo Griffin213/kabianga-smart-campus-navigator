@@ -1,4 +1,4 @@
-const CACHE_NAME = "uok-campus-v3";
+const CACHE_NAME = "uok-campus-v4";
 
 const urlsToCache = [
   "./",
