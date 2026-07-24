@@ -256,3 +256,17 @@ function requestNotificationPermission() {
     });
 
 }
+function sendAnnouncement() {
+
+    const message = document.getElementById("announcementText").value;
+
+    if (message === "") {
+        alert("Please type an announcement.");
+        return;
+    }
+
+    localStorage.setItem("announcement", message);
+
+    alert("✅ Announcement sent successfully.");
+
+}
