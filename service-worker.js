@@ -1,4 +1,4 @@
-const CACHE_NAME = "uok-campus-v2";
+const CACHE_NAME = "uok-campus-v3";
 
 const urlsToCache = [
   "./",
@@ -21,14 +21,20 @@ self.addEventListener("install", event => {
       .then(cache => cache.addAll(urlsToCache))
   );
 });
-
-// Fetch files from cache first
+// Fetch latest files first
 self.addEventListener("fetch", event => {
   event.respondWith(
-    caches.match(event.request)
+    fetch(event.request)
       .then(response => {
-        return response || fetch(event.request);
+        const responseClone = response.clone();
+
+        caches.open(CACHE_NAME).then(cache => {
+          cache.put(event.request, responseClone);
+        });
+
+        return response;
       })
+      .catch(() => caches.match(event.request))
   );
 });
 
