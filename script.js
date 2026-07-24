@@ -186,3 +186,28 @@ function checkClassReminder(){
 }
 
 setInterval(checkClassReminder,60000);
+function enableNotifications() {
+
+    if (!("Notification" in window)) {
+        alert("This browser does not support notifications.");
+        return;
+    }
+
+    Notification.requestPermission().then(permission => {
+
+        if (permission === "granted") {
+
+            new Notification("University of Kabianga", {
+                body: "Notifications have been enabled successfully!",
+                icon: "logo.jpg"
+            });
+
+        } else {
+
+            alert("Notification permission denied.");
+
+        }
+
+    });
+
+}
