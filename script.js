@@ -115,3 +115,16 @@ if ("serviceWorker" in navigator) {
     });
 
 }
+// =============================
+// Notification Permission
+// =============================
+
+if ("Notification" in window) {
+
+    if (Notification.permission !== "granted") {
+
+        Notification.requestPermission();
+
+    }
+
+}
