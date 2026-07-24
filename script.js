@@ -213,19 +213,33 @@ function enableNotifications() {
 }
 function requestNotificationPermission() {
 
-    alert("Button clicked");
+    alert("Current permission: " + Notification.permission);
 
-    if (!("Notification" in window)) {
-        alert("This browser does not support notifications.");
+    if (Notification.permission === "granted") {
+
+        new Notification("🎉 Prince AI", {
+            body: "Notifications are already enabled.",
+            icon: "logo.jpg"
+        });
+
         return;
     }
 
     Notification.requestPermission().then(permission => {
 
+        alert("New permission: " + permission);
+
         if (permission === "granted") {
-            alert("✅ Notifications enabled successfully!");
+
+            new Notification("🎉 Prince AI", {
+                body: "Notifications enabled successfully!",
+                icon: "logo.jpg"
+            });
+
         } else {
-            alert("❌ Notifications were not enabled.");
+
+            alert("Permission denied.");
+
         }
 
     });
