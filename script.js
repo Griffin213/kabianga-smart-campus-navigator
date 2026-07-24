@@ -217,10 +217,10 @@ function requestNotificationPermission() {
 
     if (Notification.permission === "granted") {
 
-        new Notification("🎉 Prince AI", {
-            body: "Notifications are already enabled.",
-            icon: "logo.jpg"
-        });
+        new Notification("🎓 University of Kabianga", {
+    body: "Notifications have been enabled successfully!",
+    icon: "logo.jpg"
+});
 
         return;
     }
