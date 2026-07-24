@@ -213,13 +213,19 @@ function enableNotifications() {
 }
 function requestNotificationPermission() {
 
+    if (!("Notification" in window)) {
+        alert("This browser does not support notifications.");
+        return;
+    }
+
     if (Notification.permission === "granted") {
 
         navigator.serviceWorker.ready.then(function(registration) {
 
             registration.showNotification("🎓 University of Kabianga", {
                 body: "Notifications are working!",
-                icon: "logo.jpg"
+                icon: "logo.jpg",
+                badge: "logo.jpg"
             });
 
         });
@@ -227,6 +233,26 @@ function requestNotificationPermission() {
         return;
     }
 
-    Notification.requestPermission();
+    Notification.requestPermission().then(function(permission) {
+
+        if (permission === "granted") {
+
+            navigator.serviceWorker.ready.then(function(registration) {
+
+                registration.showNotification("🎓 University of Kabianga", {
+                    body: "Notifications are now enabled!",
+                    icon: "logo.jpg",
+                    badge: "logo.jpg"
+                });
+
+            });
+
+        } else {
+
+            alert("Notification permission denied.");
+
+        }
+
+    });
 
 }
