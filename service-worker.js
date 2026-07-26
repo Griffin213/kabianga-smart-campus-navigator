@@ -23,19 +23,22 @@ self.addEventListener("install", event => {
 });
 // Fetch latest files first
 self.addEventListener("fetch", event => {
+
+  // Don't cache Firebase requests
+  if (
+    event.request.url.includes("firestore.googleapis.com") ||
+    event.request.url.includes("firebase") ||
+    event.request.url.includes("gstatic")
+  ) {
+    return;
+  }
+
   event.respondWith(
-    fetch(event.request)
-      .then(response => {
-        const responseClone = response.clone();
-
-        caches.open(CACHE_NAME).then(cache => {
-          cache.put(event.request, responseClone);
-        });
-
-        return response;
-      })
-      .catch(() => caches.match(event.request))
+    caches.match(event.request).then(response => {
+      return response || fetch(event.request);
+    })
   );
+
 });
 
 // Activate and remove old caches
