@@ -1,17 +1,29 @@
 import { initializeApp } from "https://www.gstatic.com/firebasejs/12.16.0/firebase-app.js";
-import { getAnalytics } from "https://www.gstatic.com/firebasejs/12.16.0/firebase-analytics.js";
+import { getDatabase, ref, onValue } from "https://www.gstatic.com/firebasejs/12.16.0/firebase-database.js";
 
 const firebaseConfig = {
-  apiKey: "YOUR_API_KEY",
-  authDomain: "YOUR_AUTH_DOMAIN",
-  projectId: "YOUR_PROJECT_ID",
-  storageBucket: "YOUR_STORAGE_BUCKET",
-  messagingSenderId: "YOUR_MESSAGING_SENDER_ID",
-  appId: "YOUR_APP_ID",
-  measurementId: "YOUR_MEASUREMENT_ID"
+  apiKey: "AIzaSyDJpH9mVVuB6zImuPC5SPlz-ETNpuCsNrY",
+  authDomain: "uok-smart-campus-navigator.firebaseapp.com",
+  projectId: "uok-smart-campus-navigator",
+  storageBucket: "uok-smart-campus-navigator.firebasestorage.app",
+  messagingSenderId: "465257479615",
+  appId: "1:465257479615:web:31620a772eff1b603df50a"
 };
 
 const app = initializeApp(firebaseConfig);
-const analytics = getAnalytics(app);
+const db = getDatabase(app);
 
-export { app };
+const notificationRef = ref(db, "notifications");
+
+onValue(notificationRef, (snapshot) => {
+    const data = snapshot.val();
+
+    if (data && Notification.permission === "granted") {
+        new Notification(data.Title, {
+            body: data.Message,
+            icon: "logo.jpg"
+        });
+    }
+});
+
+export { app, db };
