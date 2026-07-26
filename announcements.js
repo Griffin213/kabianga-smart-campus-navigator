@@ -4,7 +4,7 @@ import {
   getDoc
 } from "https://www.gstatic.com/firebasejs/12.16.0/firebase-firestore.js";
 
-alert("announcements.js loaded");
+alert("Firebase announcement script started");
 
 async function loadAnnouncement() {
   try {
