@@ -1,26 +1,7 @@
 import { db } from "./firebase.js";
-import {
-  doc,
-  getDoc
-} from "https://www.gstatic.com/firebasejs/12.16.0/firebase-firestore.js";
 
-alert("Firebase announcement script started");
+alert("1. announcements.js loaded");
 
-async function loadAnnouncement() {
-  try {
-    const snap = await getDoc(doc(db, "notifications", "welcome"));
+alert("2. db = " + db);
 
-    alert("Firestore request completed");
-
-    if (snap.exists()) {
-      alert(JSON.stringify(snap.data()));
-    } else {
-      alert("Document not found");
-    }
-  } catch (e) {
-    alert("Firebase Error:\n" + e.code + "\n\n" + e.message);
-    console.error(e);
-  }
-}
-
-loadAnnouncement();
+console.log(db);
