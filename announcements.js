@@ -4,34 +4,21 @@ import {
   getDoc
 } from "https://www.gstatic.com/firebasejs/12.16.0/firebase-firestore.js";
 
+alert("announcements.js loaded");
+
 async function loadAnnouncement() {
-
   try {
+    const snap = await getDoc(doc(db, "notifications", "welcome"));
 
-    const docRef = doc(db, "notifications", "welcome");
-    const docSnap = await getDoc(docRef);
-
-    if (docSnap.exists()) {
-
-      const data = docSnap.data();
-
-      alert(
-        data.title + "\n\n" + data.message
-      );
-
+    if (snap.exists()) {
+      alert(JSON.stringify(snap.data()));
     } else {
-
-      alert("Document not found!");
-
+      alert("Document not found");
     }
-
-  } catch (error) {
-
-    alert("Firebase Error:\n" + error.message);
-    console.error(error);
-
+  } catch (e) {
+    alert("ERROR:\n" + e.message);
+    console.error(e);
   }
-
 }
 
 loadAnnouncement();
