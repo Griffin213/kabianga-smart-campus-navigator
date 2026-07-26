@@ -1,24 +1,26 @@
 import { db } from "./firebase.js";
+
 import {
-  doc,
-  getDoc
+  collection,
+  getDocs
 } from "https://www.gstatic.com/firebasejs/12.16.0/firebase-firestore.js";
 
-alert("announcements.js loaded");
-
 async function loadAnnouncement() {
-    try {
-        const docRef = doc(db, "notifications", "welcome");
-        const docSnap = await getDoc(docRef);
 
-        if (docSnap.exists()) {
-            alert(JSON.stringify(docSnap.data()));
-        } else {
-            alert("Document NOT found");
-        }
-    } catch (error) {
-        alert("Error: " + error.message);
-    }
+  const querySnapshot = await getDocs(collection(db, "notifications"));
+
+  querySnapshot.forEach((doc) => {
+
+    const data = doc.data();
+
+    alert(
+      "📢 " + data.title +
+      "\n\n" +
+      data.message
+    );
+
+  });
+
 }
 
 loadAnnouncement();
