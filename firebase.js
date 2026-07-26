@@ -1,5 +1,5 @@
 import { initializeApp } from "https://www.gstatic.com/firebasejs/12.16.0/firebase-app.js";
-import { getDatabase, ref, onValue } from "https://www.gstatic.com/firebasejs/12.16.0/firebase-database.js";
+import { getFirestore, collection, onSnapshot } from "https://www.gstatic.com/firebasejs/12.16.0/firebase-firestore.js";
 
 const firebaseConfig = {
   apiKey: "AIzaSyDJpH9mVVuB6zImuPC5SPlz-ETNpuCsNrY",
@@ -11,19 +11,21 @@ const firebaseConfig = {
 };
 
 const app = initializeApp(firebaseConfig);
-const db = getDatabase(app);
+const db = getFirestore(app);
 
-const notificationRef = ref(db, "notifications");
+onSnapshot(collection(db, "notifications"), (snapshot) => {
+  snapshot.docChanges().forEach((change) => {
+    if (change.type === "added" || change.type === "modified") {
+      const data = change.doc.data();
 
-onValue(notificationRef, (snapshot) => {
-    const data = snapshot.val();
-
-    if (data && Notification.permission === "granted") {
+      if (Notification.permission === "granted") {
         new Notification(data.Title, {
-            body: data.Message,
-            icon: "logo.jpg"
+          body: data.Message,
+          icon: "logo.jpg"
         });
+      }
     }
+  });
 });
 
 export { app, db };
