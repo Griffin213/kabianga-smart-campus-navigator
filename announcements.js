@@ -10,13 +10,15 @@ async function loadAnnouncement() {
   try {
     const snap = await getDoc(doc(db, "notifications", "welcome"));
 
+    alert("Firestore request completed");
+
     if (snap.exists()) {
       alert(JSON.stringify(snap.data()));
     } else {
       alert("Document not found");
     }
   } catch (e) {
-    alert("ERROR:\n" + e.message);
+    alert("Firebase Error:\n" + e.code + "\n\n" + e.message);
     console.error(e);
   }
 }
