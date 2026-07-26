@@ -1,1 +1,1 @@
-alert("Announcements.js loaded!");
+alert("announcements.js is working!");
