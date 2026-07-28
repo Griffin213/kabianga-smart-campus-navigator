@@ -213,43 +213,16 @@ function enableNotifications() {
 }
 function requestNotificationPermission() {
 
-    if (!("Notification" in window)) {
-        alert("This browser does not support notifications.");
-        return;
-    }
+    Notification.requestPermission().then(permission => {
 
-    if (Notification.permission === "granted") {
-
-        navigator.serviceWorker.ready.then(function(registration) {
-
-            registration.showNotification("🎓 University of Kabianga", {
-                body: "Notifications are working!",
-                icon: "logo.jpg",
-                badge: "logo.jpg"
-            });
-
-        });
-
-        return;
-    }
-
-    Notification.requestPermission().then(function(permission) {
+        alert("Permission: " + permission);
 
         if (permission === "granted") {
 
-            navigator.serviceWorker.ready.then(function(registration) {
-
-                registration.showNotification("🎓 University of Kabianga", {
-                    body: "Notifications are now enabled!",
-                    icon: "logo.jpg",
-                    badge: "logo.jpg"
-                });
-
+            new Notification("🎉 Test Notification", {
+                body: "Your notifications are working!",
+                icon: "logo.jpg"
             });
-
-        } else {
-
-            alert("Notification permission denied.");
 
         }
 
