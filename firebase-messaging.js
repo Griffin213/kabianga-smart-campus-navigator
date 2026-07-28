@@ -13,13 +13,16 @@ const firebaseConfig = {
 const app = initializeApp(firebaseConfig);
 const messaging = getMessaging(app);
 
-Notification.requestPermission().then(permission => {
-    if (permission === "granted") {
-        getToken(messaging, {
-            vapidKey: "YOUR_VAPID_KEY"
-        }).then(token => {
-            console.log("FCM Token:", token);
-            alert("Notifications enabled!");
-        });
-    }
+Notification.requestPermission().then((permission) => {
+  if (permission === "granted") {
+    getToken(messaging, {
+      vapidKey: "PASTE_YOUR_VAPID_KEY_HERE"
+    }).then((token) => {
+      console.log("FCM Token:", token);
+      alert("Notifications enabled!");
+    }).catch((err) => {
+      console.error(err);
+      alert("Error getting token");
+    });
+  }
 });
