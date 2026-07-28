@@ -289,23 +289,3 @@ function sendAnnouncement() {
     document.getElementById("announcementText").value = "";
 
 }
-import { doc, getDoc } from "https://www.gstatic.com/firebasejs/12.16.0/firebase-firestore.js";
-import { db } from "./firebase.js";
-
-async function loadAnnouncement() {
-    const docRef = doc(db, "announcements", "announcement1");
-    const docSnap = await getDoc(docRef);
-
-    if (docSnap.exists()) {
-        const data = docSnap.data();
-
-        if (Notification.permission === "granted") {
-            new Notification(data.Title, {
-                body: data.Message,
-                icon: "logo.jpg"
-            });
-        }
-    }
-}
-
-window.addEventListener("load", loadAnnouncement);
