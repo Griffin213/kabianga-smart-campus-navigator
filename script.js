@@ -1,253 +1,64 @@
-document.addEventListener("DOMContentLoaded", function () {
+// ===============================
+// University of Kabianga
+// Smart Campus Navigator
+// Main Script
+// ===============================
 
-    const navigateBtn = document.getElementById("navigateBtn");
-
-    if (navigateBtn) {
-
-        navigateBtn.addEventListener("click", function () {
-
-            const current = document.getElementById("currentLocation").value;
-            const destination = document.getElementById("destination").value;
-
-            let message = "";
-
-            if (current === destination) {
-                message = "✅ You are already at " + destination + ".";
-            } else {
-                if(current==="Main Gate" && destination==="LTB1"){
-
-message="📍 Start at Main Gate.<br><br>⬆ Walk straight along the main road.<br><br>🏫 LTB1 will be on your left.<br><br>✅ You have arrived.";
-
+// Open Prince AI
+function openPrinceAI() {
+    window.location.href = "prince-ai.html";
 }
 
-else if(current==="Main Gate" && destination==="LTB2"){
-
-message="📍 Start at Main Gate.<br><br>⬆ Walk straight past LTB1.<br><br>🏫 Continue ahead to LTB2.<br><br>✅ You have arrived.";
-
+// Register Service Worker
+if ("serviceWorker" in navigator) {
+    window.addEventListener("load", async () => {
+        try {
+            await navigator.serviceWorker.register("service-worker.js");
+            console.log("✅ Service Worker Registered");
+        } catch (err) {
+            console.error("❌ Service Worker Registration Failed", err);
+        }
+    });
 }
 
-else if(current==="Main Gate" && destination==="LTB3"){
+// Search Button
+document.addEventListener("DOMContentLoaded", () => {
 
-message="📍 Start at Main Gate.<br><br>⬆ Walk to the central open area.<br><br>➡ Turn right towards LTB3.<br><br>✅ You have arrived.";
+    const searchBtn = document.getElementById("searchBtn");
+    const searchBox = document.getElementById("searchBox");
 
-}
+    if (searchBtn) {
 
-else if(current==="Main Gate" && destination==="LTB4"){
+        searchBtn.addEventListener("click", () => {
 
-message="📍 Start at Main Gate.<br><br>⬆ Walk through the central area.<br><br>⬅ Turn left towards LTB4.<br><br>✅ You have arrived.";
+            const place = searchBox.value.trim().toLowerCase();
 
-}
-
-else{
-
-message="📍 Walk from "+current+" to "+destination+".";
-}
+            if (place === "ltb1") {
+                window.location.href = "ltb1.html";
             }
 
-            document.getElementById("routeResult").innerHTML =
-                "<h3>Navigation Instructions</h3><p>" + message + "</p>";
+            else if (place === "ltb2") {
+                alert("LTB2 page coming soon.");
+            }
+
+            else if (place === "ltb3") {
+                alert("LTB3 page coming soon.");
+            }
+
+            else if (place === "ltb4") {
+                alert("LTB4 page coming soon.");
+            }
+
+            else if (place === "") {
+                alert("Please enter a location.");
+            }
+
+            else {
+                alert("Location not found.");
+            }
 
         });
 
     }
 
 });
-// QR Code Scanner
-
-const scanBtn = document.getElementById("scanBtn");
-
-if (scanBtn) {
-
-    scanBtn.addEventListener("click", function () {
-
-        const qrScanner = new Html5Qrcode("reader");
-
-        qrScanner.start(
-            { facingMode: "environment" },
-            {
-                fps: 10,
-                qrbox: 250
-            },
-            function (decodedText) {
-
-                document.getElementById("scanResult").innerHTML =
-                    "<h3>✅ QR Code Detected</h3>" +
-                    "<p><strong>Current Location:</strong> " + decodedText + "</p>";
-
-                qrScanner.stop();
-
-            },
-            function (errorMessage) {
-                // Ignore scan errors while searching
-            }
-        );
-
-    });
-
-}
-
-function openPrinceAI(){
-
-    window.location.href = "prince-ai.html";
-
-}
-// =============================
-// Register Service Worker
-// =============================
-if ("serviceWorker" in navigator) {
-
-    window.addEventListener("load", function () {
-
-        navigator.serviceWorker.register("service-worker.js")
-
-        .then(function () {
-
-            console.log("✅ Service Worker Registered");
-
-        })
-
-        .catch(function (error) {
-
-            console.log("❌ Service Worker Failed", error);
-
-        });
-
-    });
-
-}
-// =============================
-// Notification Permission
-// =============================
-
-if ("Notification" in window) {
-
-    if (Notification.permission !== "granted") {
-
-        Notification.requestPermission();
-
-    }
-
-}
-// =============================
-// Smart Timetable Reminder
-// =============================
-
-const timetable = [
-    {
-        unit: "Business Law",
-        lecturer: "Dr. Kiptoo",
-        venue: "LTB1",
-        time: "08:00"
-    },
-    {
-        unit: "Macroeconomics",
-        lecturer: "Prof. Maina",
-        venue: "LTB2",
-        time: "10:00"
-    },
-    {
-        unit: "Human Resource Management",
-        lecturer: "Mrs. Chebet",
-        venue: "LTB3",
-        time: "14:00"
-    }
-];
-
-function checkClassReminder(){
-
-    const now = new Date();
-
-    const currentHour = now.getHours();
-    const currentMinute = now.getMinutes();
-
-    timetable.forEach(function(cls){
-
-        const parts = cls.time.split(":");
-
-        const classHour = parseInt(parts[0]);
-        const classMinute = parseInt(parts[1]);
-
-        if(currentHour === classHour - 1 && currentMinute === classMinute){
-
-            new Notification("📚 Upcoming Class",{
-
-                body:
-                cls.unit +
-                "\n👨‍🏫 " + cls.lecturer +
-                "\n🏫 " + cls.venue +
-                "\nStarts in 1 hour."
-
-            });
-
-        }
-
-    });
-
-}
-
-setInterval(checkClassReminder,60000);
-function enableNotifications() {
-
-    if (!("Notification" in window)) {
-        alert("This browser does not support notifications.");
-        return;
-    }
-
-    Notification.requestPermission().then(permission => {
-
-        if (permission === "granted") {
-
-            new Notification("University of Kabianga", {
-                body: "Notifications have been enabled successfully!",
-                icon: "logo.jpg"
-            });
-
-        } else {
-
-            alert("Notification permission denied.");
-
-        }
-
-    });
-
-function requestNotificationPermission() {
-
-    Notification.requestPermission().then(function(permission) {
-
-        alert("Permission = " + permission);
-
-        if (permission === "granted") {
-
-            navigator.serviceWorker.ready.then(function(registration) {
-
-                registration.showNotification("🎓 University of Kabianga", {
-                    body: "This is a notification test.",
-                    icon: "logo.jpg"
-                });
-
-            }).catch(function(err) {
-                alert("Service Worker Error: " + err);
-            });
-
-        } else {
-            alert("Permission denied");
-        }
-
-    });
-
-}
-    
-function sendAnnouncement() {
-
-    const message = document.getElementById("announcementText").value;
-
-    if (message === "") {
-        alert("Please type an announcement.");
-        return;
-    }
-
-    localStorage.setItem("announcement", message);
-
-    alert("✅ Announcement sent successfully.");
-
-}
