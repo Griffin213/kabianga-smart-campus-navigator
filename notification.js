@@ -16,7 +16,15 @@ const firebaseConfig = {
 
 const app = initializeApp(firebaseConfig);
 const messaging = getMessaging(app);
-
+if ("serviceWorker" in navigator) {
+  navigator.serviceWorker.register("/kabianga-smart-campus-navigator/firebase-messaging-sw.js")
+    .then((registration) => {
+      console.log("Messaging Service Worker registered");
+    })
+    .catch((error) => {
+      console.error("Service Worker registration failed:", error);
+    });
+}
 Notification.requestPermission().then((permission) => {
   if (permission === "granted") {
     getToken(messaging, {
