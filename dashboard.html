@@ -215,23 +215,37 @@ style="width:100%;height:120px;padding:15px;font-size:16px;border-radius:10px;bo
 </div>
 <script type="module" src="firebase.js"></script>
 <script src="script.js"></script>
-  <script>
-function sendAnnouncement() {
-    const text = document.getElementById("announcementText").value;
+  <script type="module">
 
-    if (!text.trim()) {
-        alert("Please type an announcement first.");
+import { db } from "./firebase.js";
+import {
+    doc,
+    setDoc
+} from "https://www.gstatic.com/firebasejs/12.16.0/firebase-firestore.js";
+
+window.sendAnnouncement = async function () {
+
+    const text = document.getElementById("announcementText").value.trim();
+
+    if (!text) {
+        alert("Please type an announcement.");
         return;
     }
 
-    // Save to localStorage
-    localStorage.setItem("latestAnnouncement", text);
-    alert("📢 Announcement published successfully!");
+    await setDoc(doc(db, "announcements", "announcement1"), {
+        Title: "University of Kabianga",
+        Message: text,
+        Time: Date.now()
+    });
 
-    // Clear input field
+    alert("✅ Announcement sent successfully!");
+
     document.getElementById("announcementText").value = "";
-}
-</script>
+
+};
+
+  </script>
+
   
 </body>
 </html>
