@@ -225,8 +225,6 @@ import {
 
 window.sendAnnouncement = async function () {
 
-    alert("Button clicked");
-
     const text = document.getElementById("announcementText").value.trim();
 
     if (text === "") {
@@ -234,15 +232,25 @@ window.sendAnnouncement = async function () {
         return;
     }
 
-    await setDoc(doc(db, "announcements", "latest"), {
-    title: "University of Kabianga",
-    message: text,
-    time: new Date().toISOString()
-});
+    try {
 
-alert("✅ Announcement sent to Firebase!");
+        await setDoc(doc(db, "announcements", "latest"), {
+            title: "University of Kabianga",
+            message: text,
+            time: Date.now()
+        });
 
-    document.getElementById("announcementText").value = "";
+        alert("✅ Announcement sent to Firebase!");
+
+        document.getElementById("announcementText").value = "";
+
+    } catch (error) {
+
+        alert("❌ Error: " + error.message);
+        console.error(error);
+
+    }
+
 }
 
   </script>
