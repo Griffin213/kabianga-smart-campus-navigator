@@ -7,7 +7,7 @@ firebase.initializeApp({
   projectId: "uok-smart-campus-navigator",
   storageBucket: "uok-smart-campus-navigator.firebasestorage.app",
   messagingSenderId: "465257479615",
-  appId: "1:465257479615:web:31620a772eff1b603df50a",
+  appId: "1:465257479615:web:31620a772eff1b603df50a"
 });
 
 const messaging = firebase.messaging();
@@ -15,6 +15,6 @@ const messaging = firebase.messaging();
 messaging.onBackgroundMessage((payload) => {
   self.registration.showNotification(payload.notification.title, {
     body: payload.notification.body,
-    icon: "/logo.png"
+    icon: "logo.jpg"
   });
 });
