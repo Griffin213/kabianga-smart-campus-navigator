@@ -211,16 +211,19 @@ function enableNotifications() {
     });
 
 }
+f
 function requestNotificationPermission() {
 
     Notification.requestPermission().then(permission => {
 
-        alert("Permission: " + permission);
+        alert("Permission = " + permission);
 
         if (permission === "granted") {
 
+            alert("Creating notification...");
+
             new Notification("🎉 Test Notification", {
-                body: "Your notifications are working!",
+                body: "If you can see this, notifications work!",
                 icon: "logo.jpg"
             });
 
