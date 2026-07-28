@@ -223,26 +223,23 @@ import {
     setDoc
 } from "https://www.gstatic.com/firebasejs/12.16.0/firebase-firestore.js";
 
-window.sendAnnouncement = async function () {
-alert("Button clicked");
+window.sendAnnouncement = function () {
+
+    alert("Button clicked");
+
     const text = document.getElementById("announcementText").value.trim();
 
-    if (!text) {
+    if (text === "") {
         alert("Please type an announcement.");
         return;
     }
 
-    await setDoc(doc(db, "announcements", "announcement1"), {
-        Title: "University of Kabianga",
-        Message: text,
-        Time: Date.now()
-    });
+    localStorage.setItem("latestAnnouncement", text);
 
-    alert("✅ Announcement sent successfully!");
+    alert("✅ Announcement saved!");
 
     document.getElementById("announcementText").value = "";
-
-};
+}
 
   </script>
 
