@@ -20,7 +20,7 @@ const messaging = getMessaging(app);
 Notification.requestPermission().then((permission) => {
   if (permission === "granted") {
     getToken(messaging, {
-      vapidKey: "PASTE_YOUR_VAPID_KEY_HERE"
+      vapidKey: BAvYs2OcE8SqgpOOICDhV5TxIZyTBRerx8G0-lHOJ-00R2P22Sf3SIMnWxY-ct5pD54yq3gNelfbu2V9qlMpE9Q
     }).then((token) => {
       console.log("FCM Token:", token);
       alert(token);
