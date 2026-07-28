@@ -210,28 +210,29 @@ function enableNotifications() {
 
     });
 
-}
-f
 function requestNotificationPermission() {
 
-    Notification.requestPermission().then(permission => {
+    Notification.requestPermission().then(function(permission) {
 
         alert("Permission = " + permission);
-if (permission === "granted") {
 
-    alert("Permission granted");
+        if (permission === "granted") {
 
-    navigator.serviceWorker.ready.then(function(registration) {
+            navigator.serviceWorker.ready.then(function(registration) {
 
-        alert("Service Worker Ready");
+                registration.showNotification("🎓 University of Kabianga", {
+                    body: "This is a notification test.",
+                    icon: "logo.jpg"
+                });
 
-        registration.showNotification("🎓 University of Kabianga", {
-            body: "This is a notification test.",
-            icon: "logo.jpg"
-        });
+            }).catch(function(err) {
+                alert("Service Worker Error: " + err);
+            });
 
-    }).catch(function(err){
-        alert("Service Worker Error: " + err);
+        } else {
+            alert("Permission denied");
+        }
+
     });
 
 }
