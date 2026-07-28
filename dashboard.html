@@ -234,9 +234,13 @@ window.sendAnnouncement = function () {
         return;
     }
 
-    localStorage.setItem("latestAnnouncement", text);
+    await setDoc(doc(db, "announcements", "latest"), {
+    title: "University of Kabianga",
+    message: text,
+    time: new Date().toISOString()
+});
 
-    alert("✅ Announcement saved!");
+alert("✅ Announcement sent to Firebase!");
 
     document.getElementById("announcementText").value = "";
 }
