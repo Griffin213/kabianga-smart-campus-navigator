@@ -217,28 +217,25 @@ function requestNotificationPermission() {
     Notification.requestPermission().then(permission => {
 
         alert("Permission = " + permission);
+if (permission === "granted") {
 
-        if (permission === "granted") {
+    alert("Permission granted");
 
-            alert("Creating notification...");
+    navigator.serviceWorker.ready.then(function(registration) {
 
-navigator.serviceWorker.ready.then((registration) => {
-    registration.showNotification("🎓 University of Kabianga", {
-        body: "This is a notification test.",
-        icon: "logo.jpg"
-    });
-});
+        alert("Service Worker Ready");
 
-            new Notification("🎉 Test Notification", {
-                body: "If you can see this, notifications work!",
-                icon: "logo.jpg"
-            });
+        registration.showNotification("🎓 University of Kabianga", {
+            body: "This is a notification test.",
+            icon: "logo.jpg"
+        });
 
-        }
-
+    }).catch(function(err){
+        alert("Service Worker Error: " + err);
     });
 
 }
+    
 function sendAnnouncement() {
 
     const message = document.getElementById("announcementText").value;
