@@ -225,14 +225,15 @@ import {
 
 window.sendAnnouncement = async function () {
 
+    alert("1. Function started");
+
     const text = document.getElementById("announcementText").value.trim();
 
-    if (text === "") {
-        alert("Please type an announcement.");
-        return;
-    }
+    alert("2. Text = " + text);
 
     try {
+
+        alert("3. Sending to Firebase...");
 
         await setDoc(doc(db, "announcements", "latest"), {
             title: "University of Kabianga",
@@ -240,18 +241,15 @@ window.sendAnnouncement = async function () {
             time: Date.now()
         });
 
-        alert("✅ Announcement sent to Firebase!");
-
-        document.getElementById("announcementText").value = "";
+        alert("4. SUCCESS!");
 
     } catch (error) {
 
-        alert("❌ Error: " + error.message);
-        console.error(error);
+        alert("Firebase Error:\n" + error.message);
 
     }
 
-}
+};
 
   </script>
 
