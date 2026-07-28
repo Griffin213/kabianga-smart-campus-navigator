@@ -12,5 +12,7 @@ const firebaseConfig = {
 
 const app = initializeApp(firebaseConfig);
 const db = getFirestore(app);
-consoalert("Firebase initialized successfully");
+
+console.log("Firebase initialized successfully");
+
 export { db };
