@@ -535,3 +535,48 @@ box-shadow:0 6px 20px rgba(0,0,0,.2);
 .admin-menu a:hover{
     background:#f2f2f2;
 }
+.announcement-card{
+
+background:#ffffff;
+padding:20px;
+margin:25px 0;
+border-radius:15px;
+box-shadow:0 5px 15px rgba(0,0,0,.15);
+
+}
+
+.announcement-card h2{
+
+color:#0b5ed7;
+margin-bottom:15px;
+
+}
+
+#announcementBox{
+
+background:#eef5ff;
+padding:15px;
+border-left:6px solid #0b5ed7;
+border-radius:10px;
+
+}
+
+#announcementTitle{
+
+color:#0b5ed7;
+margin-bottom:10px;
+
+}
+
+#announcementMessage{
+
+font-size:17px;
+margin-bottom:10px;
+
+}
+
+#announcementDate{
+
+color:gray;
+
+}
