@@ -224,27 +224,19 @@ import {
 
 window.sendAnnouncement = async function () {
 
-    alert("1. Function started");
-
-    const text = document.getElementById("announcementText").value.trim();
-
-    alert("2. Text = " + text);
-
     try {
 
-        alert("3. Sending to Firebase...");
-
-        await setDoc(doc(db, "announcements", "latest"), {
-            title: "University of Kabianga",
-            message: text,
+        await setDoc(doc(db, "test", "hello"), {
+            message: "Testing Firestore",
             time: Date.now()
         });
 
-        alert("4. SUCCESS!");
+        alert("Saved successfully!");
 
-    } catch (error) {
+    } catch (e) {
 
-        alert("Firebase Error:\n" + error.message);
+        alert("Error:\n" + e.message);
+        console.error(e);
 
     }
 
