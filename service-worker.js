@@ -1,4 +1,4 @@
-const CACHE_NAME = "uok-campus-v5";
+const CACHE_NAME = "uok-campus-v10";
 
 const urlsToCache = [
   "./",
@@ -6,13 +6,14 @@ const urlsToCache = [
   "home.html",
   "style.css",
   "script.js",
+  "firebase.js",
+  "announcements.js",
+  "notifications.js",
   "prince-ai.js",
   "knowledge.js",
-  "logo.jpg",
-  "welcome.jpg"
+  "logo.jpg"
 ];
 
-// Install Service Worker
 self.addEventListener("install", event => {
   self.skipWaiting();
 
@@ -21,33 +22,29 @@ self.addEventListener("install", event => {
       .then(cache => cache.addAll(urlsToCache))
   );
 });
-// Fetch latest files first
-self.addEventListener("fetch", event => {
 
-  // Don't cache Firebase requests
-  if (
-    event.request.url.includes("firestore.googleapis.com") ||
-    event.request.url.includes("firebase") ||
-    event.request.url.includes("gstatic")
-  ) {
-    return;
-  }
+self.addEventListener("activate", event => {
 
-  event.respondWith(
-    caches.match(event.request).then(response => {
-      return response || fetch(event.request);
-    })
+  event.waitUntil(
+
+    caches.keys().then(keys =>
+
+      Promise.all(
+        keys.map(key => {
+          if (key !== CACHE_NAME) {
+            return caches.delete(key);
+          }
+        })
+      )
+
+    )
+
   );
+
+  self.clients.claim();
 
 });
 
-// Activate and remove old caches
-self.addEventListener("activate", event => {
-  event.waitUntil(
-    caches.keys().then(cacheNames => {
-      return Promise.all(
-        cacheNames.map(cache => caches.delete(cache))
-      );
-    }).then(() => self.clients.claim())
-  );
+self.addEventListener("fetch", event => {
+  event.respondWith(fetch(event.request).catch(() => caches.match(event.request)));
 });
