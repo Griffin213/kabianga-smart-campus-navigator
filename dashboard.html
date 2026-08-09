@@ -298,83 +298,109 @@ placeholder="Type announcement for students..."></textarea>
 </div>
 
 
-<!-- BUTTON JAVASCRIPT -->
-
 <script type="module">
 
 import { db } from "./firebase.js";
 
 import {
     doc,
-    setDoc
+    setDoc,
+    serverTimestamp
 } from "https://www.gstatic.com/firebasejs/12.16.0/firebase-firestore.js";
 
 
-document.addEventListener("DOMContentLoaded", function(){
+document.addEventListener("DOMContentLoaded", function () {
 
     const button = document.getElementById("sendAnnouncementBtn");
-
     const textBox = document.getElementById("announcementText");
-
     const status = document.getElementById("announcementStatus");
 
 
-    button.addEventListener("click", async function(){
+    button.addEventListener("click", async function () {
 
         const message = textBox.value.trim();
 
-
-        if(message === ""){
-
+        if (message === "") {
             alert("Please type an announcement first.");
-
             return;
-
         }
 
 
-        status.innerHTML = "⏳ Sending announcement...";
+        status.innerHTML = "⏳ Connecting to Firebase...";
+        status.style.color = "orange";
+
+        button.disabled = true;
 
 
         try {
 
-            await setDoc(
-                doc(db, "announcements", "announcement1"),
-                {
-                    Title: "University of Kabianga",
-                    Message: message,
-                    Time: new Date()
-                }
-            );
+            console.log("Starting Firebase write...");
 
-
-            alert("✅ Announcement sent to Firebase!");
+            const announcementRef =
+                doc(db, "announcements", "announcement1");
 
 
             status.innerHTML =
-                "✅ Announcement sent successfully!";
+                "⏳ Sending announcement to Firebase...";
 
+
+            await Promise.race([
+
+                setDoc(announcementRef, {
+
+                    Title: "University of Kabianga",
+
+                    Message: message,
+
+                    Time: serverTimestamp()
+
+                }),
+
+                new Promise((_, reject) =>
+                    setTimeout(
+                        () => reject(
+                            new Error(
+                                "Firebase request timed out after 15 seconds. Check your internet connection or Firestore configuration."
+                            )
+                        ),
+                        15000
+                    )
+                )
+
+            ]);
+
+
+            console.log("Firebase write successful");
+
+
+            alert("✅ ANNOUNCEMENT SENT SUCCESSFULLY!");
+
+            status.innerHTML =
+                "✅ Announcement sent successfully to Firebase!";
 
             status.style.color = "green";
-
 
             textBox.value = "";
 
 
-        } catch(error) {
+        } catch (error) {
 
-            console.error(error);
+            console.error("Firebase error:", error);
 
             alert(
                 "❌ Firebase Error:\n\n" +
                 error.message
             );
 
-
             status.innerHTML =
-                "❌ Failed to send announcement.";
+                "❌ Firebase Error: " + error.message;
 
             status.style.color = "red";
+
+
+        } finally {
+
+            button.disabled = false;
 
         }
 
