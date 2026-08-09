@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
 
 <meta charset="UTF-8">
@@ -10,104 +11,159 @@
 <style>
 
 *{
-margin:0;
-padding:0;
-box-sizing:border-box;
-font-family:Arial,sans-serif;
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:Arial,sans-serif;
 }
 
 body{
-display:flex;
-background:#f4f6f9;
+    display:flex;
+    background:#f4f6f9;
 }
 
-/* Sidebar */
+/* SIDEBAR */
 
 .sidebar{
-
-width:250px;
-height:100vh;
-background:#0b5ed7;
-color:white;
-padding:20px;
-position:fixed;
-
+    width:250px;
+    height:100vh;
+    background:#0b5ed7;
+    color:white;
+    padding:20px;
+    position:fixed;
+    left:0;
+    top:0;
 }
 
 .sidebar h2{
-
-text-align:center;
-margin-bottom:30px;
-
+    text-align:center;
+    margin-bottom:30px;
 }
 
 .sidebar a{
-
-display:block;
-color:white;
-text-decoration:none;
-padding:12px;
-margin:8px 0;
-border-radius:8px;
-transition:.3s;
-
+    display:block;
+    color:white;
+    text-decoration:none;
+    padding:12px;
+    margin:8px 0;
+    border-radius:8px;
+    transition:.3s;
 }
 
 .sidebar a:hover{
-
-background:rgba(255,255,255,.2);
-
+    background:rgba(255,255,255,.2);
 }
 
-/* Main */
+/* MAIN */
 
 .main{
-
-margin-left:250px;
-width:100%;
-padding:25px;
-
+    margin-left:250px;
+    width:100%;
+    padding:25px;
 }
 
 .header{
-
-background:white;
-padding:20px;
-border-radius:12px;
-box-shadow:0 3px 10px rgba(0,0,0,.1);
-margin-bottom:25px;
-
+    background:white;
+    padding:20px;
+    border-radius:12px;
+    box-shadow:0 3px 10px rgba(0,0,0,.1);
+    margin-bottom:25px;
 }
 
+.header h1{
+    color:#0b5ed7;
+    margin-bottom:8px;
+}
+
+/* CARDS */
+
 .cards{
-
-display:grid;
-grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
-gap:20px;
-
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(200px,1fr));
+    gap:20px;
 }
 
 .card{
-
-background:white;
-padding:25px;
-border-radius:12px;
-text-align:center;
-box-shadow:0 3px 10px rgba(0,0,0,.1);
-
+    background:white;
+    padding:25px;
+    border-radius:12px;
+    text-align:center;
+    box-shadow:0 3px 10px rgba(0,0,0,.1);
 }
 
 .card h1{
-
-color:#0b5ed7;
-font-size:40px;
-
+    color:#0b5ed7;
+    font-size:40px;
 }
 
 .card p{
+    margin-top:10px;
+    color:#666;
+}
 
-margin-top:10px;
-color:#666;
+/* ANNOUNCEMENT */
+
+.announcement-box{
+    background:white;
+    margin-top:40px;
+    padding:25px;
+    border-radius:12px;
+    box-shadow:0 3px 10px rgba(0,0,0,.1);
+}
+
+.announcement-box h2{
+    color:#0b5ed7;
+    margin-bottom:15px;
+}
+
+#announcementText{
+    width:100%;
+    height:120px;
+    padding:15px;
+    font-size:16px;
+    border-radius:10px;
+    border:1px solid #ccc;
+    resize:vertical;
+}
+
+#sendAnnouncementBtn{
+    margin-top:15px;
+    padding:14px 25px;
+    background:#0b5ed7;
+    color:white;
+    border:none;
+    border-radius:8px;
+    font-size:16px;
+    cursor:pointer;
+}
+
+#sendAnnouncementBtn:hover{
+    background:#084298;
+}
+
+#announcementStatus{
+    margin-top:15px;
+    font-weight:bold;
+}
+
+/* MOBILE */
+
+@media(max-width:700px){
+
+    .sidebar{
+        width:100%;
+        height:auto;
+        position:relative;
+    }
+
+    body{
+        display:block;
+    }
+
+    .main{
+        margin-left:0;
+        width:100%;
+    }
 
 }
 
@@ -117,6 +173,8 @@ color:#666;
 
 <body>
 
+
+<!-- SIDEBAR -->
 
 <div class="sidebar">
 
@@ -143,15 +201,27 @@ color:#666;
 <a href="admin.html">🚪 Logout</a>
 
 </div>
+
+
+<!-- MAIN CONTENT -->
+
 <div class="main">
+
+
+<!-- HEADER -->
 
 <div class="header">
 
 <h1>Welcome Administrator 👋</h1>
 
-<p>University of Kabianga Smart Campus Management System</p>
+<p>
+University of Kabianga Smart Campus Management System
+</p>
 
 </div>
+
+
+<!-- DASHBOARD CARDS -->
 
 <div class="cards">
 
@@ -163,6 +233,7 @@ color:#666;
 
 </div>
 
+
 <div class="card">
 
 <h1>6</h1>
@@ -170,6 +241,7 @@ color:#666;
 <p>Schools</p>
 
 </div>
+
 
 <div class="card">
 
@@ -179,6 +251,7 @@ color:#666;
 
 </div>
 
+
 <div class="card">
 
 <h1>25</h1>
@@ -186,6 +259,8 @@ color:#666;
 <p>Today's Classes</p>
 
 </div>
+
+
 <div class="card">
 
 <h1>1</h1>
@@ -194,68 +269,87 @@ color:#666;
 
 </div>
 
+</div>
 
 
-<hr style="margin:40px 0;">
+<!-- ANNOUNCEMENT -->
+
+<div class="announcement-box">
 
 <h2>📢 Send Announcement</h2>
 
 <textarea
 id="announcementText"
-placeholder="Type announcement for students..."
-style="width:100%;height:120px;padding:15px;font-size:16px;border-radius:10px;border:1px solid #ccc;">
-</textarea>
+placeholder="Type announcement for students..."></textarea>
 
-<br><br>
+<br>
 
 <button id="sendAnnouncementBtn" type="button">
+
 📢 Send Announcement
+
 </button>
+
+<p id="announcementStatus"></p>
 
 </div>
 
 
-  <script type="module">
+</div>
 
-import { db } from "./firebase.js";
-import {
-    doc,
-    setDoc
-} from "https://www.gstatic.com/firebasejs/12.16.0/firebase-firestore.js";
 
-window.sendAnnouncement = async function () {
+<!-- BUTTON JAVASCRIPT -->
 
-    try {
-
-        await setDoc(doc(db, "test", "hello"), {
-            message: "Testing Firestore",
-            time: Date.now()
-        });
-
-        alert("Saved successfully!");
-
-    } catch (e) {
-
-        alert("Error:\n" + e.message);
-        console.error(e)
-  
-
-};
-
-  
 <script>
-document.getElementById("sendAnnouncementBtn").addEventListener("click", function () {
 
-    const text = document.getElementById("announcementText").value.trim();
+document.addEventListener("DOMContentLoaded", function(){
 
-    if (text === "") {
-        alert("Please type an announcement.");
-        return;
-    }
+    const button = document.getElementById("sendAnnouncementBtn");
 
-    alert("✅ BUTTON WORKS!\n\nAnnouncement:\n" + text);
+    const textBox = document.getElementById("announcementText");
+
+    const status = document.getElementById("announcementStatus");
+
+
+    button.addEventListener("click", function(){
+
+        const message = textBox.value.trim();
+
+
+        if(message === ""){
+
+            alert("Please type an announcement first.");
+
+            return;
+
+        }
+
+
+        alert("✅ BUTTON WORKS!");
+
+
+        localStorage.setItem(
+            "uokAnnouncement",
+            message
+        );
+
+
+        status.innerHTML =
+            "✅ Announcement saved successfully!";
+
+
+        status.style.color = "green";
+
+
+        textBox.value = "";
+
+    });
 
 });
-</script>  
+
+</script>
+
+
 </body>
+
 </html>
