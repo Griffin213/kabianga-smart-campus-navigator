@@ -208,7 +208,7 @@ style="width:100%;height:120px;padding:15px;font-size:16px;border-radius:10px;bo
 
 <br><br>
 
-<button onclick="sendAnnouncement()">
+<button id="sendAnnouncementBtn" type="button">
 📢 Send Announcement
 </button>
 
@@ -244,12 +244,18 @@ window.sendAnnouncement = async function () {
 
   
 <script>
-alert("DASHBOARD JAVASCRIPT WORKS");
-</script>
-<script>
-alert("TEST 123");
-  <script type="module">
-alert("MODULE STARTED");
+document.getElementById("sendAnnouncementBtn").addEventListener("click", function () {
+
+    const text = document.getElementById("announcementText").value.trim();
+
+    if (text === "") {
+        alert("Please type an announcement.");
+        return;
+    }
+
+    alert("✅ BUTTON WORKS!\n\nAnnouncement:\n" + text);
+
+});
 </script>  
 </body>
 </html>
