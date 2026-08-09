@@ -300,7 +300,15 @@ placeholder="Type announcement for students..."></textarea>
 
 <!-- BUTTON JAVASCRIPT -->
 
-<script>
+<script type="module">
+
+import { db } from "./firebase.js";
+
+import {
+    doc,
+    setDoc
+} from "https://www.gstatic.com/firebasejs/12.16.0/firebase-firestore.js";
+
 
 document.addEventListener("DOMContentLoaded", function(){
 
@@ -311,7 +319,7 @@ document.addEventListener("DOMContentLoaded", function(){
     const status = document.getElementById("announcementStatus");
 
 
-    button.addEventListener("click", function(){
+    button.addEventListener("click", async function(){
 
         const message = textBox.value.trim();
 
@@ -325,23 +333,50 @@ document.addEventListener("DOMContentLoaded", function(){
         }
 
 
-        alert("✅ BUTTON WORKS!");
+        status.innerHTML = "⏳ Sending announcement...";
 
 
-        localStorage.setItem(
-            "uokAnnouncement",
-            message
-        );
+        try {
+
+            await setDoc(
+                doc(db, "announcements", "announcement1"),
+                {
+                    Title: "University of Kabianga",
+                    Message: message,
+                    Time: new Date()
+                }
+            );
 
 
-        status.innerHTML =
-            "✅ Announcement saved successfully!";
+            alert("✅ Announcement sent to Firebase!");
 
 
-        status.style.color = "green";
+            status.innerHTML =
+                "✅ Announcement sent successfully!";
 
 
-        textBox.value = "";
+            status.style.color = "green";
+
+
+            textBox.value = "";
+
+
+        } catch(error) {
+
+            console.error(error);
+
+            alert(
+                "❌ Firebase Error:\n\n" +
+                error.message
+            );
+
+
+            status.innerHTML =
+                "❌ Failed to send announcement.";
+
+            status.style.color = "red";
+
+        }
 
     });
 
