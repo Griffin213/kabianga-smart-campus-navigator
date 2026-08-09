@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+mom<!DOCTYPE html>
 <html lang="en">
 
 <head>
@@ -297,118 +297,46 @@ placeholder="Type announcement for students..."></textarea>
 
 </div>
 
-
 <script type="module">
 
 import { db } from "./firebase.js";
 
 import {
     doc,
-    setDoc,
-    serverTimestamp
+    setDoc
 } from "https://www.gstatic.com/firebasejs/12.16.0/firebase-firestore.js";
 
+alert("🔥 Firebase script loaded");
 
-document.addEventListener("DOMContentLoaded", function () {
+try {
 
-    const button = document.getElementById("sendAnnouncementBtn");
-    const textBox = document.getElementById("announcementText");
-    const status = document.getElementById("announcementStatus");
+    alert("⏳ Testing Firestore...");
 
-
-    button.addEventListener("click", async function () {
-
-        const message = textBox.value.trim();
-
-        if (message === "") {
-            alert("Please type an announcement first.");
-            return;
+    await setDoc(
+        doc(db, "test", "connection"),
+        {
+            message: "Firebase connection test",
+            time: new Date()
         }
+    );
 
+    alert("✅ FIRESTORE CONNECTION WORKS!");
 
-        status.innerHTML = "⏳ Connecting to Firebase...";
-        status.style.color = "orange";
+} catch (error) {
 
-        button.disabled = true;
+    alert(
+        "❌ FIRESTORE ERROR:\n\n" +
+        error.code +
+        "\n\n" +
+        error.message
+    );
 
+    console.error(error);
 
-        try {
-
-            console.log("Starting Firebase write...");
-
-            const announcementRef =
-                doc(db, "announcements", "announcement1");
-
-
-            status.innerHTML =
-                "⏳ Sending announcement to Firebase...";
-
-
-            await Promise.race([
-
-                setDoc(announcementRef, {
-
-                    Title: "University of Kabianga",
-
-                    Message: message,
-
-                    Time: serverTimestamp()
-
-                }),
-
-                new Promise((_, reject) =>
-                    setTimeout(
-                        () => reject(
-                            new Error(
-                                "Firebase request timed out after 15 seconds. Check your internet connection or Firestore configuration."
-                            )
-                        ),
-                        60000
-                    )
-                )
-
-            ]);
-
-
-            console.log("Firebase write successful");
-
-
-            alert("✅ ANNOUNCEMENT SENT SUCCESSFULLY!");
-
-            status.innerHTML =
-                "✅ Announcement sent successfully to Firebase!";
-
-            status.style.color = "green";
-
-            textBox.value = "";
-
-
-        } catch (error) {
-
-            console.error("Firebase error:", error);
-
-            alert(
-                "❌ Firebase Error:\n\n" +
-                error.message
-            );
-
-            status.innerHTML =
-                "❌ Firebase Error: " + error.message;
-
-            status.style.color = "red";
-
-
-        } finally {
-
-            button.disabled = false;
-
-        }
-
-    });
-
-});
+}
 
 </script>
+
 
 
 </body>
