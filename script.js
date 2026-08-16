@@ -137,3 +137,52 @@ function requestNotificationPermission() {
 
 // Make the function available to your HTML onclick
 window.requestNotificationPermission = requestNotificationPermission;
+// ===============================
+// FIREBASE ANNOUNCEMENTS
+// ===============================
+
+import { db } from "./firebase.js";
+
+import {
+    doc,
+    onSnapshot
+} from "https://www.gstatic.com/firebasejs/12.16.0/firebase-firestore.js";
+
+
+const announcementRef = doc(
+    db,
+    "announcements",
+    "announcement1"
+);
+
+
+onSnapshot(announcementRef, (docSnap) => {
+
+    if (!docSnap.exists()) {
+        console.log("No announcement found.");
+        return;
+    }
+
+    const data = docSnap.data();
+
+    console.log("📢 Announcement received:", data);
+
+
+    if (Notification.permission === "granted") {
+
+        navigator.serviceWorker.ready.then((registration) => {
+
+            registration.showNotification(
+                data.title,
+                {
+                    body: data.message,
+                    icon: "logo.jpg",
+                    badge: "logo.jpg"
+                }
+            );
+
+        });
+
+    }
+
+});
