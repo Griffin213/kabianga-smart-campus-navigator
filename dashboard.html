@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -8,42 +7,41 @@
 <title>UOK Admin Dashboard</title>
 
 <style>
-
 *{
-    box-sizing:border-box;
     margin:0;
     padding:0;
+    box-sizing:border-box;
     font-family:Arial,sans-serif;
 }
 
 body{
     background:#f4f6f9;
+    display:flex;
 }
 
 /* SIDEBAR */
-
 .sidebar{
-    width:240px;
+    width:250px;
     height:100vh;
     background:#0b5ed7;
     color:white;
+    padding:20px;
     position:fixed;
     left:0;
     top:0;
-    padding:20px;
 }
 
 .sidebar h2{
     text-align:center;
-    margin-bottom:25px;
+    margin-bottom:30px;
 }
 
 .sidebar a{
     display:block;
     color:white;
     text-decoration:none;
-    padding:12px;
-    margin:6px 0;
+    padding:13px;
+    margin:8px 0;
     border-radius:8px;
 }
 
@@ -52,18 +50,18 @@ body{
 }
 
 /* MAIN */
-
 .main{
-    margin-left:240px;
+    margin-left:250px;
+    width:100%;
     padding:25px;
 }
 
 .header{
     background:white;
-    padding:25px;
+    padding:20px;
     border-radius:12px;
-    margin-bottom:25px;
     box-shadow:0 3px 10px rgba(0,0,0,.1);
+    margin-bottom:25px;
 }
 
 .header h1{
@@ -71,68 +69,71 @@ body{
 }
 
 /* CARDS */
-
 .cards{
     display:grid;
-    grid-template-columns:repeat(auto-fit,minmax(180px,1fr));
+    grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
     gap:20px;
 }
 
 .card{
     background:white;
-    padding:25px;
-    border-radius:12px;
+    padding:30px;
+    border-radius:15px;
     text-align:center;
     box-shadow:0 3px 10px rgba(0,0,0,.1);
 }
 
 .card h1{
     color:#0b5ed7;
-    font-size:38px;
+    font-size:50px;
 }
 
 .card p{
+    margin-top:10px;
     color:#666;
-    margin-top:8px;
+    font-size:20px;
 }
 
 /* ANNOUNCEMENT */
-
 .announcement{
     background:white;
-    padding:25px;
-    margin-top:30px;
-    border-radius:12px;
+    margin-top:35px;
+    padding:30px;
+    border-radius:15px;
     box-shadow:0 3px 10px rgba(0,0,0,.1);
 }
 
 .announcement h2{
     color:#0b5ed7;
-    margin-bottom:15px;
+    margin-bottom:20px;
 }
 
-#announcementText{
+textarea{
     width:100%;
-    height:120px;
+    height:140px;
     padding:15px;
+    font-size:17px;
     border:1px solid #ccc;
-    border-radius:8px;
-    font-size:16px;
+    border-radius:10px;
     resize:vertical;
 }
 
-#sendBtn{
+button{
     margin-top:15px;
-    padding:13px 25px;
-    border:0;
-    border-radius:8px;
+    padding:14px 25px;
     background:#0b5ed7;
     color:white;
-    font-size:16px;
+    border:none;
+    border-radius:8px;
+    font-size:17px;
     cursor:pointer;
 }
 
-#sendBtn:disabled{
+button:hover{
+    background:#084298;
+}
+
+button:disabled{
     background:#999;
 }
 
@@ -141,45 +142,60 @@ body{
     font-weight:bold;
 }
 
+/* MOBILE */
+@media(max-width:700px){
+
+    .sidebar{
+        width:180px;
+    }
+
+    .main{
+        margin-left:180px;
+        padding:15px;
+    }
+
+    .card{
+        padding:25px 10px;
+    }
+
+    .card h1{
+        font-size:40px;
+    }
+
+    .announcement{
+        padding:20px;
+    }
+
+}
 </style>
-
 </head>
-
 
 <body>
 
-
 <!-- SIDEBAR -->
-
 <div class="sidebar">
 
-<h2>🏫 UOK ADMIN</h2>
+<h2>🏫 UOK Admin</h2>
 
 <a href="#">🏠 Dashboard</a>
-
 <a href="#">🏢 Buildings</a>
-
 <a href="#">🎓 Schools</a>
-
 <a href="#">👨‍🏫 Lecturers</a>
-
 <a href="#">📅 Timetable</a>
-
 <a href="#">📢 Announcements</a>
 
-<a href="ai-knowledge.html">🤖 Prince AI</a>
+<a href="ai-knowledge.html">
+🤖 Prince AI Knowledge
+</a>
 
 <a href="#">👨‍🎓 Students</a>
-
 <a href="#">⚙ Settings</a>
-
 <a href="admin.html">🚪 Logout</a>
 
 </div>
 
 
 <!-- MAIN -->
-
 <div class="main">
 
 <div class="header">
@@ -194,7 +210,6 @@ University of Kabianga Smart Campus Management System
 
 
 <!-- DASHBOARD CARDS -->
-
 <div class="cards">
 
 <div class="card">
@@ -226,74 +241,120 @@ University of Kabianga Smart Campus Management System
 
 
 <!-- ANNOUNCEMENT -->
-
 <div class="announcement">
 
 <h2>📢 Send Announcement</h2>
 
 <textarea
 id="announcementText"
-placeholder="Type announcement for students...">
-</textarea>
+placeholder="Type announcement for students..."
+></textarea>
 
 <br>
 
 <button id="sendBtn">
-
 📢 Send Announcement
-
 </button>
 
-<p id="status"></p>
+<div id="status">
+Ready to send announcement.
+</div>
+
+</div>
 
 </div>
 
 
-</div>
-
-
-<!-- ONLY FIREBASE SCRIPT -->
-
+<!-- FIREBASE -->
 <script type="module">
 
-import { db } from "./firebase.js";
+import { initializeApp }
+from "https://www.gstatic.com/firebasejs/12.16.0/firebase-app.js";
 
 import {
+    getFirestore,
     doc,
     setDoc,
     serverTimestamp
-} from "https://www.gstatic.com/firebasejs/12.16.0/firebase-firestore.js";
+}
+from "https://www.gstatic.com/firebasejs/12.16.0/firebase-firestore.js";
 
 
-const button = document.getElementById("sendBtn");
+/* FIREBASE CONFIG */
 
-const textBox = document.getElementById("announcementText");
+const firebaseConfig = {
 
-const status = document.getElementById("status");
+    apiKey: "AIzaSyDJpH9mVVuB6zImuPC5SPlz-ETNpuCsNrY",
+
+    authDomain:
+    "uok-smart-campus-navigator.firebaseapp.com",
+
+    projectId:
+    "uok-smart-campus-navigator",
+
+    storageBucket:
+    "uok-smart-campus-navigator.firebasestorage.app",
+
+    messagingSenderId:
+    "465257479615",
+
+    appId:
+    "1:465257479615:web:31620a772eff1b603df50a"
+};
 
 
-button.addEventListener("click", async function(){
+/* INITIALIZE FIREBASE */
 
-    const message = textBox.value.trim();
+const app = initializeApp(firebaseConfig);
+
+const db = getFirestore(app);
 
 
-    if(message === ""){
+/* GET ELEMENTS */
 
-        alert("Please type an announcement.");
+const sendBtn =
+document.getElementById("sendBtn");
+
+const announcementText =
+document.getElementById("announcementText");
+
+const status =
+document.getElementById("status");
+
+
+/* SEND ANNOUNCEMENT */
+
+sendBtn.addEventListener("click", async function(){
+
+    const text =
+    announcementText.value.trim();
+
+
+    /* EMPTY CHECK */
+
+    if(text === ""){
+
+        status.innerHTML =
+        "⚠️ Please type an announcement.";
 
         return;
-
     }
 
 
-    button.disabled = true;
+    /* BUTTON */
 
-    button.innerText = "⏳ Sending...";
+    sendBtn.disabled = true;
 
-    status.innerText = "Connecting to Firebase...";
+    sendBtn.innerHTML =
+    "⏳ Sending...";
+
+    status.innerHTML =
+    "⏳ Connecting to Firebase...";
 
 
     try{
+
+        /* SAVE TO FIRESTORE */
 
         await setDoc(
 
@@ -304,58 +365,63 @@ button.addEventListener("click", async function(){
             ),
 
             {
-                Title: "University of Kabianga",
+                Title:
+                "University of Kabianga",
 
-                Message: message,
+                Message:
+                text,
 
-                Time: serverTimestamp()
-
+                time:
+                serverTimestamp()
             }
 
         );
 
 
-        status.innerText =
-            "✅ Announcement sent successfully!";
+        /* SUCCESS */
 
-        status.style.color = "green";
+        status.innerHTML =
+        "✅ Announcement sent successfully!";
 
-        alert("✅ Announcement sent to Firebase!");
+        announcementText.value = "";
 
-        textBox.value = "";
+        alert(
+        "✅ Announcement sent successfully!"
+        );
 
 
     }catch(error){
 
-        console.error(error);
-
-        status.innerText =
-            "❌ " + error.message;
-
-        status.style.color = "red";
-
-        alert(
-            "Firebase Error:\n\n" +
-            error.code +
-            "\n\n" +
-            error.message
+        console.error(
+        "Firebase Error:",
+        error
         );
 
 
-    }finally{
+        status.innerHTML =
+        "❌ Firebase Error: " +
+        error.message;
 
-        button.disabled = false;
 
-        button.innerText =
-            "📢 Send Announcement";
+        alert(
+        "❌ Firebase Error:\n\n" +
+        error.message
+        );
+
 
     }
+
+
+    /* RESTORE BUTTON */
+
+    sendBtn.disabled = false;
+
+    sendBtn.innerHTML =
+    "📢 Send Announcement";
 
 });
 
 </script>
 
-
 </body>
-
 </html>
