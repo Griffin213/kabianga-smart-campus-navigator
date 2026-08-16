@@ -18,13 +18,16 @@ const firebaseConfig = {
 const app = initializeApp(firebaseConfig);
 
 
+/*
+   IMPORTANT:
+   We are NOT using getFirestore().
+   Long polling helps Firestore work more reliably
+   on some mobile networks and GitHub Pages.
+*/
+
 const db = initializeFirestore(app, {
-    experimentalForceLongPolling: true,
-    useFetchStreams: false
+    experimentalForceLongPolling: true
 });
-
-
-console.log("🔥 Firebase Firestore initialized successfully");
 
 
 export { db };
