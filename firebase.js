@@ -4,22 +4,53 @@ import {
     initializeFirestore
 } from "https://www.gstatic.com/firebasejs/12.16.0/firebase-firestore.js";
 
+
 const firebaseConfig = {
+
     apiKey: "AIzaSyDJpH9mVVuB6zImuPC5SPlz-ETNpuCsNrY",
-    authDomain: "uok-smart-campus-navigator.firebaseapp.com",
-    projectId: "uok-smart-campus-navigator",
-    storageBucket: "uok-smart-campus-navigator.firebasestorage.app",
-    messagingSenderId: "465257479615",
-    appId: "1:465257479615:web:31620a772eff1b603df50a"
+
+    authDomain:
+        "uok-smart-campus-navigator.firebaseapp.com",
+
+    projectId:
+        "uok-smart-campus-navigator",
+
+    storageBucket:
+        "uok-smart-campus-navigator.firebasestorage.app",
+
+    messagingSenderId:
+        "465257479615",
+
+    appId:
+        "1:465257479615:web:31620a772eff1b603df50a"
+
 };
+
 
 const app = initializeApp(firebaseConfig);
 
+
+/*
+========================================
+ FIRESTORE CONNECTION
+========================================
+*/
+
 const db = initializeFirestore(app, {
+
     experimentalForceLongPolling: true
+
 });
 
-console.log("🔥 Firebase initialized");
-console.log("🔥 Firestore initialized");
+
+console.log("✅ Firebase App initialized");
+
+console.log("✅ Firestore initialized");
+
+console.log(
+    "🔥 Firestore database:",
+    db
+);
+
 
 export { db };
