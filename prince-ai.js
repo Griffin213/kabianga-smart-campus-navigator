@@ -1,394 +1,42 @@
-// =====================================
-// Prince AI v2.0
+// ========================================
+// PRINCE AI 2.0
 // University of Kabianga
-// Part 1 - Core + Voice + Chat
-// =====================================
-
-// Chat Memory
-let chatMemory = [];
-
-// Voice Variables
-let recognition = null;
-let greeted = false;
-let voiceMode = false;
+// ========================================
 
 
-// Speak text
-function speak(text) {
+// ========================================
+// HOME
+// ========================================
 
-    // Stop anything currently speaking
-    speechSynthesis.cancel();
-
-    const speech = new SpeechSynthesisUtterance(text);
-
-    speech.lang = "en-US";
-    speech.rate = 1.1;
-    speech.pitch = 1;
-    speech.volume = 1;
-
-    // Prevent microphone from listening while speaking
-    
-
-    speech.onend = function () {
-
-        const btn = document.getElementById("voiceBtn");
-
-        if(btn){
-            btn.innerHTML = "🎤 Ask Prince";
-        }
-
-    };
-
-    speechSynthesis.speak(speech);
-
-}
-// --------------------
-// Home
-// --------------------
-function goHome() {
+function goHome(){
 
     window.location.href = "index.html";
 
 }
-// --------------------
-// Start Voice Assistant
-// --------------------
-function startPrinceAI() {
 
-    if (!greeted) {
 
-        greeted = true;
+// ========================================
+// NEW CHAT
+// ========================================
 
-        voiceMode = true;
+function newChat(){
 
-        speak("Hello. I am Prince AI. How can I help you today?");
-
-        startListening();
-
-    } else {
-
-        voiceMode = true;
-
-        startListening();
-
-    }
-
-}
-
-
-// --------------------
-// Stop Voice Assistant
-// --------------------
-function stopPrinceAI() {
-
-    voiceMode = false;
-
-    window.speechSynthesis.cancel();
-
-    if (recognition) {
-
-        recognition.stop();
-
-    }
-
-}
-
-// --------------------
-// Voice Recognition v2.0
-// --------------------
-function startListening() {
-
-    const SpeechRecognition =
-        window.SpeechRecognition ||
-        window.webkitSpeechRecognition;
-
-    if (!SpeechRecognition) {
-
-        alert("Your browser does not support voice recognition.");
-
-        return;
-
-    }
-
-    if (!recognition) {
-
-        recognition = new SpeechRecognition();
-
-        recognition.lang = "en-US";
-        recognition.continuous = false;
-        recognition.interimResults = false;
-        recognition.maxAlternatives = 1;
-
-        recognition.onstart = function () {
-
-            const btn = document.getElementById("voiceBtn");
-
-            if(btn){
-                btn.innerHTML = "🔴 Listening...";
-            }
-
-        };
-
-        recognition.onresult = function (event) {
-
-            const message = event.results[0][0].transcript.trim();
-
-            addMessage(message, "user-message");
-
-            const reply = princeReply(message.toLowerCase());
-
-            addMessage(reply, "ai-message");
-
-            speak(reply);
-
-        };
-
-        recognition.onerror = function (event) {
-
-            console.log("Voice Error:", event.error);
-
-            const btn = document.getElementById("voiceBtn");
-
-            if(btn){
-                btn.innerHTML = "🎤 Ask Prince";
-            }
-
-        };
-
-        recognition.onend = function () {
-
-            const btn = document.getElementById("voiceBtn");
-
-            if(btn){
-                btn.innerHTML = "🎤 Ask Prince";
-            }
-
-        };
-
-    }
-
-    recognition.start();
-
-}
-
-// =====================================
-// Part 2 - Chat Engine
-// =====================================
-
-// Send Text Message
-function sendMessage() {
-
-    const input = document.getElementById("userMessage");
-
-    const message = input.value.trim();
-
-    if (message === "") return;
-
-    addMessage(message, "user-message");
-
-    chatMemory.push({
-        role: "user",
-        text: message
-    });
-
-    input.value = "";
-
-    // Typing Animation
-    const typing = document.createElement("div");
-
-    typing.id = "typing";
-
-    typing.className = "ai-message";
-
-    typing.innerHTML = "🤖 Prince AI is typing...";
-
-    document.getElementById("chatBox").appendChild(typing);
-
-    document.getElementById("chatBox").scrollTop =
-        document.getElementById("chatBox").scrollHeight;
-
-    setTimeout(function () {
-
-        typing.remove();
-
-        const reply = princeReply(message.toLowerCase());
-
-        addMessage(reply, "ai-message");
-
-        chatMemory.push({
-            role: "assistant",
-            text: reply
-        });
-
-        // Speak ONLY when voice mode is active
-        if (voiceMode) {
-
-            speak(reply);
-
-        }
-
-    }, 900);
-
-}
-
-
-
-// Add Chat Bubble
-function addMessage(text, className) {
-
-    const chatBox = document.getElementById("chatBox");
-
-    const bubble = document.createElement("div");
-
-    bubble.className = className;
-
-    bubble.innerHTML = text.replace(/\n/g, "<br>");
-
-    chatBox.appendChild(bubble);
-
-    chatBox.scrollTop = chatBox.scrollHeight;
-
-}
-
-
-
-// =====================================
-// Prince AI Brain
-// =====================================
-
-function princeReply(message) {
-// Check administrator knowledge first
-
-let knowledge = JSON.parse(localStorage.getItem("princeKnowledge")) || [];
-
-for(let item of knowledge){
-
-    if(message.toLowerCase().includes(item.question.toLowerCase())){
-
-        return item.answer;
-
-    }
-
-}
-    message = message.toLowerCase();
-
-
-
-    // Search Knowledge Base
-
-    if (typeof campusKnowledge !== "undefined") {
-
-        for (let place in campusKnowledge) {
-
-            if (message.includes(place.toLowerCase())) {
-
-                return "📍 <b>" +
-
-                    campusKnowledge[place].name +
-
-                    "</b><br><br>" +
-
-                    campusKnowledge[place].info;
-
-            }
-
-        }
-
-    }
-
-
-
-    // Greetings
-
-    if (
-
-        message.includes("hello") ||
-
-        message.includes("hi") ||
-
-        message.includes("hey")
-
-    ) {
-
-        return "Hello 👋 Welcome to the University of Kabianga. How can I assist you today?";
-
-    }
-
-
-
-    // About AI
-
-    if (
-
-        message.includes("who are you")
-
-    ) {
-
-        return "I am Prince AI, your Smart Campus Assistant. I help students, staff and visitors navigate and access university services.";
-
-    }
-
-
-
-    // Help
-
-    if (
-
-        message.includes("help")
-
-    ) {
-
-        return "I can help you find offices, lecture halls, departments, student services, the library, hostels, and many other university facilities.";
-
-    }
-
-
-
-    // Thanks
-
-    if (
-
-        message.includes("thank")
-
-    ) {
-
-        return "You're welcome 😊 Happy to help.";
-
-    }
-
-
-
-    // Default Reply
-
-    return "Sorry, I don't have information about that yet. We are continuously improving Prince AI. 😊";
-
-}
-
-// =====================================
-// Part 3 - Utilities & Initialization
-// =====================================
-
-// New Chat
-function newChat() {
-
-    chatMemory = [];
-
-    const chatBox = document.getElementById("chatBox");
+    const chatBox =
+        document.getElementById("chatBox");
 
     chatBox.innerHTML = `
 
-        <div class="ai-message">
+        <div class="bot-message">
 
-            👋 Hello! I am <b>Prince AI</b>.<br><br>
+            👋 Hello again!
 
-            Welcome to the University of Kabianga Smart Campus Navigator.<br><br>
+            <br><br>
 
-            Ask me about:
-            <br>📍 Buildings
-            <br>🏢 Offices
-            <br>🎓 Schools
-            <br>📚 Student Services
-            <br>🗺 Campus Navigation
+            I am <strong>Prince AI</strong> 🤖.
+
+            <br><br>
+
+            How can I help you?
 
         </div>
 
@@ -397,71 +45,593 @@ function newChat() {
 }
 
 
+// ========================================
+// SEND MESSAGE
+// ========================================
 
-// Clear Chat
-function clearChat() {
+function sendMessage(){
 
-    if (confirm("Clear this conversation?")) {
+    const input =
+        document.getElementById("userMessage");
 
-        newChat();
+    const chatBox =
+        document.getElementById("chatBox");
+
+
+    const message =
+        input.value.trim();
+
+
+    // Nothing typed
+
+    if(message === ""){
+
+        return;
 
     }
+
+
+    // Show user's message
+
+    const userMessage =
+        document.createElement("div");
+
+    userMessage.className =
+        "user-message";
+
+    userMessage.innerHTML =
+        escapeHTML(message);
+
+    chatBox.appendChild(
+        userMessage
+    );
+
+
+    // Clear input
+
+    input.value = "";
+
+
+    // Scroll down
+
+    chatBox.scrollTop =
+        chatBox.scrollHeight;
+
+
+    // Show typing
+
+    const typing =
+        document.createElement("div");
+
+    typing.className =
+        "bot-message";
+
+    typing.id =
+        "typing";
+
+    typing.innerHTML =
+        "🤖 Prince AI is thinking...";
+
+    chatBox.appendChild(
+        typing
+    );
+
+
+    setTimeout(() => {
+
+        typing.remove();
+
+        const answer =
+            getPrinceAIAnswer(message);
+
+
+        const botMessage =
+            document.createElement("div");
+
+        botMessage.className =
+            "bot-message";
+
+        botMessage.innerHTML =
+            answer;
+
+
+        chatBox.appendChild(
+            botMessage
+        );
+
+
+        chatBox.scrollTop =
+            chatBox.scrollHeight;
+
+    }, 500);
 
 }
 
 
+// ========================================
+// PRINCE AI ANSWERS
+// ========================================
 
-// Send message with Enter key
-document.addEventListener("DOMContentLoaded", function () {
+function getPrinceAIAnswer(message){
 
-    const input = document.getElementById("userMessage");
+    const question =
+        message.toLowerCase().trim();
 
-    if (input) {
 
-        input.addEventListener("keypress", function (event) {
+    // LTB1
 
-            if (event.key === "Enter") {
+    if(
+        question.includes("ltb1") ||
+        question.includes("lecture theatre 1") ||
+        question.includes("lecture theater 1")
+    ){
 
-                sendMessage();
+        return `
 
-            }
+        📍 <strong>LTB1</strong>
 
-        });
+        <br><br>
+
+        LTB1 is one of the lecture facilities
+        at the University of Kabianga.
+
+        <br><br>
+
+        🗺️ I can help you navigate there
+        once the campus route information
+        is configured.
+
+        `;
 
     }
 
-});
 
+    // LTB2
 
+    if(
+        question.includes("ltb2") ||
+        question.includes("lecture theatre 2")
+    ){
 
-// Stop voice when page closes
-window.addEventListener("beforeunload", function () {
+        return `
 
-    voiceMode = false;
+        📍 <strong>LTB2</strong>
 
-    if (recognition) {
+        <br><br>
 
-        recognition.stop();
+        LTB2 is one of the lecture facilities
+        at the University of Kabianga.
+
+        `;
 
     }
 
-    window.speechSynthesis.cancel();
 
-});
+    // LTB3
+
+    if(
+        question.includes("ltb3") ||
+        question.includes("lecture theatre 3")
+    ){
+
+        return `
+
+        📍 <strong>LTB3</strong>
+
+        <br><br>
+
+        LTB3 is one of the lecture facilities
+        at the University of Kabianga.
+
+        `;
+
+    }
 
 
+    // LTB4
 
-// Start with a welcome chat only
-window.onload = function () {
+    if(
+        question.includes("ltb4") ||
+        question.includes("lecture theatre 4")
+    ){
 
-    newChat();
+        return `
 
-};
+        📍 <strong>LTB4</strong>
+
+        <br><br>
+
+        LTB4 is one of the lecture facilities
+        at the University of Kabianga.
+
+        `;
+
+    }
 
 
+    // GREETING
 
-// =====================================
-// Prince AI v2.0 Loaded
-// =====================================
+    if(
+        question.includes("hello") ||
+        question.includes("hi") ||
+        question.includes("hey")
+    ){
 
-console.log("✅ Prince AI v2.0 Loaded Successfully");
+        return `
+
+        👋 Hello!
+
+        <br><br>
+
+        I'm <strong>Prince AI</strong>,
+        your University of Kabianga
+        Smart Campus Assistant. 🤖
+
+        <br><br>
+
+        What can I help you find?
+
+        `;
+
+    }
+
+
+    // WHO ARE YOU
+
+    if(
+        question.includes("who are you") ||
+        question.includes("what are you")
+    ){
+
+        return `
+
+        🤖 I am <strong>Prince AI</strong>.
+
+        <br><br>
+
+        I am the Smart Campus Assistant
+        for the University of Kabianga.
+
+        <br><br>
+
+        I can help students find places,
+        understand campus information and
+        navigate around the university.
+
+        `;
+
+    }
+
+
+    // UOK
+
+    if(
+        question.includes("university of kabianga") ||
+        question.includes("uok")
+    ){
+
+        return `
+
+        🎓 <strong>University of Kabianga</strong>
+
+        <br><br>
+
+        Welcome to UOK! 🤝
+
+        <br><br>
+
+        I can help you explore the campus,
+        find facilities and access useful
+        university information.
+
+        `;
+
+    }
+
+
+    // MAP
+
+    if(
+        question.includes("map") ||
+        question.includes("campus map")
+    ){
+
+        return `
+
+        🗺️ I can help you with the
+        University of Kabianga campus map.
+
+        <br><br>
+
+        <button
+            onclick="window.location.href='campus-map.html'"
+            style="
+            padding:10px 15px;
+            border:none;
+            border-radius:8px;
+            background:#0b5ed7;
+            color:white;
+            cursor:pointer;
+            ">
+
+            🗺️ Open Campus Map
+
+        </button>
+
+        `;
+
+    }
+
+
+    // NAVIGATION
+
+    if(
+        question.includes("where") ||
+        question.includes("find") ||
+        question.includes("locate") ||
+        question.includes("take me")
+    ){
+
+        return `
+
+        📍 I can help you find that place.
+
+        <br><br>
+
+        Try telling me the exact
+        building or facility, for example:
+
+        <br><br>
+
+        • LTB1
+
+        <br>
+
+        • LTB2
+
+        <br>
+
+        • Library
+
+        <br>
+
+        • Administration
+
+        `;
+
+    }
+
+
+    // HELP
+
+    if(
+        question.includes("help") ||
+        question.includes("what can you do")
+    ){
+
+        return `
+
+        🤖 <strong>Here's what I can help with:</strong>
+
+        <br><br>
+
+        📍 Campus locations
+
+        <br>
+        🏢 Buildings
+
+        <br>
+        📚 Lecture halls
+
+        <br>
+        🗺️ Campus map
+
+        <br>
+        🎓 University information
+
+        <br>
+        📅 Student information
+
+        <br><br>
+
+        Just ask me a question!
+
+        `;
+
+    }
+
+
+    // DEFAULT
+
+    return `
+
+        🤔 I'm still learning about that.
+
+        <br><br>
+
+        Try asking me about:
+
+        <br>
+
+        📍 LTB1
+
+        <br>
+
+        📍 LTB2
+
+        <br>
+
+        🗺️ Campus map
+
+        <br>
+
+        🎓 University of Kabianga
+
+        <br>
+
+        🤖 What can you do?
+
+    `;
+
+}
+
+
+// ========================================
+// VOICE ASSISTANT
+// ========================================
+
+function startPrinceAI(){
+
+    const SpeechRecognition =
+        window.SpeechRecognition ||
+        window.webkitSpeechRecognition;
+
+
+    if(!SpeechRecognition){
+
+        alert(
+            "Your browser does not support voice recognition."
+        );
+
+        return;
+
+    }
+
+
+    const recognition =
+        new SpeechRecognition();
+
+
+    recognition.lang =
+        "en-KE";
+
+    recognition.continuous =
+        false;
+
+    recognition.interimResults =
+        false;
+
+
+    const voiceBtn =
+        document.getElementById("voiceBtn");
+
+
+    voiceBtn.innerHTML =
+        "🔴";
+
+
+    recognition.start();
+
+
+    recognition.onresult =
+        function(event){
+
+            const spokenText =
+                event.results[0][0].transcript;
+
+
+            document.getElementById(
+                "userMessage"
+            ).value = spokenText;
+
+
+            voiceBtn.innerHTML =
+                "🎤";
+
+
+            sendMessage();
+
+        };
+
+
+    recognition.onerror =
+        function(){
+
+            voiceBtn.innerHTML =
+                "🎤";
+
+        };
+
+
+    recognition.onend =
+        function(){
+
+            voiceBtn.innerHTML =
+                "🎤";
+
+        };
+
+}
+
+
+// ========================================
+// ENTER KEY
+// ========================================
+
+document.addEventListener(
+    "DOMContentLoaded",
+    function(){
+
+        const input =
+            document.getElementById(
+                "userMessage"
+            );
+
+
+        if(input){
+
+            input.addEventListener(
+                "keydown",
+                function(event){
+
+                    if(
+                        event.key === "Enter"
+                    ){
+
+                        event.preventDefault();
+
+                        sendMessage();
+
+                    }
+
+                }
+            );
+
+        }
+
+    }
+);
+
+
+// ========================================
+// SECURITY
+// ========================================
+
+function escapeHTML(text){
+
+    const div =
+        document.createElement("div");
+
+    div.textContent =
+        text;
+
+    return div.innerHTML;
+
+}
+
+
+// ========================================
+// MAKE FUNCTIONS AVAILABLE
+// ========================================
+
+window.goHome =
+    goHome;
+
+window.newChat =
+    newChat;
+
+window.sendMessage =
+    sendMessage;
+
+window.startPrinceAI =
+    startPrinceAI;
