@@ -598,3 +598,45 @@ color:gray;
 .prince-ai-button:hover {
     background: #084298;
 }
+/* ==========================================
+   PRINCE AI BUTTON
+========================================== */
+
+.main-action-btn {
+    width: 100%;
+    min-height: 78px;
+    padding: 18px 20px;
+    margin: 12px 0;
+
+    border: none;
+    border-radius: 12px;
+
+    background: #0b63d8;
+    color: white;
+
+    font-size: 22px;
+    font-weight: 700;
+
+    text-align: center;
+
+    cursor: pointer;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    box-sizing: border-box;
+
+    -webkit-tap-highlight-color: transparent;
+
+    transition: transform 0.15s ease,
+                background 0.15s ease;
+}
+
+.main-action-btn:hover {
+    background: #084298;
+}
+
+.main-action-btn:active {
+    transform: scale(0.97);
+}
