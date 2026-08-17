@@ -2,39 +2,359 @@
 <html lang="en">
 
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Prince AI</title>
+<meta charset="UTF-8">
+
+<meta name="viewport"
+      content="width=device-width, initial-scale=1.0">
+
+<title>Prince AI | UOK Smart Campus</title>
 
 <link rel="stylesheet" href="style.css">
+
+<style>
+
+/* =========================
+   PRINCE AI CHAT
+========================= */
+
+.chat-page{
+
+    min-height:100vh;
+
+    display:flex;
+
+    flex-direction:column;
+
+    background:#f4f6f9;
+
+}
+
+
+/* HEADER */
+
+.chat-header{
+
+    background:linear-gradient(
+        135deg,
+        #0b5ed7,
+        #198754
+    );
+
+    color:white;
+
+    padding:18px;
+
+    text-align:center;
+
+    position:relative;
+
+    box-shadow:
+        0 3px 10px rgba(0,0,0,.2);
+
+}
+
+.chat-header h2{
+
+    margin:5px 0;
+
+}
+
+.chat-header p{
+
+    margin:0;
+
+    opacity:.9;
+
+}
+
+
+/* BACK BUTTON */
+
+.back-btn{
+
+    position:absolute;
+
+    left:15px;
+
+    top:18px;
+
+    background:rgba(255,255,255,.2);
+
+    color:white;
+
+    border:none;
+
+    padding:9px 12px;
+
+    border-radius:8px;
+
+    cursor:pointer;
+
+}
+
+
+/* NEW CHAT */
+
+.new-btn{
+
+    position:absolute;
+
+    right:15px;
+
+    top:18px;
+
+    background:rgba(255,255,255,.2);
+
+    color:white;
+
+    border:none;
+
+    padding:9px 12px;
+
+    border-radius:8px;
+
+    cursor:pointer;
+
+}
+
+
+/* CHAT BOX */
+
+.chat-box{
+
+    flex:1;
+
+    padding:20px;
+
+    overflow-y:auto;
+
+    max-width:900px;
+
+    width:100%;
+
+    margin:auto;
+
+}
+
+
+/* MESSAGES */
+
+.bot-message{
+
+    background:white;
+
+    padding:15px;
+
+    border-radius:15px 15px 15px 3px;
+
+    box-shadow:
+        0 2px 8px rgba(0,0,0,.1);
+
+    margin-bottom:15px;
+
+    max-width:80%;
+
+    line-height:1.6;
+
+}
+
+
+.user-message{
+
+    background:#0b5ed7;
+
+    color:white;
+
+    padding:14px;
+
+    border-radius:15px 15px 3px 15px;
+
+    margin:10px 0 10px auto;
+
+    max-width:80%;
+
+    line-height:1.5;
+
+}
+
+
+/* TYPING */
+
+.typing{
+
+    background:white;
+
+    padding:12px 15px;
+
+    border-radius:15px;
+
+    display:inline-block;
+
+    color:#666;
+
+}
+
+
+/* INPUT */
+
+.chat-input{
+
+    width:100%;
+
+    max-width:900px;
+
+    margin:auto;
+
+    padding:15px;
+
+    display:flex;
+
+    gap:8px;
+
+    background:white;
+
+    border-top:1px solid #ddd;
+
+}
+
+
+.chat-input input{
+
+    flex:1;
+
+    padding:13px;
+
+    border:1px solid #ccc;
+
+    border-radius:10px;
+
+    font-size:16px;
+
+    outline:none;
+
+}
+
+
+.chat-input button{
+
+    border:none;
+
+    border-radius:10px;
+
+    padding:0 16px;
+
+    font-size:18px;
+
+    cursor:pointer;
+
+}
+
+
+#voiceBtn{
+
+    background:#198754;
+
+    color:white;
+
+}
+
+
+#sendBtn{
+
+    background:#0b5ed7;
+
+    color:white;
+
+}
+
+
+/* MOBILE */
+
+@media(max-width:600px){
+
+    .chat-header h2{
+
+        font-size:20px;
+
+    }
+
+    .back-btn,
+    .new-btn{
+
+        position:static;
+
+        margin:3px;
+
+    }
+
+    .chat-header{
+
+        padding:12px;
+
+    }
+
+}
+
+</style>
+
 </head>
+
 
 <body>
 
+
 <div class="chat-page">
+
+
+    <!-- HEADER -->
 
     <div class="chat-header">
 
-        <button onclick="goHome()" class="back-btn">
+        <button
+            onclick="goHome()"
+            class="back-btn">
+
             ← Home
+
         </button>
 
-        <button onclick="newChat()" class="new-btn">
+
+        <button
+            onclick="newChat()"
+            class="new-btn">
+
             ➕ New Chat
+
         </button>
 
-        <h2>🤖 Prince AI</h2>
 
-        <p>Your Smart Campus Assistant</p>
+        <h2>
+            🤖 Prince AI
+        </h2>
+
+        <p>
+            Your Smart Campus Assistant
+        </p>
 
     </div>
 
-    <div id="chatBox" class="chat-box">
+
+
+    <!-- CHAT -->
+
+    <div
+        id="chatBox"
+        class="chat-box">
 
         <div class="bot-message">
 
-            👋 Hello! Welcome to the University of Kabianga.
+            👋 Hello! Welcome to the
+            <strong>University of Kabianga.</strong>
+
+            <br><br>
+
+            I am <strong>Prince AI</strong> 🤖.
 
             <br><br>
 
@@ -46,35 +366,66 @@
 
             <br>📚 Find offices
 
-            <br>🗺 Campus navigation
+            <br>🗺️ Campus navigation
 
-            <br>❓ Ask me anything about campus.
+            <br>🎓 University information
+
+            <br>❓ General campus questions.
+
+            <br><br>
+
+            What would you like to know?
 
         </div>
 
     </div>
 
-    <div class="ai-message">
-    Hello 👋 I am Prince AI. How can I help you today?
-    </div>
+
+
+    <!-- INPUT -->
 
     <div class="chat-input">
 
-    <input
-        type="text"
-        id="userMessage"
-        placeholder="Type your message...">
+        <input
+            type="text"
+            id="userMessage"
+            placeholder="Ask Prince AI..."
+            autocomplete="off">
 
-    <button id="voiceBtn" onclick="startPrinceAI()">🎤</button>
 
-    <button onclick="sendMessage()">➤</button>
+        <button
+            id="voiceBtn"
+            onclick="startPrinceAI()">
+
+            🎤
+
+        </button>
+
+
+        <button
+            id="sendBtn"
+            onclick="sendMessage()">
+
+            ➤
+
+        </button>
 
     </div>
 
+
 </div>
 
+
+
+<!-- KNOWLEDGE -->
+
 <script src="knowledge.js"></script>
+
+
+<!-- PRINCE AI -->
+
 <script src="prince-ai.js"></script>
+
 
 </body>
 
