@@ -1,4 +1,4 @@
-alert("Prince AI JavaScript loaded");
+
 // ========================================
 // PRINCE AI 2.0
 // University of Kabianga
