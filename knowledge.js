@@ -242,3 +242,162 @@ campusKnowledge["course registration"] = campusKnowledge["register units"];
 campusKnowledge["how do i register units"] = campusKnowledge["register units"];
 
 campusKnowledge["how to register units"] = campusKnowledge["register units"];
+// ==========================================
+// ONLINE SEMESTER REPORTING GUIDE
+// ==========================================
+
+const onlineReportingGuide = {
+    title: "How to Report Online for a New Semester",
+    category: "Student Services",
+
+    keywords: [
+        "report online",
+        "online reporting",
+        "report for semester",
+        "semester reporting",
+        "how to report",
+        "reporting",
+        "report to school",
+        "report to university",
+        "semester report",
+        "how do I report",
+        "how can I report online"
+    ],
+
+    response: `
+📚 ONLINE SEMESTER REPORTING GUIDE
+
+Hello! 👋 I can guide you through the online semester reporting process.
+
+Follow these steps:
+
+1️⃣ LOG IN TO THE STUDENT PORTAL
+Open your web browser and go to the official University Student Portal.
+
+Enter your:
+• Username — usually your Admission Number
+• Password
+
+2️⃣ OPEN THE MENU
+If you are using a smartphone or tablet, tap the three lines ☰ at the top of the screen to open the navigation menu.
+
+3️⃣ GO TO ADMISSION
+From the menu, locate and select:
+🎓 Admission
+
+4️⃣ SELECT REPORTING
+Under the Admission section, select:
+📋 Reporting
+or
+📋 Report
+
+5️⃣ CONFIRM YOUR REPORTING
+Click:
+✅ Report
+or
+➕ + Report
+
+If the system asks you to select your accommodation status, choose the correct option, for example:
+🏠 Resident/Boarder
+🚶 Commuter
+
+Then click Submit.
+
+6️⃣ WAIT FOR CONFIRMATION
+Allow the system to process your request.
+
+You should receive a confirmation message such as:
+✅ "Reported successful!"
+
+7️⃣ VERIFY YOUR REPORTING STATUS
+You can check your reporting history or fee statement to confirm that your reporting date has been updated for the current semester.
+
+🎓 If you get stuck at any step, tell me the step you are currently on and I will guide you from there.
+
+⚠️ IMPORTANT:
+Always use the official university student portal and never share your password or other confidential login details with anyone.
+`
+};
+// ==========================================
+// ONLINE SEMESTER REPORTING GUIDE
+// ==========================================
+
+const onlineReportingGuide = {
+    title: "How to Report Online for a New Semester",
+    category: "Student Services",
+
+    keywords: [
+        "report online",
+        "online reporting",
+        "report for semester",
+        "semester reporting",
+        "how to report",
+        "reporting",
+        "report to school",
+        "report to university",
+        "semester report",
+        "how do I report",
+        "how can I report online"
+    ],
+
+    response: `
+📚 ONLINE SEMESTER REPORTING GUIDE
+
+Hello! 👋 I can guide you through the online semester reporting process.
+
+Follow these steps:
+
+1️⃣ LOG IN TO THE STUDENT PORTAL
+Open your web browser and go to the official University Student Portal.
+
+Enter your:
+• Username — usually your Admission Number
+• Password
+
+2️⃣ OPEN THE MENU
+If you are using a smartphone or tablet, tap the three lines ☰ at the top of the screen to open the navigation menu.
+
+3️⃣ GO TO ADMISSION
+From the menu, locate and select:
+🎓 Admission
+
+4️⃣ SELECT REPORTING
+Under the Admission section, select:
+📋 Reporting
+or
+📋 Report
+
+5️⃣ CONFIRM YOUR REPORTING
+Click:
+✅ Report
+or
+➕ + Report
+
+If the system asks you to select your accommodation status, choose the correct option, for example:
+🏠 Resident/Boarder
+🚶 Commuter
+
+Then click Submit.
+
+6️⃣ WAIT FOR CONFIRMATION
+Allow the system to process your request.
+
+You should receive a confirmation message such as:
+✅ "Reported successful!"
+
+7️⃣ VERIFY YOUR REPORTING STATUS
+You can check your reporting history or fee statement to confirm that your reporting date has been updated for the current semester.
+
+🎓 If you get stuck at any step, tell me the step you are currently on and I will guide you from there.
+
+⚠️ IMPORTANT:
+Always use the official university student portal and never share your password or other confidential login details with anyone.
+`
+};
+
+
+// ==========================================
+// ADD TO PRINCE AI KNOWLEDGE BASE
+// ==========================================
+
+knowledgeBase.push(onlineReportingGuide);
