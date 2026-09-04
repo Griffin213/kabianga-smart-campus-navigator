@@ -2,13 +2,8 @@
 // 🤖 PRINCE AI - UNIVERSITY OF KABIANGA
 // ==========================================
 
-// Make sure knowledge.js is loaded first
-if (typeof campusKnowledge === "undefined") {
-    console.error("❌ campusKnowledge was not loaded.");
-}
-
 // ==========================================
-// CHAT FUNCTIONS
+// 💬 CHAT FUNCTIONS
 // ==========================================
 
 function addUserMessage(message) {
@@ -39,8 +34,8 @@ function addBotMessage(message) {
 
     messageDiv.className = "bot-message";
 
-    // Preserve line breaks from knowledge.js
-    messageDiv.innerHTML = message.replace(/\n/g, "<br>");
+    messageDiv.innerHTML =
+        String(message).replace(/\n/g, "<br>");
 
     chatBox.appendChild(messageDiv);
 
@@ -49,33 +44,36 @@ function addBotMessage(message) {
 
 
 // ==========================================
-// FIND ANSWER FROM knowledge.js
+// 🧠 FIND ANSWER
 // ==========================================
 
 function findKnowledgeAnswer(question) {
 
-    if (typeof campusKnowledge === "undefined") {
+    if (
+        typeof campusKnowledge === "undefined"
+    ) {
 
-        return "Sorry, my campus knowledge is not available right now.";
+        return "Sorry, my campus knowledge database is not available right now.";
     }
 
-    const text = question
+    const text = String(question)
         .toLowerCase()
         .trim();
 
-    // --------------------------------------
-    // 1. Exact match
-    // --------------------------------------
+    if (!text) {
 
+        return "Please tell me what you would like to know.";
+    }
+
+
+    // Exact match
     if (campusKnowledge[text]) {
 
         return campusKnowledge[text].info;
     }
 
-    // --------------------------------------
-    // 2. Search for matching keywords
-    // --------------------------------------
 
+    // Keyword matching
     const keys = Object.keys(campusKnowledge);
 
     for (const key of keys) {
@@ -85,16 +83,17 @@ function findKnowledgeAnswer(question) {
             return campusKnowledge[key].info;
         }
 
-        if (key.includes(text) && text.length > 2) {
+        if (
+            key.includes(text) &&
+            text.length > 2
+        ) {
 
             return campusKnowledge[key].info;
         }
     }
 
-    // --------------------------------------
-    // 3. Word-by-word matching
-    // --------------------------------------
 
+    // Word matching
     const words = text
         .split(/\s+/)
         .filter(word => word.length > 2);
@@ -111,6 +110,7 @@ function findKnowledgeAnswer(question) {
         words.forEach(word => {
 
             if (keyWords.includes(word)) {
+
                 score++;
             }
 
@@ -119,19 +119,21 @@ function findKnowledgeAnswer(question) {
         if (score > highestScore) {
 
             highestScore = score;
+
             bestMatch = campusKnowledge[key];
         }
     }
 
-    if (bestMatch && highestScore > 0) {
+    if (
+        bestMatch &&
+        highestScore > 0
+    ) {
 
         return bestMatch.info;
     }
 
-    // --------------------------------------
-    // 4. Common questions
-    // --------------------------------------
 
+    // Common questions
     if (
         text.includes("hello") ||
         text.includes("hi") ||
@@ -141,6 +143,7 @@ function findKnowledgeAnswer(question) {
         return "Hello 👋 Welcome to the University of Kabianga. I am Prince AI. How can I help you today?";
     }
 
+
     if (
         text.includes("who are you") ||
         text.includes("your name")
@@ -148,6 +151,7 @@ function findKnowledgeAnswer(question) {
 
         return "I am Prince AI 🤖, your Smart Campus Assistant for the University of Kabianga.";
     }
+
 
     if (
         text.includes("thank") ||
@@ -157,98 +161,102 @@ function findKnowledgeAnswer(question) {
         return "You're welcome! 😊 I'm always happy to help.";
     }
 
+
     if (
         text.includes("what can you do") ||
         text.includes("help me")
     ) {
 
-        return "I can help you find lecture halls, departments, offices and university services. You can also ask me questions about the Student Portal, unit registration, fees, accommodation, examinations and more.";
+        return "I can help you find lecture halls, departments, offices and university services. You can also ask about the Student Portal, unit registration, fees, accommodation, examinations and more.";
     }
 
-    // --------------------------------------
-    // No answer
-    // --------------------------------------
 
     return "I'm still learning about the University of Kabianga. 🤖 Please try asking about a lecture hall, department, office, Student Portal, unit registration, accommodation, fees or another campus service.";
 }
 
 
 // ==========================================
-// SEND MESSAGE
+// ⌨️ SEND MESSAGE
 // ==========================================
 
 function sendMessage() {
 
-    const input = document.getElementById("userMessage");
+    const input =
+        document.getElementById("userMessage");
 
     if (!input) return;
 
-    const question = input.value.trim();
+    const question =
+        input.value.trim();
 
-    if (question === "") {
+    if (!question) return;
 
-        return;
-    }
-
-    // Show user's message
     addUserMessage(question);
 
-    // Clear input
     input.value = "";
 
-    // Find answer
-    const answer = findKnowledgeAnswer(question);
+    const answer =
+        findKnowledgeAnswer(question);
 
-    // Small delay to make conversation feel natural
-    setTimeout(() => {
+    setTimeout(function () {
 
         addBotMessage(answer);
 
-        // Speak answer
         speakPrinceAI(answer);
 
     }, 400);
 }
 
-
-// Make available to HTML
 window.sendMessage = sendMessage;
 
 
 // ==========================================
-// 🎤 VOICE RECOGNITION
+// 🎤 PRINCE AI VOICE RECOGNITION
 // ==========================================
 
 let recognition = null;
+
 let isListening = false;
-
-
-// Check browser support
-
-const SpeechRecognition =
-    window.SpeechRecognition ||
-    window.webkitSpeechRecognition;
 
 
 function startPrinceAI() {
 
-    // --------------------------------------
-    // Check microphone support
-    // --------------------------------------
+    console.log("🎤 Prince AI button clicked.");
 
+
+    // Detect browser support HERE
+    // instead of only when the page loads.
+
+    const SpeechRecognition =
+        window.SpeechRecognition ||
+        window.webkitSpeechRecognition;
+
+
+    // Browser does not support it
     if (!SpeechRecognition) {
 
         alert(
-            "🎤 Voice recognition is not supported by this browser.\n\n" +
-            "Please use Google Chrome on your phone."
+            "🎤 Prince AI voice recognition is not available in this browser.\n\n" +
+            "Please open the website using Google Chrome on Android."
+        );
+
+        console.error(
+            "❌ SpeechRecognition API not supported."
         );
 
         return;
     }
 
 
-    // If already listening, stop
-    if (isListening && recognition) {
+    // Stop current listening session
+    if (
+        isListening &&
+        recognition
+    ) {
+
+        console.log(
+            "🛑 Stopping Prince AI..."
+        );
 
         recognition.stop();
 
@@ -256,13 +264,14 @@ function startPrinceAI() {
     }
 
 
-    // Create recognition
-    recognition = new SpeechRecognition();
+    // Create new recognition
+    recognition =
+        new SpeechRecognition();
 
 
-    // --------------------------------------
-    // Settings
-    // --------------------------------------
+    // ======================================
+    // SETTINGS
+    // ======================================
 
     recognition.lang = "en-KE";
 
@@ -273,150 +282,215 @@ function startPrinceAI() {
     recognition.maxAlternatives = 1;
 
 
-    // --------------------------------------
-    // Start listening
-    // --------------------------------------
+    // ======================================
+    // START
+    // ======================================
 
-    try {
-
-        recognition.start();
+    recognition.onstart = function () {
 
         isListening = true;
 
         updateVoiceButton(true);
 
-        console.log("🎤 Prince AI is listening...");
+        console.log(
+            "🎤 Prince AI is listening..."
+        );
+    };
 
-    } catch (error) {
 
-        console.error("Microphone error:", error);
+    try {
 
-        isListening = false;
+        recognition.start();
 
-        updateVoiceButton(false);
     }
 
-
-    // --------------------------------------
-    // When speech is detected
-    // --------------------------------------
-
-    recognition.onresult = function(event) {
-
-        const spokenText =
-            event.results[0][0].transcript.trim();
-
-
-        console.log("🎤 User said:", spokenText);
-
-
-        // Put speech into input box
-        const input =
-            document.getElementById("userMessage");
-
-        if (input) {
-
-            input.value = spokenText;
-        }
-
-
-        // Show user message
-        addUserMessage(spokenText);
-
-
-        // Find answer
-        const answer =
-            findKnowledgeAnswer(spokenText);
-
-
-        // Display answer
-        setTimeout(() => {
-
-            addBotMessage(answer);
-
-            // Speak answer
-            speakPrinceAI(answer);
-
-        }, 400);
-
-
-        // Clear input after processing
-        if (input) {
-
-            input.value = "";
-        }
-
-    };
-
-
-    // --------------------------------------
-    // Recognition ended
-    // --------------------------------------
-
-    recognition.onend = function() {
-
-        isListening = false;
-
-        updateVoiceButton(false);
-
-        console.log("🎤 Listening stopped.");
-
-    };
-
-
-    // --------------------------------------
-    // Recognition error
-    // --------------------------------------
-
-    recognition.onerror = function(event) {
+    catch (error) {
 
         console.error(
-            "🎤 Speech recognition error:",
-            event.error
+            "❌ Could not start microphone:",
+            error
         );
 
         isListening = false;
 
         updateVoiceButton(false);
 
+        alert(
+            "⚠️ Prince AI could not start.\n\n" +
+            "Please check your microphone permission and try again."
+        );
 
-        if (event.error === "not-allowed") {
+        return;
+    }
 
-            alert(
-                "🎤 Microphone permission was denied.\n\n" +
-                "Please allow microphone access for this website."
+
+    // ======================================
+    // SPEECH RESULT
+    // ======================================
+
+    recognition.onresult =
+        function(event) {
+
+            const spokenText =
+                event.results[0][0]
+                    .transcript
+                    .trim();
+
+
+            console.log(
+                "🎤 User said:",
+                spokenText
             );
-        }
 
-        else if (event.error === "no-speech") {
 
-            console.log("No speech detected.");
-        }
+            if (!spokenText) {
 
-        else if (event.error === "network") {
+                return;
+            }
 
-            alert(
-                "🌐 Voice recognition needs an internet connection."
+
+            // Show user's speech
+            addUserMessage(
+                spokenText
             );
-        }
 
-    };
 
+            // Find answer
+            const answer =
+                findKnowledgeAnswer(
+                    spokenText
+                );
+
+
+            // Respond
+            setTimeout(
+                function() {
+
+                    addBotMessage(
+                        answer
+                    );
+
+                    speakPrinceAI(
+                        answer
+                    );
+
+                },
+                400
+            );
+        };
+
+
+    // ======================================
+    // RECOGNITION END
+    // ======================================
+
+    recognition.onend =
+        function() {
+
+            isListening = false;
+
+            updateVoiceButton(false);
+
+            console.log(
+                "🎤 Prince AI stopped listening."
+            );
+        };
+
+
+    // ======================================
+    // RECOGNITION ERROR
+    // ======================================
+
+    recognition.onerror =
+        function(event) {
+
+            console.error(
+                "🎤 Prince AI error:",
+                event.error
+            );
+
+
+            isListening = false;
+
+            updateVoiceButton(false);
+
+
+            switch (event.error) {
+
+                case "not-allowed":
+
+                    alert(
+                        "🎤 Microphone permission was denied.\n\n" +
+                        "Please allow microphone access for this website."
+                    );
+
+                    break;
+
+
+                case "audio-capture":
+
+                    alert(
+                        "🎤 Prince AI cannot access your microphone.\n\n" +
+                        "Check that your phone microphone is working."
+                    );
+
+                    break;
+
+
+                case "network":
+
+                    alert(
+                        "🌐 Voice recognition requires an internet connection."
+                    );
+
+                    break;
+
+
+                case "no-speech":
+
+                    console.log(
+                        "No speech detected."
+                    );
+
+                    break;
+
+
+                case "aborted":
+
+                    console.log(
+                        "Voice recognition stopped."
+                    );
+
+                    break;
+
+
+                default:
+
+                    alert(
+                        "⚠️ Prince AI voice recognition encountered an error.\n\n" +
+                        "Please try again."
+                    );
+
+                    break;
+            }
+        };
 }
 
 
-// Make available to HTML
-window.startPrinceAI = startPrinceAI;
+window.startPrinceAI =
+    startPrinceAI;
 
 
 // ==========================================
-// 🎤 UPDATE MICROPHONE BUTTON
+// 🎤 VOICE BUTTON
 // ==========================================
 
 function updateVoiceButton(listening) {
 
     const button =
-        document.getElementById("voiceBtn");
+        document.getElementById(
+            "voiceBtn"
+        );
 
     if (!button) return;
 
@@ -425,33 +499,35 @@ function updateVoiceButton(listening) {
 
         button.innerHTML = "🔴";
 
-        button.title = "Listening... Tap to stop";
+        button.title =
+            "Prince AI is listening...";
 
-        button.style.background = "#dc3545";
-
+        button.style.background =
+            "#dc3545";
     }
 
     else {
 
         button.innerHTML = "🎤";
 
-        button.title = "Talk to Prince AI";
+        button.title =
+            "Talk to Prince AI";
 
-        button.style.background = "";
-
+        button.style.background =
+            "";
     }
-
 }
 
 
 // ==========================================
-// 🔊 PRINCE AI TEXT-TO-SPEECH
+// 🔊 TEXT TO SPEECH
 // ==========================================
 
 function speakPrinceAI(text) {
 
-    // Check speech synthesis
-    if (!("speechSynthesis" in window)) {
+    if (
+        !("speechSynthesis" in window)
+    ) {
 
         console.log(
             "🔊 Text-to-speech is not supported."
@@ -461,16 +537,15 @@ function speakPrinceAI(text) {
     }
 
 
-    // Stop previous speech
     window.speechSynthesis.cancel();
 
 
-    // Create speech
     const speech =
-        new SpeechSynthesisUtterance(text);
+        new SpeechSynthesisUtterance(
+            text
+        );
 
 
-    // Voice settings
     speech.lang = "en-KE";
 
     speech.rate = 0.95;
@@ -480,24 +555,23 @@ function speakPrinceAI(text) {
     speech.volume = 1;
 
 
-    // Speak
-    window.speechSynthesis.speak(speech);
-
+    window.speechSynthesis.speak(
+        speech
+    );
 }
 
-
-// Make available if needed
-window.speakPrinceAI = speakPrinceAI;
+window.speakPrinceAI =
+    speakPrinceAI;
 
 
 // ==========================================
-// 🏠 HOME BUTTON
+// 🏠 HOME
 // ==========================================
 
 function goHome() {
 
-    window.location.href = "index.html";
-
+    window.location.href =
+        "index.html";
 }
 
 window.goHome = goHome;
@@ -510,7 +584,9 @@ window.goHome = goHome;
 function newChat() {
 
     const chatBox =
-        document.getElementById("chatBox");
+        document.getElementById(
+            "chatBox"
+        );
 
     if (!chatBox) return;
 
@@ -523,7 +599,8 @@ function newChat() {
 
             <br><br>
 
-            I am <strong>Prince AI 🤖</strong>,
+            I am
+            <strong>Prince AI 🤖</strong>,
             your Smart Campus Assistant.
 
             <br><br>
@@ -535,6 +612,8 @@ function newChat() {
             <br>🏢 Departments
 
             <br>📚 Offices
+
+            <br>🗺️ Campus navigation
 
             <br>🎓 University services
 
@@ -553,20 +632,19 @@ function newChat() {
     `;
 
 
-    // Stop speech
-    if ("speechSynthesis" in window) {
+    if (
+        "speechSynthesis" in window
+    ) {
 
         window.speechSynthesis.cancel();
-
     }
-
 }
 
 window.newChat = newChat;
 
 
 // ==========================================
-// ⌨️ ENTER KEY SUPPORT
+// ⌨️ ENTER KEY
 // ==========================================
 
 document.addEventListener(
@@ -574,28 +652,27 @@ document.addEventListener(
     function() {
 
         const input =
-            document.getElementById("userMessage");
-
-
-        if (input) {
-
-            input.addEventListener(
-                "keydown",
-                function(event) {
-
-                    if (event.key === "Enter") {
-
-                        event.preventDefault();
-
-                        sendMessage();
-
-                    }
-
-                }
+            document.getElementById(
+                "userMessage"
             );
 
-        }
+        if (!input) return;
 
+
+        input.addEventListener(
+            "keydown",
+            function(event) {
+
+                if (
+                    event.key === "Enter"
+                ) {
+
+                    event.preventDefault();
+
+                    sendMessage();
+                }
+            }
+        );
     }
 );
 
@@ -613,4 +690,14 @@ console.log(
     typeof campusKnowledge !== "undefined"
         ? "Loaded"
         : "NOT LOADED"
+);
+
+console.log(
+    "🎤 Voice API:",
+    (
+        window.SpeechRecognition ||
+        window.webkitSpeechRecognition
+    )
+        ? "Available"
+        : "Not available"
 );
