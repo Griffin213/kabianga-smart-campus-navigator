@@ -38,11 +38,77 @@ const campusKnowledge = {
         name: "Lecture Theatre Block 2",
         info: "LTB2 is one of the lecture theatre blocks used for classes."
     },
+"ltb3": {
+    name: "Lecture Theatre Block 3 (LTB3)",
+    info: `🏢 LTB3 — LECTURE THEATRE BLOCK 3
 
-    "ltb3": {
-        name: "Lecture Theatre Block 3",
-        info: "LTB3 houses academic offices including School of Business offices on the First Floor."
-    },
+📍 GROUND FLOOR
+• Dean, School of Education
+• HOD, Curriculum & Instruction
+• HOD, Physiology & Foundations
+• Physiology Department
+• LH1
+• LH2
+
+📍 FIRST FLOOR
+• Senate Chamber
+• LH3
+• Micro Teaching Lab
+• School of Business Offices
+• Finance Office
+• Dean, School of Business Office
+• HODs Office, School of Business
+
+📍 SECOND FLOOR
+• Director of Gender Office
+• LH5
+• LH6
+• Director of Postgraduate Studies Office
+
+📍 THIRD FLOOR
+• LH7
+• LH8`
+},
+    
+  "school of business offices": {
+    name: "School of Business Offices - LTB3",
+    info: "The School of Business offices are located on the First Floor of LTB3."
+},
+
+"finance": {
+    name: "Finance Office - LTB3",
+    info: "The Finance Office is located on the First Floor of LTB3."
+},
+
+"finance office": {
+    name: "Finance Office - LTB3",
+    info: "The Finance Office is located on the First Floor of LTB3."
+},
+
+"dean school of business": {
+    name: "Dean, School of Business - LTB3",
+    info: "The Dean, School of Business, office is located on the First Floor of LTB3."
+},
+
+"dean of school of business": {
+    name: "Dean, School of Business - LTB3",
+    info: "The Dean, School of Business, office is located on the First Floor of LTB3."
+},
+
+"dean business office": {
+    name: "Dean, School of Business Office - LTB3",
+    info: "The Dean, School of Business Office, is located on the First Floor of LTB3."
+},
+
+"hods office school of business": {
+    name: "HODs Office, School of Business - LTB3",
+    info: "The HODs Office, School of Business, is located on the First Floor of LTB3."
+},
+
+"hods office": {
+    name: "HODs Office, School of Business - LTB3",
+    info: "The HODs Office, School of Business, is located on the First Floor of LTB3."
+},  
 
     "ltb4": {
         name: "Lecture Theatre Block 4",
