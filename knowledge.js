@@ -547,7 +547,7 @@ Wait for confirmation and verify your reporting history.`
     },
 
 
-    // ======================================
+        // ======================================
     // 💰 FEES
     // ======================================
 
@@ -558,4 +558,44 @@ Wait for confirmation and verify your reporting history.`
 
     "fees": {
         name: "Student Fees",
-        info: "For fee-related information, log into the Student Portal and check your Fee Statement. You may also contact the university
+        info: "For fee-related information, log into the Student Portal and check your Fee Statement. You may also contact the university for further assistance."
+    },
+
+    // ======================================
+    // 🏠 ACCOMMODATION
+    // ======================================
+
+    "accommodation": {
+        name: "Student Accommodation",
+        info: "For accommodation information, check the official university accommodation notices or contact the relevant university accommodation office."
+    },
+
+    "hostel": {
+        name: "Student Accommodation",
+        info: "For hostel and accommodation information, check the official university accommodation notices or contact the relevant accommodation office."
+    },
+
+    // ======================================
+    // 📝 EXAMINATIONS
+    // ======================================
+
+    "examinations": {
+        name: "University Examinations",
+        info: "For examination information, check official university notices and your Student Portal for examination-related updates."
+    },
+
+    "exams": {
+        name: "University Examinations",
+        info: "For examination information, check official university notices and your Student Portal."
+    },
+
+    // ======================================
+    // 🎓 UNIVERSITY INFORMATION
+    // ======================================
+
+    "university": {
+        name: "University of Kabianga",
+        info: "The University of Kabianga is a university in Kenya offering various academic programmes and student services."
+    }
+
+};
