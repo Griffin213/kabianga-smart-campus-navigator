@@ -41,99 +41,169 @@ function addBotMessage(message) {
 
     chatBox.scrollTop = chatBox.scrollHeight;
 }
-
-
-// ==========================================
-// 🧠 FIND ANSWER
-// ==========================================
-
 function findKnowledgeAnswer(question) {
 
-    if (
-        typeof campusKnowledge === "undefined"
-    ) {
-
+    if (typeof campusKnowledge === "undefined") {
         return "Sorry, my campus knowledge database is not available right now.";
     }
 
-    const text = String(question)
-        .toLowerCase()
-        .trim();
+    const text = question.toLowerCase().trim();
 
-    if (!text) {
+    // ======================================
+    // 1. SPECIFIC LTB3 LOCATIONS
+    // ======================================
 
-        return "Please tell me what you would like to know.";
+    const ltb3Specific = [
+
+        {
+            keywords: ["ltb3 lh1", "lh1 ltb3"],
+            answer: "📍 LH1 is located on the Ground Floor of LTB3."
+        },
+
+        {
+            keywords: ["ltb3 lh2", "lh2 ltb3"],
+            answer: "📍 LH2 is located on the Ground Floor of LTB3."
+        },
+
+        {
+            keywords: ["ltb3 lh3", "lh3 ltb3"],
+            answer: "📍 LH3 is located on the First Floor of LTB3."
+        },
+
+        {
+            keywords: ["ltb3 lh5", "lh5 ltb3"],
+            answer: "📍 LH5 is located on the Second Floor of LTB3."
+        },
+
+        {
+            keywords: ["ltb3 lh6", "lh6 ltb3"],
+            answer: "📍 LH6 is located on the Second Floor of LTB3."
+        },
+
+        {
+            keywords: ["ltb3 lh7", "lh7 ltb3"],
+            answer: "📍 LH7 is located on the Third Floor of LTB3."
+        },
+
+        {
+            keywords: ["ltb3 lh8", "lh8 ltb3"],
+            answer: "📍 LH8 is located on the Third Floor of LTB3."
+        },
+
+        {
+            keywords: ["senate chamber", "ltb3 senate"],
+            answer: "📍 The Senate Chamber is located on the First Floor of LTB3."
+        },
+
+        {
+            keywords: ["micro teaching lab", "microteaching lab"],
+            answer: "📍 The Micro Teaching Lab is located on the First Floor of LTB3."
+        },
+
+        {
+            keywords: ["finance office", "ltb3 finance", "finance ltb3"],
+            answer: "📍 The Finance Office is located on the First Floor of LTB3."
+        },
+
+        {
+            keywords: ["school of business offices", "business offices ltb3"],
+            answer: "📍 The School of Business offices are located on the First Floor of LTB3."
+        },
+
+        {
+            keywords: ["dean school of business", "business dean", "dean business"],
+            answer: "📍 The Dean, School of Business Office is located on the First Floor of LTB3."
+        },
+
+        {
+            keywords: ["hods office school of business", "business hods office"],
+            answer: "📍 The HODs Office, School of Business, is located on the First Floor of LTB3."
+        },
+
+        {
+            keywords: ["director gender", "gender office"],
+            answer: "📍 The Director of Gender Office is located on the Second Floor of LTB3."
+        },
+
+        {
+            keywords: ["director post graduate", "postgraduate office", "post graduate studies"],
+            answer: "📍 The Director of Postgraduate Studies Office is located on the Second Floor of LTB3."
+        },
+
+        {
+            keywords: ["dean school of education", "dean education"],
+            answer: "📍 The Dean, School of Education, is located on the Ground Floor of LTB3."
+        },
+
+        {
+            keywords: ["hod curriculum", "curriculum instruction"],
+            answer: "📍 The HOD, Curriculum & Instruction, is located on the Ground Floor of LTB3."
+        },
+
+        {
+            keywords: ["hod physiology", "physiology foundations"],
+            answer: "📍 The HOD, Physiology & Foundations, is located on the Ground Floor of LTB3."
+        },
+
+        {
+            keywords: ["physiology department"],
+            answer: "📍 The Physiology Department is located on the Ground Floor of LTB3."
+        }
+
+    ];
+
+
+    // ======================================
+    // CHECK SPECIFIC LOCATIONS FIRST
+    // ======================================
+
+    for (const item of ltb3Specific) {
+
+        for (const keyword of item.keywords) {
+
+            if (text.includes(keyword)) {
+                return item.answer;
+            }
+
+        }
+
     }
 
 
-    // Exact match
-    if (campusKnowledge[text]) {
+    // ======================================
+    // 2. EXACT KNOWLEDGE MATCH
+    // ======================================
 
+    if (campusKnowledge[text]) {
         return campusKnowledge[text].info;
     }
 
 
-    // Keyword matching
+    // ======================================
+    // 3. KEYWORD MATCH
+    // ======================================
+
     const keys = Object.keys(campusKnowledge);
+
+    // Sort longest keys first
+    // This prevents "ltb3" from beating
+    // more specific information.
+
+    keys.sort((a, b) => b.length - a.length);
 
     for (const key of keys) {
 
         if (text.includes(key)) {
-
             return campusKnowledge[key].info;
         }
 
-        if (
-            key.includes(text) &&
-            text.length > 2
-        ) {
-
-            return campusKnowledge[key].info;
-        }
     }
 
 
-    // Word matching
-    const words = text
-        .split(/\s+/)
-        .filter(word => word.length > 2);
+    // ======================================
+    // 4. COMMON QUESTIONS
+    // ======================================
 
-    let bestMatch = null;
-    let highestScore = 0;
-
-    for (const key of keys) {
-
-        let score = 0;
-
-        const keyWords = key.split(/\s+/);
-
-        words.forEach(word => {
-
-            if (keyWords.includes(word)) {
-
-                score++;
-            }
-
-        });
-
-        if (score > highestScore) {
-
-            highestScore = score;
-
-            bestMatch = campusKnowledge[key];
-        }
-    }
-
-    if (
-        bestMatch &&
-        highestScore > 0
-    ) {
-
-        return bestMatch.info;
-    }
-
-
-    // Common questions
     if (
         text.includes("hello") ||
         text.includes("hi") ||
@@ -167,12 +237,17 @@ function findKnowledgeAnswer(question) {
         text.includes("help me")
     ) {
 
-        return "I can help you find lecture halls, departments, offices and university services. You can also ask about the Student Portal, unit registration, fees, accommodation, examinations and more.";
+        return "I can help you find lecture halls, departments, offices and university services.";
     }
 
 
-    return "I'm still learning about the University of Kabianga. 🤖 Please try asking about a lecture hall, department, office, Student Portal, unit registration, accommodation, fees or another campus service.";
+    // ======================================
+    // 5. NO ANSWER
+    // ======================================
+
+    return "I'm still learning about the University of Kabianga. 🤖 Please ask me about a specific lecture hall, department, office or campus service.";
 }
+            
 
 
 // ==========================================
