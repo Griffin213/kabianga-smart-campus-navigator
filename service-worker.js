@@ -1,50 +1,117 @@
-const CACHE_NAME = "uok-campus-v10";
+const CACHE_NAME = "uok-campus-v11";
 
 const urlsToCache = [
-  "./",
-  "index.html",
-  "home.html",
-  "style.css",
-  "script.js",
-  "firebase.js",
-  "announcements.js",
-  "notifications.js",
-  "prince-ai.js",
-  "knowledge.js",
-  "logo.jpg"
+    "./",
+    "index.html",
+    "home.html",
+    "announcements.html",
+    "style.css",
+    "script.js",
+    "firebase.js",
+    "announcements.js",
+    "notifications.js",
+    "prince-ai.js",
+    "knowledge.js",
+    "logo.jpg"
 ];
 
-self.addEventListener("install", event => {
-  self.skipWaiting();
 
-  event.waitUntil(
-    caches.open(CACHE_NAME)
-      .then(cache => cache.addAll(urlsToCache))
-  );
+// ==========================================
+// INSTALL
+// ==========================================
+
+self.addEventListener("install", event => {
+
+    console.log("⚙️ UOK Service Worker installing...");
+
+    self.skipWaiting();
+
+    event.waitUntil(
+
+        caches.open(CACHE_NAME)
+            .then(cache => {
+
+                console.log("📦 Caching UOK application files");
+
+                return cache.addAll(urlsToCache);
+
+            })
+            .catch(error => {
+
+                console.error(
+                    "❌ Cache installation error:",
+                    error
+                );
+
+            })
+
+    );
+
 });
+
+
+// ==========================================
+// ACTIVATE
+// ==========================================
 
 self.addEventListener("activate", event => {
 
-  event.waitUntil(
+    console.log("✅ UOK Service Worker activated");
 
-    caches.keys().then(keys =>
+    event.waitUntil(
 
-      Promise.all(
-        keys.map(key => {
-          if (key !== CACHE_NAME) {
-            return caches.delete(key);
-          }
+        caches.keys().then(keys => {
+
+            return Promise.all(
+
+                keys.map(key => {
+
+                    if (key !== CACHE_NAME) {
+
+                        console.log(
+                            "🗑️ Removing old cache:",
+                            key
+                        );
+
+                        return caches.delete(key);
+
+                    }
+
+                })
+
+            );
+
         })
-      )
 
-    )
+    );
 
-  );
-
-  self.clients.claim();
+    self.clients.claim();
 
 });
 
+
+// ==========================================
+// FETCH
+// ==========================================
+
 self.addEventListener("fetch", event => {
-  event.respondWith(fetch(event.request).catch(() => caches.match(event.request)));
+
+    event.respondWith(
+
+        fetch(event.request)
+
+            .then(response => {
+
+                return response;
+
+            })
+
+            .catch(() => {
+
+                return caches.match(event.request);
+
+            })
+
+    );
+
 });
