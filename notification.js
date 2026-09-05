@@ -1,21 +1,30 @@
-import { initializeApp } from "https://www.gstatic.com/firebasejs/12.16.0/firebase-app.js";
+import {
+    initializeApp
+} from "https://www.gstatic.com/firebasejs/12.16.0/firebase-app.js";
+
 
 import {
     getMessaging,
     getToken
 } from "https://www.gstatic.com/firebasejs/12.16.0/firebase-messaging.js";
 
+
 import {
     getFirestore,
-    collection,
-    addDoc,
+    doc,
+    setDoc,
     serverTimestamp
 } from "https://www.gstatic.com/firebasejs/12.16.0/firebase-firestore.js";
 
 
+// ==========================================
+// FIREBASE CONFIGURATION
+// ==========================================
+
 const firebaseConfig = {
 
-    apiKey: "YOUR_API_KEY",
+    apiKey:
+        "AIzaSyDJpH9mVVuB6zImuPC5SPlz-ETNpuCsNrY",
 
     authDomain:
         "uok-smart-campus-navigator.firebaseapp.com",
@@ -31,103 +40,229 @@ const firebaseConfig = {
 
     appId:
         "1:465257479615:web:31620a772eff1b603df50a"
+
 };
 
 
-const app = initializeApp(firebaseConfig);
+// ==========================================
+// INITIALIZE FIREBASE
+// ==========================================
 
-const messaging = getMessaging(app);
-
-const db = getFirestore(app);
-
-
-window.requestNotificationPermission = async function () {
-
-    try {
-
-        if (!("Notification" in window)) {
-
-            alert("This browser does not support notifications.");
-
-            return;
-        }
+const app =
+    initializeApp(firebaseConfig);
 
 
-        const permission =
-            await Notification.requestPermission();
+const messaging =
+    getMessaging(app);
 
 
-        if (permission !== "granted") {
-
-            alert("Notifications were not allowed.");
-
-            return;
-        }
+const db =
+    getFirestore(app);
 
 
-        const registration =
-            await navigator.serviceWorker.register(
-                "/kabianga-smart-campus-navigator/firebase-messaging-sw.js"
+// ==========================================
+// REQUEST NOTIFICATION PERMISSION
+// ==========================================
+
+window.requestNotificationPermission =
+    async function () {
+
+        try {
+
+            console.log(
+                "🔔 Requesting notification permission..."
             );
 
 
-        const token = await getToken(messaging, {
+            // ==================================
+            // CHECK BROWSER SUPPORT
+            // ==================================
 
-            vapidKey:
-                "YOUR_VAPID_KEY",
+            if (!("Notification" in window)) {
 
-            serviceWorkerRegistration:
-                registration
+                alert(
+                    "❌ This browser does not support notifications."
+                );
 
-        });
-
-
-        if (!token) {
-
-            alert("Unable to generate notification token.");
-
-            return;
-        }
-
-
-        console.log("✅ FCM Token:", token);
-
-
-        // Save device token
-        await addDoc(
-            collection(db, "notificationTokens"),
-            {
-
-                token: token,
-
-                platform: "web",
-
-                createdAt:
-                    serverTimestamp(),
-
-                active: true
+                return;
 
             }
-        );
 
 
-        alert(
-            "🔔 Notifications enabled successfully!"
-        );
+            // ==================================
+            // CHECK SERVICE WORKER SUPPORT
+            // ==================================
+
+            if (!("serviceWorker" in navigator)) {
+
+                alert(
+                    "❌ This browser does not support service workers."
+                );
+
+                return;
+
+            }
 
 
-    } catch (error) {
+            // ==================================
+            // REQUEST PERMISSION
+            // ==================================
 
-        console.error(
-            "❌ Notification error:",
-            error
-        );
+            const permission =
+                await Notification.requestPermission();
 
-        alert(
-            "Notification Error:\n" +
-            error.message
-        );
 
-    }
+            console.log(
+                "🔔 Notification permission:",
+                permission
+            );
 
-};
+
+            if (permission !== "granted") {
+
+                alert(
+                    "🔕 Notifications were not enabled."
+                );
+
+                return;
+
+            }
+
+
+            // ==================================
+            // REGISTER FIREBASE MESSAGING
+            // SERVICE WORKER
+            // ==================================
+
+            const registration =
+                await navigator.serviceWorker.register(
+
+                    "/kabianga-smart-campus-navigator/firebase-messaging-sw.js",
+
+                    {
+                        scope:
+                            "/kabianga-smart-campus-navigator/"
+                    }
+
+                );
+
+
+            console.log(
+                "✅ Firebase messaging service worker registered"
+            );
+
+
+            // ==================================
+            // GET FCM TOKEN
+            // ==================================
+
+            const token =
+                await getToken(
+
+                    messaging,
+
+                    {
+
+                        vapidKey:
+                            "BAvYs2OcE8SqgpOOICDhV5TxIZyTBRerx8G0-lHOJ-00R2P22Sf3SIMnWxY-ct5pD54yq3gNelfbu2V9qlMpE9Q",
+
+                        serviceWorkerRegistration:
+                            registration
+
+                    }
+
+                );
+
+
+            if (!token) {
+
+                alert(
+                    "❌ Firebase did not return a notification token."
+                );
+
+                return;
+
+            }
+
+
+            console.log(
+                "✅ FCM TOKEN:",
+                token
+            );
+
+
+            // ==================================
+            // SAVE TOKEN TO FIRESTORE
+            // ==================================
+
+            await setDoc(
+
+                doc(
+                    db,
+                    "notificationTokens",
+                    token
+                ),
+
+                {
+
+                    token:
+                        token,
+
+                    active:
+                        true,
+
+                    platform:
+                        "web",
+
+                    updatedAt:
+                        serverTimestamp(),
+
+                    createdAt:
+                        serverTimestamp()
+
+                },
+
+                {
+
+                    merge:
+                        true
+
+                }
+
+            );
+
+
+            console.log(
+                "✅ Notification token saved to Firestore"
+            );
+
+
+            // ==================================
+            // SUCCESS
+            // ==================================
+
+            alert(
+                "🔔 UoK notifications enabled successfully!\n\nYou will now receive new campus announcements."
+            );
+
+
+        }
+
+        catch (error) {
+
+            console.error(
+                "❌ Notification error:",
+                error
+            );
+
+
+            alert(
+
+                "❌ Notification setup failed.\n\n" +
+                error.message
+
+            );
+
+        }
+
+    };
