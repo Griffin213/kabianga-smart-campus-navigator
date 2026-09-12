@@ -28,6 +28,16 @@ const campusKnowledge = {
         name: "Campus Cafeteria",
         info: "The campus cafeteria provides meals and refreshments for students."
     },
+    {
+    keywords: [
+        "vice chancellor",
+        "vc",
+        "professor erick koech",
+        "erick koech",
+        "university vice chancellor"
+    ],
+    answer: "The Vice Chancellor of the University of Kabianga is Prof. Erick Koech, Ph.D., MBS."
+},
 
     "ltb1": {
         name: "Lecture Theatre Block 1",
