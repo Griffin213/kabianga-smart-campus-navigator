@@ -28,16 +28,6 @@ const campusKnowledge = {
         name: "Campus Cafeteria",
         info: "The campus cafeteria provides meals and refreshments for students."
     },
-    {
-    keywords: [
-        "vice chancellor",
-        "vc",
-        "professor erick koech",
-        "erick koech",
-        "university vice chancellor"
-    ],
-    answer: "The Vice Chancellor of the University of Kabianga is Prof. Erick Koech, Ph.D., MBS."
-},
 
     "ltb1": {
         name: "Lecture Theatre Block 1",
@@ -134,7 +124,29 @@ const campusKnowledge = {
         name: "Administration Block",
         info: "The Administration Block houses several important university administrative offices and services."
     },
+    // ======================================
+    // 👨‍🎓 UNIVERSITY MANAGEMENT
+    // ======================================
 
+    "vice chancellor": {
+        name: "Vice Chancellor - University of Kabianga",
+        info: "The Vice Chancellor of the University of Kabianga is Prof. Erick Koech, Ph.D., MBS."
+    },
+
+    "vc": {
+        name: "Vice Chancellor - University of Kabianga",
+        info: "The Vice Chancellor of the University of Kabianga is Prof. Erick Koech, Ph.D., MBS."
+    },
+
+    "erick koech": {
+        name: "Prof. Erick Koech, Ph.D., MBS",
+        info: "Prof. Erick Koech, Ph.D., MBS, is the Vice Chancellor of the University of Kabianga."
+    },
+
+    "professor erick koech": {
+        name: "Prof. Erick Koech, Ph.D., MBS",
+        info: "Prof. Erick Koech, Ph.D., MBS, is the Vice Chancellor of the University of Kabianga."
+    },
 
     // ======================================
     // 🏢 SCHOOL OF BUSINESS
