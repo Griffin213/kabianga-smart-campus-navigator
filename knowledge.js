@@ -147,7 +147,146 @@ const campusKnowledge = {
         name: "Prof. Erick Koech, Ph.D., MBS",
         info: "Prof. Erick Koech, Ph.D., MBS, is the Vice Chancellor of the University of Kabianga."
     },
+    // ======================================
+    // UNIVERSITY LEADERSHIP
+    // ======================================
 
+    "vice chancellor": {
+        name: "Vice-Chancellor",
+        info: "The Vice-Chancellor of the University of Kabianga is Prof. Eric Koech, PhD, MBS. The Vice-Chancellor provides overall university leadership, strategic direction and administrative oversight."
+    },
+
+    "vc": {
+        name: "Vice-Chancellor",
+        info: "The Vice-Chancellor of the University of Kabianga is Prof. Eric Koech, PhD, MBS."
+    },
+
+    "prof eric koech": {
+        name: "Prof. Eric Koech, PhD, MBS",
+        info: "Prof. Eric Koech, PhD, MBS, is the Vice-Chancellor of the University of Kabianga."
+    },
+
+
+    "deputy vice chancellor academic and student affairs": {
+        name: "Deputy Vice-Chancellor (Academic and Student Affairs)",
+        info: "The Deputy Vice-Chancellor responsible for Academic and Student Affairs is Prof. Dr. Fredrick Nyongesa Kassilly. This office oversees academic affairs, student affairs and related academic administration."
+    },
+
+    "dvc academic": {
+        name: "Deputy Vice-Chancellor (Academic and Student Affairs)",
+        info: "Prof. Dr. Fredrick Nyongesa Kassilly is the Deputy Vice-Chancellor responsible for Academic and Student Affairs at the University of Kabianga."
+    },
+
+    "prof fredrick nyongesa kassilly": {
+        name: "Prof. Dr. Fredrick Nyongesa Kassilly",
+        info: "Prof. Dr. Fredrick Nyongesa Kassilly is the Deputy Vice-Chancellor responsible for Academic and Student Affairs."
+    },
+
+
+    "planning research and development": {
+        name: "Planning, Research and Development",
+        info: "Planning, Research and Development at the University of Kabianga is under Prof. Maurice Owino Oduor."
+    },
+
+    "prof maurice owino oduor": {
+        name: "Prof. Maurice Owino Oduor",
+        info: "Prof. Maurice Owino Oduor is responsible for Planning, Research and Development at the University of Kabianga."
+    },
+
+    "dvc planning research": {
+        name: "Planning, Research and Development",
+        info: "Planning, Research and Development is under Prof. Maurice Owino Oduor."
+    },
+
+
+    // ======================================
+    // UNIVERSITY REGISTRARS
+    // ======================================
+
+    "registrar academic affairs": {
+        name: "Registrar Academic Affairs",
+        info: "The Registrar responsible for Academic Affairs is Dr. Cecilia Sang. The office handles academic administration, student records, registration and examinations."
+    },
+
+    "dr cecilia sang": {
+        name: "Dr. Cecilia Sang",
+        info: "Dr. Cecilia Sang is the University Registrar responsible for Academic Affairs."
+    },
+
+    "registrar administration": {
+        name: "Registrar Administration",
+        info: "The Registrar responsible for Administration is Mr. Peter K. Kimalel. The office coordinates administrative services and related university administration matters."
+    },
+
+    "mr peter k kimalel": {
+        name: "Mr. Peter K. Kimalel",
+        info: "Mr. Peter K. Kimalel is the University Registrar responsible for Administration."
+    },
+
+    "university registrar": {
+        name: "University Registrars",
+        info: "The University of Kabianga has Registrar offices responsible for different functions, including Academic Affairs under Dr. Cecilia Sang and Administration under Mr. Peter K. Kimalel."
+    },
+
+
+    // ======================================
+    // STUDENT AFFAIRS
+    // ======================================
+
+    "dean of students": {
+        name: "Dean of Students",
+        info: "The Dean of Students at the University of Kabianga is Dr. Peter Ngugi. The office supports student welfare, guidance, counselling, student activities and other student affairs services."
+    },
+
+    "dr peter ngugi": {
+        name: "Dr. Peter Ngugi",
+        info: "Dr. Peter Ngugi is the Dean of Students at the University of Kabianga."
+    },
+
+    "student affairs": {
+        name: "Student Affairs",
+        info: "Student Affairs are overseen through the Dean of Students' office, headed by Dr. Peter Ngugi."
+    },
+
+
+    // ======================================
+    // INFORMATION AND COMMUNICATION TECHNOLOGY
+    // ======================================
+
+    "director ict": {
+        name: "Director of ICT",
+        info: "The Director of ICT at the University of Kabianga is Mr. Geoffrey Sowek. The Directorate of ICT oversees information systems, digital services, ICT infrastructure and technology support."
+    },
+
+    "ict": {
+        name: "Directorate of ICT",
+        info: "The University of Kabianga Directorate of ICT is headed by Mr. Geoffrey Sowek."
+    },
+
+    "mr geoffrey sowek": {
+        name: "Mr. Geoffrey Sowek",
+        info: "Mr. Geoffrey Sowek is the Director of ICT at the University of Kabianga."
+    },
+
+
+    // ======================================
+    // FINANCE OFFICE
+    // ======================================
+
+    "finance officer": {
+        name: "Finance Officer",
+        info: "The Finance Officer at the University of Kabianga is CPA Willy Koech. The Finance Office handles financial administration, student fee services, payments and accounts."
+    },
+
+    "finance office": {
+        name: "University Finance Office",
+        info: "The University Finance Office is headed by CPA Willy Koech."
+    },
+
+    "cpa willy koech": {
+        name: "CPA Willy Koech",
+        info: "CPA Willy Koech is the Finance Officer at the University of Kabianga."
+    },
     // ======================================
     // 🏢 SCHOOL OF BUSINESS
     // ======================================
