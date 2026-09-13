@@ -1,28 +1,23 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
-
 <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<meta name="viewport"
-      content="width=device-width, initial-scale=1.0">
-
-<title>Announcements | UOK Smart Campus Management System</title>
+<title>Announcements | UOK Admin</title>
 
 <style>
 
 * {
+    box-sizing: border-box;
     margin: 0;
     padding: 0;
-    box-sizing: border-box;
-    font-family: Arial, sans-serif;
 }
 
 body {
-    display: flex;
-    background: #f4f6f9;
-    min-height: 100vh;
+    font-family: Arial, Helvetica, sans-serif;
+    background: #f4f7fb;
+    color: #172033;
 }
 
 /* =========================
@@ -30,572 +25,752 @@ body {
 ========================= */
 
 .sidebar {
-    width: 250px;
-    height: 100vh;
-    background: #0b5ed7;
-    color: white;
-    padding: 20px;
     position: fixed;
     left: 0;
     top: 0;
+    width: 250px;
+    height: 100vh;
+    background: linear-gradient(180deg, #075fd5, #0647a5);
+    color: white;
+    padding: 25px 15px;
+    z-index: 1000;
     overflow-y: auto;
 }
 
 .sidebar h2 {
     text-align: center;
+    font-size: 22px;
     margin-bottom: 30px;
-    font-size: 20px;
 }
 
 .sidebar a {
     display: block;
     color: white;
     text-decoration: none;
-    padding: 13px;
-    margin: 8px 0;
-    border-radius: 8px;
+    padding: 14px 16px;
+    margin: 5px 0;
+    border-radius: 10px;
     font-size: 16px;
-    transition: .3s;
+    transition: 0.2s;
 }
 
 .sidebar a:hover,
 .sidebar a.active {
-    background: rgba(255,255,255,.2);
+    background: rgba(255,255,255,0.20);
+}
+
+.sidebar .logout {
+    margin-top: 30px;
+    background: rgba(0,0,0,0.15);
 }
 
 /* =========================
-   MAIN
+   MAIN CONTENT
 ========================= */
 
 .main {
     margin-left: 250px;
-    width: calc(100% - 250px);
-    padding: 25px;
+    min-height: 100vh;
+    padding: 30px;
 }
 
-.header {
+/* TOP BAR */
+
+.topbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
     background: white;
-    padding: 25px;
-    border-radius: 12px;
-    box-shadow: 0 3px 10px rgba(0,0,0,.1);
+    padding: 20px 25px;
+    border-radius: 16px;
+    margin-bottom: 25px;
+    box-shadow: 0 4px 18px rgba(0,0,0,0.05);
+}
+
+.topbar h1 {
+    color: #075dcc;
+    font-size: 28px;
+}
+
+.topbar p {
+    color: #697386;
+    margin-top: 5px;
+}
+
+.menu-btn {
+    display: none;
+    border: none;
+    background: #075dcc;
+    color: white;
+    padding: 10px 14px;
+    border-radius: 8px;
+    font-size: 20px;
+}
+
+/* =========================
+   PAGE GRID
+========================= */
+
+.workspace {
+    display: grid;
+    grid-template-columns: minmax(0, 1.4fr) minmax(280px, 0.8fr);
+    gap: 25px;
+    align-items: start;
+}
+
+/* CARDS */
+
+.card {
+    background: white;
+    border-radius: 18px;
+    padding: 30px;
+    box-shadow: 0 5px 25px rgba(0,0,0,0.06);
     margin-bottom: 25px;
 }
 
-.header h1 {
-    color: #222;
+.card h2 {
+    color: #075dcc;
+    font-size: 24px;
     margin-bottom: 8px;
 }
 
-.header p {
-    color: #666;
+.card-subtitle {
+    color: #777;
+    margin-bottom: 25px;
 }
 
-/* =========================
-   ANNOUNCEMENT FORM
-========================= */
+/* FORM */
 
-.announcement-card {
-    background: white;
-    padding: 30px;
-    border-radius: 15px;
-    box-shadow: 0 3px 12px rgba(0,0,0,.1);
-    max-width: 950px;
-    margin-bottom: 30px;
-}
-
-.announcement-card h2 {
-    color: #0b5ed7;
-    margin-bottom: 20px;
-}
-
-.form-group {
-    margin-bottom: 20px;
-}
-
-.form-group label {
+label {
     display: block;
     font-weight: bold;
-    margin-bottom: 8px;
-    color: #333;
+    font-size: 16px;
+    margin: 20px 0 8px;
 }
 
-input[type="text"],
-textarea {
+input,
+textarea,
+select {
     width: 100%;
-    padding: 14px;
-    border: 1px solid #ccc;
+    border: 1px solid #d9e0ea;
     border-radius: 10px;
+    padding: 15px;
     font-size: 16px;
     outline: none;
+    font-family: inherit;
+    background: #fbfcfe;
 }
 
-input[type="text"]:focus,
-textarea:focus {
-    border-color: #0b5ed7;
+input:focus,
+textarea:focus,
+select:focus {
+    border-color: #075dcc;
+    box-shadow: 0 0 0 3px rgba(7,93,204,0.08);
 }
 
 textarea {
-    min-height: 150px;
+    min-height: 180px;
     resize: vertical;
 }
 
-/* =========================
-   PHOTO UPLOAD
-========================= */
+/* UPLOAD AREA */
 
-.photo-upload-box {
-    border: 2px dashed #0b5ed7;
-    background: #f0f6ff;
-    padding: 25px;
-    border-radius: 12px;
+.upload-box {
+    border: 2px dashed #75a9e8;
+    border-radius: 14px;
+    padding: 30px;
     text-align: center;
+    background: #f5f9ff;
+    cursor: pointer;
+    margin-top: 10px;
 }
 
-.photo-upload-box p {
-    margin-bottom: 15px;
-    color: #555;
+.upload-box:hover {
+    background: #edf5ff;
 }
 
-#announcementPhotos {
-    width: 100%;
-    padding: 10px;
-    background: white;
-    border-radius: 8px;
+.upload-box .icon {
+    font-size: 42px;
+    margin-bottom: 10px;
 }
 
-.preview-grid {
+.upload-box h3 {
+    color: #075dcc;
+    margin-bottom: 8px;
+}
+
+.upload-box p {
+    color: #777;
+    font-size: 14px;
+}
+
+#photoInput {
+    display: none;
+}
+
+/* PHOTO PREVIEW */
+
+.preview-images {
     display: grid;
-    grid-template-columns: repeat(auto-fit,minmax(120px,1fr));
-    gap: 15px;
+    grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+    gap: 12px;
     margin-top: 20px;
 }
 
 .preview-item {
     position: relative;
-    background: #eee;
-    border-radius: 10px;
-    overflow: hidden;
 }
 
 .preview-item img {
     width: 100%;
     height: 120px;
     object-fit: cover;
-    display: block;
+    border-radius: 10px;
 }
 
 .remove-photo {
     position: absolute;
     top: 5px;
     right: 5px;
+    border: none;
     background: #dc3545;
     color: white;
-    border: none;
+    width: 26px;
+    height: 26px;
     border-radius: 50%;
-    width: 28px;
-    height: 28px;
     cursor: pointer;
-    font-size: 16px;
 }
 
-/* =========================
-   BUTTONS
-========================= */
+/* BUTTONS */
 
-.form-buttons {
+.button-row {
     display: flex;
     gap: 12px;
+    margin-top: 25px;
     flex-wrap: wrap;
-    margin-top: 20px;
 }
 
 button {
-    border: none;
-    border-radius: 10px;
-    padding: 14px 22px;
-    font-size: 16px;
     cursor: pointer;
-    transition: .3s;
+    border: none;
+    font-family: inherit;
 }
 
 .publish-btn {
-    background: #0b5ed7;
+    background: #075dcc;
     color: white;
+    padding: 15px 25px;
+    border-radius: 10px;
+    font-size: 16px;
+    font-weight: bold;
 }
 
 .publish-btn:hover {
-    background: #084298;
+    background: #064da9;
 }
 
 .clear-btn {
-    background: #6c757d;
-    color: white;
-}
-
-.clear-btn:hover {
-    background: #495057;
-}
-
-button:disabled {
-    background: #999;
-    cursor: not-allowed;
-}
-
-/* =========================
-   STATUS
-========================= */
-
-#announcementStatus {
-    margin-top: 20px;
-    padding: 15px;
+    background: #e9eef5;
+    color: #333;
+    padding: 15px 25px;
     border-radius: 10px;
-    background: #f4f6f9;
-    font-weight: bold;
-    line-height: 1.5;
+    font-size: 16px;
 }
 
 /* =========================
-   PUBLISHED ANNOUNCEMENTS
+   PREVIEW CARD
 ========================= */
 
-.published-card {
-    background: white;
-    padding: 30px;
-    border-radius: 15px;
-    box-shadow: 0 3px 12px rgba(0,0,0,.1);
-    max-width: 950px;
+.live-preview {
+    position: sticky;
+    top: 25px;
 }
 
-.published-card h2 {
-    color: #0b5ed7;
-    margin-bottom: 20px;
+.preview-label {
+    color: #777;
+    font-size: 13px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin-bottom: 15px;
+}
+
+.announcement-preview {
+    border: 1px solid #e3e8ef;
+    border-radius: 14px;
+    overflow: hidden;
+    background: white;
+}
+
+.preview-header {
+    background: linear-gradient(135deg, #075dcc, #083f91);
+    color: white;
+    padding: 20px;
+}
+
+.preview-header h3 {
+    font-size: 20px;
+}
+
+.preview-body {
+    padding: 20px;
+}
+
+.preview-body p {
+    color: #555;
+    line-height: 1.6;
+    white-space: pre-wrap;
+}
+
+.preview-date {
+    color: #888;
+    font-size: 13px;
+    margin-top: 15px;
+}
+
+.preview-photo {
+    width: 100%;
+    max-height: 220px;
+    object-fit: cover;
+    display: block;
+}
+
+/* =========================
+   RECENT ANNOUNCEMENTS
+========================= */
+
+.recent-section {
+    margin-top: 5px;
+}
+
+.announcement-list {
+    display: grid;
+    gap: 15px;
 }
 
 .announcement-item {
-    border-left: 5px solid #0b5ed7;
-    background: #f4f8ff;
+    background: white;
+    border: 1px solid #e1e7ef;
+    border-radius: 12px;
     padding: 20px;
-    border-radius: 10px;
-    margin-bottom: 20px;
 }
 
 .announcement-item h3 {
-    color: #0b5ed7;
+    color: #075dcc;
     margin-bottom: 8px;
 }
 
 .announcement-item p {
-    line-height: 1.6;
-    margin-bottom: 10px;
+    color: #555;
+    line-height: 1.5;
 }
 
-.announcement-date {
-    color: #777;
+.announcement-item small {
+    display: block;
+    color: #888;
+    margin-top: 12px;
+}
+
+/* STATUS */
+
+.status-message {
+    margin-top: 15px;
+    padding: 12px;
+    border-radius: 8px;
+    display: none;
     font-size: 14px;
 }
 
-.announcement-images {
-    display: grid;
-    grid-template-columns: repeat(auto-fit,minmax(180px,1fr));
-    gap: 12px;
-    margin-top: 15px;
+.status-success {
+    background: #e8f7ee;
+    color: #177245;
 }
 
-.announcement-images img {
-    width: 100%;
-    max-height: 220px;
-    object-fit: cover;
-    border-radius: 10px;
+.status-error {
+    background: #fdecec;
+    color: #a02020;
 }
 
 /* =========================
    MOBILE
 ========================= */
 
-@media(max-width:700px) {
+@media (max-width: 900px) {
 
     .sidebar {
-        width: 190px;
+        transform: translateX(-100%);
+        transition: 0.3s;
+    }
+
+    .sidebar.open {
+        transform: translateX(0);
     }
 
     .main {
-        margin-left: 190px;
-        width: calc(100% - 190px);
+        margin-left: 0;
         padding: 15px;
     }
 
-    .sidebar a {
-        font-size: 14px;
+    .menu-btn {
+        display: block;
     }
 
-    .sidebar h2 {
-        font-size: 18px;
+    .workspace {
+        grid-template-columns: 1fr;
     }
 
-    .announcement-card,
-    .published-card {
+    .live-preview {
+        position: static;
+    }
+
+    .topbar {
+        padding: 16px;
+    }
+
+    .topbar h1 {
+        font-size: 22px;
+    }
+
+    .card {
         padding: 20px;
     }
+}
 
+@media (max-width: 500px) {
+
+    .main {
+        padding: 10px;
+    }
+
+    .topbar {
+        border-radius: 12px;
+        padding: 15px;
+    }
+
+    .topbar p {
+        font-size: 13px;
+    }
+
+    .card {
+        padding: 18px;
+        border-radius: 14px;
+    }
+
+    .card h2 {
+        font-size: 21px;
+    }
+
+    .upload-box {
+        padding: 25px 15px;
+    }
+
+    .button-row button {
+        width: 100%;
+    }
 }
 
 </style>
-
 </head>
-
 
 <body>
 
+<!-- SIDEBAR -->
 
-<!-- =========================
-     SIDEBAR
-========================= -->
+<aside class="sidebar" id="sidebar">
 
-<div class="sidebar">
+    <h2>UOK Admin</h2>
 
-    <h2>🏫 UOK Admin</h2>
-
-    <a href="dashboard.html">
-        🏠 Dashboard
-    </a>
-
-    <a href="buildings.html">
-        🏢 Buildings
-    </a>
-
-    <a href="schools.html">
-        🎓 Schools
-    </a>
-
-    <a href="lecturers.html">
-        👨‍🏫 Lecturers
-    </a>
-
-    <a href="timetable.html">
-        📅 Timetable
-    </a>
+    <a href="dashboard.html">Dashboard</a>
+    <a href="buildings.html">Buildings</a>
+    <a href="schools.html">Schools</a>
+    <a href="lecturers.html">Lecturers</a>
+    <a href="timetable.html">Timetable</a>
 
     <a href="announcements.html" class="active">
-        📢 Announcements
+        Announcements
     </a>
 
-    <a href="ai-knowledge.html">
-        🤖 Prince AI Knowledge
-    </a>
+    <a href="ai-knowledge.html">Prince AI Knowledge</a>
+    <a href="students.html">Students</a>
+    <a href="settings.html">Settings</a>
 
-    <a href="students.html">
-        👨‍🎓 Students
-    </a>
+    <a href="admin.html" class="logout">Logout</a>
 
-    <a href="settings.html">
-        ⚙ Settings
-    </a>
-
-    <a href="admin.html">
-        🚪 Logout
-    </a>
-
-</div>
+</aside>
 
 
-<!-- =========================
-     MAIN
-========================= -->
+<!-- MAIN -->
 
-<div class="main">
+<main class="main">
 
+    <!-- TOP BAR -->
 
-    <div class="header">
+    <div class="topbar">
 
-        <h1>📢 University Announcements</h1>
+        <div>
+            <h1>University Announcements</h1>
+            <p>Publish official information for students and staff.</p>
+        </div>
 
-        <p>
-            Create and publish official announcements
-            for students and staff.
-        </p>
+        <button class="menu-btn" onclick="toggleSidebar()">☰</button>
 
     </div>
 
 
-    <!-- =========================
-         CREATE ANNOUNCEMENT
-    ========================= -->
+    <!-- WORKSPACE -->
 
-    <div class="announcement-card">
+    <div class="workspace">
 
-        <h2>📝 Create New Announcement</h2>
+        <!-- LEFT: CREATE FORM -->
 
+        <section>
 
-        <div class="form-group">
+            <div class="card">
 
-            <label for="announcementTitle">
-                Announcement Title
-            </label>
+                <h2>Create New Announcement</h2>
 
-            <input
-                type="text"
-                id="announcementTitle"
-                placeholder="Example: Student Registration Notice"
-            >
-
-        </div>
-
-
-        <div class="form-group">
-
-            <label for="announcementText">
-                Announcement Message
-            </label>
-
-            <textarea
-                id="announcementText"
-                placeholder="Type your official university announcement here..."
-            ></textarea>
-
-        </div>
-
-
-        <!-- =========================
-             PHOTO UPLOAD
-        ========================= -->
-
-        <div class="form-group">
-
-            <label>
-                📷 Add Photos
-            </label>
-
-            <div class="photo-upload-box">
-
-                <p>
-                    Select one or more photos to include
-                    in this announcement.
+                <p class="card-subtitle">
+                    Create an official announcement and optionally attach photos.
                 </p>
 
-                <input
-                    type="file"
-                    id="announcementPhotos"
-                    accept="image/*"
-                    multiple
-                >
+                <form id="announcementForm">
 
-                <div
-                    id="photoPreview"
-                    class="preview-grid"
-                ></div>
+                    <label for="title">Announcement Title</label>
+
+                    <input
+                        type="text"
+                        id="title"
+                        placeholder="Example: Student Registration Notice"
+                        required
+                    >
+
+                    <label for="message">Announcement Message</label>
+
+                    <textarea
+                        id="message"
+                        placeholder="Type your official university announcement here..."
+                        required
+                    ></textarea>
+
+                    <label>Announcement Category</label>
+
+                    <select id="category">
+
+                        <option value="General">General</option>
+                        <option value="Academic">Academic</option>
+                        <option value="Examinations">Examinations</option>
+                        <option value="Admissions">Admissions</option>
+                        <option value="Student Affairs">Student Affairs</option>
+                        <option value="Events">Events</option>
+                        <option value="Emergency">Emergency</option>
+
+                    </select>
+
+
+                    <label>Add Photos</label>
+
+                    <label class="upload-box" for="photoInput">
+
+                        <div class="icon">📷</div>
+
+                        <h3>Upload Announcement Photos</h3>
+
+                        <p>
+                            Tap here to select one or multiple photos from your phone.
+                        </p>
+
+                        <p>
+                            JPG, PNG and JPEG images supported.
+                        </p>
+
+                    </label>
+
+                    <input
+                        type="file"
+                        id="photoInput"
+                        accept="image/*"
+                        multiple
+                    >
+
+                    <div id="previewImages" class="preview-images"></div>
+
+
+                    <div class="button-row">
+
+                        <button
+                            type="submit"
+                            class="publish-btn"
+                            id="publishBtn"
+                        >
+                            Publish Announcement
+                        </button>
+
+                        <button
+                            type="button"
+                            class="clear-btn"
+                            onclick="clearForm()"
+                        >
+                            Clear
+                        </button>
+
+                    </div>
+
+                    <div id="statusMessage" class="status-message"></div>
+
+                </form>
 
             </div>
 
-        </div>
+
+            <!-- RECENT ANNOUNCEMENTS -->
+
+            <div class="card recent-section">
+
+                <h2>Published Announcements</h2>
+
+                <p class="card-subtitle">
+                    Recent announcements published by administrators.
+                </p>
+
+                <div id="announcementList" class="announcement-list">
+
+                    <p style="color:#777;">
+                        Loading announcements...
+                    </p>
+
+                </div>
+
+            </div>
+
+        </section>
 
 
-        <div class="form-buttons">
+        <!-- RIGHT: LIVE PREVIEW -->
 
-            <button
-                id="publishBtn"
-                class="publish-btn"
-                onclick="publishAnnouncement()"
-            >
-                📢 Publish Announcement
-            </button>
+        <aside class="live-preview">
 
+            <div class="card">
 
-            <button
-                class="clear-btn"
-                onclick="clearForm()"
-            >
-                🗑 Clear Form
-            </button>
+                <div class="preview-label">
+                    Live Announcement Preview
+                </div>
 
-        </div>
+                <div class="announcement-preview">
 
+                    <div class="preview-header">
 
-        <div id="announcementStatus">
+                        <h3 id="previewTitle">
+                            Your Announcement Title
+                        </h3>
 
-            🟢 Ready to create announcement.
+                    </div>
 
-        </div>
+                    <div id="previewPhotoContainer"></div>
+
+                    <div class="preview-body">
+
+                        <p id="previewMessage">
+                            Your announcement message will appear here as you type.
+                        </p>
+
+                        <div class="preview-date" id="previewCategory">
+                            General Announcement
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </aside>
 
     </div>
 
+</main>
 
-    <!-- =========================
-         PUBLISHED ANNOUNCEMENTS
-    ========================= -->
-
-    <div class="published-card">
-
-        <h2>📚 Published Announcements</h2>
-
-        <div id="publishedAnnouncements">
-
-            <p>Loading announcements...</p>
-
-        </div>
-
-    </div>
-
-
-</div>
-
-
-<!-- =========================
-     FIREBASE
-========================= -->
 
 <script type="module">
 
 import { db, storage } from "./firebase.js";
 
 import {
-
     collection,
     addDoc,
-    serverTimestamp,
     query,
     orderBy,
-    onSnapshot
-
+    onSnapshot,
+    serverTimestamp
 } from "https://www.gstatic.com/firebasejs/12.16.0/firebase-firestore.js";
 
-
 import {
-
     ref,
     uploadBytes,
     getDownloadURL
-
 } from "https://www.gstatic.com/firebasejs/12.16.0/firebase-storage.js";
 
+
+const form = document.getElementById("announcementForm");
+const titleInput = document.getElementById("title");
+const messageInput = document.getElementById("message");
+const categoryInput = document.getElementById("category");
+const photoInput = document.getElementById("photoInput");
+
+const previewImages = document.getElementById("previewImages");
+const previewTitle = document.getElementById("previewTitle");
+const previewMessage = document.getElementById("previewMessage");
+const previewCategory = document.getElementById("previewCategory");
+const previewPhotoContainer = document.getElementById("previewPhotoContainer");
+
+const publishBtn = document.getElementById("publishBtn");
+const statusMessage = document.getElementById("statusMessage");
 
 let selectedFiles = [];
 
 
-/* ==========================================
-   PHOTO SELECTION AND PREVIEW
-========================================== */
+/* =========================
+   LIVE PREVIEW
+========================= */
 
-const photoInput =
-    document.getElementById("announcementPhotos");
+titleInput.addEventListener("input", () => {
 
-const preview =
-    document.getElementById("photoPreview");
+    previewTitle.textContent =
+        titleInput.value || "Your Announcement Title";
 
+});
 
-photoInput.addEventListener("change", function(event) {
+messageInput.addEventListener("input", () => {
 
-    const newFiles = Array.from(event.target.files);
+    previewMessage.textContent =
+        messageInput.value ||
+        "Your announcement message will appear here.";
 
-    selectedFiles = [...selectedFiles, ...newFiles];
+});
 
-    displayPreviews();
+categoryInput.addEventListener("change", () => {
+
+    previewCategory.textContent =
+        categoryInput.value + " Announcement";
 
 });
 
 
-function displayPreviews() {
+/* =========================
+   PHOTO SELECTION
+========================= */
 
-    preview.innerHTML = "";
+photoInput.addEventListener("change", () => {
+
+    selectedFiles = Array.from(photoInput.files);
+
+    showPhotoPreviews();
+
+});
+
+
+function showPhotoPreviews() {
+
+    previewImages.innerHTML = "";
+    previewPhotoContainer.innerHTML = "";
 
     selectedFiles.forEach((file, index) => {
 
@@ -603,26 +778,38 @@ function displayPreviews() {
 
         reader.onload = function(event) {
 
-            const item = document.createElement("div");
+            const wrapper = document.createElement("div");
+            wrapper.className = "preview-item";
 
-            item.className = "preview-item";
+            const image = document.createElement("img");
+            image.src = event.target.result;
 
-            item.innerHTML = `
+            const removeButton = document.createElement("button");
+            removeButton.className = "remove-photo";
+            removeButton.textContent = "×";
 
-                <img src="${event.target.result}"
-                     alt="Announcement photo">
+            removeButton.onclick = function() {
 
-                <button
-                    type="button"
-                    class="remove-photo"
-                    onclick="removePhoto(${index})"
-                >
-                    ×
-                </button>
+                selectedFiles.splice(index, 1);
+                showPhotoPreviews();
 
-            `;
+            };
 
-            preview.appendChild(item);
+            wrapper.appendChild(image);
+            wrapper.appendChild(removeButton);
+
+            previewImages.appendChild(wrapper);
+
+            // First photo appears in live preview
+            if (index === 0) {
+
+                const previewImage = document.createElement("img");
+                previewImage.src = event.target.result;
+                previewImage.className = "preview-photo";
+
+                previewPhotoContainer.appendChild(previewImage);
+
+            }
 
         };
 
@@ -633,343 +820,200 @@ function displayPreviews() {
 }
 
 
-window.removePhoto = function(index) {
-
-    selectedFiles.splice(index, 1);
-
-    displayPreviews();
-
-};
-
-
-/* ==========================================
+/* =========================
    PUBLISH ANNOUNCEMENT
-========================================== */
+========================= */
 
-window.publishAnnouncement = async function() {
+form.addEventListener("submit", async (event) => {
 
+    event.preventDefault();
 
-    const title =
-        document.getElementById("announcementTitle").value.trim();
+    const title = titleInput.value.trim();
+    const message = messageInput.value.trim();
+    const category = categoryInput.value;
 
+    if (!title || !message) {
 
-    const message =
-        document.getElementById("announcementText").value.trim();
-
-
-    const button =
-        document.getElementById("publishBtn");
-
-
-    const status =
-        document.getElementById("announcementStatus");
-
-
-    if (!title) {
-
-        status.innerHTML =
-            "⚠️ Please enter an announcement title.";
-
+        showStatus("Please enter both a title and message.", "error");
         return;
 
     }
 
-
-    if (!message) {
-
-        status.innerHTML =
-            "⚠️ Please enter an announcement message.";
-
-        return;
-
-    }
-
-
-    button.disabled = true;
-
-    button.innerHTML = "⏳ Publishing...";
-
-    status.innerHTML =
-        "📡 Preparing announcement...";
-
+    publishBtn.disabled = true;
+    publishBtn.textContent = "Publishing...";
 
     try {
 
+        const photoUrls = [];
 
-        let photoURLs = [];
-
-
-        /* ======================================
-           UPLOAD PHOTOS TO FIREBASE STORAGE
-        ====================================== */
-
-        for (let i = 0; i < selectedFiles.length; i++) {
-
-            const file = selectedFiles[i];
-
-            status.innerHTML =
-                `📷 Uploading photo ${i + 1} of ${selectedFiles.length}...`;
-
+        // Upload photos to Firebase Storage
+        for (const file of selectedFiles) {
 
             const fileName =
-                Date.now() + "_" + file.name;
+                Date.now() + "_" + file.name.replace(/\s+/g, "_");
 
-
-            const storageRef =
-                ref(
-                    storage,
-                    "announcements/" + fileName
-                );
-
+            const storageRef = ref(
+                storage,
+                "announcements/" + fileName
+            );
 
             await uploadBytes(storageRef, file);
-
 
             const downloadURL =
                 await getDownloadURL(storageRef);
 
-
-            photoURLs.push(downloadURL);
+            photoUrls.push(downloadURL);
 
         }
 
 
-        /* ======================================
-           SAVE ANNOUNCEMENT TO FIRESTORE
-        ====================================== */
+        // Save announcement in Firestore
+        await addDoc(collection(db, "announcements"), {
 
-        status.innerHTML =
-            "📡 Saving announcement...";
+            title: title,
+            message: message,
+            category: category,
+            photos: photoUrls,
+            time: new Date().toLocaleString(),
+            createdAt: serverTimestamp(),
+            notificationSent: false
+
+        });
 
 
-        const announcementRef = await addDoc(
-
-            collection(db, "announcements"),
-
-            {
-
-                title: title,
-
-                message: message,
-
-                photos: photoURLs,
-
-                time: new Date().toISOString(),
-
-                createdAt: serverTimestamp(),
-
-                notificationSent: false
-
-            }
-
+        showStatus(
+            "Announcement published successfully.",
+            "success"
         );
-
-
-        console.log(
-            "Announcement published:",
-            announcementRef.id
-        );
-
-
-        status.innerHTML =
-            "✅ Announcement published successfully!";
-
-
-        alert(
-            "✅ Announcement published successfully!"
-        );
-
 
         clearForm();
 
+    } catch (error) {
 
-    } catch(error) {
+        console.error("Announcement error:", error);
 
-
-        console.error("ANNOUNCEMENT ERROR:", error);
-
-
-        status.innerHTML =
-            "❌ Error publishing announcement:<br><br>" +
-            error.message;
-
-
-        alert(
-            "❌ Error:\n\n" + error.message
+        showStatus(
+            "Failed to publish announcement: " + error.message,
+            "error"
         );
 
+    } finally {
+
+        publishBtn.disabled = false;
+        publishBtn.textContent = "Publish Announcement";
 
     }
 
-
-    button.disabled = false;
-
-    button.innerHTML =
-        "📢 Publish Announcement";
-
-};
+});
 
 
-/* ==========================================
-   CLEAR FORM
-========================================== */
-
-window.clearForm = function() {
-
-    document.getElementById("announcementTitle").value = "";
-
-    document.getElementById("announcementText").value = "";
-
-    photoInput.value = "";
-
-    selectedFiles = [];
-
-    preview.innerHTML = "";
-
-    document.getElementById("announcementStatus").innerHTML =
-        "🟢 Ready to create announcement.";
-
-};
-
-
-/* ==========================================
-   LOAD PUBLISHED ANNOUNCEMENTS
-========================================== */
+/* =========================
+   LOAD ANNOUNCEMENTS
+========================= */
 
 const announcementsQuery = query(
-
     collection(db, "announcements"),
-
     orderBy("createdAt", "desc")
-
 );
 
-
 onSnapshot(
-
     announcementsQuery,
-
     (snapshot) => {
 
+        const list = document.getElementById("announcementList");
 
-        const container =
-            document.getElementById("publishedAnnouncements");
-
-
-        container.innerHTML = "";
-
+        list.innerHTML = "";
 
         if (snapshot.empty) {
 
-            container.innerHTML =
-                "<p>No announcements published yet.</p>";
+            list.innerHTML =
+                "<p style='color:#777;'>No announcements published yet.</p>";
 
             return;
 
         }
 
+        snapshot.forEach((docSnap) => {
 
-        snapshot.forEach((doc) => {
+            const data = docSnap.data();
 
+            const item = document.createElement("div");
+            item.className = "announcement-item";
 
-            const data = doc.data();
+            const title = document.createElement("h3");
+            title.textContent = data.title || "Untitled Announcement";
 
+            const message = document.createElement("p");
+            message.textContent = data.message || "";
 
-            const item =
-                document.createElement("div");
+            const date = document.createElement("small");
+            date.textContent =
+                data.time || "Recently published";
 
+            item.appendChild(title);
+            item.appendChild(message);
+            item.appendChild(date);
 
-            item.className =
-                "announcement-item";
-
-
-            let imagesHTML = "";
-
-
-            if (data.photos && data.photos.length > 0) {
-
-                imagesHTML = `
-
-                    <div class="announcement-images">
-
-                        ${data.photos.map(photo => `
-
-                            <img
-                                src="${photo}"
-                                alt="Announcement photo"
-                            >
-
-                        `).join("")}
-
-                    </div>
-
-                `;
-
-            }
-
-
-            const date =
-                data.time
-                    ? new Date(data.time).toLocaleString()
-                    : "Date unavailable";
-
-
-            item.innerHTML = `
-
-                <h3>${escapeHTML(data.title || "University Announcement")}</h3>
-
-                <p>${escapeHTML(data.message || "")}</p>
-
-                ${imagesHTML}
-
-                <div class="announcement-date">
-                    Published: ${date}
-                </div>
-
-            `;
-
-
-            container.appendChild(item);
+            list.appendChild(item);
 
         });
 
     },
-
     (error) => {
 
         console.error(error);
 
-        document.getElementById("publishedAnnouncements").innerHTML =
-            "<p>Unable to load announcements.</p>";
+        document.getElementById("announcementList").innerHTML =
+            "<p style='color:#dc3545;'>Unable to load announcements.</p>";
 
     }
-
 );
 
 
-/* ==========================================
-   SECURITY: DISPLAY TEXT SAFELY
-========================================== */
+/* =========================
+   CLEAR FORM
+========================= */
 
-function escapeHTML(text) {
+window.clearForm = function() {
 
-    return String(text)
+    form.reset();
 
-        .replace(/&/g, "&amp;")
+    selectedFiles = [];
 
-        .replace(/</g, "&lt;")
+    previewImages.innerHTML = "";
+    previewPhotoContainer.innerHTML = "";
 
-        .replace(/>/g, "&gt;")
+    previewTitle.textContent = "Your Announcement Title";
+    previewMessage.textContent =
+        "Your announcement message will appear here.";
+    previewCategory.textContent = "General Announcement";
 
-        .replace(/"/g, "&quot;")
+};
 
-        .replace(/'/g, "&#039;");
+
+/* =========================
+   STATUS MESSAGE
+========================= */
+
+function showStatus(message, type) {
+
+    statusMessage.textContent = message;
+
+    statusMessage.className =
+        "status-message " +
+        (type === "success"
+            ? "status-success"
+            : "status-error");
+
+    statusMessage.style.display = "block";
+
+    setTimeout(() => {
+
+        statusMessage.style.display = "none";
+
+    }, 5000);
 
 }
 
-</script>
 
-
-</body>
-
-  </html>
+/* =======================
