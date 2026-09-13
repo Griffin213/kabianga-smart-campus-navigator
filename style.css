@@ -792,3 +792,12 @@ color:gray;
     }
 
         }
+/* Leadership profile names */
+
+.leader-name {
+    text-align: left;
+    font-weight: bold;
+    color: #0b5ed7;
+    font-size: 18px;
+    margin: 5px 0 12px;
+}
