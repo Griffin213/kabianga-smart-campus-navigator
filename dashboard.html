@@ -10,369 +10,251 @@
 
 <title>Dashboard | UOK Smart Campus Management System</title>
 
-
 <style>
 
-*{
-
-    margin:0;
-
-    padding:0;
-
-    box-sizing:border-box;
-
-    font-family:Arial,sans-serif;
-
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Arial, sans-serif;
 }
 
-
-body{
-
-    display:flex;
-
-    background:#f4f6f9;
-
-    min-height:100vh;
-
+body {
+    display: flex;
+    background: #f4f6f9;
+    min-height: 100vh;
 }
-
 
 /* =========================
    SIDEBAR
 ========================= */
 
-.sidebar{
-
-    width:250px;
-
-    height:100vh;
-
-    background:#0b5ed7;
-
-    color:white;
-
-    padding:20px;
-
-    position:fixed;
-
-    left:0;
-
-    top:0;
-
-    overflow-y:auto;
-
+.sidebar {
+    width: 250px;
+    height: 100vh;
+    background: #0b5ed7;
+    color: white;
+    padding: 20px;
+    position: fixed;
+    left: 0;
+    top: 0;
+    overflow-y: auto;
 }
 
-
-.sidebar h2{
-
-    text-align:center;
-
-    margin-bottom:30px;
-
+.sidebar h2 {
+    text-align: center;
+    margin-bottom: 30px;
+    font-size: 20px;
 }
 
-
-.sidebar a{
-
-    display:block;
-
-    color:white;
-
-    text-decoration:none;
-
-    padding:13px;
-
-    margin:8px 0;
-
-    border-radius:8px;
-
-    transition:.3s;
-
-    font-size:16px;
-
+.sidebar a {
+    display: block;
+    color: white;
+    text-decoration: none;
+    padding: 13px;
+    margin: 8px 0;
+    border-radius: 8px;
+    transition: .3s;
+    font-size: 16px;
 }
 
-
-.sidebar a:hover{
-
-    background:rgba(255,255,255,.2);
-
+.sidebar a:hover,
+.sidebar a.active {
+    background: rgba(255,255,255,.2);
 }
-
 
 /* =========================
    MAIN
 ========================= */
 
-.main{
-
-    margin-left:250px;
-
-    width:calc(100% - 250px);
-
-    padding:25px;
-
+.main {
+    margin-left: 250px;
+    width: calc(100% - 250px);
+    padding: 25px;
 }
-
 
 /* =========================
    HEADER
 ========================= */
 
-.header{
-
-    background:white;
-
-    padding:25px;
-
-    border-radius:12px;
-
-    box-shadow:
-        0 3px 10px rgba(0,0,0,.1);
-
-    margin-bottom:25px;
-
+.header {
+    background: white;
+    padding: 25px;
+    border-radius: 12px;
+    box-shadow: 0 3px 10px rgba(0,0,0,.1);
+    margin-bottom: 25px;
 }
 
-
-.header h1{
-
-    color:#222;
-
-    margin-bottom:8px;
-
+.header h1 {
+    color: #222;
+    margin-bottom: 8px;
 }
 
-
-.header p{
-
-    color:#666;
-
+.header p {
+    color: #666;
 }
-
 
 /* =========================
    CARDS
 ========================= */
 
-.cards{
-
-    display:grid;
-
-    grid-template-columns:
-        repeat(auto-fit,minmax(220px,1fr));
-
-    gap:20px;
-
-    margin-bottom:30px;
-
+.cards {
+    display: grid;
+    grid-template-columns: repeat(auto-fit,minmax(220px,1fr));
+    gap: 20px;
+    margin-bottom: 30px;
 }
 
-
-.card{
-
-    background:white;
-
-    padding:25px;
-
-    border-radius:12px;
-
-    text-align:center;
-
-    box-shadow:
-        0 3px 10px rgba(0,0,0,.1);
-
+.card {
+    background: white;
+    padding: 25px;
+    border-radius: 12px;
+    text-align: center;
+    box-shadow: 0 3px 10px rgba(0,0,0,.1);
 }
 
-
-.card h1{
-
-    color:#0b5ed7;
-
-    font-size:40px;
-
+.card h1 {
+    color: #0b5ed7;
+    font-size: 40px;
 }
 
-
-.card p{
-
-    margin-top:10px;
-
-    color:#666;
-
-    font-size:18px;
-
+.card p {
+    margin-top: 10px;
+    color: #666;
+    font-size: 18px;
 }
 
+/* =========================
+   QUICK ACTIONS
+========================= */
+
+.quick-actions {
+    background: white;
+    padding: 25px;
+    border-radius: 15px;
+    box-shadow: 0 3px 12px rgba(0,0,0,.1);
+    margin-bottom: 30px;
+}
+
+.quick-actions h2 {
+    color: #0b5ed7;
+    margin-bottom: 20px;
+}
+
+.quick-buttons {
+    display: grid;
+    grid-template-columns: repeat(auto-fit,minmax(180px,1fr));
+    gap: 15px;
+}
+
+.quick-buttons a {
+    text-decoration: none;
+}
+
+.quick-buttons button {
+    width: 100%;
+    padding: 15px;
+    border: none;
+    border-radius: 10px;
+    background: #0b5ed7;
+    color: white;
+    font-size: 15px;
+    cursor: pointer;
+}
+
+.quick-buttons button:hover {
+    background: #084298;
+}
 
 /* =========================
    ANNOUNCEMENT
 ========================= */
 
-.announcement-card{
-
-    background:white;
-
-    padding:30px;
-
-    border-radius:15px;
-
-    box-shadow:
-        0 3px 12px rgba(0,0,0,.1);
-
-    max-width:900px;
-
+.announcement-card {
+    background: white;
+    padding: 30px;
+    border-radius: 15px;
+    box-shadow: 0 3px 12px rgba(0,0,0,.1);
+    max-width: 900px;
 }
 
-
-.announcement-card h2{
-
-    color:#0b5ed7;
-
-    margin-bottom:20px;
-
-    font-size:28px;
-
+.announcement-card h2 {
+    color: #0b5ed7;
+    margin-bottom: 20px;
+    font-size: 28px;
 }
 
-
-#announcementText{
-
-    width:100%;
-
-    min-height:140px;
-
-    padding:15px;
-
-    font-size:17px;
-
-    border-radius:10px;
-
-    border:1px solid #ccc;
-
-    resize:vertical;
-
-    outline:none;
-
+#announcementText {
+    width: 100%;
+    min-height: 140px;
+    padding: 15px;
+    font-size: 17px;
+    border-radius: 10px;
+    border: 1px solid #ccc;
+    resize: vertical;
+    outline: none;
 }
 
-
-#announcementText:focus{
-
-    border-color:#0b5ed7;
-
+#announcementText:focus {
+    border-color: #0b5ed7;
 }
 
-
-/* =========================
-   SEND BUTTON
-========================= */
-
-#sendAnnouncementBtn{
-
-    margin-top:18px;
-
-    background:#0b5ed7;
-
-    color:white;
-
-    border:none;
-
-    padding:15px 25px;
-
-    border-radius:10px;
-
-    font-size:17px;
-
-    cursor:pointer;
-
-    transition:.3s;
-
+#sendAnnouncementBtn {
+    margin-top: 18px;
+    background: #0b5ed7;
+    color: white;
+    border: none;
+    padding: 15px 25px;
+    border-radius: 10px;
+    font-size: 17px;
+    cursor: pointer;
 }
 
-
-#sendAnnouncementBtn:hover{
-
-    background:#084298;
-
+#sendAnnouncementBtn:hover {
+    background: #084298;
 }
 
-
-#sendAnnouncementBtn:disabled{
-
-    background:#999;
-
-    cursor:not-allowed;
-
+#sendAnnouncementBtn:disabled {
+    background: #999;
+    cursor: not-allowed;
 }
 
-
-/* =========================
-   STATUS
-========================= */
-
-#announcementStatus{
-
-    margin-top:20px;
-
-    padding:15px;
-
-    border-radius:10px;
-
-    background:#f4f6f9;
-
-    font-size:16px;
-
-    font-weight:bold;
-
-    line-height:1.5;
-
+#announcementStatus {
+    margin-top: 20px;
+    padding: 15px;
+    border-radius: 10px;
+    background: #f4f6f9;
+    font-size: 16px;
+    font-weight: bold;
+    line-height: 1.5;
 }
-
 
 /* =========================
    MOBILE
 ========================= */
 
-@media(max-width:700px){
+@media(max-width:700px) {
 
-    .sidebar{
-
-        width:190px;
-
+    .sidebar {
+        width: 190px;
     }
 
-
-    .main{
-
-        margin-left:190px;
-
-        width:calc(100% - 190px);
-
-        padding:15px;
-
+    .main {
+        margin-left: 190px;
+        width: calc(100% - 190px);
+        padding: 15px;
     }
 
-
-    .sidebar a{
-
-        font-size:14px;
-
+    .sidebar a {
+        font-size: 14px;
     }
 
-
-    .sidebar h2{
-
-        font-size:18px;
-
+    .sidebar h2 {
+        font-size: 18px;
     }
 
-
-    .announcement-card h2{
-
-        font-size:24px;
-
+    .announcement-card h2 {
+        font-size: 24px;
     }
 
 }
@@ -394,32 +276,32 @@ body{
     <h2>🏫 UOK Admin</h2>
 
 
-    <a href="dashboard.html">
+    <a href="dashboard.html" class="active">
         🏠 Dashboard
     </a>
 
 
-    <a href="#">
+    <a href="buildings.html">
         🏢 Buildings
     </a>
 
 
-    <a href="#">
+    <a href="schools.html">
         🎓 Schools
     </a>
 
 
-    <a href="#">
+    <a href="lecturers.html">
         👨‍🏫 Lecturers
     </a>
 
 
-    <a href="#">
+    <a href="timetable.html">
         📅 Timetable
     </a>
 
 
-    <a href="#">
+    <a href="announcements.html">
         📢 Announcements
     </a>
 
@@ -429,12 +311,12 @@ body{
     </a>
 
 
-    <a href="#">
+    <a href="students.html">
         👨‍🎓 Students
     </a>
 
 
-    <a href="#">
+    <a href="settings.html">
         ⚙ Settings
     </a>
 
@@ -459,10 +341,8 @@ body{
             Welcome Administrator 👋
         </h1>
 
-
         <p>
-            University of Kabianga Smart Campus
-            Management System
+            University of Kabianga Smart Campus Management System
         </p>
 
     </div>
@@ -476,59 +356,73 @@ body{
 
 
         <div class="card">
-
             <h1>18</h1>
-
-            <p>
-                Buildings
-            </p>
-
+            <p>Buildings</p>
         </div>
 
 
         <div class="card">
-
             <h1>6</h1>
-
-            <p>
-                Schools
-            </p>
-
+            <p>Schools</p>
         </div>
 
 
         <div class="card">
-
             <h1>120</h1>
-
-            <p>
-                Lecturers
-            </p>
-
+            <p>Lecturers</p>
         </div>
 
 
         <div class="card">
-
             <h1>25</h1>
-
-            <p>
-                Today's Classes
-            </p>
-
+            <p>Today's Classes</p>
         </div>
 
 
         <div class="card">
-
             <h1>1</h1>
-
-            <p>
-                Prince AI
-            </p>
-
+            <p>Prince AI</p>
         </div>
 
+
+    </div>
+
+
+    <!-- =========================
+         QUICK ACTIONS
+    ========================= -->
+
+    <div class="quick-actions">
+
+        <h2>⚡ Quick Management Actions</h2>
+
+        <div class="quick-buttons">
+
+            <a href="buildings.html">
+                <button>🏢 Manage Buildings</button>
+            </a>
+
+            <a href="schools.html">
+                <button>🎓 Manage Schools</button>
+            </a>
+
+            <a href="lecturers.html">
+                <button>👨‍🏫 Manage Lecturers</button>
+            </a>
+
+            <a href="timetable.html">
+                <button>📅 Manage Timetable</button>
+            </a>
+
+            <a href="announcements.html">
+                <button>📢 Send Announcement</button>
+            </a>
+
+            <a href="students.html">
+                <button>👨‍🎓 View Students</button>
+            </a>
+
+        </div>
 
     </div>
 
@@ -539,34 +433,25 @@ body{
 
     <div class="announcement-card">
 
-
         <h2>
             📢 Send Announcement
         </h2>
-
 
         <textarea
             id="announcementText"
             placeholder="Type announcement for students..."
         ></textarea>
 
-
         <button
             id="sendAnnouncementBtn"
             onclick="sendAnnouncement()"
         >
-
             📢 Send Announcement
-
         </button>
 
-
         <div id="announcementStatus">
-
             🟢 Ready to send announcement.
-
         </div>
-
 
     </div>
 
@@ -580,54 +465,31 @@ body{
 
 <script type="module">
 
-
 import { db } from "./firebase.js";
 
-
 import {
-
     collection,
     addDoc,
     serverTimestamp
-
 } from "https://www.gstatic.com/firebasejs/12.16.0/firebase-firestore.js";
 
 
-// ==========================================
-// SEND ANNOUNCEMENT
-// ==========================================
-
-window.sendAnnouncement =
-async function(){
-
+window.sendAnnouncement = async function() {
 
     const textElement =
-        document.getElementById(
-            "announcementText"
-        );
-
+        document.getElementById("announcementText");
 
     const button =
-        document.getElementById(
-            "sendAnnouncementBtn"
-        );
-
+        document.getElementById("sendAnnouncementBtn");
 
     const status =
-        document.getElementById(
-            "announcementStatus"
-        );
-
+        document.getElementById("announcementStatus");
 
     const text =
         textElement.value.trim();
 
 
-    // ==================================
-    // CHECK MESSAGE
-    // ==================================
-
-    if(!text){
+    if (!text) {
 
         status.innerHTML =
             "⚠️ Please type an announcement first.";
@@ -637,150 +499,68 @@ async function(){
     }
 
 
-    // ==================================
-    // DISABLE BUTTON
-    // ==================================
-
     button.disabled = true;
-
-    button.innerHTML =
-        "⏳ Publishing...";
-
+    button.innerHTML = "⏳ Publishing...";
 
     status.innerHTML =
-        "📡 Connecting to Firebase...";
+        "📡 Publishing announcement...";
 
 
-    try{
+    try {
 
-
-        // ==================================
-        // CREATE ANNOUNCEMENT
-        // ==================================
-
-        status.innerHTML =
-            "📡 Publishing announcement...";
-
-
-        const announcementRef =
-            await addDoc(
-
-                collection(
-                    db,
-                    "announcements"
-                ),
-
-                {
-
-                    title:
-                        "University of Kabianga",
-
-                    message:
-                        text,
-
-                    time:
-                        new Date().toISOString(),
-
-                    createdAt:
-                        serverTimestamp(),
-
-                    notificationSent:
-                        false
-
-                }
-
-            );
+        const announcementRef = await addDoc(
+            collection(db, "announcements"),
+            {
+                title: "University of Kabianga",
+                message: text,
+                time: new Date().toISOString(),
+                createdAt: serverTimestamp(),
+                notificationSent: false
+            }
+        );
 
 
         console.log(
-            "✅ Announcement created:",
+            "Announcement created:",
             announcementRef.id
         );
 
 
-        // ==================================
-        // SUCCESS
-        // ==================================
-
         status.innerHTML =
-
             "✅ Announcement published successfully!<br><br>" +
-
             "🔔 Notification will be delivered to subscribed students.";
 
 
-        button.innerHTML =
-            "✅ Published";
+        button.innerHTML = "✅ Published";
 
-
-        alert(
-            "✅ Announcement published successfully!"
-        );
-
-
-        // Clear message
+        alert("✅ Announcement published successfully!");
 
         textElement.value = "";
 
 
-        // Reset button
+        setTimeout(() => {
 
-        setTimeout(
+            button.disabled = false;
+            button.innerHTML = "📢 Send Announcement";
 
-            () => {
-
-                button.disabled =
-                    false;
-
-                button.innerHTML =
-                    "📢 Send Announcement";
-
-            },
-
-            2500
-
-        );
+        }, 2500);
 
 
-    }
+    } catch(error) {
 
-
-    catch(error){
-
-
-        console.error(
-            "🔥 FIREBASE ERROR:",
-            error
-        );
-
+        console.error("FIREBASE ERROR:", error);
 
         status.innerHTML =
+            "❌ Firebase Error:<br><br>" + error.message;
 
-            "❌ Firebase Error:<br><br>" +
+        button.disabled = false;
+        button.innerHTML = "📢 Try Again";
 
-            error.message;
-
-
-        button.disabled =
-            false;
-
-
-        button.innerHTML =
-            "📢 Try Again";
-
-
-        alert(
-
-            "❌ Firebase Error:\n\n" +
-
-            error.message
-
-        );
+        alert("❌ Firebase Error:\n\n" + error.message);
 
     }
 
 };
-
 
 </script>
 
