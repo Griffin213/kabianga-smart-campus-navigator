@@ -1,0 +1,180 @@
+<!DOCTYPE html><html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"><title>LTB3 | University of Kabianga Smart Campus Navigator</title>
+
+<link rel="stylesheet" href="style.css">
+
+<style>
+    body {
+        margin: 0;
+        font-family: Arial, sans-serif;
+        background: #eef5ff;
+    }
+
+    .ltb-header {
+        background: linear-gradient(135deg, #0b5ed7, #084298);
+        color: white;
+        text-align: center;
+        padding: 25px 15px;
+    }
+
+    .ltb-header h1 {
+        margin: 0;
+        font-size: 30px;
+    }
+
+    .ltb-header p {
+        margin: 8px 0 0;
+    }
+
+    .ltb-container {
+        max-width: 900px;
+        margin: 25px auto;
+        padding: 0 15px;
+    }
+
+    .back-button {
+        display: inline-block;
+        background: #555;
+        color: white;
+        text-decoration: none;
+        padding: 12px 20px;
+        border-radius: 8px;
+        margin-bottom: 20px;
+    }
+
+    .inside-button {
+        width: 100%;
+        padding: 16px;
+        background: #0b5ed7;
+        color: white;
+        border: none;
+        border-radius: 10px;
+        font-size: 18px;
+        font-weight: bold;
+        cursor: pointer;
+        margin-bottom: 20px;
+    }
+
+    .inside-button:hover {
+        background: #084298;
+    }
+
+    #insideLTB3 {
+        display: none;
+    }
+
+    .floor-card {
+        background: white;
+        margin-bottom: 20px;
+        padding: 20px;
+        border-radius: 12px;
+        box-shadow: 0 3px 10px rgba(0,0,0,0.08);
+        border-left: 5px solid #0b5ed7;
+    }
+
+    .floor-card h2 {
+        color: #084298;
+        margin-top: 0;
+    }
+
+    .floor-card ul {
+        padding-left: 20px;
+    }
+
+    .floor-card li {
+        margin: 12px 0;
+        font-size: 16px;
+    }
+
+    .footer {
+        background: #084298;
+        color: white;
+        text-align: center;
+        padding: 15px;
+        margin-top: 30px;
+    }
+</style>
+
+</head><body><div class="ltb-header">
+    <h1>LTB3</h1>
+    <p>University of Kabianga Smart Campus Navigator</p>
+</div>
+
+<div class="ltb-container">
+
+    <a href="campus.html" class="back-button">
+        ← Back to Campus Map
+    </a>
+
+    <button class="inside-button" onclick="toggleInsideLTB3()">
+        🏢 Inside LTB3
+    </button>
+
+    <div id="insideLTB3">
+
+        <div class="floor-card">
+            <h2>Ground Floor</h2>
+
+            <ul>
+                <li>Dean School of Education</li>
+                <li>HOD Curriculum Instruction</li>
+                <li>HOD Physiology & Foundations</li>
+                <li>Lecture Hall 1 (LH1)</li>
+                <li>Lecture Hall 2 (LH2)</li>
+            </ul>
+        </div>
+
+        <div class="floor-card">
+            <h2>First Floor</h2>
+
+            <ul>
+                <li>Senate Chamber</li>
+                <li>Lecture Hall 3 (LH3)</li>
+                <li>Micro Teaching Lab</li>
+                <li>School of Business Offices</li>
+            </ul>
+        </div>
+
+        <div class="floor-card">
+            <h2>Second Floor</h2>
+
+            <ul>
+                <li>Director of Gender Office</li>
+                <li>Lecture Hall 5 (LH5)</li>
+                <li>Lecture Hall 6 (LH6)</li>
+                <li>Director of Postgraduate Studies Office</li>
+            </ul>
+        </div>
+
+    </div>
+
+</div>
+
+<div class="footer">
+    © 2026 University of Kabianga Smart Campus Navigator
+</div>
+
+<script>
+    function toggleInsideLTB3() {
+
+        const section = document.getElementById("insideLTB3");
+        const button = document.querySelector(".inside-button");
+
+        if (section.style.display === "none" || section.style.display === "") {
+
+            section.style.display = "block";
+            button.innerHTML = "🔽 Hide Inside LTB3";
+
+        } else {
+
+            section.style.display = "none";
+            button.innerHTML = "🏢 Inside LTB3";
+
+        }
+    }
+</script>
+
+</body>
+</html>
