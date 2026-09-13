@@ -1,9 +1,24 @@
-import { initializeApp } from "https://www.gstatic.com/firebasejs/12.16.0/firebase-app.js";
+// ==========================================
+// FIREBASE CONFIGURATION
+// UNIVERSITY OF KABIANGA SMART CAMPUS
+// ==========================================
+
+import {
+    initializeApp
+} from "https://www.gstatic.com/firebasejs/12.16.0/firebase-app.js";
 
 import {
     initializeFirestore
 } from "https://www.gstatic.com/firebasejs/12.16.0/firebase-firestore.js";
 
+import {
+    getStorage
+} from "https://www.gstatic.com/firebasejs/12.16.0/firebase-storage.js";
+
+
+// ==========================================
+// FIREBASE CONFIG
+// ==========================================
 
 const firebaseConfig = {
 
@@ -27,14 +42,16 @@ const firebaseConfig = {
 };
 
 
+// ==========================================
+// INITIALIZE FIREBASE APP
+// ==========================================
+
 const app = initializeApp(firebaseConfig);
 
 
-/*
-========================================
- FIRESTORE CONNECTION
-========================================
-*/
+// ==========================================
+// FIRESTORE CONNECTION
+// ==========================================
 
 const db = initializeFirestore(app, {
 
@@ -43,14 +60,34 @@ const db = initializeFirestore(app, {
 });
 
 
+// ==========================================
+// FIREBASE STORAGE
+// Used for announcement photos
+// ==========================================
+
+const storage = getStorage(app);
+
+
+// ==========================================
+// DEBUG INFORMATION
+// ==========================================
+
 console.log("✅ Firebase App initialized");
 
 console.log("✅ Firestore initialized");
 
-console.log(
-    "🔥 Firestore database:",
-    db
-);
+console.log("✅ Firebase Storage initialized");
+
+console.log("🔥 Firestore database:", db);
+
+console.log("📁 Firebase Storage:", storage);
 
 
-export { db };
+// ==========================================
+// EXPORT SERVICES
+// ==========================================
+
+export {
+    db,
+    storage
+};
