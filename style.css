@@ -640,3 +640,155 @@ color:gray;
 .main-action-btn:active {
     transform: scale(0.97);
 }
+/* ==========================================
+   UNIVERSITY LEADERSHIP DIRECTORY
+========================================== */
+
+.leadership-page {
+    background: #eef5ff;
+}
+
+.leadership-hero {
+    background: white;
+    padding: 30px;
+    border-radius: 18px;
+    box-shadow: 0 5px 15px rgba(0,0,0,.12);
+    margin-bottom: 30px;
+    text-align: center;
+}
+
+.leadership-hero h2 {
+    color: #0b5ed7;
+    margin-bottom: 10px;
+}
+
+.leadership-hero p {
+    line-height: 1.6;
+}
+
+.leadership-search {
+    max-width: 700px;
+    margin: 20px auto 0;
+}
+
+.leadership-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 20px;
+    margin-top: 25px;
+}
+
+.leader-card {
+    background: white;
+    border-radius: 18px;
+    padding: 25px;
+    box-shadow: 0 5px 15px rgba(0,0,0,.12);
+    border-top: 5px solid #0b5ed7;
+    transition: transform .2s ease, box-shadow .2s ease;
+}
+
+.leader-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 8px 20px rgba(0,0,0,.18);
+}
+
+.leader-icon {
+    width: 70px;
+    height: 70px;
+    margin: 0 auto 15px;
+    border-radius: 50%;
+    background: #e3efff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 32px;
+}
+
+.leader-card h3 {
+    color: #0b5ed7;
+    text-align: center;
+    margin-bottom: 8px;
+}
+
+.leader-title {
+    text-align: center;
+    font-weight: bold;
+    color: #444;
+    margin-bottom: 15px;
+    line-height: 1.4;
+}
+
+.leader-card p {
+    line-height: 1.6;
+    margin-bottom: 10px;
+}
+
+.leader-card .office-status {
+    display: inline-block;
+    background: #fff3cd;
+    color: #856404;
+    padding: 6px 10px;
+    border-radius: 15px;
+    font-size: 13px;
+    margin-bottom: 15px;
+}
+
+.leader-card button {
+    width: 100%;
+    margin-top: 10px;
+}
+
+.directory-note {
+    background: #fff;
+    border-left: 6px solid #0b5ed7;
+    padding: 20px;
+    border-radius: 10px;
+    margin: 30px 0;
+    box-shadow: 0 3px 10px rgba(0,0,0,.08);
+}
+
+.directory-note h3 {
+    color: #0b5ed7;
+    margin-bottom: 10px;
+}
+
+.back-link {
+    display: inline-block;
+    margin-bottom: 20px;
+    text-decoration: none;
+}
+
+.back-link button {
+    min-width: 160px;
+}
+
+
+/* MOBILE RESPONSIVENESS */
+
+@media (max-width: 600px) {
+
+    header h1 {
+        font-size: 24px;
+    }
+
+    .subtitle {
+        font-size: 16px;
+    }
+
+    main {
+        padding: 15px;
+    }
+
+    .leadership-hero {
+        padding: 20px;
+    }
+
+    .leadership-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .leader-card {
+        padding: 20px;
+    }
+
+        }
