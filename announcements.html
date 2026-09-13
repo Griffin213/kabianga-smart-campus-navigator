@@ -1,6 +1,8 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
+
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
@@ -202,6 +204,7 @@ textarea {
 .upload-box p {
     color: #777;
     font-size: 14px;
+    margin-top: 5px;
 }
 
 #photoInput {
@@ -254,6 +257,11 @@ button {
     cursor: pointer;
     border: none;
     font-family: inherit;
+}
+
+button:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
 }
 
 .publish-btn {
@@ -357,17 +365,45 @@ button {
 .announcement-item h3 {
     color: #075dcc;
     margin-bottom: 8px;
+    font-size: 19px;
 }
 
 .announcement-item p {
     color: #555;
     line-height: 1.5;
+    white-space: pre-wrap;
 }
 
 .announcement-item small {
     display: block;
     color: #888;
     margin-top: 12px;
+}
+
+.announcement-category {
+    display: inline-block;
+    background: #eaf2ff;
+    color: #075dcc;
+    font-size: 12px;
+    font-weight: bold;
+    padding: 5px 10px;
+    border-radius: 20px;
+    margin-bottom: 12px;
+}
+
+.recent-photos {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(130px, 1fr));
+    gap: 10px;
+    margin-top: 15px;
+}
+
+.recent-photos img {
+    width: 100%;
+    height: 150px;
+    object-fit: cover;
+    border-radius: 10px;
+    cursor: pointer;
 }
 
 /* STATUS */
@@ -388,6 +424,11 @@ button {
 .status-error {
     background: #fdecec;
     color: #a02020;
+}
+
+.status-info {
+    background: #eaf2ff;
+    color: #075dcc;
 }
 
 /* =========================
@@ -466,14 +507,23 @@ button {
     .button-row button {
         width: 100%;
     }
+
+    .recent-photos {
+        grid-template-columns: 1fr 1fr;
+    }
+
 }
 
 </style>
+
 </head>
 
 <body>
 
-<!-- SIDEBAR -->
+
+<!-- =========================
+     SIDEBAR
+========================= -->
 
 <aside class="sidebar" id="sidebar">
 
@@ -498,31 +548,47 @@ button {
 </aside>
 
 
-<!-- MAIN -->
+<!-- =========================
+     MAIN CONTENT
+========================= -->
 
 <main class="main">
+
 
     <!-- TOP BAR -->
 
     <div class="topbar">
 
         <div>
+
             <h1>University Announcements</h1>
-            <p>Publish official information for students and staff.</p>
+
+            <p>
+                Publish official information for students and staff.
+            </p>
+
         </div>
 
-        <button class="menu-btn" onclick="toggleSidebar()">☰</button>
+        <button class="menu-btn" onclick="toggleSidebar()">
+            ☰
+        </button>
 
     </div>
 
 
-    <!-- WORKSPACE -->
+    <!-- =========================
+         WORKSPACE
+    ========================= -->
 
     <div class="workspace">
 
-        <!-- LEFT: CREATE FORM -->
+
+        <!-- LEFT COLUMN -->
 
         <section>
+
+
+            <!-- CREATE ANNOUNCEMENT -->
 
             <div class="card">
 
@@ -532,9 +598,13 @@ button {
                     Create an official announcement and optionally attach photos.
                 </p>
 
+
                 <form id="announcementForm">
 
-                    <label for="title">Announcement Title</label>
+
+                    <label for="title">
+                        Announcement Title
+                    </label>
 
                     <input
                         type="text"
@@ -543,7 +613,10 @@ button {
                         required
                     >
 
-                    <label for="message">Announcement Message</label>
+
+                    <label for="message">
+                        Announcement Message
+                    </label>
 
                     <textarea
                         id="message"
@@ -551,7 +624,10 @@ button {
                         required
                     ></textarea>
 
-                    <label>Announcement Category</label>
+
+                    <label for="category">
+                        Announcement Category
+                    </label>
 
                     <select id="category">
 
@@ -566,13 +642,18 @@ button {
                     </select>
 
 
-                    <label>Add Photos</label>
+                    <label>
+                        Add Photos
+                    </label>
+
 
                     <label class="upload-box" for="photoInput">
 
                         <div class="icon">📷</div>
 
-                        <h3>Upload Announcement Photos</h3>
+                        <h3>
+                            Upload Announcement Photos
+                        </h3>
 
                         <p>
                             Tap here to select one or multiple photos from your phone.
@@ -584,6 +665,7 @@ button {
 
                     </label>
 
+
                     <input
                         type="file"
                         id="photoInput"
@@ -591,7 +673,11 @@ button {
                         multiple
                     >
 
-                    <div id="previewImages" class="preview-images"></div>
+
+                    <div
+                        id="previewImages"
+                        class="preview-images"
+                    ></div>
 
 
                     <div class="button-row">
@@ -614,14 +700,21 @@ button {
 
                     </div>
 
-                    <div id="statusMessage" class="status-message"></div>
+
+                    <div
+                        id="statusMessage"
+                        class="status-message"
+                    ></div>
+
 
                 </form>
 
             </div>
 
 
-            <!-- RECENT ANNOUNCEMENTS -->
+            <!-- =========================
+                 PUBLISHED ANNOUNCEMENTS
+            ========================= -->
 
             <div class="card recent-section">
 
@@ -631,7 +724,11 @@ button {
                     Recent announcements published by administrators.
                 </p>
 
-                <div id="announcementList" class="announcement-list">
+
+                <div
+                    id="announcementList"
+                    class="announcement-list"
+                >
 
                     <p style="color:#777;">
                         Loading announcements...
@@ -641,10 +738,13 @@ button {
 
             </div>
 
+
         </section>
 
 
-        <!-- RIGHT: LIVE PREVIEW -->
+        <!-- =========================
+             RIGHT COLUMN: PREVIEW
+        ========================= -->
 
         <aside class="live-preview">
 
@@ -654,7 +754,9 @@ button {
                     Live Announcement Preview
                 </div>
 
+
                 <div class="announcement-preview">
+
 
                     <div class="preview-header">
 
@@ -664,7 +766,9 @@ button {
 
                     </div>
 
+
                     <div id="previewPhotoContainer"></div>
+
 
                     <div class="preview-body">
 
@@ -672,7 +776,11 @@ button {
                             Your announcement message will appear here as you type.
                         </p>
 
-                        <div class="preview-date" id="previewCategory">
+
+                        <div
+                            class="preview-date"
+                            id="previewCategory"
+                        >
                             General Announcement
                         </div>
 
@@ -684,10 +792,15 @@ button {
 
         </aside>
 
+
     </div>
 
 </main>
 
+
+<!-- =========================
+     FIREBASE JAVASCRIPT
+========================= -->
 
 <script type="module">
 
@@ -696,8 +809,6 @@ import { db, storage } from "./firebase.js";
 import {
     collection,
     addDoc,
-    query,
-    orderBy,
     onSnapshot,
     serverTimestamp
 } from "https://www.gstatic.com/firebasejs/12.16.0/firebase-firestore.js";
@@ -709,7 +820,12 @@ import {
 } from "https://www.gstatic.com/firebasejs/12.16.0/firebase-storage.js";
 
 
+/* =========================
+   ELEMENTS
+========================= */
+
 const form = document.getElementById("announcementForm");
+
 const titleInput = document.getElementById("title");
 const messageInput = document.getElementById("message");
 const categoryInput = document.getElementById("category");
@@ -724,6 +840,9 @@ const previewPhotoContainer = document.getElementById("previewPhotoContainer");
 const publishBtn = document.getElementById("publishBtn");
 const statusMessage = document.getElementById("statusMessage");
 
+const announcementList = document.getElementById("announcementList");
+
+
 let selectedFiles = [];
 
 
@@ -731,14 +850,15 @@ let selectedFiles = [];
    LIVE PREVIEW
 ========================= */
 
-titleInput.addEventListener("input", () => {
+titleInput.addEventListener("input", function() {
 
     previewTitle.textContent =
         titleInput.value || "Your Announcement Title";
 
 });
 
-messageInput.addEventListener("input", () => {
+
+messageInput.addEventListener("input", function() {
 
     previewMessage.textContent =
         messageInput.value ||
@@ -746,7 +866,8 @@ messageInput.addEventListener("input", () => {
 
 });
 
-categoryInput.addEventListener("change", () => {
+
+categoryInput.addEventListener("change", function() {
 
     previewCategory.textContent =
         categoryInput.value + " Announcement";
@@ -758,7 +879,7 @@ categoryInput.addEventListener("change", () => {
    PHOTO SELECTION
 ========================= */
 
-photoInput.addEventListener("change", () => {
+photoInput.addEventListener("change", function() {
 
     selectedFiles = Array.from(photoInput.files);
 
@@ -772,7 +893,7 @@ function showPhotoPreviews() {
     previewImages.innerHTML = "";
     previewPhotoContainer.innerHTML = "";
 
-    selectedFiles.forEach((file, index) => {
+    selectedFiles.forEach(function(file, index) {
 
         const reader = new FileReader();
 
@@ -781,29 +902,39 @@ function showPhotoPreviews() {
             const wrapper = document.createElement("div");
             wrapper.className = "preview-item";
 
+
             const image = document.createElement("img");
             image.src = event.target.result;
 
+
             const removeButton = document.createElement("button");
+
+            removeButton.type = "button";
             removeButton.className = "remove-photo";
             removeButton.textContent = "×";
+
 
             removeButton.onclick = function() {
 
                 selectedFiles.splice(index, 1);
+
                 showPhotoPreviews();
 
             };
+
 
             wrapper.appendChild(image);
             wrapper.appendChild(removeButton);
 
             previewImages.appendChild(wrapper);
 
-            // First photo appears in live preview
+
+            // Display first selected photo in live preview
+
             if (index === 0) {
 
                 const previewImage = document.createElement("img");
+
                 previewImage.src = event.target.result;
                 previewImage.className = "preview-photo";
 
@@ -824,61 +955,95 @@ function showPhotoPreviews() {
    PUBLISH ANNOUNCEMENT
 ========================= */
 
-form.addEventListener("submit", async (event) => {
+form.addEventListener("submit", async function(event) {
 
     event.preventDefault();
+
 
     const title = titleInput.value.trim();
     const message = messageInput.value.trim();
     const category = categoryInput.value;
 
+
     if (!title || !message) {
 
-        showStatus("Please enter both a title and message.", "error");
+        showStatus(
+            "Please enter both a title and message.",
+            "error"
+        );
+
         return;
 
     }
 
+
     publishBtn.disabled = true;
     publishBtn.textContent = "Publishing...";
+
 
     try {
 
         const photoUrls = [];
 
-        // Upload photos to Firebase Storage
+
+        /* =========================
+           UPLOAD PHOTOS
+        ========================= */
+
         for (const file of selectedFiles) {
 
+            const safeFileName = file.name
+                .replace(/[^a-zA-Z0-9._-]/g, "_");
+
             const fileName =
-                Date.now() + "_" + file.name.replace(/\s+/g, "_");
+                Date.now() + "_" + safeFileName;
+
 
             const storageRef = ref(
                 storage,
                 "announcements/" + fileName
             );
 
+
             await uploadBytes(storageRef, file);
+
 
             const downloadURL =
                 await getDownloadURL(storageRef);
+
 
             photoUrls.push(downloadURL);
 
         }
 
 
-        // Save announcement in Firestore
-        await addDoc(collection(db, "announcements"), {
+        /* =========================
+           SAVE TO FIRESTORE
+        ========================= */
+
+        const announcementData = {
 
             title: title,
+
             message: message,
+
             category: category,
+
             photos: photoUrls,
-            time: new Date().toLocaleString(),
+
+            time: new Date().toLocaleString("en-KE"),
+
             createdAt: serverTimestamp(),
+
             notificationSent: false
 
-        });
+        };
+
+
+        await addDoc(
+            collection(db, "announcements"),
+            announcementData
+        );
 
 
         showStatus(
@@ -886,134 +1051,22 @@ form.addEventListener("submit", async (event) => {
             "success"
         );
 
+
         clearForm();
+
 
     } catch (error) {
 
-        console.error("Announcement error:", error);
-
-        showStatus(
-            "Failed to publish announcement: " + error.message,
-            "error"
-        );
-
-    } finally {
-
-        publishBtn.disabled = false;
-        publishBtn.textContent = "Publish Announcement";
-
-    }
-
-});
+        console.error("Announcement publishing error:", error);
 
 
-/* =========================
-   LOAD ANNOUNCEMENTS
-========================= */
-
-const announcementsQuery = query(
-    collection(db, "announcements"),
-    orderBy("createdAt", "desc")
-);
-
-onSnapshot(
-    announcementsQuery,
-    (snapshot) => {
-
-        const list = document.getElementById("announcementList");
-
-        list.innerHTML = "";
-
-        if (snapshot.empty) {
-
-            list.innerHTML =
-                "<p style='color:#777;'>No announcements published yet.</p>";
-
-            return;
-
-        }
-
-        snapshot.forEach((docSnap) => {
-
-            const data = docSnap.data();
-
-            const item = document.createElement("div");
-            item.className = "announcement-item";
-
-            const title = document.createElement("h3");
-            title.textContent = data.title || "Untitled Announcement";
-
-            const message = document.createElement("p");
-            message.textContent = data.message || "";
-
-            const date = document.createElement("small");
-            date.textContent =
-                data.time || "Recently published";
-
-            item.appendChild(title);
-            item.appendChild(message);
-            item.appendChild(date);
-
-            list.appendChild(item);
-
-        });
-
-    },
-    (error) => {
-
-        console.error(error);
-
-        document.getElementById("announcementList").innerHTML =
-            "<p style='color:#dc3545;'>Unable to load announcements.</p>";
-
-    }
-);
+        let errorMessage =
+            "Failed to publish announcement.";
 
 
-/* =========================
-   CLEAR FORM
-========================= */
+        if (
+            error.code === "storage/unauthorized"
+        ) {
 
-window.clearForm = function() {
-
-    form.reset();
-
-    selectedFiles = [];
-
-    previewImages.innerHTML = "";
-    previewPhotoContainer.innerHTML = "";
-
-    previewTitle.textContent = "Your Announcement Title";
-    previewMessage.textContent =
-        "Your announcement message will appear here.";
-    previewCategory.textContent = "General Announcement";
-
-};
-
-
-/* =========================
-   STATUS MESSAGE
-========================= */
-
-function showStatus(message, type) {
-
-    statusMessage.textContent = message;
-
-    statusMessage.className =
-        "status-message " +
-        (type === "success"
-            ? "status-success"
-            : "status-error");
-
-    statusMessage.style.display = "block";
-
-    setTimeout(() => {
-
-        statusMessage.style.display = "none";
-
-    }, 5000);
-
-}
-
-
-/* =======================
+            errorMessage =
+                "Firebase S
