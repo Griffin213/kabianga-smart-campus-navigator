@@ -1,4 +1,4 @@
-const CACHE_NAME = "uok-campus-v30";
+const CACHE_NAME = "uok-campus-v32";
 
 const urlsToCache = [
     "./",
@@ -12,18 +12,33 @@ const urlsToCache = [
     "welcome.jpg"
 ];
 
+
+// ==========================================
+// INSTALL
+// ==========================================
+
 self.addEventListener("install", event => {
+
+    console.log("UOK Service Worker v32 installing...");
 
     self.skipWaiting();
 
     event.waitUntil(
         caches.open(CACHE_NAME)
-            .then(cache => cache.addAll(urlsToCache))
+            .then(cache => {
+                return cache.addAll(urlsToCache);
+            })
     );
 });
 
 
+// ==========================================
+// ACTIVATE
+// ==========================================
+
 self.addEventListener("activate", event => {
+
+    console.log("UOK Service Worker v32 activated.");
 
     event.waitUntil(
 
@@ -34,6 +49,11 @@ self.addEventListener("activate", event => {
                 cacheNames.map(cacheName => {
 
                     if (cacheName !== CACHE_NAME) {
+
+                        console.log(
+                            "Deleting old cache:",
+                            cacheName
+                        );
 
                         return caches.delete(cacheName);
 
@@ -53,35 +73,52 @@ self.addEventListener("activate", event => {
 });
 
 
+// ==========================================
+// FETCH
+// ==========================================
+
 self.addEventListener("fetch", event => {
 
-    // Always get JavaScript files from the network first.
-    // This prevents Prince AI from using an old cached JS file.
+    const url = event.request.url;
+
+
+    // ======================================
+    // ALWAYS GET THESE FROM NETWORK FIRST
+    // ======================================
 
     if (
-        event.request.url.includes("prince-ai.js") ||
-        event.request.url.includes("knowledge.js") ||
-        event.request.url.includes("service-worker.js")
+        url.includes("prince-ai.js") ||
+        url.includes("knowledge.js") ||
+        url.includes("service-worker.js")
     ) {
 
         event.respondWith(
 
             fetch(event.request)
+
                 .then(response => {
 
                     const copy = response.clone();
 
                     caches.open(CACHE_NAME)
                         .then(cache => {
-                            cache.put(event.request, copy);
+
+                            cache.put(
+                                event.request,
+                                copy
+                            );
+
                         });
 
                     return response;
 
                 })
+
                 .catch(() => {
 
-                    return caches.match(event.request);
+                    return caches.match(
+                        event.request
+                    );
 
                 })
 
@@ -91,26 +128,59 @@ self.addEventListener("fetch", event => {
     }
 
 
-    // Firebase / Google services should not be cached.
+    // ======================================
+    // DO NOT CACHE FIREBASE / GOOGLE SERVICES
+    // ======================================
 
     if (
-        event.request.url.includes("firestore.googleapis.com") ||
-        event.request.url.includes("firebase") ||
-        event.request.url.includes("gstatic")
+        url.includes("firebase") ||
+        url.includes("firestore.googleapis.com") ||
+        url.includes("gstatic.com") ||
+        url.includes("googleapis.com")
     ) {
 
         return;
+
     }
 
 
-    // Other files: cache first, then network.
+    // ======================================
+    // OTHER FILES
+    // CACHE FIRST
+    // ======================================
 
     event.respondWith(
 
         caches.match(event.request)
+
             .then(response => {
 
-                return response || fetch(event.request);
+                if (response) {
+
+                    return response;
+
+                }
+
+                return fetch(event.request)
+
+                    .then(networkResponse => {
+
+                        const copy =
+                            networkResponse.clone();
+
+                        caches.open(CACHE_NAME)
+                            .then(cache => {
+
+                                cache.put(
+                                    event.request,
+                                    copy
+                                );
+
+                            });
+
+                        return networkResponse;
+
+                    });
 
             })
 
