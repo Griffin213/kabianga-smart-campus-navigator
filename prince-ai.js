@@ -71,9 +71,7 @@ function addBotMessage(message) {
 
 function createGoogleMapsLink(destination) {
 
-    const query = encodeURIComponent(
-        destination + ", University of Kabianga, Kenya"
-    );
+    const query = encodeURIComponent(destination);
 
     return (
         "https://www.google.com/maps/search/?api=1&query=" +
@@ -89,56 +87,55 @@ function createGoogleMapsLink(destination) {
 const navigationDestinations = {
 
     "main gate":
-        "University of Kabianga Main Gate",
+        "University of Kabianga Main Gate, Kenya",
 
     "gate":
-        "University of Kabianga Main Gate",
+        "University of Kabianga Main Gate, Kenya",
 
     "ltb1":
-        "LTB1, University of Kabianga",
+        "LTB1, University of Kabianga, Kenya",
 
     "ltb 1":
-        "LTB1, University of Kabianga",
+        "LTB1, University of Kabianga, Kenya",
 
     "ltb2":
-        "LTB2, University of Kabianga",
+        "LTB2, University of Kabianga, Kenya",
 
     "ltb 2":
-        "LTB2, University of Kabianga",
+        "LTB2, University of Kabianga, Kenya",
 
     "ltb3":
-        "LTB3, University of Kabianga",
+        "LTB3, University of Kabianga, Kenya",
 
     "ltb 3":
-        "LTB3, University of Kabianga",
+        "LTB3, University of Kabianga, Kenya",
 
     "ltb4":
-        "LTB4, University of Kabianga",
+        "LTB4, University of Kabianga, Kenya",
 
     "ltb 4":
-        "LTB4, University of Kabianga",
+        "LTB4, University of Kabianga, Kenya",
 
     "vc office":
-        "Vice Chancellor Office, University of Kabianga",
+        "Vice Chancellor Office, University of Kabianga, Kenya",
 
     "vice chancellor":
-        "Vice Chancellor Office, University of Kabianga",
+        "Vice Chancellor Office, University of Kabianga, Kenya",
 
     "senate chamber":
-        "Senate Chamber, LTB3, University of Kabianga",
+        "Senate Chamber, LTB3, University of Kabianga, Kenya",
 
     "school of business":
-        "School of Business, University of Kabianga",
+        "School of Business, University of Kabianga, Kenya",
 
     "micro teaching lab":
-        "Micro Teaching Lab, University of Kabianga",
+        "Micro Teaching Lab, LTB3, University of Kabianga, Kenya",
 
     "director of gender office":
-        "Director of Gender Office, University of Kabianga",
+        "Director of Gender Office, University of Kabianga, Kenya",
 
     "postgraduate studies":
-        "Director of Postgraduate Studies Office, University of Kabianga"
-
+        "Director of Postgraduate Studies Office, University of Kabianga, Kenya"
 };
 
 
@@ -151,7 +148,8 @@ function createNavigateButton(destination, label) {
     const link = createGoogleMapsLink(destination);
 
     return `
-        <br>
+        <br><br>
+
         <a
             href="${link}"
             target="_blank"
@@ -172,6 +170,7 @@ function detectNavigationRequest(question) {
 
     const text = question.toLowerCase().trim();
 
+
     if (
         text.includes("vice chancellor") ||
         text.includes("vc office") ||
@@ -180,13 +179,19 @@ function detectNavigationRequest(question) {
         return navigationDestinations["vc office"];
     }
 
+
     if (text.includes("senate chamber")) {
         return navigationDestinations["senate chamber"];
     }
 
-    if (text.includes("micro teaching")) {
+
+    if (
+        text.includes("micro teaching") ||
+        text.includes("microteaching")
+    ) {
         return navigationDestinations["micro teaching lab"];
     }
+
 
     if (
         text.includes("gender office") ||
@@ -195,6 +200,7 @@ function detectNavigationRequest(question) {
         return navigationDestinations["director of gender office"];
     }
 
+
     if (
         text.includes("postgraduate") ||
         text.includes("post graduate")
@@ -202,9 +208,14 @@ function detectNavigationRequest(question) {
         return navigationDestinations["postgraduate studies"];
     }
 
-    if (text.includes("school of business")) {
+
+    if (
+        text.includes("school of business") ||
+        text.includes("business offices")
+    ) {
         return navigationDestinations["school of business"];
     }
+
 
     if (
         text.includes("ltb 1") ||
@@ -213,12 +224,14 @@ function detectNavigationRequest(question) {
         return navigationDestinations["ltb1"];
     }
 
+
     if (
         text.includes("ltb 2") ||
         text.includes("ltb2")
     ) {
         return navigationDestinations["ltb2"];
     }
+
 
     if (
         text.includes("ltb 3") ||
@@ -227,12 +240,14 @@ function detectNavigationRequest(question) {
         return navigationDestinations["ltb3"];
     }
 
+
     if (
         text.includes("ltb 4") ||
         text.includes("ltb4")
     ) {
         return navigationDestinations["ltb4"];
     }
+
 
     if (
         text.includes("main gate") ||
@@ -241,6 +256,7 @@ function detectNavigationRequest(question) {
     ) {
         return navigationDestinations["main gate"];
     }
+
 
     return null;
 }
@@ -275,7 +291,9 @@ function isNavigationQuestion(question) {
     ];
 
     return navigationWords.some(function(word) {
+
         return text.includes(word);
+
     });
 }
 
@@ -289,6 +307,7 @@ function handleNavigationRequest(question) {
     const destination =
         detectNavigationRequest(question);
 
+
     if (!destination) {
 
         return `
@@ -297,8 +316,7 @@ function handleNavigationRequest(question) {
 
             <br><br>
 
-            Tell me the place you want to go to,
-            for example:
+            Tell me the place you want to go to:
 
             <br><br>
 
@@ -311,6 +329,7 @@ function handleNavigationRequest(question) {
             • Directions to LTB4
             <br>
             • Where is the VC Office?
+
             <br><br>
 
             Google Maps will handle the actual
@@ -319,18 +338,19 @@ function handleNavigationRequest(question) {
         `;
     }
 
+
     return `
-        🧭 I found the destination:
+        🧭 <strong>Destination found</strong>
 
         <br><br>
 
-        <strong>${destination}</strong>
+        ${destination}
 
         <br><br>
 
-        Tap the button below to open Google Maps
-        and get the current walking route,
-        distance, ETA and turn-by-turn directions.
+        Tap below to open Google Maps and get
+        the current walking route, distance,
+        ETA and turn-by-turn directions.
 
         ${createNavigateButton(
             destination,
@@ -346,7 +366,9 @@ function handleNavigationRequest(question) {
 
 function findKnowledgeAnswer(question) {
 
-    const text = question.toLowerCase().trim();
+    const text =
+        question.toLowerCase().trim();
+
 
     // --------------------------------------------------------
     // NAVIGATION
@@ -375,10 +397,12 @@ function findKnowledgeAnswer(question) {
 
             return `
                 🏛️ The <strong>Senate Chamber</strong>
-                is located on the <strong>First Floor of LTB3</strong>
+                is located on the
+                <strong>First Floor of LTB3</strong>
                 at the University of Kabianga.
             `;
         }
+
 
         if (
             text.includes("micro") ||
@@ -392,6 +416,7 @@ function findKnowledgeAnswer(question) {
             `;
         }
 
+
         if (text.includes("business")) {
 
             return `
@@ -401,6 +426,7 @@ function findKnowledgeAnswer(question) {
             `;
         }
 
+
         if (text.includes("gender")) {
 
             return `
@@ -409,6 +435,7 @@ function findKnowledgeAnswer(question) {
                 <strong>Second Floor of LTB3</strong>.
             `;
         }
+
 
         if (
             text.includes("postgraduate") ||
@@ -422,9 +449,9 @@ function findKnowledgeAnswer(question) {
             `;
         }
 
+
         return `
-            🏢 <strong>LTB3</strong> has the following
-            known facilities:
+            🏢 <strong>LTB3</strong>
 
             <br><br>
 
@@ -530,9 +557,7 @@ function findKnowledgeAnswer(question) {
 
             <br><br>
 
-            <strong>
-            "Where is LTB3?"
-            </strong>
+            <strong>"Where is LTB3?"</strong>
         `;
     }
 
@@ -548,19 +573,28 @@ function findKnowledgeAnswer(question) {
             campusKnowledge
         ) {
 
-            // Exact key match
+            // Exact match
 
             if (campusKnowledge[text]) {
 
                 const item =
                     campusKnowledge[text];
 
+
                 if (typeof item === "string") {
+
                     return item;
+
                 }
 
-                if (item && item.info) {
+
+                if (
+                    item &&
+                    item.info
+                ) {
+
                     return item.info;
+
                 }
             }
 
@@ -569,6 +603,7 @@ function findKnowledgeAnswer(question) {
 
             const keys =
                 Object.keys(campusKnowledge);
+
 
             for (
                 let i = 0;
@@ -579,6 +614,7 @@ function findKnowledgeAnswer(question) {
                 const key =
                     keys[i].toLowerCase();
 
+
                 if (
                     text.includes(key) ||
                     key.includes(text)
@@ -587,15 +623,23 @@ function findKnowledgeAnswer(question) {
                     const item =
                         campusKnowledge[keys[i]];
 
-                    if (typeof item === "string") {
+
+                    if (
+                        typeof item === "string"
+                    ) {
+
                         return item;
+
                     }
+
 
                     if (
                         item &&
                         item.info
                     ) {
+
                         return item.info;
+
                     }
                 }
             }
@@ -633,6 +677,7 @@ function findKnowledgeAnswer(question) {
         <br><br>
 
         For navigation, try:
+
         <strong>"Navigate to LTB3"</strong>.
     `;
 }
@@ -647,18 +692,31 @@ function cleanTextForSpeech(text) {
     const temp =
         document.createElement("div");
 
+
     temp.innerHTML = text;
+
 
     let clean =
         temp.textContent ||
         temp.innerText ||
         "";
 
+
     clean = clean
-        .replace(/Navigate with Google Maps/gi, "")
-        .replace(/Google Maps/gi, "")
-        .replace(/\s+/g, " ")
+        .replace(
+            /Navigate with Google Maps/gi,
+            ""
+        )
+        .replace(
+            /Google Maps/gi,
+            ""
+        )
+        .replace(
+            /\s+/g,
+            " "
+        )
         .trim();
+
 
     return clean;
 }
@@ -673,29 +731,44 @@ function speakPrinceAI(text) {
     if (
         !("speechSynthesis" in window)
     ) {
+
         return;
     }
+
 
     try {
 
         window.speechSynthesis.cancel();
 
+
         const clean =
             cleanTextForSpeech(text);
 
+
         if (!clean) {
+
             return;
         }
 
+
         const speech =
-            new SpeechSynthesisUtterance(clean);
+            new SpeechSynthesisUtterance(
+                clean
+            );
+
 
         speech.lang = "en-KE";
+
         speech.rate = 0.95;
+
         speech.pitch = 1;
+
         speech.volume = 1;
 
-        window.speechSynthesis.speak(speech);
+
+        window.speechSynthesis.speak(
+            speech
+        );
 
     } catch (error) {
 
@@ -713,10 +786,16 @@ function speakPrinceAI(text) {
 
 async function sendMessage() {
 
-    console.log("📨 sendMessage() called");
+    console.log(
+        "📨 sendMessage() called"
+    );
+
 
     const input =
-        document.getElementById("userMessage");
+        document.getElementById(
+            "userMessage"
+        );
+
 
     if (!input) {
 
@@ -727,25 +806,22 @@ async function sendMessage() {
         return;
     }
 
+
     const message =
         input.value.trim();
 
+
     if (!message) {
+
         return;
     }
 
 
-    // Show user message
-
     addUserMessage(message);
 
 
-    // Clear input
-
     input.value = "";
 
-
-    // Thinking message
 
     addBotMessage(
         "🤔 Prince AI is thinking..."
@@ -755,13 +831,16 @@ async function sendMessage() {
     try {
 
         const answer =
-            findKnowledgeAnswer(message);
+            findKnowledgeAnswer(
+                message
+            );
 
-
-        // Remove thinking message
 
         const chatBox =
-            document.getElementById("chatBox");
+            document.getElementById(
+                "chatBox"
+            );
+
 
         if (chatBox) {
 
@@ -770,10 +849,14 @@ async function sendMessage() {
                     ".bot-message"
                 );
 
+
             if (messages.length > 0) {
 
                 const lastMessage =
-                    messages[messages.length - 1];
+                    messages[
+                        messages.length - 1
+                    ];
+
 
                 if (
                     lastMessage.textContent.includes(
@@ -782,16 +865,22 @@ async function sendMessage() {
                 ) {
 
                     lastMessage.remove();
+
                 }
             }
         }
 
 
-        await new Promise(function(resolve) {
+        await new Promise(
+            function(resolve) {
 
-            setTimeout(resolve, 300);
+                setTimeout(
+                    resolve,
+                    300
+                );
 
-        });
+            }
+        );
 
 
         addBotMessage(answer);
@@ -804,6 +893,7 @@ async function sendMessage() {
             "❌ Send message error:",
             error
         );
+
 
         addBotMessage(`
             ⚠️ Sorry, I encountered an error.
@@ -820,7 +910,8 @@ async function sendMessage() {
 // MAKE SEND FUNCTION AVAILABLE
 // ============================================================
 
-window.sendMessage = sendMessage;
+window.sendMessage =
+    sendMessage;
 
 
 // ============================================================
@@ -833,6 +924,7 @@ function startPrinceAI() {
         "🎤 startPrinceAI() called"
     );
 
+
     const SpeechRecognition =
         window.SpeechRecognition ||
         window.webkitSpeechRecognition;
@@ -844,9 +936,11 @@ function startPrinceAI() {
             "Voice recognition is not supported by this browser. Please use Google Chrome on Android."
         );
 
+
         console.error(
             "❌ SpeechRecognition not supported"
         );
+
 
         return;
     }
@@ -872,11 +966,14 @@ function startPrinceAI() {
     recognition.lang =
         "en-KE";
 
+
     recognition.continuous =
         false;
 
+
     recognition.interimResults =
         false;
+
 
     recognition.maxAlternatives =
         1;
@@ -893,10 +990,14 @@ function startPrinceAI() {
                 "🎤 Microphone started"
             );
 
+
             isListening =
                 true;
 
-            updateVoiceButton(true);
+
+            updateVoiceButton(
+                true
+            );
         };
 
 
@@ -908,36 +1009,3 @@ function startPrinceAI() {
         async function(event) {
 
             console.log(
-                "🎤 Voice result received"
-            );
-
-            const transcript =
-                event.results[0][0].transcript;
-
-            console.log(
-                "Voice:",
-                transcript
-            );
-
-
-            const input =
-                document.getElementById(
-                    "userMessage"
-                );
-
-
-            if (input) {
-
-                input.value =
-                    transcript;
-            }
-
-
-            // Show user's voice message
-
-            addUserMessage(
-                transcript
-            );
-
-
-        
