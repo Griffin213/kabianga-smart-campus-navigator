@@ -1,20 +1,22 @@
-const CACHE_NAME = "uok-campus-v11";
+// ==========================================
+// UNIVERSITY OF KABIANGA
+// SMART CAMPUS NAVIGATOR
+// SERVICE WORKER
+// ==========================================
+
+const CACHE_NAME = "uok-campus-v20";
 
 const urlsToCache = [
     "./",
     "index.html",
     "home.html",
-    "announcements.html",
     "style.css",
     "script.js",
-    "firebase.js",
-    "announcements.js",
-    "notifications.js",
-    "prince-ai.js",
     "knowledge.js",
-    "logo.jpg"
+    "prince-ai.js",
+    "logo.jpg",
+    "welcome.jpg"
 ];
-
 
 // ==========================================
 // INSTALL
@@ -22,26 +24,66 @@ const urlsToCache = [
 
 self.addEventListener("install", event => {
 
-    console.log("⚙️ UOK Service Worker installing...");
-
     self.skipWaiting();
 
     event.waitUntil(
-
         caches.open(CACHE_NAME)
-            .then(cache => {
+            .then(cache => cache.addAll(urlsToCache))
+            .catch(error => {
+                console.log("Cache installation error:", error);
+            })
+    );
 
-                console.log("📦 Caching UOK application files");
+});
 
-                return cache.addAll(urlsToCache);
+
+// ==========================================
+// FETCH
+// IMPORTANT:
+// NETWORK FIRST FOR HTML + JS + CSS
+// ==========================================
+
+self.addEventListener("fetch", event => {
+
+    const request = event.request;
+
+    // Do not interfere with Firebase/network requests
+    if (
+        request.url.includes("firestore.googleapis.com") ||
+        request.url.includes("firebase") ||
+        request.url.includes("gstatic")
+    ) {
+        return;
+    }
+
+    event.respondWith(
+
+        fetch(request)
+            .then(response => {
+
+                // Save fresh response in cache
+                if (
+                    response &&
+                    response.status === 200 &&
+                    response.type !== "opaque"
+                ) {
+
+                    const responseClone = response.clone();
+
+                    caches.open(CACHE_NAME)
+                        .then(cache => {
+                            cache.put(request, responseClone);
+                        });
+
+                }
+
+                return response;
 
             })
-            .catch(error => {
+            .catch(() => {
 
-                console.error(
-                    "❌ Cache installation error:",
-                    error
-                );
+                // If internet fails, use cached version
+                return caches.match(request);
 
             })
 
@@ -52,65 +94,30 @@ self.addEventListener("install", event => {
 
 // ==========================================
 // ACTIVATE
+// DELETE ALL OLD CACHES
 // ==========================================
 
 self.addEventListener("activate", event => {
 
-    console.log("✅ UOK Service Worker activated");
-
     event.waitUntil(
 
-        caches.keys().then(keys => {
+        caches.keys()
+            .then(cacheNames => {
 
-            return Promise.all(
+                return Promise.all(
 
-                keys.map(key => {
+                    cacheNames.map(cacheName => {
 
-                    if (key !== CACHE_NAME) {
+                        if (cacheName !== CACHE_NAME) {
+                            return caches.delete(cacheName);
+                        }
 
-                        console.log(
-                            "🗑️ Removing old cache:",
-                            key
-                        );
+                    })
 
-                        return caches.delete(key);
-
-                    }
-
-                })
-
-            );
-
-        })
-
-    );
-
-    self.clients.claim();
-
-});
-
-
-// ==========================================
-// FETCH
-// ==========================================
-
-self.addEventListener("fetch", event => {
-
-    event.respondWith(
-
-        fetch(event.request)
-
-            .then(response => {
-
-                return response;
+                );
 
             })
-
-            .catch(() => {
-
-                return caches.match(event.request);
-
-            })
+            .then(() => self.clients.claim())
 
     );
 
