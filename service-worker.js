@@ -1,13 +1,20 @@
-const CACHE_NAME = "uok-campus-v32";
+// ==========================================
+// UNIVERSITY OF KABIANGA
+// SMART CAMPUS NAVIGATOR
+// SERVICE WORKER
+// ==========================================
+
+const CACHE_NAME = "uok-campus-v40";
 
 const urlsToCache = [
     "./",
     "index.html",
     "home.html",
-    "style.css",
-    "script.js",
+    "prince-ai.html",
     "prince-ai.js",
     "knowledge.js",
+    "script.js",
+    "style.css",
     "logo.jpg",
     "welcome.jpg"
 ];
@@ -19,16 +26,29 @@ const urlsToCache = [
 
 self.addEventListener("install", event => {
 
-    console.log("UOK Service Worker v32 installing...");
+    console.log(
+        "✅ UOK Service Worker v40 installing..."
+    );
 
+    // Activate the new service worker immediately
     self.skipWaiting();
 
     event.waitUntil(
+
         caches.open(CACHE_NAME)
+
             .then(cache => {
+
+                console.log(
+                    "📦 Caching UOK application files..."
+                );
+
                 return cache.addAll(urlsToCache);
+
             })
+
     );
+
 });
 
 
@@ -38,38 +58,49 @@ self.addEventListener("install", event => {
 
 self.addEventListener("activate", event => {
 
-    console.log("UOK Service Worker v32 activated.");
+    console.log(
+        "✅ UOK Service Worker v40 activated."
+    );
 
     event.waitUntil(
 
-        caches.keys().then(cacheNames => {
+        caches.keys()
 
-            return Promise.all(
+            .then(cacheNames => {
 
-                cacheNames.map(cacheName => {
+                return Promise.all(
 
-                    if (cacheName !== CACHE_NAME) {
+                    cacheNames.map(cacheName => {
 
-                        console.log(
-                            "Deleting old cache:",
-                            cacheName
-                        );
+                        if (
+                            cacheName !== CACHE_NAME
+                        ) {
 
-                        return caches.delete(cacheName);
+                            console.log(
+                                "🗑️ Deleting old cache:",
+                                cacheName
+                            );
 
-                    }
+                            return caches.delete(
+                                cacheName
+                            );
 
-                })
+                        }
 
-            );
+                    })
 
-        }).then(() => {
+                );
 
-            return self.clients.claim();
+            })
 
-        })
+            .then(() => {
+
+                return self.clients.claim();
+
+            })
 
     );
+
 });
 
 
@@ -79,36 +110,81 @@ self.addEventListener("activate", event => {
 
 self.addEventListener("fetch", event => {
 
-    const url = event.request.url;
+    const request = event.request;
+    const url = request.url;
 
 
     // ======================================
-    // ALWAYS GET THESE FROM NETWORK FIRST
+    // ONLY HANDLE HTTP/HTTPS REQUESTS
     // ======================================
 
     if (
+        !url.startsWith("http://") &&
+        !url.startsWith("https://")
+    ) {
+
+        return;
+
+    }
+
+
+    // ======================================
+    // DO NOT CACHE EXTERNAL SERVICES
+    // ======================================
+
+    if (
+        url.includes("firebase") ||
+        url.includes("firestore.googleapis.com") ||
+        url.includes("googleapis.com") ||
+        url.includes("gstatic.com")
+    ) {
+
+        return;
+
+    }
+
+
+    // ======================================
+    // ALWAYS GET IMPORTANT APP FILES
+    // FROM NETWORK FIRST
+    // ======================================
+
+    if (
+        url.includes("home.html") ||
+        url.includes("index.html") ||
+        url.includes("prince-ai.html") ||
         url.includes("prince-ai.js") ||
         url.includes("knowledge.js") ||
+        url.includes("script.js") ||
+        url.includes("style.css") ||
         url.includes("service-worker.js")
     ) {
 
         event.respondWith(
 
-            fetch(event.request)
+            fetch(request)
 
                 .then(response => {
 
-                    const copy = response.clone();
+                    if (
+                        response &&
+                        response.ok
+                    ) {
 
-                    caches.open(CACHE_NAME)
-                        .then(cache => {
+                        const copy =
+                            response.clone();
 
-                            cache.put(
-                                event.request,
-                                copy
-                            );
+                        caches.open(CACHE_NAME)
+                            .then(cache => {
 
-                        });
+                                cache.put(
+                                    request,
+                                    copy
+                                );
+
+                            });
+
+                    }
 
                     return response;
 
@@ -116,28 +192,18 @@ self.addEventListener("fetch", event => {
 
                 .catch(() => {
 
+                    console.log(
+                        "⚠️ Network unavailable. Using cached:",
+                        url
+                    );
+
                     return caches.match(
-                        event.request
+                        request
                     );
 
                 })
 
         );
-
-        return;
-    }
-
-
-    // ======================================
-    // DO NOT CACHE FIREBASE / GOOGLE SERVICES
-    // ======================================
-
-    if (
-        url.includes("firebase") ||
-        url.includes("firestore.googleapis.com") ||
-        url.includes("gstatic.com") ||
-        url.includes("googleapis.com")
-    ) {
 
         return;
 
@@ -151,32 +217,40 @@ self.addEventListener("fetch", event => {
 
     event.respondWith(
 
-        caches.match(event.request)
+        caches.match(request)
 
-            .then(response => {
+            .then(cachedResponse => {
 
-                if (response) {
+                if (cachedResponse) {
 
-                    return response;
+                    return cachedResponse;
 
                 }
 
-                return fetch(event.request)
+
+                return fetch(request)
 
                     .then(networkResponse => {
 
-                        const copy =
-                            networkResponse.clone();
+                        if (
+                            networkResponse &&
+                            networkResponse.ok
+                        ) {
 
-                        caches.open(CACHE_NAME)
-                            .then(cache => {
+                            const copy =
+                                networkResponse.clone();
 
-                                cache.put(
-                                    event.request,
-                                    copy
-                                );
+                            caches.open(CACHE_NAME)
+                                .then(cache => {
 
-                            });
+                                    cache.put(
+                                        request,
+                                        copy
+                                    );
+
+                                });
+
+                        }
 
                         return networkResponse;
 
@@ -185,5 +259,23 @@ self.addEventListener("fetch", event => {
             })
 
     );
+
+});
+
+
+// ==========================================
+// FORCE ALL OPEN TABS TO UPDATE
+// ==========================================
+
+self.addEventListener("message", event => {
+
+    if (
+        event.data &&
+        event.data.action === "SKIP_WAITING"
+    ) {
+
+        self.skipWaiting();
+
+    }
 
 });
