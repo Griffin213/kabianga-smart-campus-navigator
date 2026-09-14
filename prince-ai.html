@@ -1032,3 +1032,521 @@ function getAnswer(question) {
             return knowledge.ict_duties;
 
     }
+       "what do you know",
+       "what can you help me with"
+    ])
+    ) {
+
+        return knowledge.help;
+
+    }
+
+
+    /* ================================
+       VICE CHANCELLOR
+       ================================ */
+
+    if (
+        containsAny(q, [
+            "who is the vice chancellor",
+            "who is vc",
+            "name of the vice chancellor",
+            "vice chancellor name",
+            "prof erick koech",
+            "professor erick koech"
+        ])
+    ) {
+
+        return knowledge.vc;
+
+    }
+
+    if (
+        containsAny(q, [
+            "duties of the vice chancellor",
+            "responsibilities of the vice chancellor",
+            "what does the vice chancellor do",
+            "role of the vice chancellor",
+            "vc duties",
+            "vc responsibilities"
+        ])
+    ) {
+
+        return knowledge.vc_duties;
+
+    }
+
+
+    /* ================================
+       DVC ACADEMIC & STUDENT AFFAIRS
+       ================================ */
+
+    if (
+        containsAny(q, [
+            "who is the dvc",
+            "who is dvc",
+            "dvc academic",
+            "dvc student affairs",
+            "name of dvc",
+            "fredrick nyongesa kassilly"
+        ])
+    ) {
+
+        return knowledge.dvc;
+
+    }
+
+    if (
+        containsAny(q, [
+            "duties of the dvc",
+            "dvc duties",
+            "responsibilities of the dvc",
+            "what does the dvc do",
+            "role of the dvc"
+        ])
+    ) {
+
+        return knowledge.dvc_duties;
+
+    }
+
+
+    /* ================================
+       PLANNING RESEARCH & DEVELOPMENT
+       ================================ */
+
+    if (
+        containsAny(q, [
+            "planning research",
+            "research and development",
+            "planning research and development",
+            "who is responsible for research",
+            "who handles research",
+            "maurice owino oduor"
+        ])
+    ) {
+
+        if (
+            containsAny(q, [
+                "duties",
+                "responsibilities",
+                "role",
+                "what does",
+                "function",
+                "functions"
+            ])
+        ) {
+
+            return knowledge.research_duties;
+
+        }
+
+        return knowledge.research;
+
+    }
+
+
+    /* ================================
+       REGISTRAR ACADEMIC AFFAIRS
+       ================================ */
+
+    if (
+        containsAny(q, [
+            "registrar academic",
+            "registrar academic affairs",
+            "who is the registrar academic",
+            "who is registrar academic",
+            "cecilia sang"
+        ])
+    ) {
+
+        if (
+            containsAny(q, [
+                "duties",
+                "responsibilities",
+                "role",
+                "what does",
+                "function",
+                "functions"
+            ])
+        ) {
+
+            return knowledge.registrar_academic_duties;
+
+        }
+
+        return knowledge.registrar_academic;
+
+    }
+
+
+    /* ================================
+       REGISTRAR ADMINISTRATION
+       ================================ */
+
+    if (
+        containsAny(q, [
+            "registrar administration",
+            "who is the registrar administration",
+            "who is registrar administration",
+            "peter k kimalel",
+            "peter kimalel"
+        ])
+    ) {
+
+        if (
+            containsAny(q, [
+                "duties",
+                "responsibilities",
+                "role",
+                "what does",
+                "function",
+                "functions"
+            ])
+        ) {
+
+            return knowledge.registrar_admin_duties;
+
+        }
+
+        return knowledge.registrar_admin;
+
+    }
+
+
+    /* ================================
+       DEAN OF STUDENTS
+       ================================ */
+
+    if (
+        containsAny(q, [
+            "dean of students",
+            "who is the dean",
+            "who is dean of students",
+            "peter ngugi"
+        ])
+    ) {
+
+        if (
+            containsAny(q, [
+                "duties",
+                "responsibilities",
+                "role",
+                "what does",
+                "function",
+                "functions"
+            ])
+        ) {
+
+            return knowledge.dean_duties;
+
+        }
+
+        return knowledge.dean;
+
+    }
+
+
+    /* ================================
+       DIRECTOR ICT
+       ================================ */
+
+    if (
+        containsAny(q, [
+            "director ict",
+            "director of ict",
+            "who is the director ict",
+            "who is director of ict",
+            "geoffrey sowek"
+        ])
+    ) {
+
+        if (
+            containsAny(q, [
+                "duties",
+                "responsibilities",
+                "role",
+                "what does",
+                "function",
+                "functions"
+            ])
+        ) {
+
+            return knowledge.ict_duties;
+
+        }
+
+        return knowledge.ict;
+
+    }
+
+
+    /* ================================
+       FINANCE OFFICER
+       ================================ */
+
+    if (
+        containsAny(q, [
+            "finance officer",
+            "who is the finance officer",
+            "who is finance officer",
+            "willy koech",
+            "cpa willy koech"
+        ])
+    ) {
+
+        if (
+            containsAny(q, [
+                "duties",
+                "responsibilities",
+                "role",
+                "what does",
+                "function",
+                "functions"
+            ])
+        ) {
+
+            return knowledge.finance_duties;
+
+        }
+
+        return knowledge.finance;
+
+    }
+
+
+    /* ================================
+       SENATE
+       ================================ */
+
+    if (
+        containsAny(q, [
+            "what is the senate",
+            "tell me about senate",
+            "university senate",
+            "senate of the university",
+            "what does senate mean"
+        ])
+    ) {
+
+        return knowledge.senate;
+
+    }
+
+
+    if (
+        containsAny(q, [
+            "senate duties",
+            "duties of senate",
+            "duties of the senate",
+            "responsibilities of senate",
+            "role of senate",
+            "what does senate do"
+        ])
+    ) {
+
+        return knowledge.senate_duties;
+
+    }
+
+
+    if (
+        containsAny(q, [
+            "senate chamber",
+            "where is senate chamber",
+            "where is the senate chamber",
+            "location of senate chamber"
+        ])
+    ) {
+
+        return knowledge.senate_chamber;
+
+    }
+
+
+    /* ================================
+       LIBRARY
+       ================================ */
+
+    if (
+        containsAny(q, [
+            "library",
+            "university library",
+            "where is the library"
+        ])
+    ) {
+
+        if (
+            containsAny(q, [
+                "duties",
+                "responsibilities",
+                "role",
+                "what does",
+                "function",
+                "functions"
+            ])
+        ) {
+
+            return knowledge.library_duties;
+
+        }
+
+        return knowledge.library;
+
+    }
+
+
+    /* ================================
+       MAIN GATE
+       ================================ */
+
+    if (
+        containsAny(q, [
+            "main gate",
+            "university gate",
+            "campus gate",
+            "where is the gate"
+        ])
+    ) {
+
+        return knowledge.gate;
+
+    }
+
+
+    /* ================================
+       UNIVERSITY SERVICES
+       ================================ */
+
+    if (
+        containsAny(q, [
+            "admission",
+            "admissions",
+            "admissions office"
+        ])
+    ) {
+
+        return knowledge.admissions;
+
+    }
+
+
+    if (
+        containsAny(q, [
+            "examination",
+            "examinations",
+            "exams",
+            "examination office"
+        ])
+    ) {
+
+        return knowledge.examinations;
+
+    }
+
+
+    if (
+        containsAny(q, [
+            "postgraduate",
+            "director of postgraduate",
+            "postgraduate studies"
+        ])
+    ) {
+
+        return knowledge.postgraduate;
+
+    }
+
+
+    if (
+        containsAny(q, [
+            "gender office",
+            "director of gender",
+            "gender"
+        ])
+    ) {
+
+        return knowledge.gender;
+
+    }
+
+
+    /* ================================
+       LTB3 FLOORS
+       ================================ */
+
+    if (
+        containsAny(q, [
+            "ltb3 ground",
+            "ltb3 ground floor",
+            "ground floor ltb3",
+            "what is on ground floor ltb3",
+            "what is in ground floor ltb3"
+        ])
+    ) {
+
+        return knowledge.ltb3_ground;
+
+    }
+
+
+    if (
+        containsAny(q, [
+            "ltb3 first",
+            "ltb3 first floor",
+            "first floor ltb3",
+            "what is on first floor ltb3",
+            "what is in first floor ltb3"
+        ])
+    ) {
+
+        return knowledge.ltb3_first;
+
+    }
+
+
+    if (
+        containsAny(q, [
+            "ltb3 second",
+            "ltb3 second floor",
+            "second floor ltb3",
+            "what is on second floor ltb3",
+            "what is in second floor ltb3"
+        ])
+    ) {
+
+        return knowledge.ltb3_second;
+
+    }
+
+
+    if (
+        containsAny(q, [
+            "ltb3 third",
+            "ltb3 third floor",
+            "third floor ltb3",
+            "what is on third floor ltb3",
+            "what is in third floor ltb3"
+        ])
+    ) {
+
+        return knowledge.ltb3_third;
+
+    }
+
+
+    /* ================================
+       SCHOOL OF BUSINESS
+       ================================ */
+
+    if (
+        containsAny(q, [
+            "school of business offices",
+            "business offices",
+            "where are business offices",
+            "where is school of business",
+            "finance office ltb3",
+            "dean school of business",
+            "hods office"
+        ])
+    ) {
