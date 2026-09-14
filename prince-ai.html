@@ -544,3 +544,491 @@ const knowledge = {
 
     senate:
         "The Senate is an important academic governance body of the University of Kabianga 
+            , and it generally oversees academic matters, academic programmes, examinations, academic standards, teaching and research quality, academic regulations and other matters relating to the academic life of the university. The Senate Chamber is located on the First Floor of LTB3.",
+
+senate_duties:
+    "The Senate generally considers and oversees academic programmes, academic standards, examinations, teaching and research quality, academic regulations, graduation-related academic matters and other academic policies of the university.",
+
+senate_chamber:
+    "The Senate Chamber is located on the First Floor of LTB3. It is a meeting facility associated with academic governance and university academic administration.",
+
+
+/* ================================
+   UNIVERSITY SERVICES
+   ================================ */
+
+library:
+    "The University Library provides learning resources, research materials, digital information resources and study spaces for students and staff.",
+
+library_duties:
+    "The University Library generally supports teaching, learning and research by providing books, journals, electronic resources, study spaces, information literacy support and access to academic information.",
+
+gate:
+    "The Main Gate is the main entrance and an important starting point for navigating the University of Kabianga campus.",
+
+admissions:
+    "The Admissions Office generally assists with admission processes, student entry documentation, registration guidance and related academic enrolment matters.",
+
+examinations:
+    "The Examinations Office generally coordinates examination administration, examination schedules, examination records and examination-related information.",
+
+postgraduate:
+    "The Director of Postgraduate Studies generally coordinates postgraduate academic matters, postgraduate programmes, research supervision support and postgraduate administration.",
+
+gender:
+    "The Director of Gender Office generally promotes gender equality, inclusion, awareness and support for gender-related matters within the university community.",
+
+
+/* ================================
+   BUILDINGS
+   ================================ */
+
+ltb1:
+    "LTB1 is a lecture and teaching building containing lecture halls and learning spaces.",
+
+ltb2:
+    "LTB2 is a lecture and teaching building used for academic activities and lecture halls.",
+
+ltb3:
+    "LTB3 is a major lecture and teaching building containing lecture halls, university offices and important facilities including the Senate Chamber and Micro Teaching Lab.",
+
+ltb4:
+    "LTB4 is a lecture and teaching building used for academic activities and lecture halls.",
+
+
+/* ================================
+   LTB3 FLOORS
+   ================================ */
+
+ltb3_ground:
+    "The Ground Floor of LTB3 contains the Dean, School of Education; HOD Curriculum and Instruction; HOD Physiology and Foundations; LH1; and LH2.",
+
+ltb3_first:
+    "The First Floor of LTB3 contains the Senate Chamber, LH3, Micro Teaching Lab and School of Business Offices. The School of Business Offices include the Finance Office, Dean School of Business Office and HODs Office.",
+
+ltb3_second:
+    "The Second Floor of LTB3 contains the Director of Gender Office, LH5, LH6 and the Director of Postgraduate Studies Office.",
+
+ltb3_third:
+    "The Third Floor of LTB3 contains LH7 and LH8.",
+
+
+business:
+    "The School of Business Offices are located on the First Floor of LTB3. These include the Finance Office, Dean School of Business Office and HODs Office.",
+
+
+lecture_halls:
+    "The campus includes lecture halls and teaching spaces in LTB1, LTB2, LTB3 and LTB4. LTB3 includes LH1, LH2, LH3, LH5, LH6, LH7 and LH8.",
+
+
+unknown:
+    "I am still learning about that topic. Please ask me about University leadership, office responsibilities, Senate, the library, Main Gate, LTB1, LTB2, LTB3, LTB4 or offices located on LTB3 floors."
+
+};
+
+
+/* =====================================================
+   CHAT ELEMENTS
+   ===================================================== */
+
+const chatBox = document.getElementById("chatBox");
+const userInput = document.getElementById("userInput");
+const statusBox = document.getElementById("status");
+
+const sendBtn = document.getElementById("sendBtn");
+const micBtn = document.getElementById("micBtn");
+const clearBtn = document.getElementById("clearBtn");
+const backBtn = document.getElementById("backBtn");
+
+
+/* =====================================================
+   ADD USER MESSAGE
+   ===================================================== */
+
+function addUserMessage(text) {
+
+    const message = document.createElement("div");
+
+    message.className = "message user";
+
+    message.textContent = text;
+
+    chatBox.appendChild(message);
+
+    scrollChat();
+}
+
+
+/* =====================================================
+   ADD AI MESSAGE
+   ===================================================== */
+
+function addBotMessage(text) {
+
+    const message = document.createElement("div");
+
+    message.className = "message bot";
+
+    message.textContent = text;
+
+    chatBox.appendChild(message);
+
+    scrollChat();
+
+    speak(text);
+}
+
+
+/* =====================================================
+   SCROLL CHAT
+   ===================================================== */
+
+function scrollChat() {
+
+    chatBox.scrollTop = chatBox.scrollHeight;
+
+}
+
+
+/* =====================================================
+   NORMALIZE QUESTION
+   ===================================================== */
+
+function normalizeQuestion(text) {
+
+    return text
+        .toLowerCase()
+        .trim()
+        .replace(/[?!.,]/g, "")
+        .replace(/\s+/g, " ");
+
+}
+
+
+/* =====================================================
+   CHECK KEYWORDS
+   ===================================================== */
+
+function containsAny(text, words) {
+
+    return words.some(word => text.includes(word));
+
+}
+
+
+/* =====================================================
+   TEXT TO SPEECH
+   ===================================================== */
+
+function speak(text) {
+
+    if (!("speechSynthesis" in window)) {
+
+        return;
+
+    }
+
+    try {
+
+        window.speechSynthesis.cancel();
+
+        const speech =
+            new SpeechSynthesisUtterance(text);
+
+        speech.lang = "en-KE";
+
+        speech.rate = 0.95;
+
+        speech.pitch = 1;
+
+        window.speechSynthesis.speak(speech);
+
+    } catch (error) {
+
+        console.log("Speech error:", error);
+
+    }
+
+}
+
+
+/* =====================================================
+   PRINCE AI ANSWER ENGINE
+   ===================================================== */
+
+function getAnswer(question) {
+
+    const q = normalizeQuestion(question);
+
+
+    /* ================================
+       GREETINGS
+       ================================ */
+
+    if (
+        containsAny(q, [
+            "hello",
+            "hi",
+            "hey",
+            "good morning",
+            "good afternoon",
+            "good evening"
+        ])
+    ) {
+
+        return knowledge.greeting;
+
+    }
+
+
+    /* ================================
+       HELP
+       ================================ */
+
+    if (
+        containsAny(q, [
+            "help",
+            "what can you do",
+            "what do you know",
+            "who are you"
+        ])
+    ) {
+
+        return knowledge.help;
+
+    }
+
+
+    /* ================================
+       VICE CHANCELLOR
+       ================================ */
+
+    if (
+        containsAny(q, [
+            "vice chancellor",
+            "vc",
+            "who is the vc",
+            "who is vice chancellor",
+            "erick koech"
+        ])
+    ) {
+
+        if (
+            containsAny(q, [
+                "duty",
+                "duties",
+                "responsibility",
+                "responsibilities",
+                "role",
+                "roles",
+                "function",
+                "functions"
+            ])
+        ) {
+
+            return knowledge.vc_duties;
+
+        }
+
+        return knowledge.vc;
+
+    }
+
+
+    /* ================================
+       DVC
+       ================================ */
+
+    if (
+        containsAny(q, [
+            "dvc",
+            "deputy vice chancellor",
+            "fredrick nyongesa",
+            "kassilly"
+        ])
+    ) {
+
+        if (
+            containsAny(q, [
+                "duty",
+                "duties",
+                "responsibility",
+                "responsibilities",
+                "role",
+                "roles"
+            ])
+        ) {
+
+            return knowledge.dvc_duties;
+
+        }
+
+        return knowledge.dvc;
+
+    }
+
+
+    /* ================================
+       RESEARCH
+       ================================ */
+
+    if (
+        containsAny(q, [
+            "research",
+            "planning",
+            "development",
+            "innovation",
+            "maurice owino",
+            "odour"
+        ])
+    ) {
+
+        if (
+            containsAny(q, [
+                "duty",
+                "duties",
+                "responsibility",
+                "responsibilities",
+                "role",
+                "roles",
+                "function",
+                "functions"
+            ])
+        ) {
+
+            return knowledge.research_duties;
+
+        }
+
+        return knowledge.research;
+
+    }
+
+
+    /* ================================
+       REGISTRAR ACADEMIC
+       ================================ */
+
+    if (
+        containsAny(q, [
+            "registrar academic",
+            "academic registrar",
+            "cecilia sang",
+            "academic affairs"
+        ])
+    ) {
+
+        if (
+            containsAny(q, [
+                "duty",
+                "duties",
+                "responsibility",
+                "responsibilities",
+                "role",
+                "roles"
+            ])
+        ) {
+
+            return knowledge.registrar_academic_duties;
+
+        }
+
+        return knowledge.registrar_academic;
+
+    }
+
+
+    /* ================================
+       REGISTRAR ADMINISTRATION
+       ================================ */
+
+    if (
+        containsAny(q, [
+            "registrar administration",
+            "registrar admin",
+            "peter k kimalel",
+            "kimalel"
+        ])
+    ) {
+
+        if (
+            containsAny(q, [
+                "duty",
+                "duties",
+                "responsibility",
+                "responsibilities",
+                "role",
+                "roles"
+            ])
+        ) {
+
+            return knowledge.registrar_admin_duties;
+
+        }
+
+        return knowledge.registrar_admin;
+
+    }
+
+
+    /* ================================
+       DEAN OF STUDENTS
+       ================================ */
+
+    if (
+        containsAny(q, [
+            "dean of students",
+            "peter ngugi",
+            "student welfare",
+            "student affairs"
+        ])
+    ) {
+
+        if (
+            containsAny(q, [
+                "duty",
+                "duties",
+                "responsibility",
+                "responsibilities",
+                "role",
+                "roles"
+            ])
+        ) {
+
+            return knowledge.dean_duties;
+
+        }
+
+        return knowledge.dean;
+
+    }
+
+
+    /* ================================
+       DIRECTOR ICT
+       ================================ */
+
+    if (
+        containsAny(q, [
+            "director ict",
+            "director of ict",
+            "ict director",
+            "geoffrey sowek",
+            "ict"
+        ])
+    ) {
+
+        if (
+            containsAny(q, [
+                "duty",
+                "duties",
+                "responsibility",
+                "responsibilities",
+                "role",
+                "roles"
+            ])
+        ) {
+
+            return knowledge.ict_duties;
+
+    }
