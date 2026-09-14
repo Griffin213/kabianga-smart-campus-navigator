@@ -242,4 +242,305 @@ footer {
     }
 
     .chat-box {
-       
+              height: 350px;
+    }
+
+    .container {
+        margin-top: 10px;
+    }
+
+    .card {
+        padding: 15px;
+    }
+
+    header h1 {
+        font-size: 19px;
+    }
+
+    header p {
+        font-size: 13px;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<header>
+    <img src="logo.jpg" alt="University of Kabianga Logo">
+
+    <h1>UNIVERSITY OF KABIANGA</h1>
+
+    <p>Smart Campus Navigation System</p>
+</header>
+
+<div class="container">
+
+    <div class="card">
+
+        <h2 class="ai-title">🤖 Prince AI</h2>
+
+        <p class="intro">
+            Your intelligent University of Kabianga Smart Campus Assistant.
+            Ask me about university leadership, offices, buildings, lecture halls,
+            Senate, the library and campus services.
+        </p>
+
+        <div class="status" id="status">
+            🟢 Prince AI is ready. Ask me anything about the University of Kabianga.
+        </div>
+
+        <div class="chat-box" id="chatBox">
+
+            <div class="message bot">
+                Hello! I am Prince AI, your University of Kabianga Smart Campus Assistant.
+                How can I help you today?
+            </div>
+
+        </div>
+
+        <div class="quick-title">
+            Quick Questions
+        </div>
+
+        <div class="quick-buttons">
+
+            <button onclick="askQuick('Who is the Vice Chancellor?')">
+                VC
+            </button>
+
+            <button onclick="askQuick('What are the duties of the Vice Chancellor?')">
+                VC Duties
+            </button>
+
+            <button onclick="askQuick('Who is the DVC Academic and Student Affairs?')">
+                DVC
+            </button>
+
+            <button onclick="askQuick('What are the duties of the DVC?')">
+                DVC Duties
+            </button>
+
+            <button onclick="askQuick('Who is responsible for Planning Research and Development?')">
+                Research
+            </button>
+
+            <button onclick="askQuick('What are the duties of Planning Research and Development?')">
+                Research Duties
+            </button>
+
+            <button onclick="askQuick('Who is the Registrar Academic Affairs?')">
+                Registrar Academic
+            </button>
+
+            <button onclick="askQuick('Who is the Registrar Administration?')">
+                Registrar Administration
+            </button>
+
+            <button onclick="askQuick('Who is the Dean of Students?')">
+                Dean of Students
+            </button>
+
+            <button onclick="askQuick('Who is the Director of ICT?')">
+                Director ICT
+            </button>
+
+            <button onclick="askQuick('Who is the Finance Officer?')">
+                Finance
+            </button>
+
+            <button onclick="askQuick('What is the Senate?')">
+                Senate
+            </button>
+
+            <button onclick="askQuick('What are the duties of Senate?')">
+                Senate Duties
+            </button>
+
+            <button onclick="askQuick('Where is the Senate Chamber?')">
+                Senate Chamber
+            </button>
+
+            <button onclick="askQuick('What is on LTB3 Ground Floor?')">
+                LTB3 Ground
+            </button>
+
+            <button onclick="askQuick('What is on LTB3 First Floor?')">
+                LTB3 First
+            </button>
+
+            <button onclick="askQuick('What is on LTB3 Second Floor?')">
+                LTB3 Second
+            </button>
+
+            <button onclick="askQuick('What is on LTB3 Third Floor?')">
+                LTB3 Third
+            </button>
+
+            <button onclick="askQuick('Where are the School of Business offices?')">
+                Business Offices
+            </button>
+
+            <button onclick="askQuick('Tell me about the University Library')">
+                Library
+            </button>
+
+            <button onclick="askQuick('Tell me about LTB1')">
+                LTB1
+            </button>
+
+            <button onclick="askQuick('Tell me about LTB2')">
+                LTB2
+            </button>
+
+            <button onclick="askQuick('Tell me about LTB3')">
+                LTB3
+            </button>
+
+            <button onclick="askQuick('Tell me about LTB4')">
+                LTB4
+            </button>
+
+        </div>
+
+        <div class="input-area">
+
+            <input
+                type="text"
+                id="userInput"
+                placeholder="Ask Prince AI..."
+                autocomplete="off"
+            >
+
+            <button
+                class="mic-btn"
+                id="micBtn"
+                type="button"
+            >
+                🎤
+            </button>
+
+            <button
+                class="send-btn"
+                id="sendBtn"
+                type="button"
+            >
+                Send
+            </button>
+
+        </div>
+
+        <div class="action-buttons">
+
+            <button
+                class="clear-btn"
+                id="clearBtn"
+                type="button"
+            >
+                🗑 Clear Chat
+            </button>
+
+            <button
+                class="back-btn"
+                id="backBtn"
+                type="button"
+            >
+                ← Back
+            </button>
+
+        </div>
+
+        <div class="version">
+            Prince AI • University of Kabianga Smart Campus Navigator
+        </div>
+
+    </div>
+
+</div>
+
+<footer>
+    Developed by Griffin Kipruttoh & David Dodi
+</footer>
+
+
+<script>
+
+/* =====================================================
+   PRINCE AI KNOWLEDGE DATABASE
+   ===================================================== */
+
+const knowledge = {
+
+    greeting:
+        "Hello! I am Prince AI, your University of Kabianga Smart Campus Assistant. How can I help you today?",
+
+    help:
+        "I can help you with University of Kabianga leadership, office responsibilities, Senate, buildings, lecture halls, LTB3 floors, the library, Main Gate and university services.",
+
+
+    /* ================================
+       UNIVERSITY LEADERSHIP
+       ================================ */
+
+    vc:
+        "The Vice Chancellor of the University of Kabianga is Prof. Erick Koech, Ph.D., MBS.",
+
+    vc_duties:
+        "The Vice Chancellor is the chief executive and academic leader of the university. The office generally provides overall leadership, implements university policies and strategic plans, oversees teaching, research and community service, represents the university officially and coordinates major university activities.",
+
+
+    dvc:
+        "The Deputy Vice Chancellor for Academic and Student Affairs is Prof. Dr. Fredrick Nyongesa Kassilly.",
+
+    dvc_duties:
+        "The Deputy Vice Chancellor for Academic and Student Affairs generally oversees academic programmes and student academic affairs. The office helps coordinate schools and departments, teaching and learning, academic quality, examinations and the overall student learning experience.",
+
+
+    research:
+        "Planning, Research and Development is under Prof. Maurice Owino Oduor.",
+
+    research_duties:
+        "The Planning, Research and Development office generally coordinates institutional planning, research activities, innovation, development projects, research partnerships, monitoring and evaluation, and university development priorities.",
+
+
+    registrar_academic:
+        "The Registrar Academic Affairs is Dr. Cecilia Sang.",
+
+    registrar_academic_duties:
+        "The Registrar Academic Affairs office generally manages academic records and registration, admissions-related academic processes, examinations, transcripts, graduation and certification, as well as academic documentation.",
+
+
+    registrar_admin:
+        "The Registrar Administration is Mr. Peter K. Kimalel.",
+
+    registrar_admin_duties:
+        "The Registrar Administration generally coordinates administrative services, official records, correspondence, institutional documentation and other administrative processes that support the smooth running of the university.",
+
+
+    dean:
+        "The Dean of Students is Dr. Peter Ngugi.",
+
+    dean_duties:
+        "The Dean of Students office generally supports student welfare, guidance, student concerns, student activities, discipline and links students with relevant university support services.",
+
+
+    ict:
+        "The Director of ICT is Mr. Geoffrey Sowek.",
+
+    ict_duties:
+        "The Director of ICT office generally manages university information and communication technology systems, digital platforms, internet and network services, ICT infrastructure, technical support, cybersecurity awareness and digital transformation initiatives.",
+
+
+    finance:
+        "The Finance Officer is CPA Willy Koech.",
+
+    finance_duties:
+        "The Finance Office generally handles financial administration, budgeting support, financial records, payments, accountability, financial reporting and other financial services of the university.",
+
+
+    /* ================================
+       SENATE
+       ================================ */
+
+    senate:
+        "The Senate is an important academic governance body of the University of Kabianga 
