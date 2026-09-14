@@ -1,115 +1,465 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Campus Map | University of Kabianga</title>
 
-    <link rel="stylesheet" href="style.css">
-    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"/>
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
 
-<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+    <title>UoK Campus Map | Smart Campus Navigator</title>
+
+    <link rel="stylesheet"
+          href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css">
+
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: Arial, Helvetica, sans-serif;
+            background: #eef5ff;
+            color: #222;
+        }
+
+        header {
+            background: linear-gradient(135deg, #0b5ed7, #084298);
+            color: white;
+            padding: 18px 15px;
+            text-align: center;
+            box-shadow: 0 3px 10px rgba(0,0,0,0.2);
+        }
+
+        header img {
+            width: 75px;
+            height: 75px;
+            object-fit: contain;
+            border-radius: 50%;
+            background: white;
+            padding: 4px;
+            margin-bottom: 8px;
+        }
+
+        header h1 {
+            font-size: 21px;
+            margin-bottom: 5px;
+        }
+
+        header p {
+            font-size: 14px;
+            opacity: 0.95;
+        }
+
+        .container {
+            width: 94%;
+            max-width: 900px;
+            margin: 18px auto;
+        }
+
+        .map-card {
+            background: white;
+            border-radius: 15px;
+            padding: 18px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.12);
+            margin-bottom: 18px;
+        }
+
+        .map-card h2 {
+            color: #084298;
+            margin-bottom: 8px;
+            font-size: 21px;
+        }
+
+        .map-card p {
+            color: #555;
+            line-height: 1.5;
+            margin-bottom: 15px;
+        }
+
+        .google-map-btn {
+            display: block;
+            width: 100%;
+            text-align: center;
+            text-decoration: none;
+            background: linear-gradient(135deg, #0b5ed7, #084298);
+            color: white;
+            padding: 15px;
+            border-radius: 10px;
+            font-size: 17px;
+            font-weight: bold;
+            box-shadow: 0 3px 8px rgba(0,0,0,0.2);
+            transition: 0.2s;
+        }
+
+        .google-map-btn:hover {
+            transform: translateY(-2px);
+        }
+
+        .google-map-btn:active {
+            transform: scale(0.98);
+        }
+
+        #map {
+            height: 390px;
+            width: 100%;
+            border-radius: 12px;
+            margin-top: 15px;
+        }
+
+        .section-title {
+            text-align: center;
+            color: #084298;
+            margin: 22px 0 14px;
+            font-size: 22px;
+        }
+
+        .locations {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 12px;
+        }
+
+        .location-btn {
+            background: white;
+            border: none;
+            border-radius: 12px;
+            padding: 18px 10px;
+            font-size: 16px;
+            font-weight: bold;
+            color: #084298;
+            box-shadow: 0 3px 10px rgba(0,0,0,0.12);
+            cursor: pointer;
+            text-decoration: none;
+            text-align: center;
+            display: block;
+        }
+
+        .location-btn:hover {
+            background: #e7f0ff;
+        }
+
+        .location-btn span {
+            display: block;
+            font-size: 28px;
+            margin-bottom: 7px;
+        }
+
+        .info-box {
+            background: #fff8df;
+            border-left: 5px solid #d39e00;
+            border-radius: 8px;
+            padding: 14px;
+            margin-top: 18px;
+            line-height: 1.5;
+            font-size: 14px;
+        }
+
+        .back-btn {
+            display: block;
+            text-align: center;
+            text-decoration: none;
+            background: #555;
+            color: white;
+            padding: 13px;
+            border-radius: 10px;
+            margin-top: 20px;
+            font-weight: bold;
+        }
+
+        footer {
+            text-align: center;
+            padding: 25px 10px;
+            color: #666;
+            font-size: 13px;
+        }
+
+        @media (max-width: 500px) {
+            .locations {
+                grid-template-columns: 1fr 1fr;
+            }
+
+            #map {
+                height: 330px;
+            }
+
+            header h1 {
+                font-size: 18px;
+            }
+        }
+    </style>
 </head>
 
 <body>
 
 <header>
 
-    <img src="logo.jpg" alt="University of Kabianga Logo" class="logo">
+    <img src="logo.jpg"
+         alt="University of Kabianga Logo">
 
-    <h1>UNIVERSITY OF KABIANGA</h1>
+    <h1>
+        UNIVERSITY OF KABIANGA
+    </h1>
 
-    <p class="subtitle">
+    <p>
         Smart Campus Navigation System
     </p>
 
 </header>
 
-<main>
 
-    <h2>🗺️ Interactive Campus Map</h2>
+<div class="container">
 
-    <p>
-        Select your current location and destination to receive navigation instructions.
-    </p>
+    <!-- GOOGLE MAPS CAMPUS MAP -->
 
-    <div class="navigation-panel">
+    <div class="map-card">
 
-        <h3>Navigation</h3>
+        <h2>🗺️ University of Kabianga Campus Map</h2>
 
-        <label><strong>📍 Current Location</strong></label>
+        <p>
+            Use the official Google Maps campus map to explore
+            the University of Kabianga campus and obtain directions
+            to locations around the university.
+        </p>
 
-        <select id="currentLocation">
-            <option>Main Gate</option>
-            <option>LTB1</option>
-            <option>LTB2</option>
-            <option>LTB3</option>
-            <option>LTB4</option>
-        </select>
+        <a class="google-map-btn"
+           href="https://maps.app.goo.gl/KM8xpod3q4yb5DcE8"
+           target="_blank"
+           rel="noopener noreferrer">
 
-        <br><br>
+            📍 Open UoK Campus Map in Google Maps
 
-        <label><strong>🎯 Destination</strong></label>
+        </a>
 
-        <select id="destination">
-            <option>LTB1</option>
-            <option>LTB2</option>
-            <option>LTB3</option>
-            <option>LTB4</option>
-        </select>
+        <div class="info-box">
 
-        <br><br>
+            <strong>Smart Navigation:</strong><br>
 
-        <button id="navigateBtn">🚀 Start Navigation</button>
-
-        <div id="routeResult" class="card">
-
-            <h3>Navigation Instructions</h3>
-
-            <p>
-                Select your destination and press <strong>Start Navigation</strong>.
-            </p>
+            This Smart Campus Navigator provides
+            University-specific information while Google Maps
+            handles the main campus map and navigation.
 
         </div>
 
     </div>
 
-    <div class="map-container">
+
+    <!-- INTERNAL CAMPUS MAP -->
+
+    <div class="map-card">
+
+        <h2>📍 Smart Campus Preview</h2>
+
+        <p>
+            The map below is a preliminary campus reference.
+            More verified building locations can be added as
+            accurate GPS points become available.
+        </p>
 
         <div id="map"></div>
 
     </div>
 
-    <br>
 
-    <a href="index.html">
-        <button>⬅ Back Home</button>
+    <!-- BUILDINGS -->
+
+    <h2 class="section-title">
+        🏢 Campus Buildings
+    </h2>
+
+    <div class="locations">
+
+        <a href="ltb1.html"
+           class="location-btn">
+
+            <span>🏫</span>
+
+            LTB1
+
+        </a>
+
+
+        <a href="ltb2.html"
+           class="location-btn">
+
+            <span>🏫</span>
+
+            LTB2
+
+        </a>
+
+
+        <a href="ltb3.html"
+           class="location-btn">
+
+            <span>🏫</span>
+
+            LTB3
+
+        </a>
+
+
+        <a href="ltb4.html"
+           class="location-btn">
+
+            <span>🏫</span>
+
+            LTB4
+
+        </a>
+
+    </div>
+
+
+    <div class="info-box">
+
+        <strong>📌 Important:</strong><br>
+
+        LTB1, LTB2, LTB3 and LTB4 pages can contain
+        building information, floor details, offices,
+        lecture halls and interior photographs.
+
+        The Google Maps campus map is used as the main
+        external navigation reference for now.
+
+    </div>
+
+
+    <a href="home.html"
+       class="back-btn">
+
+        ← Back to Smart Campus Navigator
+
     </a>
 
-</main>
+</div>
+
 
 <footer>
 
-    <p>© 2026 University of Kabianga</p>
+    <p>
+        University of Kabianga Smart Campus Navigator
+    </p>
 
-    <p>Developed by Griffin Kipruttoh</p>
+    <p>
+        Developed by Griffin Kipruttoh & David Dodi
+    </p>
 
 </footer>
-<script>
-const params = new URLSearchParams(window.location.search);
-const destination = params.get("destination");
 
-if (destination) {
 
-    document.getElementById("destination").value = destination;
+<!-- LEAFLET -->
 
-    document.getElementById("navigateBtn").click();
-
-}
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js">
 </script>
-<script src="script.js"></script>
-<script src="map.js"></script>
-</body>
 
+
+<script>
+
+    // ==========================================
+    // PRELIMINARY UOK CAMPUS MAP
+    // ==========================================
+
+    const map = L.map('map').setView(
+        [-0.3695, 35.2830],
+        17
+    );
+
+
+    // OpenStreetMap layer
+
+    L.tileLayer(
+        'https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png',
+        {
+            maxZoom: 20,
+            attribution: '&copy; OpenStreetMap contributors'
+        }
+    ).addTo(map);
+
+
+    // ==========================================
+    // BUILDING MARKERS
+    // ==========================================
+
+    const locations = [
+
+        {
+            name: "Main Gate",
+            position: [-0.3695, 35.2830],
+            page: "home.html"
+        },
+
+        {
+            name: "LTB1",
+            position: [-0.3692, 35.2834],
+            page: "ltb1.html"
+        },
+
+        {
+            name: "LTB2",
+            position: [-0.3689, 35.2837],
+            page: "ltb2.html"
+        },
+
+        {
+            name: "LTB3",
+            position: [-0.3688, 35.2831],
+            page: "ltb3.html"
+        },
+
+        {
+            name: "LTB4",
+            position: [-0.3691, 35.2828],
+            page: "ltb4.html"
+        }
+
+    ];
+
+
+    // Add markers
+
+    locations.forEach(function(location) {
+
+        const marker = L.marker(location.position)
+            .addTo(map);
+
+        marker.bindPopup(
+
+            "<strong>" +
+            location.name +
+            "</strong><br><br>" +
+
+            "<a href='" +
+            location.page +
+            "' style='color:#0b5ed7;font-weight:bold;'>" +
+
+            "View Details →" +
+
+            "</a>"
+
+        );
+
+    });
+
+
+    // ==========================================
+    // CAMPUS BOUNDARY / PREVIEW AREA
+    // ==========================================
+
+    const campusArea = L.circle(
+        [-0.3695, 35.2830],
+        {
+            radius: 450,
+            color: "#0b5ed7",
+            fillColor: "#0b5ed7",
+            fillOpacity: 0.08,
+            weight: 2
+        }
+    ).addTo(map);
+
+
+</script>
+
+</body>
 </html>
