@@ -1,6 +1,8 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
+
     <meta charset="UTF-8">
 
     <meta name="viewport"
@@ -10,9 +12,10 @@
 
     <title>Prince AI | UOK Smart Campus</title>
 
-    <link rel="stylesheet" href="style.css?v=3">
+    <link rel="stylesheet" href="style.css?v=40">
 
     <style>
+
         * {
             box-sizing: border-box;
         }
@@ -80,6 +83,17 @@
             font-size: 14px;
         }
 
+        #status {
+            display: none;
+            margin: 10px 15px;
+            padding: 10px;
+            border-radius: 8px;
+            text-align: center;
+            font-size: 13px;
+            background: #fff3cd;
+            color: #664d03;
+        }
+
         #chatBox {
             height: 55vh;
             min-height: 350px;
@@ -95,6 +109,7 @@
             border-radius: 15px;
             line-height: 1.5;
             word-wrap: break-word;
+            white-space: normal;
         }
 
         .user-message {
@@ -114,6 +129,16 @@
 
         .bot-message a {
             text-decoration: none;
+        }
+
+        .navigate-btn {
+            display: inline-block;
+            background: #198754;
+            color: white !important;
+            padding: 10px 15px;
+            margin-top: 10px;
+            border-radius: 9px;
+            font-weight: bold;
         }
 
         .input-area {
@@ -154,6 +179,10 @@
             justify-content: center;
         }
 
+        .action-btn:active {
+            transform: scale(0.95);
+        }
+
         #voiceBtn {
             background: #198754;
             color: white;
@@ -166,6 +195,10 @@
         #sendBtn {
             background: #0b5ed7;
             color: white;
+        }
+
+        #sendBtn:disabled {
+            opacity: 0.6;
         }
 
         .bottom-buttons {
@@ -194,23 +227,19 @@
             color: white;
         }
 
-        .navigate-btn {
-            display: inline-block;
-            background: #198754;
-            color: white !important;
-            padding: 10px 15px;
-            margin-top: 10px;
-            border-radius: 9px;
-            font-weight: bold;
-        }
-
         .welcome-message {
             text-align: center;
             color: #555;
             padding: 15px;
         }
 
+        .typing {
+            opacity: 0.7;
+            font-style: italic;
+        }
+
         @media (max-width: 500px) {
+
             .top-header h1 {
                 font-size: 20px;
             }
@@ -226,51 +255,112 @@
             .message {
                 max-width: 90%;
             }
+
+            #userMessage {
+                font-size: 16px;
+            }
+
         }
+
     </style>
+
 </head>
 
 <body>
 
 <header class="top-header">
+
     <h1>UNIVERSITY OF KABIANGA</h1>
-    <p>Smart Campus Navigation System</p>
+
+    <p>
+        Smart Campus Navigation System
+    </p>
+
 </header>
+
 
 <div class="page-container">
 
     <div class="ai-card">
 
         <div class="ai-header">
-            <div class="ai-icon">🤖</div>
 
-            <h2>Prince AI</h2>
+            <div class="ai-icon">
+                🤖
+            </div>
+
+            <h2>
+                Prince AI
+            </h2>
 
             <p>
                 Your University of Kabianga Smart Campus Assistant
             </p>
+
         </div>
+
+
+        <div id="status"></div>
+
 
         <div id="chatBox">
 
             <div class="welcome-message">
-                <strong>Welcome to Prince AI 👋</strong>
+
+                <strong>
+                    Welcome to Prince AI 👋
+                </strong>
+
                 <br><br>
 
-                Ask me about:
-                <br>
+                I can help you with:
+
+                <br><br>
+
                 📍 Campus locations
+
                 <br>
+
                 🏫 LTB buildings
+
                 <br>
+
                 👨‍💼 University leadership
+
                 <br>
+
                 🧭 Navigation
+
                 <br>
+
                 🎓 University information
+
+                <br><br>
+
+                <strong>
+                    Try asking:
+                </strong>
+
+                <br>
+
+                "Who is the Vice Chancellor?"
+
+                <br>
+
+                "Where is LTB3?"
+
+                <br>
+
+                "Who is in LTB3?"
+
+                <br>
+
+                "Navigate to LTB1"
+
             </div>
 
         </div>
+
 
         <div class="input-area">
 
@@ -305,6 +395,7 @@
 
         </div>
 
+
         <div class="bottom-buttons">
 
             <button
@@ -327,12 +418,23 @@
 
 </div>
 
-<!-- IMPORTANT:
-     knowledge.js must load BEFORE prince-ai.js
+
+<!--
+====================================================
+PRINCE AI JAVASCRIPT
+====================================================
+
+IMPORTANT:
+We are NOT loading knowledge.js here.
+
+Prince AI now has its own built-in knowledge
+database. This prevents a broken knowledge.js
+file from stopping the assistant.
 -->
 
-<script src="knowledge.js?v=30"></script>
-<script src="prince-ai.js?v=30"></script>
+<script src="prince-ai.js?v=40"></script>
+
 
 </body>
+
 </html>
