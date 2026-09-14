@@ -75,9 +75,16 @@ function createGoogleMapsLink(destination) {
         destination + ", University of Kabianga, Kenya"
     );
 
-    return "https://www.google.com/maps/search/?api=1&query=" + query;
+    return (
+        "https://www.google.com/maps/search/?api=1&query=" +
+        query
+    );
 }
 
+
+// ============================================================
+// NAVIGATION DESTINATIONS
+// ============================================================
 
 const navigationDestinations = {
 
@@ -165,8 +172,6 @@ function detectNavigationRequest(question) {
 
     const text = question.toLowerCase().trim();
 
-    // Specific locations first
-
     if (
         text.includes("vice chancellor") ||
         text.includes("vc office") ||
@@ -175,15 +180,11 @@ function detectNavigationRequest(question) {
         return navigationDestinations["vc office"];
     }
 
-    if (
-        text.includes("senate chamber")
-    ) {
+    if (text.includes("senate chamber")) {
         return navigationDestinations["senate chamber"];
     }
 
-    if (
-        text.includes("micro teaching")
-    ) {
+    if (text.includes("micro teaching")) {
         return navigationDestinations["micro teaching lab"];
     }
 
@@ -201,9 +202,7 @@ function detectNavigationRequest(question) {
         return navigationDestinations["postgraduate studies"];
     }
 
-    if (
-        text.includes("school of business")
-    ) {
+    if (text.includes("school of business")) {
         return navigationDestinations["school of business"];
     }
 
@@ -248,7 +247,7 @@ function detectNavigationRequest(question) {
 
 
 // ============================================================
-// DETECT IF USER WANTS NAVIGATION
+// DETECT NAVIGATION QUESTION
 // ============================================================
 
 function isNavigationQuestion(question) {
@@ -275,9 +274,9 @@ function isNavigationQuestion(question) {
 
     ];
 
-    return navigationWords.some(word =>
-        text.includes(word)
-    );
+    return navigationWords.some(function(word) {
+        return text.includes(word);
+    });
 }
 
 
@@ -349,7 +348,6 @@ function findKnowledgeAnswer(question) {
 
     const text = question.toLowerCase().trim();
 
-
     // --------------------------------------------------------
     // NAVIGATION
     // --------------------------------------------------------
@@ -382,7 +380,6 @@ function findKnowledgeAnswer(question) {
             `;
         }
 
-
         if (
             text.includes("micro") ||
             text.includes("teaching")
@@ -395,10 +392,7 @@ function findKnowledgeAnswer(question) {
             `;
         }
 
-
-        if (
-            text.includes("business")
-        ) {
+        if (text.includes("business")) {
 
             return `
                 🏫 The <strong>School of Business Offices</strong>
@@ -407,10 +401,7 @@ function findKnowledgeAnswer(question) {
             `;
         }
 
-
-        if (
-            text.includes("gender")
-        ) {
+        if (text.includes("gender")) {
 
             return `
                 👩‍💼 The <strong>Director of Gender Office</strong>
@@ -418,7 +409,6 @@ function findKnowledgeAnswer(question) {
                 <strong>Second Floor of LTB3</strong>.
             `;
         }
-
 
         if (
             text.includes("postgraduate") ||
@@ -431,7 +421,6 @@ function findKnowledgeAnswer(question) {
                 <strong>Second Floor of LTB3</strong>.
             `;
         }
-
 
         return `
             🏢 <strong>LTB3</strong> has the following
@@ -549,7 +538,7 @@ function findKnowledgeAnswer(question) {
 
 
     // ========================================================
-    // USE CAMPUS KNOWLEDGE DATABASE
+    // CAMPUS KNOWLEDGE DATABASE
     // ========================================================
 
     try {
@@ -566,16 +555,11 @@ function findKnowledgeAnswer(question) {
                 const item =
                     campusKnowledge[text];
 
-                if (
-                    typeof item === "string"
-                ) {
+                if (typeof item === "string") {
                     return item;
                 }
 
-                if (
-                    item &&
-                    item.info
-                ) {
+                if (item && item.info) {
                     return item.info;
                 }
             }
@@ -603,27 +587,18 @@ function findKnowledgeAnswer(question) {
                     const item =
                         campusKnowledge[keys[i]];
 
-                    if (
-                        typeof item === "string"
-                    ) {
-
+                    if (typeof item === "string") {
                         return item;
-
                     }
 
                     if (
                         item &&
                         item.info
                     ) {
-
                         return item.info;
-
                     }
-
                 }
-
             }
-
         }
 
     } catch (error) {
@@ -632,7 +607,6 @@ function findKnowledgeAnswer(question) {
             "Knowledge database error:",
             error
         );
-
     }
 
 
@@ -691,6 +665,49 @@ function cleanTextForSpeech(text) {
 
 
 // ============================================================
+// SPEAK PRINCE AI
+// ============================================================
+
+function speakPrinceAI(text) {
+
+    if (
+        !("speechSynthesis" in window)
+    ) {
+        return;
+    }
+
+    try {
+
+        window.speechSynthesis.cancel();
+
+        const clean =
+            cleanTextForSpeech(text);
+
+        if (!clean) {
+            return;
+        }
+
+        const speech =
+            new SpeechSynthesisUtterance(clean);
+
+        speech.lang = "en-KE";
+        speech.rate = 0.95;
+        speech.pitch = 1;
+        speech.volume = 1;
+
+        window.speechSynthesis.speak(speech);
+
+    } catch (error) {
+
+        console.error(
+            "Speech synthesis error:",
+            error
+        );
+    }
+}
+
+
+// ============================================================
 // SEND MESSAGE
 // ============================================================
 
@@ -698,37 +715,27 @@ async function sendMessage() {
 
     console.log("📨 sendMessage() called");
 
-
     const input =
         document.getElementById("userMessage");
-
 
     if (!input) {
 
         alert(
-            "Prince AI error: userMessage input was not found."
-        );
-
-        console.error(
-            "❌ userMessage not found"
+            "Prince AI error: message input was not found."
         );
 
         return;
     }
-
 
     const message =
         input.value.trim();
 
-
     if (!message) {
-
         return;
-
     }
 
 
-    // Display user's message
+    // Show user message
 
     addUserMessage(message);
 
@@ -738,7 +745,7 @@ async function sendMessage() {
     input.value = "";
 
 
-    // Temporary thinking message
+    // Thinking message
 
     addBotMessage(
         "🤔 Prince AI is thinking..."
@@ -775,27 +782,21 @@ async function sendMessage() {
                 ) {
 
                     lastMessage.remove();
-
                 }
-
             }
-
         }
 
 
-        // Small delay for natural response
+        await new Promise(function(resolve) {
 
-        await new Promise(
-            resolve =>
-                setTimeout(resolve, 300)
-        );
+            setTimeout(resolve, 300);
+
+        });
 
 
         addBotMessage(answer);
 
-
         speakPrinceAI(answer);
-
 
     } catch (error) {
 
@@ -811,18 +812,15 @@ async function sendMessage() {
 
             Please try your question again.
         `);
-
     }
-
 }
 
 
 // ============================================================
-// MAKE SEND FUNCTION AVAILABLE TO HTML
+// MAKE SEND FUNCTION AVAILABLE
 // ============================================================
 
-window.sendMessage =
-    sendMessage;
+window.sendMessage = sendMessage;
 
 
 // ============================================================
@@ -834,7 +832,6 @@ function startPrinceAI() {
     console.log(
         "🎤 startPrinceAI() called"
     );
-
 
     const SpeechRecognition =
         window.SpeechRecognition ||
@@ -852,11 +849,10 @@ function startPrinceAI() {
         );
 
         return;
-
     }
 
 
-    // If already listening, stop it
+    // If already listening, stop
 
     if (
         recognition &&
@@ -866,7 +862,6 @@ function startPrinceAI() {
         recognition.stop();
 
         return;
-
     }
 
 
@@ -877,21 +872,18 @@ function startPrinceAI() {
     recognition.lang =
         "en-KE";
 
-
     recognition.continuous =
         false;
 
-
     recognition.interimResults =
         false;
-
 
     recognition.maxAlternatives =
         1;
 
 
     // --------------------------------------------------------
-    // START
+    // MICROPHONE STARTED
     // --------------------------------------------------------
 
     recognition.onstart =
@@ -905,12 +897,11 @@ function startPrinceAI() {
                 true;
 
             updateVoiceButton(true);
-
         };
 
 
     // --------------------------------------------------------
-    // RESULT
+    // VOICE RESULT
     // --------------------------------------------------------
 
     recognition.onresult =
@@ -920,10 +911,8 @@ function startPrinceAI() {
                 "🎤 Voice result received"
             );
 
-
             const transcript =
                 event.results[0][0].transcript;
-
 
             console.log(
                 "Voice:",
@@ -941,49 +930,14 @@ function startPrinceAI() {
 
                 input.value =
                     transcript;
-
             }
 
 
-            // Automatically send
+            // Show user's voice message
 
             addUserMessage(
                 transcript
             );
 
 
-            if (input) {
-
-                input.value = "";
-
-            }
-
-
-            const answer =
-                findKnowledgeAnswer(
-                    transcript
-                );
-
-
-            await new Promise(
-                resolve =>
-                    setTimeout(
-                        resolve,
-                        300
-                    )
-            );
-
-
-            addBotMessage(
-                answer
-            );
-
-
-            speakPrinceAI(
-                answer
-            );
-
-        };
-
-
-    // ----------------
+        
