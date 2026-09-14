@@ -736,4 +736,122 @@ function getAnswer(question) {
         containsAny(q, [
             "hello",
             "hi prince",
-            "hey
+            "hey prince",
+            "good morning",
+            "good afternoon",
+            "good evening",
+            "how are you"
+        ])
+    ) {
+
+        return knowledge.greeting;
+
+    }
+
+
+    /* HELP */
+
+    if (
+        containsAny(q, [
+            "what can you do",
+            "how can you help",
+            "help me",
+            "what do you know",
+            "tell me about yourself"
+        ])
+    ) {
+
+        return knowledge.help;
+
+    }
+
+
+    /* VC */
+
+    if (
+        containsAny(q, [
+            "vice chancellor",
+            "vice chancellor",
+            "vc",
+            "head of the university",
+            "university boss",
+            "who leads the university"
+        ])
+    ) {
+
+        if (
+            containsAny(q, [
+                "responsibil",
+                "duty",
+                "duties",
+                "function",
+                "functions",
+                "role",
+                "what does",
+                "what is the role",
+                "what is his role",
+                "what are his duties"
+            ])
+        ) {
+
+            return knowledge.vc_duties;
+
+        }
+
+        return knowledge.vc;
+
+    }
+
+
+    /* DVC */
+
+    if (
+        containsAny(q, [
+            "dvc",
+            "deputy vice chancellor",
+            "academic and student affairs",
+            "academic student affairs"
+        ])
+    ) {
+
+        if (
+            containsAny(q, [
+                "responsibil",
+                "duty",
+                "duties",
+                "function",
+                "functions",
+                "role",
+                "what does",
+                "what is the role"
+            ])
+        ) {
+
+            return knowledge.dvc_duties;
+
+        }
+
+        return knowledge.dvc;
+
+    }
+
+
+    /* RESEARCH */
+
+    if (
+        containsAny(q, [
+            "research",
+            "planning research",
+            "research and development",
+            "director of research",
+            "innovation"
+        ])
+    ) {
+
+        if (
+            containsAny(q, [
+                "responsibil",
+                "duty",
+                "duties",
+                "function",
+ 
