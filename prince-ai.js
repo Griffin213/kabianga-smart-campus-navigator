@@ -311,12 +311,16 @@ function handleNavigationRequest(question) {
     if (!destination) {
 
         return `
-            🧭 I can help you navigate around
+            🧭 <strong>Prince AI Navigation</strong>
+
+            <br><br>
+
+            I can help you navigate around
             the University of Kabianga campus.
 
             <br><br>
 
-            Tell me the place you want to go to:
+            Try asking:
 
             <br><br>
 
@@ -361,6 +365,199 @@ function handleNavigationRequest(question) {
 
 
 // ============================================================
+// LTB3 INFORMATION
+// ============================================================
+
+function getLTB3Information(text) {
+
+    if (
+        text.includes("senate") ||
+        text.includes("chamber")
+    ) {
+
+        return `
+            🏛️ The <strong>Senate Chamber</strong>
+            is located on the
+            <strong>First Floor of LTB3</strong>
+            at the University of Kabianga.
+        `;
+    }
+
+
+    if (
+        text.includes("micro") ||
+        text.includes("teaching")
+    ) {
+
+        return `
+            🎓 The <strong>Micro Teaching Lab</strong>
+            is located on the
+            <strong>First Floor of LTB3</strong>.
+        `;
+    }
+
+
+    if (text.includes("business")) {
+
+        return `
+            🏫 The <strong>School of Business Offices</strong>
+            are located on the
+            <strong>First Floor of LTB3</strong>.
+        `;
+    }
+
+
+    if (text.includes("gender")) {
+
+        return `
+            👩‍💼 The <strong>Director of Gender Office</strong>
+            is located on the
+            <strong>Second Floor of LTB3</strong>.
+        `;
+    }
+
+
+    if (
+        text.includes("postgraduate") ||
+        text.includes("post graduate")
+    ) {
+
+        return `
+            🎓 The <strong>Director of Postgraduate Studies</strong>
+            is located on the
+            <strong>Second Floor of LTB3</strong>.
+        `;
+    }
+
+
+    if (text.includes("lh1")) {
+
+        return `
+            🏫 <strong>LH1</strong> is located on the
+            <strong>Ground Floor of LTB3</strong>.
+        `;
+    }
+
+
+    if (text.includes("lh2")) {
+
+        return `
+            🏫 <strong>LH2</strong> is located on the
+            <strong>Ground Floor of LTB3</strong>.
+        `;
+    }
+
+
+    if (text.includes("lh3")) {
+
+        return `
+            🏫 <strong>LH3</strong> is located on the
+            <strong>First Floor of LTB3</strong>.
+        `;
+    }
+
+
+    if (
+        text.includes("lh5") ||
+        text.includes("lh 5")
+    ) {
+
+        return `
+            🏫 <strong>LH5</strong> is located on the
+            <strong>Second Floor of LTB3</strong>.
+        `;
+    }
+
+
+    if (
+        text.includes("lh6") ||
+        text.includes("lh 6")
+    ) {
+
+        return `
+            🏫 <strong>LH6</strong> is located on the
+            <strong>Second Floor of LTB3</strong>.
+        `;
+    }
+
+
+    if (
+        text.includes("lh7") ||
+        text.includes("lh 7")
+    ) {
+
+        return `
+            🏫 <strong>LH7</strong> is located on the
+            <strong>Third Floor of LTB3</strong>.
+        `;
+    }
+
+
+    if (
+        text.includes("lh8") ||
+        text.includes("lh 8")
+    ) {
+
+        return `
+            🏫 <strong>LH8</strong> is located on the
+            <strong>Third Floor of LTB3</strong>.
+        `;
+    }
+
+
+    return `
+        🏢 <strong>LTB3 — University of Kabianga</strong>
+
+        <br><br>
+
+        <strong>Ground Floor</strong>
+        <br>
+        • Dean, School of Education
+        <br>
+        • HOD Curriculum & Instruction
+        <br>
+        • HOD Physiology & Foundations
+        <br>
+        • LH1
+        <br>
+        • LH2
+
+        <br><br>
+
+        <strong>First Floor</strong>
+        <br>
+        • Senate Chamber
+        <br>
+        • LH3
+        <br>
+        • Micro Teaching Lab
+        <br>
+        • School of Business Offices
+
+        <br><br>
+
+        <strong>Second Floor</strong>
+        <br>
+        • Director of Gender Office
+        <br>
+        • LH5
+        <br>
+        • LH6
+        <br>
+        • Director of Postgraduate Studies
+
+        <br><br>
+
+        <strong>Third Floor</strong>
+        <br>
+        • LH7
+        <br>
+        • LH8
+    `;
+}
+
+
+// ============================================================
 // KNOWLEDGE SEARCH
 // ============================================================
 
@@ -368,130 +565,6 @@ function findKnowledgeAnswer(question) {
 
     const text =
         question.toLowerCase().trim();
-
-
-    // --------------------------------------------------------
-    // NAVIGATION
-    // --------------------------------------------------------
-
-    if (isNavigationQuestion(text)) {
-
-        return handleNavigationRequest(text);
-
-    }
-
-
-    // --------------------------------------------------------
-    // LTB3 INFORMATION
-    // --------------------------------------------------------
-
-    if (
-        text.includes("ltb3") ||
-        text.includes("ltb 3")
-    ) {
-
-        if (
-            text.includes("senate") ||
-            text.includes("chamber")
-        ) {
-
-            return `
-                🏛️ The <strong>Senate Chamber</strong>
-                is located on the
-                <strong>First Floor of LTB3</strong>
-                at the University of Kabianga.
-            `;
-        }
-
-
-        if (
-            text.includes("micro") ||
-            text.includes("teaching")
-        ) {
-
-            return `
-                🎓 The <strong>Micro Teaching Lab</strong>
-                is located on the
-                <strong>First Floor of LTB3</strong>.
-            `;
-        }
-
-
-        if (text.includes("business")) {
-
-            return `
-                🏫 The <strong>School of Business Offices</strong>
-                are located on the
-                <strong>First Floor of LTB3</strong>.
-            `;
-        }
-
-
-        if (text.includes("gender")) {
-
-            return `
-                👩‍💼 The <strong>Director of Gender Office</strong>
-                is located on the
-                <strong>Second Floor of LTB3</strong>.
-            `;
-        }
-
-
-        if (
-            text.includes("postgraduate") ||
-            text.includes("post graduate")
-        ) {
-
-            return `
-                🎓 The <strong>Director of Postgraduate Studies</strong>
-                is located on the
-                <strong>Second Floor of LTB3</strong>.
-            `;
-        }
-
-
-        return `
-            🏢 <strong>LTB3</strong>
-
-            <br><br>
-
-            <strong>Ground Floor</strong>
-            <br>
-            • Dean, School of Education
-            <br>
-            • HOD Curriculum & Instruction
-            <br>
-            • HOD Physiology & Foundations
-            <br>
-            • LH1
-            <br>
-            • LH2
-
-            <br><br>
-
-            <strong>First Floor</strong>
-            <br>
-            • Senate Chamber
-            <br>
-            • LH3
-            <br>
-            • Micro Teaching Lab
-            <br>
-            • School of Business Offices
-
-            <br><br>
-
-            <strong>Second Floor</strong>
-            <br>
-            • Director of Gender Office
-            <br>
-            • LH5
-            <br>
-            • LH6
-            <br>
-            • Director of Postgraduate Studies
-        `;
-    }
 
 
     // --------------------------------------------------------
@@ -535,7 +608,7 @@ function findKnowledgeAnswer(question) {
     ) {
 
         return `
-            🤖 I can help you with:
+            🤖 <strong>I can help you with:</strong>
 
             <br><br>
 
@@ -562,9 +635,41 @@ function findKnowledgeAnswer(question) {
     }
 
 
-    // ========================================================
+    // --------------------------------------------------------
+    // LTB3 INFORMATION
+    // --------------------------------------------------------
+
+    if (
+        text.includes("ltb3") ||
+        text.includes("ltb 3")
+    ) {
+
+        /*
+         * Only use navigation when the user explicitly
+         * asks to navigate/go/find directions.
+         */
+        if (isNavigationQuestion(text)) {
+
+            return handleNavigationRequest(text);
+        }
+
+        return getLTB3Information(text);
+    }
+
+
+    // --------------------------------------------------------
+    // NAVIGATION
+    // --------------------------------------------------------
+
+    if (isNavigationQuestion(text)) {
+
+        return handleNavigationRequest(text);
+    }
+
+
+    // --------------------------------------------------------
     // CAMPUS KNOWLEDGE DATABASE
-    // ========================================================
+    // --------------------------------------------------------
 
     try {
 
@@ -584,7 +689,6 @@ function findKnowledgeAnswer(question) {
                 if (typeof item === "string") {
 
                     return item;
-
                 }
 
 
@@ -594,7 +698,6 @@ function findKnowledgeAnswer(question) {
                 ) {
 
                     return item.info;
-
                 }
             }
 
@@ -615,6 +718,17 @@ function findKnowledgeAnswer(question) {
                     keys[i].toLowerCase();
 
 
+                /*
+                 * Avoid matching very short keys accidentally.
+                 */
+                if (
+                    key.length < 3
+                ) {
+
+                    continue;
+                }
+
+
                 if (
                     text.includes(key) ||
                     key.includes(text)
@@ -629,7 +743,6 @@ function findKnowledgeAnswer(question) {
                     ) {
 
                         return item;
-
                     }
 
 
@@ -639,7 +752,6 @@ function findKnowledgeAnswer(question) {
                     ) {
 
                         return item.info;
-
                     }
                 }
             }
@@ -648,7 +760,7 @@ function findKnowledgeAnswer(question) {
     } catch (error) {
 
         console.error(
-            "Knowledge database error:",
+            "❌ Knowledge database error:",
             error
         );
     }
@@ -677,6 +789,8 @@ function findKnowledgeAnswer(question) {
         <br><br>
 
         For navigation, try:
+
+        <br>
 
         <strong>"Navigate to LTB3"</strong>.
     `;
@@ -865,7 +979,6 @@ async function sendMessage() {
                 ) {
 
                     lastMessage.remove();
-
                 }
             }
         }
@@ -896,116 +1009,4 @@ async function sendMessage() {
 
 
         addBotMessage(`
-            ⚠️ Sorry, I encountered an error.
-
-            <br><br>
-
-            Please try your question again.
-        `);
-    }
-}
-
-
-// ============================================================
-// MAKE SEND FUNCTION AVAILABLE
-// ============================================================
-
-window.sendMessage =
-    sendMessage;
-
-
-// ============================================================
-// MICROPHONE / SPEECH RECOGNITION
-// ============================================================
-
-function startPrinceAI() {
-
-    console.log(
-        "🎤 startPrinceAI() called"
-    );
-
-
-    const SpeechRecognition =
-        window.SpeechRecognition ||
-        window.webkitSpeechRecognition;
-
-
-    if (!SpeechRecognition) {
-
-        alert(
-            "Voice recognition is not supported by this browser. Please use Google Chrome on Android."
-        );
-
-
-        console.error(
-            "❌ SpeechRecognition not supported"
-        );
-
-
-        return;
-    }
-
-
-    // If already listening, stop
-
-    if (
-        recognition &&
-        isListening
-    ) {
-
-        recognition.stop();
-
-        return;
-    }
-
-
-    recognition =
-        new SpeechRecognition();
-
-
-    recognition.lang =
-        "en-KE";
-
-
-    recognition.continuous =
-        false;
-
-
-    recognition.interimResults =
-        false;
-
-
-    recognition.maxAlternatives =
-        1;
-
-
-    // --------------------------------------------------------
-    // MICROPHONE STARTED
-    // --------------------------------------------------------
-
-    recognition.onstart =
-        function() {
-
-            console.log(
-                "🎤 Microphone started"
-            );
-
-
-            isListening =
-                true;
-
-
-            updateVoiceButton(
-                true
-            );
-        };
-
-
-    // --------------------------------------------------------
-    // VOICE RESULT
-    // --------------------------------------------------------
-
-    recognition.onresult =
-        async function(event) {
-
-            console.log(
+            ⚠️ Sor
