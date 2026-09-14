@@ -1,14 +1,27 @@
-<!DOCTYPE html><html lang="en">
+<!DOCTYPE html>
+<html lang="en">
+
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>University of Kabianga Smart Campus Navigator</title><link rel="stylesheet" href="style.css">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>University of Kabianga Smart Campus Navigator</title>
+
+<link rel="stylesheet" href="style.css">
 <link rel="manifest" href="manifest.json">
 
 <meta name="theme-color" content="#0b5ed7">
 <link rel="apple-touch-icon" href="logo.jpg">
 
-</head><body><header><img src="logo.jpg" alt="University of Kabianga Logo" class="logo">
+</head>
+
+<body>
+
+<header>
+
+<img src="logo.jpg"
+     alt="University of Kabianga Logo"
+     class="logo">
 
 <h1>UNIVERSITY OF KABIANGA</h1>
 
@@ -18,231 +31,323 @@
 
 <details class="settings-container">
 
-    <summary class="menu-btn">⋮</summary>
+<summary class="menu-btn">⋮</summary>
 
-    <div class="admin-menu">
+<div class="admin-menu">
 
-        <a href="admin.html">🔐 Administrator Login</a>
+<a href="admin.html">
+🔐 Administrator Login
+</a>
 
-        <a href="#">🤖 About Prince AI</a>
+<a href="prince-ai.html">
+🤖 About Prince AI
+</a>
 
-        <a href="#" onclick="requestNotificationPermission(); return false;">
-            🔔 Enable Notifications
-        </a>
+<a href="#"
+   onclick="requestNotificationPermission(); return false;">
+🔔 Enable Notifications
+</a>
 
-        <a href="#">📞 Contact ICT</a>
+<a href="#">
+📞 Contact ICT
+</a>
 
-    </div>
+</div>
 
 </details>
 
-</header><main><section class="hero"><h2>Welcome!</h2>
+</header>
+
+
+<main>
+
+<section class="hero">
+
+<h2>Welcome!</h2>
 
 <p>
-    Find lecture halls, offices and important places around the University of Kabianga quickly and easily.
+Find lecture halls, offices and important places around the University of Kabianga quickly and easily.
 </p>
 
 <input
-    type="text"
-    id="searchBox"
-    placeholder="Search LTB1, Library, Administration..."
+type="text"
+id="searchBox"
+placeholder="Search LTB1, Library, Administration..."
 >
 
 <div class="buttons">
 
-    <button id="searchBtn">
-        🔍 Search Venue
-    </button>
+<button id="searchBtn">
+🔍 Search Venue
+</button>
 
-    <a href="scan.html">
-        <button>📷 Scan QR Code</button>
-    </a>
 
-    <button
-        type="button"
-        class="main-action-btn"
-        onclick="window.location.href='prince-ai.html'">
-        🤖 Chat with Prince AI
-    </button>
+<a href="scan.html">
+<button type="button">
+📷 Scan QR Code
+</button>
+</a>
 
-    <a href="timetable.html">
-        <button>
-            📅 My Timetable
-        </button>
-    </a>
 
-    <a href="leadership.html">
-        <button>
-            🏛️ University Leadership Directory
-        </button>
-    </a>
+<!-- LATEST PRINCE AI -->
+
+<a href="prince-ai.html">
+
+<button
+type="button"
+class="main-action-btn">
+
+🤖 Chat with Prince AI
+
+</button>
+
+</a>
+
+
+<a href="timetable.html">
+
+<button type="button">
+📅 My Timetable
+</button>
+
+</a>
+
+
+<a href="leadership.html">
+
+<button type="button">
+🏛️ University Leadership Directory
+</button>
+
+</a>
 
 </div>
 
-</section><section class="announcement-card"><h2>📢 Latest University Announcement</h2>
+</section>
+
+
+<section class="announcement-card">
+
+<h2>
+📢 Latest University Announcement
+</h2>
 
 <div id="announcementBox">
 
-    <h3 id="announcementTitle">
-        University of Kabianga
-    </h3>
+<h3 id="announcementTitle">
+University of Kabianga
+</h3>
 
-    <p id="announcementMessage">
-        No announcements available.
-    </p>
+<p id="announcementMessage">
+No announcements available.
+</p>
 
-    <small id="announcementDate">
-        Waiting for updates...
-    </small>
+<small id="announcementDate">
+Waiting for updates...
+</small>
 
-    <div id="announcementImages"
-         class="announcement-images"></div>
+<div
+id="announcementImages"
+class="announcement-images">
+</div>
 
 </div>
 
-</section><section><h2>Popular Venues</h2>
+</section>
+
+
+<section>
+
+<h2>
+Popular Venues
+</h2>
 
 <div class="cards">
 
 
-    <!-- LTB1 -->
+<div class="card">
 
-    <div class="card">
+<h3>
+🏫 LTB1
+</h3>
 
-        <h3>🏫 LTB1</h3>
+<p>
+Lecture Theatre Block 1
+</p>
 
-        <p>
-            Lecture Theatre Block 1
-        </p>
+<a href="ltb1.html">
 
-        <a href="ltb1.html">
-            <button>
-                View Details
-            </button>
-        </a>
+<button type="button">
+View Details
+</button>
 
-    </div>
-
-
-    <!-- LTB2 -->
-
-    <div class="card">
-
-        <h3>🏫 LTB2</h3>
-
-        <p>
-            Lecture Theatre Block 2
-        </p>
-
-        <a href="ltb2.html">
-            <button>
-                View Details
-            </button>
-        </a>
-
-    </div>
-
-
-    <!-- LTB3 -->
-
-    <div class="card">
-
-        <h3>🏫 LTB3</h3>
-
-        <p>
-            Lecture Theatre Block 3
-        </p>
-
-        <a href="ltb3.html">
-            <button>
-                View Details
-            </button>
-        </a>
-
-    </div>
-
-
-    <!-- LTB4 -->
-
-    <div class="card">
-
-        <h3>🏫 LTB4</h3>
-
-        <p>
-            Lecture Theatre Block 4
-        </p>
-
-        <a href="ltb4.html">
-            <button>
-                View Details
-            </button>
-        </a>
-
-    </div>
+</a>
 
 </div>
 
-</section><section class="map-section"><h2>Campus Map</h2>
+
+<div class="card">
+
+<h3>
+🏫 LTB2
+</h3>
 
 <p>
-    Tap a building below to navigate.
+Lecture Theatre Block 2
+</p>
+
+<a href="ltb2.html">
+
+<button type="button">
+View Details
+</button>
+
+</a>
+
+</div>
+
+
+<div class="card">
+
+<h3>
+🏫 LTB3
+</h3>
+
+<p>
+Lecture Theatre Block 3
+</p>
+
+<a href="ltb3.html">
+
+<button type="button">
+View Details
+</button>
+
+</a>
+
+</div>
+
+
+<div class="card">
+
+<h3>
+🏫 LTB4
+</h3>
+
+<p>
+Lecture Theatre Block 4
+</p>
+
+<a href="ltb4.html">
+
+<button type="button">
+View Details
+</button>
+
+</a>
+
+</div>
+
+</div>
+
+</section>
+
+
+<section class="map-section">
+
+<h2>
+Campus Map
+</h2>
+
+<p>
+Tap below to navigate around the University of Kabianga campus.
 </p>
 
 <div class="campus-map">
 
-    <section class="map-section">
+<a href="campus-map.html">
 
-        <h2>Campus Navigation</h2>
+<button type="button">
+🗺️ Open Campus Map
+</button>
 
-        <p>
-            Open the interactive campus map to navigate around the University of Kabianga.
-        </p>
-
-        <a href="campus-map.html">
-
-            <button>
-                🗺️ Open Campus Map
-            </button>
-
-        </a>
-
-    </section>
+</a>
 
 </div>
 
-</section><section class="about"><h2>About This Project</h2>
+</section>
+
+
+<section class="about">
+
+<h2>
+About This Project
+</h2>
 
 <p>
 
-    This Smart Campus Navigation System helps students,
-    staff and visitors locate lecture halls, offices and
-    important facilities around the University of Kabianga.
+This Smart Campus Navigation System helps students,
+staff and visitors locate lecture halls, offices and
+important facilities around the University of Kabianga.
 
-    Future updates will include:
+Future updates will include:
 
 </p>
 
 <ul>
 
-    <li>📷 QR Code Navigation</li>
+<li>
+📷 QR Code Navigation
+</li>
 
-    <li>🗺 Interactive Campus Map</li>
+<li>
+🗺 Interactive Campus Map
+</li>
 
-    <li>🚶 Walking Directions</li>
+<li>
+🚶 Walking Directions
+</li>
 
-    <li>🔍 Smart Venue Search</li>
+<li>
+🔍 Smart Venue Search
+</li>
 
-    <li>📍 Indoor Navigation</li>
+<li>
+📍 Indoor Navigation
+</li>
 
 </ul>
 
-</section></main><footer><p>
-    © 2026 University of Kabianga
+</section>
+
+</main>
+
+
+<footer>
+
+<p>
+© 2026 University of Kabianga
 </p>
 
 <p>
-    Developed by Griffin Kipruttoh
+Developed by Griffin Kipruttoh & David Dodi
 </p>
 
-</footer><script type="module" src="firebase.js"></script><script type="module" src="script.js"></script><script src="knowledge.js"></script><script src="prince-ai.js"></script><script type="module" src="announcements.js"></script><script type="module" src="notifications.js"></script></body>
+</footer>
+
+
+<script type="module" src="firebase.js"></script>
+
+<script type="module" src="script.js"></script>
+
+<script src="knowledge.js"></script>
+
+<script src="prince-ai.js"></script>
+
+<script type="module" src="announcements.js"></script>
+
+<script type="module" src="notifications.js"></script>
+
+</body>
+
 </html>
