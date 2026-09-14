@@ -1550,3 +1550,923 @@ function getAnswer(question) {
             "hods office"
         ])
     ) {
+        "what can you help me with"
+    ])
+    ) {
+
+        return knowledge.help;
+
+    }
+
+
+    /* ================================
+       VICE CHANCELLOR
+       ================================ */
+
+    if (
+        containsAny(q, [
+            "who is the vice chancellor",
+            "who is vc",
+            "vice chancellor name",
+            "name of vice chancellor",
+            "prof erick koech",
+            "professor erick koech"
+        ])
+    ) {
+
+        return knowledge.vc;
+
+    }
+
+    if (
+        containsAny(q, [
+            "duties of the vice chancellor",
+            "responsibilities of the vice chancellor",
+            "role of the vice chancellor",
+            "what does the vice chancellor do",
+            "vc duties",
+            "vc responsibilities"
+        ])
+    ) {
+
+        return knowledge.vc_duties;
+
+    }
+
+
+    /* ================================
+       DVC ACADEMIC & STUDENT AFFAIRS
+       ================================ */
+
+    if (
+        containsAny(q, [
+            "who is the dvc",
+            "who is dvc",
+            "dvc academic",
+            "dvc academic and student affairs",
+            "dvc student affairs",
+            "name of dvc",
+            "fredrick nyongesa kassilly"
+        ])
+    ) {
+
+        return knowledge.dvc;
+
+    }
+
+    if (
+        containsAny(q, [
+            "duties of the dvc",
+            "dvc duties",
+            "dvc responsibilities",
+            "responsibilities of the dvc",
+            "role of the dvc",
+            "what does the dvc do"
+        ])
+    ) {
+
+        return knowledge.dvc_duties;
+
+    }
+
+
+    /* ================================
+       PLANNING, RESEARCH & DEVELOPMENT
+       ================================ */
+
+    if (
+        containsAny(q, [
+            "planning research",
+            "planning research and development",
+            "research and development",
+            "who is responsible for research",
+            "who handles research",
+            "maurice owino oduor"
+        ])
+    ) {
+
+        if (
+            containsAny(q, [
+                "duties",
+                "responsibilities",
+                "role",
+                "what does",
+                "function",
+                "functions"
+            ])
+        ) {
+
+            return knowledge.research_duties;
+
+        }
+
+        return knowledge.research;
+
+    }
+
+
+    /* ================================
+       REGISTRAR ACADEMIC AFFAIRS
+       ================================ */
+
+    if (
+        containsAny(q, [
+            "registrar academic",
+            "registrar academic affairs",
+            "who is the registrar academic",
+            "who is registrar academic",
+            "cecilia sang"
+        ])
+    ) {
+
+        if (
+            containsAny(q, [
+                "duties",
+                "responsibilities",
+                "role",
+                "what does",
+                "function",
+                "functions"
+            ])
+        ) {
+
+            return knowledge.registrar_academic_duties;
+
+        }
+
+        return knowledge.registrar_academic;
+
+    }
+
+
+    /* ================================
+       REGISTRAR ADMINISTRATION
+       ================================ */
+
+    if (
+        containsAny(q, [
+            "registrar administration",
+            "who is the registrar administration",
+            "who is registrar administration",
+            "peter k kimalel",
+            "peter kimalel"
+        ])
+    ) {
+
+        if (
+            containsAny(q, [
+                "duties",
+                "responsibilities",
+                "role",
+                "what does",
+                "function",
+                "functions"
+            ])
+        ) {
+
+            return knowledge.registrar_admin_duties;
+
+        }
+
+        return knowledge.registrar_admin;
+
+    }
+
+
+    /* ================================
+       DEAN OF STUDENTS
+       ================================ */
+
+    if (
+        containsAny(q, [
+            "dean of students",
+            "who is the dean of students",
+            "who is dean of students",
+            "peter ngugi"
+        ])
+    ) {
+
+        if (
+            containsAny(q, [
+                "duties",
+                "responsibilities",
+                "role",
+                "what does",
+                "function",
+                "functions"
+            ])
+        ) {
+
+            return knowledge.dean_duties;
+
+        }
+
+        return knowledge.dean;
+
+    }
+
+
+    /* ================================
+       DIRECTOR OF ICT
+       ================================ */
+
+    if (
+        containsAny(q, [
+            "director ict",
+            "director of ict",
+            "who is the director ict",
+            "who is director of ict",
+            "geoffrey sowek"
+        ])
+    ) {
+
+        if (
+            containsAny(q, [
+                "duties",
+                "responsibilities",
+                "role",
+                "what does",
+                "function",
+                "functions"
+            ])
+        ) {
+
+            return knowledge.ict_duties;
+
+        }
+
+        return knowledge.ict;
+
+    }
+
+
+    /* ================================
+       FINANCE OFFICER
+       ================================ */
+
+    if (
+        containsAny(q, [
+            "finance officer",
+            "who is the finance officer",
+            "who is finance officer",
+            "willy koech",
+            "cpa willy koech"
+        ])
+    ) {
+
+        if (
+            containsAny(q, [
+                "duties",
+                "responsibilities",
+                "role",
+                "what does",
+                "function",
+                "functions"
+            ])
+        ) {
+
+            return knowledge.finance_duties;
+
+        }
+
+        return knowledge.finance;
+
+    }
+
+
+    /* ================================
+       SENATE
+       ================================ */
+
+    if (
+        containsAny(q, [
+            "what is the senate",
+            "tell me about senate",
+            "university senate",
+            "senate of the university"
+        ])
+    ) {
+
+        return knowledge.senate;
+
+    }
+
+    if (
+        containsAny(q, [
+            "senate duties",
+            "duties of senate",
+            "duties of the senate",
+            "responsibilities of senate",
+            "responsibilities of the senate",
+            "role of senate",
+            "what does senate do"
+        ])
+    ) {
+
+        return knowledge.senate_duties;
+
+    }
+
+    if (
+        containsAny(q, [
+            "senate chamber",
+            "where is senate chamber",
+            "where is the senate chamber",
+            "location of senate chamber"
+        ])
+    ) {
+
+        return knowledge.senate_chamber;
+
+    }
+
+
+    /* ================================
+       UNIVERSITY LIBRARY
+       ================================ */
+
+    if (
+        containsAny(q, [
+            "library",
+            "university library",
+            "where is the library"
+        ])
+    ) {
+
+        if (
+            containsAny(q, [
+                "duties",
+                "responsibilities",
+                "role",
+                "what does",
+                "function",
+                "functions"
+            ])
+        ) {
+
+            return knowledge.library_duties;
+
+        }
+
+        return knowledge.library;
+
+    }
+
+
+    /* ================================
+       MAIN GATE
+       ================================ */
+
+    if (
+        containsAny(q, [
+            "main gate",
+            "university gate",
+            "campus gate",
+            "where is the gate"
+        ])
+    ) {
+
+        return knowledge.gate;
+
+    }
+
+
+    /* ================================
+       ADMISSIONS
+       ================================ */
+
+    if (
+        containsAny(q, [
+            "admission",
+            "admissions",
+            "admissions office"
+        ])
+    ) {
+
+        return knowledge.admissions;
+
+    }
+
+
+    /* ================================
+       EXAMINATIONS
+       ================================ */
+
+    if (
+        containsAny(q, [
+            "examination",
+            "examinations",
+            "exam",
+            "exams",
+            "examination office"
+        ])
+    ) {
+
+        return knowledge.examinations;
+
+    }
+
+
+    /* ================================
+       POSTGRADUATE STUDIES
+       ================================ */
+
+    if (
+        containsAny(q, [
+            "postgraduate",
+            "postgraduate studies",
+            "director of postgraduate",
+            "director of postgraduate studies"
+        ])
+    ) {
+
+        return knowledge.postgraduate;
+
+    }
+
+
+    /* ================================
+       GENDER OFFICE
+       ================================ */
+
+    if (
+        containsAny(q, [
+            "gender office",
+            "director of gender",
+            "gender"
+        ])
+    ) {
+
+        return knowledge.gender;
+
+    }
+
+
+    /* ================================
+       LTB3 GROUND FLOOR
+       ================================ */
+
+    if (
+        containsAny(q, [
+            "ltb3 ground",
+            "ltb3 ground floor",
+            "ground floor ltb3",
+            "what is on ground floor ltb3",
+            "what is in ground floor ltb3"
+        ])
+    ) {
+
+        return knowledge.ltb3_ground;
+
+    }
+
+
+    /* ================================
+       LTB3 FIRST FLOOR
+       ================================ */
+
+    if (
+        containsAny(q, [
+            "ltb3 first",
+            "ltb3 first floor",
+            "first floor ltb3",
+            "what is on first floor ltb3",
+            "what is in first floor ltb3"
+        ])
+    ) {
+
+        return knowledge.ltb3_first;
+
+    }
+
+
+    /* ================================
+       LTB3 SECOND FLOOR
+       ================================ */
+
+    if (
+        containsAny(q, [
+            "ltb3 second",
+            "ltb3 second floor",
+            "second floor ltb3",
+            "what is on second floor ltb3",
+            "what is in second floor ltb3"
+        ])
+    ) {
+
+        return knowledge.ltb3_second;
+
+    }
+
+
+    /* ================================
+       LTB3 THIRD FLOOR
+       ================================ */
+
+    if (
+        containsAny(q, [
+            "ltb3 third",
+            "ltb3 third floor",
+            "third floor ltb3",
+            "what is on third floor ltb3",
+            "what is in third floor ltb3"
+        ])
+    ) {
+
+        return knowledge.ltb3_third;
+
+    }
+
+
+    /* ================================
+       SCHOOL OF BUSINESS
+       ================================ */
+
+    if (
+        containsAny(q, [
+            "school of business offices",
+            "business offices",
+            "where are business offices",
+            "where is school of business",
+            "finance office ltb3",
+            "dean school of business",
+            "hods office"
+        ])
+    ) {
+
+        return knowledge.business;
+
+    }
+
+
+    /* ================================
+       LECTURE HALLS
+       ================================ */
+
+    if (
+        containsAny(q, [
+            "lecture halls",
+            "lecture hall",
+            "where are lecture halls",
+            "list lecture halls",
+            "which lecture halls"
+        ])
+    ) {
+
+        return knowledge.lecture_halls;
+
+    }
+
+
+    /* ================================
+       LTB1
+       ================================ */
+
+    if (
+        containsAny(q, [
+            "ltb1",
+            "ltb 1",
+            "lecture theatre building 1"
+        ])
+    ) {
+
+        return knowledge.ltb1;
+
+    }
+
+
+    /* ================================
+       LTB2
+       ================================ */
+
+    if (
+        containsAny(q, [
+            "ltb2",
+            "ltb 2",
+            "lecture theatre building 2"
+        ])
+    ) {
+
+        return knowledge.ltb2;
+
+    }
+
+
+    /* ================================
+       LTB3
+       ================================ */
+
+    if (
+        containsAny(q, [
+            "ltb3",
+            "ltb 3",
+            "lecture theatre building 3"
+        ])
+    ) {
+
+        return knowledge.ltb3;
+
+    }
+
+
+    /* ================================
+       LTB4
+       ================================ */
+
+    if (
+        containsAny(q, [
+            "ltb4",
+            "ltb 4",
+            "lecture theatre building 4"
+        ])
+    ) {
+
+        return knowledge.ltb4;
+
+    }
+
+
+    /* ================================
+       DEFAULT RESPONSE
+       ================================ */
+
+    return knowledge.unknown;
+
+}
+
+
+/* =====================================================
+   SEND MESSAGE
+   ===================================================== */
+
+function sendMessage() {
+
+    const text = userInput.value.trim();
+
+    if (!text) {
+
+        statusBox.textContent =
+            "⚠️ Please type a question first.";
+
+        userInput.focus();
+
+        return;
+
+    }
+
+    addUserMessage(text);
+
+    userInput.value = "";
+
+    statusBox.textContent =
+        "🤖 Prince AI is thinking...";
+
+    setTimeout(function () {
+
+        const answer = getAnswer(text);
+
+        addBotMessage(answer);
+
+        statusBox.textContent =
+            "🟢 Prince AI is ready.";
+
+    }, 250);
+
+}
+
+
+/* =====================================================
+   QUICK QUESTIONS
+   ===================================================== */
+
+function askQuick(question) {
+
+    userInput.value = question;
+
+    sendMessage();
+
+}
+
+
+/* =====================================================
+   CLEAR CHAT
+   ===================================================== */
+
+function clearChat() {
+
+    chatBox.innerHTML = "";
+
+    addBotMessage(
+        "Hello! I am Prince AI, your University of Kabianga Smart Campus Assistant. How can I help you today?"
+    );
+
+    statusBox.textContent =
+        "🟢 Chat cleared. Prince AI is ready.";
+
+}
+
+
+/* =====================================================
+   BACK BUTTON
+   ===================================================== */
+
+function goBack() {
+
+    if (document.referrer) {
+
+        history.back();
+
+    } else {
+
+        window.location.href = "home.html";
+
+    }
+
+}
+
+
+/* =====================================================
+   VOICE RECOGNITION
+   ===================================================== */
+
+let recognition = null;
+
+const SpeechRecognition =
+    window.SpeechRecognition ||
+    window.webkitSpeechRecognition;
+
+
+if (SpeechRecognition) {
+
+    recognition = new SpeechRecognition();
+
+    recognition.lang = "en-KE";
+
+    recognition.continuous = false;
+
+    recognition.interimResults = false;
+
+    recognition.maxAlternatives = 1;
+
+
+    recognition.onstart = function () {
+
+        micBtn.textContent = "🔴";
+
+        statusBox.textContent =
+            "🎙 Listening... Speak now.";
+
+    };
+
+
+    recognition.onresult = function (event) {
+
+        const transcript =
+            event.results[0][0].transcript;
+
+        userInput.value = transcript;
+
+        statusBox.textContent =
+            "✅ Voice question received.";
+
+        setTimeout(function () {
+
+            sendMessage();
+
+        }, 300);
+
+    };
+
+
+    recognition.onerror = function (event) {
+
+        console.log(
+            "Speech recognition error:",
+            event.error
+        );
+
+        if (event.error === "not-allowed") {
+
+            statusBox.textContent =
+                "⚠️ Microphone permission was denied.";
+
+        } else if (event.error === "no-speech") {
+
+            statusBox.textContent =
+                "⚠️ No speech detected. Please try again.";
+
+        } else if (event.error === "audio-capture") {
+
+            statusBox.textContent =
+                "⚠️ No microphone was detected.";
+
+        } else {
+
+            statusBox.textContent =
+                "⚠️ Voice recognition could not start.";
+
+        }
+
+    };
+
+
+    recognition.onend = function () {
+
+        micBtn.textContent = "🎤";
+
+    };
+
+
+} else {
+
+    micBtn.disabled = true;
+
+    micBtn.textContent = "🎤";
+
+    statusBox.textContent =
+        "ℹ️ Voice recognition is not supported on this browser.";
+
+}
+
+
+/* =====================================================
+   BUTTON EVENTS
+   ===================================================== */
+
+sendBtn.addEventListener(
+    "click",
+    sendMessage
+);
+
+
+micBtn.addEventListener(
+    "click",
+    function () {
+
+        if (!recognition) {
+
+            statusBox.textContent =
+                "⚠️ Voice recognition is not supported.";
+
+            return;
+
+        }
+
+        try {
+
+            recognition.start();
+
+        } catch (error) {
+
+            console.log(
+                "Microphone start error:",
+                error
+            );
+
+        }
+
+    }
+);
+
+
+clearBtn.addEventListener(
+    "click",
+    clearChat
+);
+
+
+backBtn.addEventListener(
+    "click",
+    goBack
+);
+
+
+userInput.addEventListener(
+    "keydown",
+    function (event) {
+
+        if (event.key === "Enter") {
+
+            event.preventDefault();
+
+            sendMessage();
+
+        }
+
+    }
+);
+
+
+/* =====================================================
+   STARTUP
+   ===================================================== */
+
+statusBox.textContent =
+    "🟢 Prince AI is ready. Ask me anything about the University of Kabianga.";
+
+userInput.focus();
+
+</script>
+
+</body>
+</html>
