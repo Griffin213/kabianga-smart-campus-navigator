@@ -46,23 +46,12 @@ function addBotMessage(message) {
 
 
 // ==========================================
-// 🗺️ GOOGLE MAPS NAVIGATION
+// 🗺️ GOOGLE MAPS
 // ==========================================
 
-// Main UoK Google Maps campus link
 const UOK_GOOGLE_MAPS =
     "https://maps.app.goo.gl/KM8xpod3q4yb5DcE8";
 
-
-/*
-    Google Maps search navigation.
-
-    We use Google Maps search for UoK buildings
-    instead of inventing coordinates.
-
-    Google Maps can use the phone's current
-    location and provide walking directions.
-*/
 
 function createGoogleMapsLink(destination) {
 
@@ -148,11 +137,12 @@ const navigationDestinations = {
         name: "Director of Postgraduate Studies Office",
         search: "Director of Postgraduate Studies LTB3 University of Kabianga Kenya"
     }
+
 };
 
 
 // ==========================================
-// 🗺️ CREATE NAVIGATE BUTTON
+// 🗺️ CREATE NAVIGATION BUTTON
 // ==========================================
 
 function createNavigateButton(destination, label) {
@@ -211,7 +201,7 @@ function createNavigateButton(destination, label) {
 
 
 // ==========================================
-// 🗺️ DETECT NAVIGATION REQUEST
+// 🗺️ DETECT DESTINATION
 // ==========================================
 
 function detectNavigationRequest(question) {
@@ -221,19 +211,15 @@ function detectNavigationRequest(question) {
             .toLowerCase()
             .trim();
 
-    /*
-        We check the most specific destinations
-        first so "Senate Chamber in LTB3" does
-        not accidentally become just LTB3.
-    */
 
-    if (
-        text.includes("senate chamber")
-    ) {
+    // SPECIFIC DESTINATIONS FIRST
+
+    if (text.includes("senate chamber")) {
 
         return navigationDestinations[
             "senate chamber"
         ];
+
     }
 
 
@@ -245,6 +231,7 @@ function detectNavigationRequest(question) {
         return navigationDestinations[
             "micro teaching lab"
         ];
+
     }
 
 
@@ -256,6 +243,7 @@ function detectNavigationRequest(question) {
         return navigationDestinations[
             "director of gender office"
         ];
+
     }
 
 
@@ -268,35 +256,33 @@ function detectNavigationRequest(question) {
         return navigationDestinations[
             "postgraduate studies"
         ];
+
     }
 
 
-    if (
-        text.includes("school of business")
-    ) {
+    if (text.includes("school of business")) {
 
         return navigationDestinations[
             "school of business"
         ];
+
     }
 
 
     if (
         text.includes("vice chancellor") ||
         text.includes("vc office") ||
-        text.includes("vc's office") ||
-        text.includes("vc office")
+        text.includes("vc's office")
     ) {
 
         return navigationDestinations[
             "vc office"
         ];
+
     }
 
 
-    // ======================================
-    // LTB DESTINATIONS
-    // ======================================
+    // LTB1
 
     if (
         /\bltb\s*1\b/i.test(text) ||
@@ -304,8 +290,11 @@ function detectNavigationRequest(question) {
     ) {
 
         return navigationDestinations["ltb1"];
+
     }
 
+
+    // LTB2
 
     if (
         /\bltb\s*2\b/i.test(text) ||
@@ -313,8 +302,11 @@ function detectNavigationRequest(question) {
     ) {
 
         return navigationDestinations["ltb2"];
+
     }
 
+
+    // LTB3
 
     if (
         /\bltb\s*3\b/i.test(text) ||
@@ -322,8 +314,11 @@ function detectNavigationRequest(question) {
     ) {
 
         return navigationDestinations["ltb3"];
+
     }
 
+
+    // LTB4
 
     if (
         /\bltb\s*4\b/i.test(text) ||
@@ -331,12 +326,11 @@ function detectNavigationRequest(question) {
     ) {
 
         return navigationDestinations["ltb4"];
+
     }
 
 
-    // ======================================
     // MAIN GATE
-    // ======================================
 
     if (
         text.includes("main gate") ||
@@ -346,6 +340,7 @@ function detectNavigationRequest(question) {
         return navigationDestinations[
             "main gate"
         ];
+
     }
 
 
@@ -354,7 +349,7 @@ function detectNavigationRequest(question) {
 
 
 // ==========================================
-// 🗺️ CHECK IF USER IS ASKING FOR DIRECTIONS
+// 🗺️ CHECK NAVIGATION QUESTION
 // ==========================================
 
 function isNavigationQuestion(question) {
@@ -363,6 +358,7 @@ function isNavigationQuestion(question) {
         String(question)
             .toLowerCase()
             .trim();
+
 
     const navigationWords = [
 
@@ -383,7 +379,9 @@ function isNavigationQuestion(question) {
         "route",
         "guide me",
         "lead me"
+
     ];
+
 
     return navigationWords.some(
         word => text.includes(word)
@@ -392,7 +390,7 @@ function isNavigationQuestion(question) {
 
 
 // ==========================================
-// 🗺️ HANDLE NAVIGATION REQUEST
+// 🗺️ HANDLE NAVIGATION
 // ==========================================
 
 function handleNavigationRequest(question) {
@@ -400,13 +398,15 @@ function handleNavigationRequest(question) {
     const destination =
         detectNavigationRequest(question);
 
+
     if (!destination) {
 
         return null;
+
     }
 
 
-    const response =
+    return (
 
         "📍 <strong>" +
         destination.name +
@@ -422,22 +422,28 @@ function handleNavigationRequest(question) {
         createNavigateButton(
             destination.search,
             destination.name
-        );
+        )
 
+    );
 
-    return response;
 }
 
 
 // ==========================================
-// 🧠 FIND ANSWER
+// 🧠 FIND KNOWLEDGE ANSWER
 // ==========================================
 
 function findKnowledgeAnswer(question) {
 
-    if (typeof campusKnowledge === "undefined") {
+    if (
+        typeof campusKnowledge === "undefined"
+    ) {
 
-        return "Sorry, my campus knowledge database is not available right now.";
+        return (
+            "Sorry, my campus knowledge database " +
+            "is not available right now."
+        );
+
     }
 
 
@@ -449,13 +455,15 @@ function findKnowledgeAnswer(question) {
 
     if (!text) {
 
-        return "Please tell me what you would like to know.";
+        return (
+            "Please tell me what you would like to know."
+        );
+
     }
 
 
     // ======================================
-    // 🗺️ NAVIGATION CHECK
-    // MUST COME FIRST
+    // NAVIGATION FIRST
     // ======================================
 
     const navigationAnswer =
@@ -468,11 +476,12 @@ function findKnowledgeAnswer(question) {
     ) {
 
         return navigationAnswer;
+
     }
 
 
     // ======================================
-    // 🎯 SPECIFIC LTB3 LOCATIONS
+    // SPECIFIC LTB3 LOCATIONS
     // ======================================
 
     const cleanText =
@@ -484,7 +493,10 @@ function findKnowledgeAnswer(question) {
         cleanText.includes("lh1ltb3")
     ) {
 
-        return "📍 LH1 is located on the Ground Floor of LTB3.";
+        return (
+            "📍 LH1 is located on the Ground Floor of LTB3."
+        );
+
     }
 
 
@@ -493,7 +505,10 @@ function findKnowledgeAnswer(question) {
         cleanText.includes("lh2ltb3")
     ) {
 
-        return "📍 LH2 is located on the Ground Floor of LTB3.";
+        return (
+            "📍 LH2 is located on the Ground Floor of LTB3."
+        );
+
     }
 
 
@@ -502,7 +517,10 @@ function findKnowledgeAnswer(question) {
         cleanText.includes("lh3ltb3")
     ) {
 
-        return "📍 LH3 is located on the First Floor of LTB3.";
+        return (
+            "📍 LH3 is located on the First Floor of LTB3."
+        );
+
     }
 
 
@@ -511,7 +529,10 @@ function findKnowledgeAnswer(question) {
         cleanText.includes("lh5ltb3")
     ) {
 
-        return "📍 LH5 is located on the Second Floor of LTB3.";
+        return (
+            "📍 LH5 is located on the Second Floor of LTB3."
+        );
+
     }
 
 
@@ -520,7 +541,10 @@ function findKnowledgeAnswer(question) {
         cleanText.includes("lh6ltb3")
     ) {
 
-        return "📍 LH6 is located on the Second Floor of LTB3.";
+        return (
+            "📍 LH6 is located on the Second Floor of LTB3."
+        );
+
     }
 
 
@@ -529,7 +553,10 @@ function findKnowledgeAnswer(question) {
         cleanText.includes("lh7ltb3")
     ) {
 
-        return "📍 LH7 is located on the Third Floor of LTB3.";
+        return (
+            "📍 LH7 is located on the Third Floor of LTB3."
+        );
+
     }
 
 
@@ -538,19 +565,23 @@ function findKnowledgeAnswer(question) {
         cleanText.includes("lh8ltb3")
     ) {
 
-        return "📍 LH8 is located on the Third Floor of LTB3.";
+        return (
+            "📍 LH8 is located on the Third Floor of LTB3."
+        );
+
     }
 
 
     // ======================================
-    // 🏢 OTHER SPECIFIC LTB3 LOCATIONS
+    // OTHER LTB3 LOCATIONS
     // ======================================
 
-    if (
-        text.includes("senate chamber")
-    ) {
+    if (text.includes("senate chamber")) {
 
-        return "📍 The Senate Chamber is located on the First Floor of LTB3.";
+        return (
+            "📍 The Senate Chamber is located on the First Floor of LTB3."
+        );
+
     }
 
 
@@ -559,7 +590,10 @@ function findKnowledgeAnswer(question) {
         text.includes("microteaching lab")
     ) {
 
-        return "📍 The Micro Teaching Lab is located on the First Floor of LTB3.";
+        return (
+            "📍 The Micro Teaching Lab is located on the First Floor of LTB3."
+        );
+
     }
 
 
@@ -568,15 +602,19 @@ function findKnowledgeAnswer(question) {
         text.includes("ltb3")
     ) {
 
-        return "📍 The Finance Office is located on the First Floor of LTB3.";
+        return (
+            "📍 The Finance Office is located on the First Floor of LTB3."
+        );
+
     }
 
 
-    if (
-        text.includes("school of business offices")
-    ) {
+    if (text.includes("school of business offices")) {
 
-        return "📍 The School of Business offices are located on the First Floor of LTB3.";
+        return (
+            "📍 The School of Business offices are located on the First Floor of LTB3."
+        );
+
     }
 
 
@@ -585,7 +623,10 @@ function findKnowledgeAnswer(question) {
         text.includes("business")
     ) {
 
-        return "📍 The Dean, School of Business Office is located on the First Floor of LTB3.";
+        return (
+            "📍 The Dean, School of Business Office is located on the First Floor of LTB3."
+        );
+
     }
 
 
@@ -594,7 +635,10 @@ function findKnowledgeAnswer(question) {
         text.includes("business")
     ) {
 
-        return "📍 The HODs Office, School of Business, is located on the First Floor of LTB3.";
+        return (
+            "📍 The HODs Office, School of Business, is located on the First Floor of LTB3."
+        );
+
     }
 
 
@@ -603,7 +647,10 @@ function findKnowledgeAnswer(question) {
         text.includes("director of gender")
     ) {
 
-        return "📍 The Director of Gender Office is located on the Second Floor of LTB3.";
+        return (
+            "📍 The Director of Gender Office is located on the Second Floor of LTB3."
+        );
+
     }
 
 
@@ -612,7 +659,10 @@ function findKnowledgeAnswer(question) {
         text.includes("post graduate studies")
     ) {
 
-        return "📍 The Director of Postgraduate Studies Office is located on the Second Floor of LTB3.";
+        return (
+            "📍 The Director of Postgraduate Studies Office is located on the Second Floor of LTB3."
+        );
+
     }
 
 
@@ -620,7 +670,10 @@ function findKnowledgeAnswer(question) {
         text.includes("dean school of education")
     ) {
 
-        return "📍 The Dean, School of Education, is located on the Ground Floor of LTB3.";
+        return (
+            "📍 The Dean, School of Education, is located on the Ground Floor of LTB3."
+        );
+
     }
 
 
@@ -629,7 +682,10 @@ function findKnowledgeAnswer(question) {
         text.includes("curriculum instruction")
     ) {
 
-        return "📍 The HOD, Curriculum & Instruction, is located on the Ground Floor of LTB3.";
+        return (
+            "📍 The HOD, Curriculum & Instruction, is located on the Ground Floor of LTB3."
+        );
+
     }
 
 
@@ -638,20 +694,24 @@ function findKnowledgeAnswer(question) {
         text.includes("physiology foundations")
     ) {
 
-        return "📍 The HOD, Physiology & Foundations, is located on the Ground Floor of LTB3.";
+        return (
+            "📍 The HOD, Physiology & Foundations, is located on the Ground Floor of LTB3."
+        );
+
     }
 
 
-    if (
-        text.includes("physiology department")
-    ) {
+    if (text.includes("physiology department")) {
 
-        return "📍 The Physiology Department is located on the Ground Floor of LTB3.";
+        return (
+            "📍 The Physiology Department is located on the Ground Floor of LTB3."
+        );
+
     }
 
 
     // ======================================
-    // 🏢 GENERAL LTB3 QUESTION
+    // GENERAL LTB3
     // ======================================
 
     if (
@@ -664,18 +724,18 @@ function findKnowledgeAnswer(question) {
     ) {
 
         return campusKnowledge["ltb3"].info;
+
     }
 
 
     // ======================================
-    // EXACT MATCH
+    // EXACT KNOWLEDGE MATCH
     // ======================================
 
-    if (
-        campusKnowledge[text]
-    ) {
+    if (campusKnowledge[text]) {
 
         return campusKnowledge[text].info;
+
     }
 
 
@@ -691,15 +751,12 @@ function findKnowledgeAnswer(question) {
             );
 
 
-    for (
-        const key of keys
-    ) {
+    for (const key of keys) {
 
-        if (
-            text.includes(key)
-        ) {
+        if (text.includes(key)) {
 
             return campusKnowledge[key].info;
+
         }
 
     }
@@ -723,9 +780,7 @@ function findKnowledgeAnswer(question) {
     let highestScore = 0;
 
 
-    for (
-        const key of keys
-    ) {
+    for (const key of keys) {
 
         let score = 0;
 
@@ -733,28 +788,24 @@ function findKnowledgeAnswer(question) {
             key.split(/\s+/);
 
 
-        words.forEach(
-            word => {
+        words.forEach(word => {
 
-                if (
-                    keyWords.includes(word)
-                ) {
+            if (keyWords.includes(word)) {
 
-                    score++;
-                }
+                score++;
 
             }
-        );
+
+        });
 
 
-        if (
-            score > highestScore
-        ) {
+        if (score > highestScore) {
 
             highestScore = score;
 
             bestMatch =
                 campusKnowledge[key];
+
         }
 
     }
@@ -766,6 +817,7 @@ function findKnowledgeAnswer(question) {
     ) {
 
         return bestMatch.info;
+
     }
 
 
@@ -779,7 +831,11 @@ function findKnowledgeAnswer(question) {
         text.includes("hey")
     ) {
 
-        return "Hello 👋 Welcome to the University of Kabianga. I am Prince AI. How can I help you today?";
+        return (
+            "Hello 👋 Welcome to the University of Kabianga. " +
+            "I am Prince AI. How can I help you today?"
+        );
+
     }
 
 
@@ -788,7 +844,11 @@ function findKnowledgeAnswer(question) {
         text.includes("your name")
     ) {
 
-        return "I am Prince AI 🤖, your Smart Campus Assistant for the University of Kabianga.";
+        return (
+            "I am Prince AI 🤖, your Smart Campus Assistant " +
+            "for the University of Kabianga."
+        );
+
     }
 
 
@@ -797,7 +857,10 @@ function findKnowledgeAnswer(question) {
         text.includes("thanks")
     ) {
 
-        return "You're welcome! 😊 I'm always happy to help.";
+        return (
+            "You're welcome! 😊 I'm always happy to help."
+        );
+
     }
 
 
@@ -806,16 +869,26 @@ function findKnowledgeAnswer(question) {
         text.includes("help me")
     ) {
 
-        return "I can help you find lecture halls, departments, offices and university services. I can also help you open Google Maps for campus navigation. 🗺️";
+        return (
+            "I can help you find lecture halls, departments, " +
+            "offices and university services. I can also help " +
+            "you open Google Maps for campus navigation. 🗺️"
+        );
+
     }
 
 
-    return "I'm still learning about the University of Kabianga. 🤖 Please ask me about a specific lecture hall, department, office or campus service.";
+    return (
+        "I'm still learning about the University of Kabianga. 🤖 " +
+        "Please ask me about a specific lecture hall, department, " +
+        "office or campus service."
+    );
+
 }
 
 
 // ==========================================
-// 🔊 CLEAN TEXT FOR VOICE
+// 🔊 CLEAN TEXT FOR SPEECH
 // ==========================================
 
 function cleanTextForSpeech(text) {
@@ -823,19 +896,16 @@ function cleanTextForSpeech(text) {
     const temp =
         document.createElement("div");
 
+
     temp.innerHTML =
         String(text);
+
 
     let clean =
         temp.textContent ||
         temp.innerText ||
         "";
 
-    /*
-       Remove the navigation instructions
-       that are useful visually but should not
-       be read as HTML/code by the voice.
-    */
 
     clean =
         clean.replace(
@@ -843,11 +913,13 @@ function cleanTextForSpeech(text) {
             ""
         );
 
+
     clean =
         clean.replace(
             /Google Maps will use your phone's location and provide walking navigation\./gi,
             "Opening Google Maps for navigation."
         );
+
 
     clean =
         clean.replace(
@@ -855,7 +927,9 @@ function cleanTextForSpeech(text) {
             ""
         );
 
+
     return clean.trim();
+
 }
 
 
@@ -865,52 +939,58 @@ function cleanTextForSpeech(text) {
 
 function sendMessage() {
 
+    console.log("📨 sendMessage() called.");
+
+
     const input =
         document.getElementById(
             "userMessage"
         );
 
-    if (!input) return;
+
+    if (!input) {
+
+        console.error(
+            "❌ userMessage input not found."
+        );
+
+        return;
+
+    }
 
 
     const question =
         input.value.trim();
 
 
-    if (!question) return;
+    if (!question) {
+
+        return;
+
+    }
 
 
-    addUserMessage(
-        question
-    );
+    addUserMessage(question);
 
 
     input.value = "";
 
 
     const answer =
-        findKnowledgeAnswer(
-            question
+        findKnowledgeAnswer(question);
+
+
+    setTimeout(function() {
+
+        addBotMessage(answer);
+
+
+        speakPrinceAI(
+            cleanTextForSpeech(answer)
         );
 
+    }, 400);
 
-    setTimeout(
-        function() {
-
-            addBotMessage(
-                answer
-            );
-
-
-            speakPrinceAI(
-                cleanTextForSpeech(
-                    answer
-                )
-            );
-
-        },
-        400
-    );
 }
 
 
@@ -919,7 +999,7 @@ window.sendMessage =
 
 
 // ==========================================
-// 🎤 PRINCE AI VOICE RECOGNITION
+// 🎤 VOICE RECOGNITION
 // ==========================================
 
 let recognition = null;
@@ -930,7 +1010,7 @@ let isListening = false;
 function startPrinceAI() {
 
     console.log(
-        "🎤 Prince AI button clicked."
+        "🎤 Prince AI microphone clicked."
     );
 
 
@@ -942,31 +1022,26 @@ function startPrinceAI() {
     if (!SpeechRecognition) {
 
         alert(
-            "🎤 Prince AI voice recognition is not available in this browser.\n\n" +
-            "Please open the website using Google Chrome on Android."
-        );
-
-
-        console.error(
-            "❌ SpeechRecognition API not supported."
+            "🎤 Voice recognition is not available in this browser.\n\n" +
+            "Please use Google Chrome on Android."
         );
 
         return;
+
     }
 
+
+    // STOP LISTENING
 
     if (
         isListening &&
         recognition
     ) {
 
-        console.log(
-            "🛑 Stopping Prince AI..."
-        );
-
         recognition.stop();
 
         return;
+
     }
 
 
@@ -974,29 +1049,52 @@ function startPrinceAI() {
         new SpeechRecognition();
 
 
-    // ======================================
-    // SETTINGS
-    // ======================================
-
     recognition.lang =
         "en-KE";
+
 
     recognition.continuous =
         false;
 
+
     recognition.interimResults =
         false;
+
 
     recognition.maxAlternatives =
         1;
 
 
     // ======================================
-    // START
+    // LISTENING STARTED
     // ======================================
 
     recognition.onstart =
         function() {
 
-            isListening =
-             
+            isListening = true;
+
+            updateVoiceButton(true);
+
+            console.log(
+                "🎤 Prince AI is listening..."
+            );
+
+        };
+
+
+    // ======================================
+    // SPEECH RESULT
+    // ======================================
+
+    recognition.onresult =
+        function(event) {
+
+            const spokenText =
+                event.results[0][0]
+                    .transcript
+                    .trim();
+
+
+            console.log(
+                "🎤 User said
