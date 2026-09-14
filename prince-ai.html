@@ -251,7 +251,7 @@ footer {
 
         <p class="intro">
             Your intelligent University of Kabianga campus assistant.
-            Ask about buildings, offices, lecture halls and university leadership.
+            Ask about buildings, offices, lecture halls, leadership and university services.
         </p>
 
         <div id="statusText" class="status">
@@ -260,7 +260,7 @@ footer {
 
         <div id="chatBox" class="chat-box">
             <div class="message bot">
-                Hello! I am Prince AI. How can I help you today?
+                Hello! I am Prince AI. Ask me about University of Kabianga buildings, leadership offices, Senate, lecture halls or campus services.
             </div>
         </div>
 
@@ -268,14 +268,21 @@ footer {
 
         <div class="quick-buttons">
             <button onclick="askQuick('Who is the Vice Chancellor?')">VC</button>
+            <button onclick="askQuick('What does the Vice Chancellor do?')">VC Duties</button>
+
             <button onclick="askQuick('Who is the DVC Academic and Student Affairs?')">DVC</button>
-            <button onclick="askQuick('Tell me about LTB1')">LTB1</button>
-            <button onclick="askQuick('Tell me about LTB2')">LTB2</button>
-            <button onclick="askQuick('Tell me about LTB3')">LTB3</button>
+            <button onclick="askQuick('What are the responsibilities of the DVC?')">DVC Duties</button>
+
+            <button onclick="askQuick('What does the Senate do?')">Senate</button>
             <button onclick="askQuick('What is on the ground floor of LTB3?')">LTB3 Ground</button>
             <button onclick="askQuick('What is on the first floor of LTB3?')">LTB3 First</button>
             <button onclick="askQuick('What is on the second floor of LTB3?')">LTB3 Second</button>
+
             <button onclick="askQuick('Where is the library?')">Library</button>
+            <button onclick="askQuick('Tell me about LTB1')">LTB1</button>
+            <button onclick="askQuick('Tell me about LTB2')">LTB2</button>
+            <button onclick="askQuick('Tell me about LTB3')">LTB3</button>
+            <button onclick="askQuick('Tell me about LTB4')">LTB4</button>
         </div>
 
         <div class="input-area">
@@ -323,45 +330,161 @@ footer {
 
 const knowledge = {
 
-    vc: "The Vice Chancellor of the University of Kabianga is Prof. Erick Koech, Ph.D., MBS.",
+    /* ======================================
+       GENERAL
+    ====================================== */
 
-    dvc: "The Deputy Vice Chancellor for Academic and Student Affairs is Prof. Dr. Fredrick Nyongesa Kassilly.",
+    greeting:
+        "Hello! I am Prince AI, your University of Kabianga Smart Campus Assistant. How can I help you today?",
 
-    research: "Planning, Research and Development is under Prof. Maurice Owino Oduor.",
+    help:
+        "I can help you find information about university leadership, office responsibilities, Senate, lecture halls, buildings, LTB3 floors, the library and the Main Gate. You can ask questions in different ways.",
 
-    registrar_academic: "The Registrar Academic Affairs is Dr. Cecilia Sang.",
 
-    registrar_admin: "The Registrar Administration is Mr. Peter K. Kimalel.",
+    /* ======================================
+       UNIVERSITY LEADERSHIP
+    ====================================== */
 
-    dean: "The Dean of Students is Dr. Peter Ngugi.",
+    vc:
+        "The Vice Chancellor of the University of Kabianga is Prof. Erick Koech, Ph.D., MBS.",
 
-    ict: "The Director of ICT is Mr. Geoffrey Sowek.",
+    vc_duties:
+        "The Vice Chancellor is the chief executive and academic leader of the university. The office generally provides overall leadership, implements university policies and strategic plans, oversees teaching, research and community service, represents the university officially, and coordinates the work of major university offices.",
 
-    finance: "The Finance Officer is CPA Willy Koech.",
+    dvc:
+        "The Deputy Vice Chancellor for Academic and Student Affairs is Prof. Dr. Fredrick Nyongesa Kassilly.",
 
-    library: "The University Library provides learning resources, research materials and study spaces for students.",
+    dvc_duties:
+        "The Deputy Vice Chancellor for Academic and Student Affairs generally oversees academic programmes and student academic affairs. The office helps coordinate schools, departments, teaching and learning, academic quality, examinations and the overall student learning experience.",
 
-    gate: "The Main Gate is the main entrance and starting point for navigating the University of Kabianga campus.",
+    research:
+        "Planning, Research and Development is under Prof. Maurice Owino Oduor.",
 
-    ltb1: "LTB1 is a lecture and teaching building containing lecture halls and learning spaces.",
+    research_duties:
+        "The Planning, Research and Development office generally coordinates institutional planning, research activities, innovation, development projects, research partnerships, monitoring and evaluation, and the implementation of university development priorities.",
 
-    ltb2: "LTB2 is a lecture and teaching building used for academic activities and lecture halls.",
+    registrar_academic:
+        "The Registrar Academic Affairs is Dr. Cecilia Sang.",
 
-    ltb3: "LTB3 is a major lecture and teaching building containing lecture halls, university offices and important facilities including the Senate Chamber and Micro Teaching Lab.",
+    registrar_academic_duties:
+        "The Registrar Academic Affairs office generally manages academic records and registration, admissions-related academic processes, examinations, transcripts, graduation and certification. It also supports the administration of academic programmes and student academic documentation.",
 
-    ltb4: "LTB4 is a lecture and teaching building used for academic activities and lecture halls.",
+    registrar_admin:
+        "The Registrar Administration is Mr. Peter K. Kimalel.",
 
-    ltb3_ground: "The Ground Floor of LTB3 contains the Dean, School of Education; HOD Curriculum and Instruction; HOD Physiology and Foundations; LH1; and LH2.",
+    registrar_admin_duties:
+        "The Registrar Administration generally coordinates administrative services, official records, correspondence, institutional documentation and other administrative processes that support the smooth running of the university.",
 
-    ltb3_first: "The First Floor of LTB3 contains the Senate Chamber, LH3, Micro Teaching Lab, School of Business Offices, Finance Office, Dean School of Business Office, and HODs Office.",
+    dean:
+        "The Dean of Students is Dr. Peter Ngugi.",
 
-    ltb3_second: "The Second Floor of LTB3 contains the Director of Gender Office, LH5, LH6, and the Director of Postgraduate Studies Office.",
+    dean_duties:
+        "The Dean of Students office generally supports student welfare, guidance, student concerns, student activities, discipline and links students with relevant university support services.",
 
-    ltb3_third: "The Third Floor of LTB3 contains LH7 and LH8.",
+    ict:
+        "The Director of ICT is Mr. Geoffrey Sowek.",
 
-    business: "The School of Business Offices are located on the First Floor of LTB3.",
+    ict_duties:
+        "The Director of ICT office generally manages university information and communication technology systems, digital platforms, internet and network services, ICT infrastructure, technical support, cybersecurity awareness and digital transformation initiatives.",
 
-    greeting: "Hello! I am Prince AI, your University of Kabianga Smart Campus Assistant. How can I help you?"
+    finance:
+        "The Finance Officer is CPA Willy Koech.",
+
+    finance_duties:
+        "The Finance Office generally handles financial administration, budgeting support, financial records, payments, accountability, financial reporting and other financial services of the university.",
+
+
+    /* ======================================
+       SENATE
+    ====================================== */
+
+    senate:
+        "The Senate is an important academic governance body of the university. It generally oversees academic matters, programmes, examinations, academic standards, teaching and research quality, academic regulations and other matters relating to the academic life of the university. The Senate Chamber is located on the First Floor of LTB3.",
+
+    senate_chamber:
+        "The Senate Chamber is located on the First Floor of LTB3. It is a meeting facility associated with academic governance and university academic administration.",
+
+    senate_duties:
+        "The Senate generally considers and oversees academic programmes, academic standards, examinations, teaching and research quality, academic regulations, graduation-related academic matters and other academic policies of the university.",
+
+
+    /* ======================================
+       OTHER IMPORTANT OFFICES
+    ====================================== */
+
+    library:
+        "The University Library provides learning resources, research materials, digital information resources and study spaces for students and staff.",
+
+    library_duties:
+        "The University Library generally supports teaching, learning and research by providing books, journals, electronic resources, study spaces, information literacy support and access to academic information.",
+
+    gate:
+        "The Main Gate is the main entrance and starting point for navigating the University of Kabianga campus.",
+
+    admissions:
+        "The Admissions Office generally assists with admission processes, student entry documentation, registration guidance and related academic enrolment matters.",
+
+    examinations:
+        "The Examinations Office generally coordinates examination administration, examination schedules, examination records and communication of examination-related information.",
+
+    postgraduate:
+        "The Director of Postgraduate Studies generally coordinates postgraduate academic matters, postgraduate programmes, research supervision support and postgraduate administration.",
+
+    gender:
+        "The Director of Gender Office generally promotes gender equality, inclusion, awareness and support for gender-related matters within the university community.",
+
+
+    /* ======================================
+       BUILDINGS
+    ====================================== */
+
+    ltb1:
+        "LTB1 is a lecture and teaching building containing lecture halls and learning spaces.",
+
+    ltb2:
+        "LTB2 is a lecture and teaching building used for academic activities and lecture halls.",
+
+    ltb3:
+        "LTB3 is a major lecture and teaching building containing lecture halls, university offices and important facilities including the Senate Chamber and Micro Teaching Lab.",
+
+    ltb4:
+        "LTB4 is a lecture and teaching building used for academic activities and lecture halls.",
+
+
+    /* ======================================
+       LTB3 FLOORS
+    ====================================== */
+
+    ltb3_ground:
+        "The Ground Floor of LTB3 contains the Dean, School of Education; HOD Curriculum and Instruction; HOD Physiology and Foundations; LH1; and LH2.",
+
+    ltb3_first:
+        "The First Floor of LTB3 contains the Senate Chamber, LH3, Micro Teaching Lab, School of Business Offices, Finance Office, Dean School of Business Office and HODs Office.",
+
+    ltb3_second:
+        "The Second Floor of LTB3 contains the Director of Gender Office, LH5, LH6 and the Director of Postgraduate Studies Office.",
+
+    ltb3_third:
+        "The Third Floor of LTB3 contains LH7 and LH8.",
+
+    business:
+        "The School of Business Offices are located on the First Floor of LTB3. These include the Finance Office, Dean School of Business Office and HODs Office.",
+
+
+    /* ======================================
+       LECTURE HALLS
+    ====================================== */
+
+    lecture_halls:
+        "The campus includes lecture halls and teaching spaces in buildings such as LTB1, LTB2, LTB3 and LTB4. LTB3 includes LH1, LH2, LH3, LH5, LH6, LH7 and LH8.",
+
+
+    /* ======================================
+       FALLBACK
+    ====================================== */
+
+    unknown:
+        "I am still learning about that topic. Please ask me about university leadership, office responsibilities, Senate, the library, Main Gate, LTB1, LTB2, LTB3, LTB4 or the offices located on LTB3 floors."
 };
 
 
@@ -378,7 +501,7 @@ const statusText = document.getElementById("statusText");
    ADD USER MESSAGE
 ========================================== */
 
-function addUserMessage(message){
+function addUserMessage(message) {
 
     const div = document.createElement("div");
 
@@ -396,7 +519,7 @@ function addUserMessage(message){
    ADD PRINCE AI MESSAGE
 ========================================== */
 
-function addBotMessage(message){
+function addBotMessage(message) {
 
     const div = document.createElement("div");
 
@@ -414,9 +537,39 @@ function addBotMessage(message){
    SCROLL CHAT
 ========================================== */
 
-function scrollChat(){
+function scrollChat() {
 
     chatBox.scrollTop = chatBox.scrollHeight;
+
+}
+
+
+/* ==========================================
+   NORMALIZE QUESTIONS
+========================================== */
+
+function normalizeQuestion(question) {
+
+    return question
+        .toLowerCase()
+        .replace(/[^\w\s]/g, " ")
+        .replace(/\s+/g, " ")
+        .trim();
+
+}
+
+
+/* ==========================================
+   CHECK WHETHER QUESTION HAS ANY WORD
+========================================== */
+
+function containsAny(text, words) {
+
+    return words.some(function(word) {
+
+        return text.includes(word);
+
+    });
 
 }
 
@@ -425,9 +578,9 @@ function scrollChat(){
    VOICE OUTPUT
 ========================================== */
 
-function speak(text){
+function speak(text) {
 
-    if(!("speechSynthesis" in window)){
+    if (!("speechSynthesis" in window)) {
 
         statusText.textContent =
             "🔇 Voice is not supported by this browser.";
@@ -446,32 +599,32 @@ function speak(text){
 
     const voices = window.speechSynthesis.getVoices();
 
-    const englishVoice = voices.find(function(voice){
+    const englishVoice = voices.find(function(voice) {
 
         return voice.lang &&
-               voice.lang.toLowerCase().startsWith("en");
+            voice.lang.toLowerCase().startsWith("en");
 
     });
 
-    if(englishVoice){
+    if (englishVoice) {
 
         speech.voice = englishVoice;
 
     }
 
-    speech.onstart = function(){
+    speech.onstart = function() {
 
         statusText.textContent = "🔊 Prince AI is speaking...";
 
     };
 
-    speech.onend = function(){
+    speech.onend = function() {
 
         statusText.textContent = "🟢 Prince AI is ready";
 
     };
 
-    speech.onerror = function(){
+    speech.onerror = function() {
 
         statusText.textContent = "🟢 Prince AI is ready";
 
@@ -486,343 +639,123 @@ function speak(text){
    FIND ANSWER
 ========================================== */
 
-function getAnswer(question){
+function getAnswer(question) {
 
-    const q = question.toLowerCase().trim();
+    const q = normalizeQuestion(question);
 
-    if(q.includes("hello") || q.includes("hi") || q.includes("hey")){
+    if (!q) {
+        return knowledge.unknown;
+    }
 
+
+    /* ==============================
+       GREETINGS
+    ============================== */
+
+    if (
+        containsAny(q, [
+            "hello",
+            "hi prince",
+            "hey prince",
+            "good morning",
+            "good afternoon",
+            "good evening",
+            "how are you"
+        ])
+    ) {
         return knowledge.greeting;
-
     }
 
-    if(q.includes("vice chancellor") || q === "vc"){
 
-        return knowledge.vc;
+    /* ==============================
+       GENERAL HELP
+    ============================== */
 
+    if (
+        containsAny(q, [
+            "what can you do",
+            "how can you help",
+            "help me",
+            "what do you know",
+            "tell me about yourself"
+        ])
+    ) {
+        return knowledge.help;
     }
 
-    if(
-        q.includes("dvc") ||
-        q.includes("deputy vice chancellor") ||
-        q.includes("academic and student affairs")
-    ){
 
-        return knowledge.dvc;
-
-    }
-
-    if(
-        q.includes("research") ||
-        q.includes("planning") ||
-        q.includes("development")
-    ){
-
-        return knowledge.research;
-
-    }
-
-    if(q.includes("registrar academic")){
-
-        return knowledge.registrar_academic;
-
-    }
-
-    if(
-        q.includes("registrar administration") ||
-        q.includes("registrar admin")
-    ){
-
-        return knowledge.registrar_admin;
-
-    }
-
-    if(q.includes("dean of students")){
-
-        return knowledge.dean;
-
-    }
-
-    if(q.includes("director ict") || q.includes("director of ict")){
-
-        return knowledge.ict;
-
-    }
-
-    if(q.includes("finance officer") || q.includes("finance")){
-
-        return knowledge.finance;
-
-    }
-
-    if(q.includes("library")){
-
-        return knowledge.library;
-
-    }
-
-    if(q.includes("main gate") || q.includes("gate")){
-
-        return knowledge.gate;
-
-    }
-
-    if(
-        q.includes("ltb3 ground") ||
-        q.includes("ground floor ltb3") ||
-        q.includes("ground floor of ltb3")
-    ){
-
-        return knowledge.ltb3_ground;
-
-    }
-
-    if(
-        q.includes("ltb3 first") ||
-        q.includes("first floor ltb3") ||
-        q.includes("first floor of ltb3")
-    ){
-
-        return knowledge.ltb3_first;
-
-    }
-
-    if(
-        q.includes("ltb3 second") ||
-        q.includes("second floor ltb3") ||
-        q.includes("second floor of ltb3")
-    ){
-
-        return knowledge.ltb3_second;
-
-    }
-
-    if(
-        q.includes("ltb3 third") ||
-        q.includes("third floor ltb3") ||
-        q.includes("third floor of ltb3")
-    ){
-
-        return knowledge.ltb3_third;
-
-    }
-
-    if(
-        q.includes("school of business") ||
-        q.includes("business office")
-    ){
-
-        return knowledge.business;
-
-    }
-
-    if(q.includes("ltb1")){
-
-        return knowledge.ltb1;
-
-    }
-
-    if(q.includes("ltb2")){
-
-        return knowledge.ltb2;
-
-    }
-
-    if(q.includes("ltb3")){
-
-        return knowledge.ltb3;
-
-    }
-
-    if(q.includes("ltb4")){
-
-        return knowledge.ltb4;
-
-    }
-
-    return "I am still learning about that. Please ask me about the Vice Chancellor, university leadership, the library, Main Gate, LTB1, LTB2, LTB3, LTB4, or LTB3 floor offices.";
-
-}
-
-
-/* ==========================================
-   SEND MESSAGE
-========================================== */
-
-function sendMessage(){
-
-    const message = userInput.value.trim();
-
-    if(message === ""){
-
-        return;
-
-    }
-
-    addUserMessage(message);
-
-    userInput.value = "";
-
-    const answer = getAnswer(message);
-
-    addBotMessage(answer);
-
-    speak(answer);
-
-}
-
-
-/* ==========================================
-   QUICK QUESTIONS
-========================================== */
-
-function askQuick(question){
-
-    addUserMessage(question);
-
-    const answer = getAnswer(question);
-
-    addBotMessage(answer);
-
-    speak(answer);
-
-}
-
-
-/* ==========================================
-   CLEAR CHAT
-========================================== */
-
-function clearChat(){
-
-    chatBox.innerHTML = "";
-
-    addBotMessage(
-        "Hello! I am Prince AI. How can I help you today?"
-    );
-
-    statusText.textContent = "🟢 Prince AI is ready";
-
-    if("speechSynthesis" in window){
-
-        window.speechSynthesis.cancel();
-
-    }
-
-}
-
-
-/* ==========================================
-   BACK BUTTON
-========================================== */
-
-function goBack(){
-
-    if(window.history.length > 1){
-
-        window.history.back();
-
-    } else {
-
-        window.location.href = "index.html";
-
-    }
-
-}
-
-
-/* ==========================================
-   ENTER KEY
-========================================== */
-
-userInput.addEventListener("keydown", function(event){
-
-    if(event.key === "Enter"){
-
-        sendMessage();
-
-    }
-
-});
-
-
-/* ==========================================
-   VOICE INPUT
-========================================== */
-
-function startVoiceInput(){
-
-    const SpeechRecognition =
-        window.SpeechRecognition ||
-        window.webkitSpeechRecognition;
-
-    if(!SpeechRecognition){
-
-        alert(
-            "Voice input is not supported in this browser. Please use Google Chrome."
-        );
-
-        return;
-
-    }
-
-    const recognition = new SpeechRecognition();
-
-    recognition.lang = "en-KE";
-    recognition.interimResults = false;
-    recognition.maxAlternatives = 1;
-
-    statusText.textContent = "🎙️ Listening...";
-
-    recognition.start();
-
-    recognition.onresult = function(event){
-
-        const transcript =
-            event.results[0][0].transcript;
-
-        userInput.value = transcript;
-
-        statusText.textContent = "🟢 Prince AI is ready";
-
-        sendMessage();
-
-    };
-
-    recognition.onerror = function(){
-
-        statusText.textContent = "🟢 Prince AI is ready";
-
-        alert("Voice input could not start. Please try again.");
-
-    };
-
-    recognition.onend = function(){
-
-        if(statusText.textContent === "🎙️ Listening..."){
-
-            statusText.textContent = "🟢 Prince AI is ready";
-
+    /* ==============================
+       VICE CHANCELLOR
+    ============================== */
+
+    if (
+        containsAny(q, [
+            "vice chancellor",
+            "vice-chancellor",
+            "vc",
+            "head of the university",
+            "university boss",
+            "who leads the university"
+        ])
+    ) {
+
+        if (
+            containsAny(q, [
+                "responsibilit",
+                "duty",
+                "duties",
+                "function",
+                "functions",
+                "role",
+                "work",
+                "does the vice chancellor do",
+                "what does the vc do"
+            ])
+        ) {
+            return knowledge.vc_duties;
         }
 
-    };
+        return knowledge.vc;
+    }
 
-}
+
+    /* ==============================
+       DVC ACADEMIC AND STUDENT AFFAIRS
+    ============================== */
+
+    if (
+        containsAny(q, [
+            "dvc",
+            "deputy vice chancellor",
+            "academic and student affairs",
+            "academic student affairs",
+            "student academic affairs"
+        ])
+    ) {
+
+        if (
+            containsAny(q, [
+                "responsibilit",
+                "duty",
+                "duties",
+                "function",
+                "functions",
+                "role",
+                "work",
+                "does the dvc do"
+            ])
+        ) {
+            return knowledge.dvc_duties;
+        }
+
+        return knowledge.dvc;
+    }
 
 
-/* ==========================================
-   PAGE LOADED
-========================================== */
+    /* ==============================
+       PLANNING RESEARCH AND DEVELOPMENT
+    ============================== */
 
-window.addEventListener("load", function(){
-
-    statusText.textContent = "🟢 Prince AI is ready";
-
-    console.log("Prince AI with voice loaded successfully.");
-
-});
-
-</script>
-
-</body>
-</html>
+    if (
+        containsAny(q, [
+            "planni
