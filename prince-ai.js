@@ -1,62 +1,369 @@
-// ============================================================
-// 🤖 PRINCE AI
-// UNIVERSITY OF KABIANGA SMART CAMPUS NAVIGATOR
-// COMPLETE VERSION 42
-// ============================================================
+/* =========================================================
+   PRINCE AI
+   UNIVERSITY OF KABIANGA SMART CAMPUS NAVIGATOR
+
+   CLEAN VERSION 100
+
+   This file works independently.
+   It does NOT require knowledge.js.
+========================================================= */
+
 
 "use strict";
 
-console.log("🤖 Prince AI v42 loading...");
 
-
-// ============================================================
-// SETTINGS
-// ============================================================
-
-const UOK_GOOGLE_MAPS =
-    "https://maps.app.goo.gl/KM8xpod3q4yb5DcE8";
+/* =========================================================
+   GLOBAL VARIABLES
+========================================================= */
 
 let recognition = null;
+
 let isListening = false;
 
 
-// ============================================================
-// STATUS
-// ============================================================
+/* =========================================================
+   CAMPUS INFORMATION
+========================================================= */
+
+const campusKnowledge = [
+
+    {
+        keywords: [
+            "ltb1",
+            "lecture teaching block 1",
+            "lecture theatre block 1"
+        ],
+
+        answer:
+            "📍 LTB1 is one of the Lecture and Teaching Blocks at the University of Kabianga. From the Main Gate, follow the main campus road and LTB1 is located along the route."
+    },
+
+
+    {
+        keywords: [
+            "ltb2",
+            "lecture teaching block 2",
+            "lecture theatre block 2"
+        ],
+
+        answer:
+            "📍 LTB2 is a Lecture and Teaching Block at the University of Kabianga. It is located further along the main campus route after LTB1."
+    },
+
+
+    {
+        keywords: [
+            "ltb3",
+            "lecture teaching block 3",
+            "lecture theatre block 3"
+        ],
+
+        answer:
+            "📍 LTB3 is a major academic and administrative building at the University of Kabianga. It contains lecture halls, offices and other university facilities."
+    },
+
+
+    {
+        keywords: [
+            "ltb4",
+            "lecture teaching block 4",
+            "lecture theatre block 4"
+        ],
+
+        answer:
+            "📍 LTB4 is one of the Lecture and Teaching Blocks at the University of Kabianga. It is located within the central campus area."
+    },
+
+
+    {
+        keywords: [
+            "library",
+            "university library"
+        ],
+
+        answer:
+            "📚 The University Library provides learning resources, research materials and study spaces for students and staff."
+    },
+
+
+    {
+        keywords: [
+            "cafeteria",
+            "canteen",
+            "food",
+            "restaurant"
+        ],
+
+        answer:
+            "🍽️ The University cafeteria provides food and refreshments for students and staff. Ask the campus navigation system for the latest verified location."
+    },
+
+
+    {
+        keywords: [
+            "vice chancellor",
+            "vc",
+            "who is the vc",
+            "university boss"
+        ],
+
+        answer:
+            "👨‍💼 The Vice Chancellor of the University of Kabianga is Prof. Erick Koech, Ph.D., MBS."
+    },
+
+
+    {
+        keywords: [
+            "dvc",
+            "academic dvc",
+            "dvc academic",
+            "student affairs"
+        ],
+
+        answer:
+            "👨‍💼 The Deputy Vice Chancellor responsible for Academic and Student Affairs is Prof. Dr. Fredrick Nyongesa Kassilly."
+    },
+
+
+    {
+        keywords: [
+            "research",
+            "planning",
+            "planning research",
+            "research development"
+        ],
+
+        answer:
+            "🔬 Planning, Research and Development is under Prof. Maurice Owino Oduor."
+    },
+
+
+    {
+        keywords: [
+            "registrar academic",
+            "academic registrar"
+        ],
+
+        answer:
+            "🏛️ The Registrar responsible for Academic Affairs is Dr. Cecilia Sang."
+    },
+
+
+    {
+        keywords: [
+            "registrar administration",
+            "administration registrar"
+        ],
+
+        answer:
+            "🏛️ The Registrar responsible for Administration is Mr. Peter K. Kimalel."
+    },
+
+
+    {
+        keywords: [
+            "dean of students",
+            "student dean",
+            "dean students"
+        ],
+
+        answer:
+            "🎓 The Dean of Students is Dr. Peter Ngugi."
+    },
+
+
+    {
+        keywords: [
+            "ict director",
+            "director ict",
+            "ict",
+            "information technology"
+        ],
+
+        answer:
+            "💻 The Director of ICT is Mr. Geoffrey Sowek."
+    },
+
+
+    {
+        keywords: [
+            "finance officer",
+            "finance",
+            "accounts"
+        ],
+
+        answer:
+            "💰 The Finance Officer is CPA Willy Koech."
+    },
+
+
+    {
+        keywords: [
+            "main gate",
+            "gate",
+            "entrance"
+        ],
+
+        answer:
+            "🚪 The Main Gate is the primary entrance to the University of Kabianga campus and can be used as a starting point for campus navigation."
+    },
+
+
+    {
+        keywords: [
+            "school of business",
+            "business school"
+        ],
+
+        answer:
+            "🎓 The School of Business has offices and facilities within the university campus. Some School of Business offices are located in LTB3."
+    },
+
+
+    {
+        keywords: [
+            "student portal",
+            "portal"
+        ],
+
+        answer:
+            "🎓 The Student Portal provides access to important student services such as academic information and other university services."
+    },
+
+
+    {
+        keywords: [
+            "register units",
+            "unit registration",
+            "units"
+        ],
+
+        answer:
+            "📚 Unit registration is normally completed through the university's student academic systems. Please use the official University of Kabianga student portal and follow the current registration instructions."
+    },
+
+
+    {
+        keywords: [
+            "hello",
+            "hi",
+            "hey",
+            "good morning",
+            "good afternoon",
+            "good evening"
+        ],
+
+        answer:
+            "👋 Hello! I am Prince AI, your University of Kabianga Smart Campus Assistant. How can I help you?"
+    },
+
+
+    {
+        keywords: [
+            "who are you",
+            "what are you",
+            "your name"
+        ],
+
+        answer:
+            "🤖 I am Prince AI, the intelligent campus assistant for the University of Kabianga Smart Campus Navigator."
+    },
+
+
+    {
+        keywords: [
+            "thank you",
+            "thanks",
+            "thank"
+        ],
+
+        answer:
+            "You're welcome! 😊 I am always ready to help you navigate the University of Kabianga."
+    }
+
+];
+
+
+/* =========================================================
+   LTB3 DETAILED INFORMATION
+========================================================= */
+
+const ltb3Information = {
+
+    "ground floor": [
+        "Dean School of Education",
+        "HOD Curriculum & Instruction",
+        "HOD Physiology & Foundations",
+        "LH1",
+        "LH2"
+    ],
+
+    "first floor": [
+        "Senate Chamber",
+        "LH3",
+        "Micro Teaching Lab",
+        "School of Business Offices",
+        "Finance Office",
+        "Dean School of Business Office",
+        "HODs Office, School of Business"
+    ],
+
+    "second floor": [
+        "Director of Gender Office",
+        "LH5",
+        "LH6",
+        "Director of Postgraduate Studies Office"
+    ],
+
+    "third floor": [
+        "LH7",
+        "LH8"
+    ]
+
+};
+
+
+/* =========================================================
+   GET ELEMENTS
+========================================================= */
+
+function getElement(id) {
+
+    return document.getElementById(id);
+
+}
+
+
+/* =========================================================
+   STATUS
+========================================================= */
 
 function showStatus(message) {
 
     const status =
-        document.getElementById("status");
+        getElement("status");
 
-    if (!status) return;
+    if (status) {
 
-    status.textContent = message;
-    status.style.display = "block";
+        status.textContent =
+            message;
+
+    }
+
 }
 
 
-function hideStatus() {
-
-    const status =
-        document.getElementById("status");
-
-    if (!status) return;
-
-    status.style.display = "none";
-}
-
-
-// ============================================================
-// CHAT
-// ============================================================
+/* =========================================================
+   ADD USER MESSAGE
+========================================================= */
 
 function addUserMessage(message) {
 
     const chatBox =
-        document.getElementById("chatBox");
+        getElement("chatBox");
 
     if (!chatBox) return;
+
 
     const div =
         document.createElement("div");
@@ -64,21 +371,29 @@ function addUserMessage(message) {
     div.className =
         "message user-message";
 
-    div.textContent = message;
+    div.textContent =
+        message;
+
 
     chatBox.appendChild(div);
 
     chatBox.scrollTop =
         chatBox.scrollHeight;
+
 }
 
+
+/* =========================================================
+   ADD BOT MESSAGE
+========================================================= */
 
 function addBotMessage(message) {
 
     const chatBox =
-        document.getElementById("chatBox");
+        getElement("chatBox");
 
     if (!chatBox) return;
+
 
     const div =
         document.createElement("div");
@@ -86,459 +401,711 @@ function addBotMessage(message) {
     div.className =
         "message bot-message";
 
-    div.innerHTML = message;
+
+    div.innerHTML =
+        message;
+
 
     chatBox.appendChild(div);
 
     chatBox.scrollTop =
         chatBox.scrollHeight;
-}
 
 
-// ============================================================
-// GOOGLE MAPS
-// ============================================================
-
-function createGoogleMapsLink(destination) {
-
-    return (
-        "https://www.google.com/maps/search/?api=1&query=" +
-        encodeURIComponent(destination)
+    speakPrinceAI(
+        stripHTML(message)
     );
+
 }
 
 
-function createNavigateButton(destination) {
+/* =========================================================
+   REMOVE HTML FROM SPEECH
+========================================================= */
 
-    const link =
-        createGoogleMapsLink(destination);
+function stripHTML(text) {
 
-    return `
-        <br><br>
-        <a
-            href="${link}"
-            target="_blank"
-            rel="noopener noreferrer"
-            class="navigate-btn"
-        >
-            🧭 Navigate with Google Maps
-        </a>
-    `;
+    const temp =
+        document.createElement("div");
+
+    temp.innerHTML =
+        text;
+
+    return temp.textContent ||
+           temp.innerText ||
+           "";
+
 }
 
 
-// ============================================================
-// NAVIGATION DESTINATIONS
-// ============================================================
+/* =========================================================
+   SEARCH KNOWLEDGE
+========================================================= */
 
-const navigationDestinations = {
-
-    "main gate":
-        "University of Kabianga Main Gate, Kenya",
-
-    "ltb1":
-        "LTB1, University of Kabianga, Kenya",
-
-    "ltb2":
-        "LTB2, University of Kabianga, Kenya",
-
-    "ltb3":
-        "LTB3, University of Kabianga, Kenya",
-
-    "ltb4":
-        "LTB4, University of Kabianga, Kenya",
-
-    "vc office":
-        "Vice Chancellor Office, University of Kabianga, Kenya",
-
-    "senate chamber":
-        "Senate Chamber, LTB3, University of Kabianga, Kenya",
-
-    "school of business":
-        "School of Business, University of Kabianga, Kenya",
-
-    "micro teaching lab":
-        "Micro Teaching Lab, LTB3, University of Kabianga, Kenya",
-
-    "gender office":
-        "Director of Gender Office, University of Kabianga, Kenya",
-
-    "postgraduate":
-        "Director of Postgraduate Studies Office, University of Kabianga, Kenya"
-};
-
-
-// ============================================================
-// NAVIGATION DETECTION
-// ============================================================
-
-function detectDestination(text) {
+function findKnowledgeAnswer(question) {
 
     const q =
-        text.toLowerCase();
+        question
+            .toLowerCase()
+            .trim();
+
+
+    if (!q) {
+
+        return "Please type a question first.";
+
+    }
+
+
+    /* -----------------------------------------
+       LTB3 FLOOR INFORMATION
+    ----------------------------------------- */
 
     if (
-        q.includes("vice chancellor") ||
-        q.includes("vc office") ||
-        q.includes("vc's office")
+        q.includes("ltb3") &&
+        (
+            q.includes("floor") ||
+            q.includes("office") ||
+            q.includes("room") ||
+            q.includes("inside") ||
+            q.includes("contains")
+        )
     ) {
-        return navigationDestinations["vc office"];
+
+        return getLTB3Information();
+
     }
 
-    if (q.includes("senate chamber")) {
-        return navigationDestinations["senate chamber"];
+
+    /* -----------------------------------------
+       NORMAL KNOWLEDGE
+    ----------------------------------------- */
+
+    for (
+        let i = 0;
+        i < campusKnowledge.length;
+        i++
+    ) {
+
+        const item =
+            campusKnowledge[i];
+
+
+        for (
+            let j = 0;
+            j < item.keywords.length;
+            j++
+        ) {
+
+            if (
+                q.includes(
+                    item.keywords[j]
+                )
+            ) {
+
+                return item.answer;
+
+            }
+
+        }
+
     }
+
+
+    /* -----------------------------------------
+       NAVIGATION QUESTIONS
+    ----------------------------------------- */
 
     if (
-        q.includes("micro teaching") ||
-        q.includes("microteaching")
+        q.includes("where") ||
+        q.includes("find") ||
+        q.includes("locate") ||
+        q.includes("direction") ||
+        q.includes("navigate")
     ) {
-        return navigationDestinations[
-            "micro teaching lab"
-        ];
+
+        return navigationAnswer(q);
+
     }
 
-    if (
-        q.includes("gender office") ||
-        q.includes("director of gender")
-    ) {
-        return navigationDestinations[
-            "gender office"
-        ];
-    }
 
-    if (
-        q.includes("postgraduate") ||
-        q.includes("post graduate")
-    ) {
-        return navigationDestinations[
-            "postgraduate"
-        ];
-    }
+    /* -----------------------------------------
+       DEFAULT ANSWER
+    ----------------------------------------- */
 
-    if (
-        q.includes("school of business") ||
-        q.includes("business offices")
-    ) {
-        return navigationDestinations[
-            "school of business"
-        ];
-    }
+    return `
+        🤖 I don't have a verified answer for that yet.
 
-    if (
-        q.includes("ltb1") ||
-        q.includes("ltb 1")
-    ) {
-        return navigationDestinations["ltb1"];
-    }
+        <br><br>
 
-    if (
-        q.includes("ltb2") ||
-        q.includes("ltb 2")
-    ) {
-        return navigationDestinations["ltb2"];
-    }
+        Try asking me about:
 
-    if (
-        q.includes("ltb3") ||
-        q.includes("ltb 3")
-    ) {
-        return navigationDestinations["ltb3"];
-    }
+        <br>
+        • LTB1
+        <br>
+        • LTB2
+        <br>
+        • LTB3
+        <br>
+        • LTB4
+        <br>
+        • University Library
+        <br>
+        • Main Gate
+        <br>
+        • Vice Chancellor
+        <br>
+        • DVC Academic & Student Affairs
+        <br>
+        • Registrar
+        <br>
+        • Dean of Students
+        <br>
+        • ICT
+    `;
 
-    if (
-        q.includes("ltb4") ||
-        q.includes("ltb 4")
-    ) {
-        return navigationDestinations["ltb4"];
-    }
-
-    if (
-        q.includes("main gate") ||
-        q === "gate" ||
-        q.includes("university gate")
-    ) {
-        return navigationDestinations["main gate"];
-    }
-
-    return null;
 }
 
 
-function isNavigationQuestion(text) {
+/* =========================================================
+   LTB3 INFORMATION
+========================================================= */
 
-    const words = [
-        "navigate",
-        "navigation",
-        "direction",
-        "directions",
-        "take me",
-        "how do i get",
-        "how can i get",
-        "where is",
-        "find",
-        "go to",
-        "get to",
-        "walk to",
-        "walking",
-        "route",
-        "location of"
-    ];
+function getLTB3Information() {
 
-    return words.some(
-        word => text.includes(word)
-    );
+    let answer =
+        "<strong>🏢 LTB3 Facilities</strong><br><br>";
+
+
+    answer +=
+        "<strong>Ground Floor</strong><br>";
+
+    ltb3Information["ground floor"]
+        .forEach(item => {
+
+            answer +=
+                "• " + item + "<br>";
+
+        });
+
+
+    answer +=
+        "<br><strong>First Floor</strong><br>";
+
+    ltb3Information["first floor"]
+        .forEach(item => {
+
+            answer +=
+                "• " + item + "<br>";
+
+        });
+
+
+    answer +=
+        "<br><strong>Second Floor</strong><br>";
+
+    ltb3Information["second floor"]
+        .forEach(item => {
+
+            answer +=
+                "• " + item + "<br>";
+
+        });
+
+
+    answer +=
+        "<br><strong>Third Floor</strong><br>";
+
+    ltb3Information["third floor"]
+        .forEach(item => {
+
+            answer +=
+                "• " + item + "<br>";
+
+        });
+
+
+    return answer;
+
 }
 
 
-function handleNavigation(text) {
+/* =========================================================
+   NAVIGATION ANSWER
+========================================================= */
 
-    const destination =
-        detectDestination(text);
+function navigationAnswer(question) {
+
+    let destination = "";
+
+
+    if (question.includes("ltb1")) {
+
+        destination = "LTB1, University of Kabianga";
+
+    }
+
+    else if (question.includes("ltb2")) {
+
+        destination = "LTB2, University of Kabianga";
+
+    }
+
+    else if (question.includes("ltb3")) {
+
+        destination = "LTB3, University of Kabianga";
+
+    }
+
+    else if (question.includes("ltb4")) {
+
+        destination = "LTB4, University of Kabianga";
+
+    }
+
+    else if (
+        question.includes("library")
+    ) {
+
+        destination =
+            "University Library, University of Kabianga";
+
+    }
+
+    else if (
+        question.includes("gate") ||
+        question.includes("entrance")
+    ) {
+
+        destination =
+            "Main Gate, University of Kabianga";
+
+    }
+
 
     if (!destination) {
 
         return `
-            🧭 <strong>Prince AI Navigation</strong>
+            📍 I can help you navigate to LTB1,
+            LTB2, LTB3, LTB4, the Library or the
+            Main Gate.
 
             <br><br>
 
-            I can help you find places around
-            the University of Kabianga.
+            Example:
 
-            <br><br>
+            <br>
 
-            Try:
-
-            <br>• Navigate to LTB1
-            <br>• Take me to LTB2
-            <br>• Where is LTB3?
-            <br>• Directions to LTB4
-            <br>• Where is the VC Office?
+            <strong>Where is LTB3?</strong>
         `;
+
     }
 
+
+    const mapsURL =
+        "https://www.google.com/maps/search/?api=1&query=" +
+        encodeURIComponent(destination);
+
+
     return `
-        🧭 <strong>Destination found</strong>
+        📍 <strong>${destination}</strong>
 
         <br><br>
 
-        ${destination}
+        I can open Google Maps to help you find
+        this destination.
 
-        ${createNavigateButton(destination)}
+        <br><br>
+
+        <a
+            href="${mapsURL}"
+            target="_blank"
+            rel="noopener noreferrer"
+            style="
+                display:inline-block;
+                background:#0b5ed7;
+                color:white;
+                padding:10px 15px;
+                border-radius:8px;
+                text-decoration:none;
+            "
+        >
+            🗺️ Open in Google Maps
+        </a>
     `;
+
 }
 
 
-// ============================================================
-// LTB3
-// ============================================================
+/* =========================================================
+   SEND MESSAGE
+========================================================= */
 
-function getLTB3Information(text) {
+function sendMessage() {
 
-    if (text.includes("senate")) {
+    const input =
+        getElement("userMessage");
 
-        return `
-            🏛️ <strong>Senate Chamber</strong>
 
-            <br><br>
+    if (!input) {
 
-            The Senate Chamber is located on the
-            <strong>First Floor of LTB3</strong>.
-        `;
+        alert(
+            "Prince AI input box was not found."
+        );
+
+        return;
+
     }
 
-    if (
-        text.includes("micro") ||
-        text.includes("teaching")
-    ) {
 
-        return `
-            🎓 <strong>Micro Teaching Lab</strong>
+    const message =
+        input.value.trim();
 
-            <br><br>
 
-            Located on the
-            <strong>First Floor of LTB3</strong>.
-        `;
+    if (!message) {
+
+        showStatus(
+            "Please type a question."
+        );
+
+        input.focus();
+
+        return;
+
     }
 
-    if (text.includes("business")) {
 
-        return `
-            🏫 <strong>School of Business Offices</strong>
+    addUserMessage(
+        message
+    );
 
-            <br><br>
 
-            Located on the
-            <strong>First Floor of LTB3</strong>.
-        `;
-    }
+    input.value = "";
 
-    if (text.includes("gender")) {
 
-        return `
-            👩‍💼 <strong>Director of Gender Office</strong>
+    showStatus(
+        "🤖 Prince AI is thinking..."
+    );
 
-            <br><br>
 
-            Located on the
-            <strong>Second Floor of LTB3</strong>.
-        `;
-    }
+    setTimeout(() => {
 
-    if (
-        text.includes("postgraduate") ||
-        text.includes("post graduate")
-    ) {
+        const answer =
+            findKnowledgeAnswer(
+                message
+            );
 
-        return `
-            🎓 <strong>Director of Postgraduate Studies</strong>
 
-            <br><br>
+        addBotMessage(
+            answer
+        );
 
-            Located on the
-            <strong>Second Floor of LTB3</strong>.
-        `;
-    }
 
-    if (text.includes("lh1")) {
+        showStatus(
+            "🟢 Prince AI is ready."
+        );
 
-        return `
-            🏫 <strong>LH1</strong>
+    }, 250);
 
-            <br><br>
-
-            Ground Floor of LTB3.
-        `;
-    }
-
-    if (text.includes("lh2")) {
-
-        return `
-            🏫 <strong>LH2</strong>
-
-            <br><br>
-
-            Ground Floor of LTB3.
-        `;
-    }
-
-    if (text.includes("lh3")) {
-
-        return `
-            🏫 <strong>LH3</strong>
-
-            <br><br>
-
-            First Floor of LTB3.
-        `;
-    }
-
-    if (
-        text.includes("lh5") ||
-        text.includes("lh 5")
-    ) {
-
-        return `
-            🏫 <strong>LH5</strong>
-
-            <br><br>
-
-            Second Floor of LTB3.
-        `;
-    }
-
-    if (
-        text.includes("lh6") ||
-        text.includes("lh 6")
-    ) {
-
-        return `
-            🏫 <strong>LH6</strong>
-
-            <br><br>
-
-            Second Floor of LTB3.
-        `;
-    }
-
-    if (
-        text.includes("lh7") ||
-        text.includes("lh 7")
-    ) {
-
-        return `
-            🏫 <strong>LH7</strong>
-
-            <br><br>
-
-            Third Floor of LTB3.
-        `;
-    }
-
-    if (
-        text.includes("lh8") ||
-        text.includes("lh 8")
-    ) {
-
-        return `
-            🏫 <strong>LH8</strong>
-
-            <br><br>
-
-            Third Floor of LTB3.
-        `;
-    }
-
-    return `
-        🏢 <strong>LTB3</strong>
-
-        <br><br>
-
-        <strong>Ground Floor</strong>
-        <br>• Dean, School of Education
-        <br>• HOD Curriculum & Instruction
-        <br>• HOD Physiology & Foundations
-        <br>• LH1
-        <br>• LH2
-
-        <br><br>
-
-        <strong>First Floor</strong>
-        <br>• Senate Chamber
-        <br>• LH3
-        <br>• Micro Teaching Lab
-        <br>• School of Business Offices
-
-        <br><br>
-
-        <strong>Second Floor</strong>
-        <br>• Director of Gender Office
-        <br>• LH5
-        <br>• LH6
-        <br>• Director of Postgraduate Studies
-
-        <br><br>
-
-        <strong>Third Floor</strong>
-        <br>• LH7
-        <br>• LH8
-    `;
 }
 
 
-// ============================================================
-// KNOWLEDGE
-// ============================================================
+/* =========================================================
+   VOICE / SPEECH SYNTHESIS
+========================================================= */
 
-function findKnowledgeAnswer(question) {
-
-    const text =
-        question.toLowerCase().trim();
-
-
-    // GREETING
+function speakPrinceAI(text) {
 
     if (
-       
+        !("speechSynthesis" in window)
+    ) {
+
+        return;
+
+    }
+
+
+    try {
+
+        window.speechSynthesis.cancel();
+
+
+        const speech =
+            new SpeechSynthesisUtterance(
+                text
+            );
+
+
+        speech.lang =
+            "en-KE";
+
+
+        speech.rate =
+            0.95;
+
+
+        speech.pitch =
+            1;
+
+
+        speech.volume =
+            1;
+
+
+        window.speechSynthesis.speak(
+            speech
+        );
+
+    }
+
+    catch (error) {
+
+        console.log(
+            "Speech synthesis error:",
+            error
+        );
+
+    }
+
+}
+
+
+/* =========================================================
+   VOICE RECOGNITION
+========================================================= */
+
+function setupVoiceRecognition() {
+
+    const SpeechRecognition =
+        window.SpeechRecognition ||
+        window.webkitSpeechRecognition;
+
+
+    if (!SpeechRecognition) {
+
+        recognition = null;
+
+        showStatus(
+            "🟢 Text chat is ready. Voice recognition is not supported by this browser."
+        );
+
+        return;
+
+    }
+
+
+    recognition =
+        new SpeechRecognition();
+
+
+    recognition.continuous =
+        false;
+
+
+    recognition.interimResults =
+        false;
+
+
+    recognition.maxAlternatives =
+        1;
+
+
+    recognition.lang =
+        "en-KE";
+
+
+    recognition.onstart =
+        function() {
+
+            isListening =
+                true;
+
+            showStatus(
+                "🎤 Listening... Please speak now."
+            );
+
+        };
+
+
+    recognition.onresult =
+        function(event) {
+
+            const transcript =
+                event
+                    .results[0][0]
+                    .transcript;
+
+
+            const input =
+                getElement(
+                    "userMessage"
+                );
+
+
+            if (input) {
+
+                input.value =
+                    transcript;
+
+            }
+
+
+            isListening =
+                false;
+
+
+            showStatus(
+                "🟢 Speech received. Sending..."
+            );
+
+
+            sendMessage();
+
+        };
+
+
+    recognition.onerror =
+        function(event) {
+
+            isListening =
+                false;
+
+
+            console.log(
+                "Speech recognition error:",
+                event.error
+            );
+
+
+            if (
+                event.error ===
+                "not-allowed"
+            ) {
+
+                showStatus(
+                    "🎤 Microphone permission was denied. Please allow microphone access in your browser."
+                );
+
+            }
+
+            else if (
+                event.error ===
+                "no-speech"
+            ) {
+
+                showStatus(
+                    "🎤 No speech detected. Tap the microphone and speak again."
+                );
+
+            }
+
+            else {
+
+                showStatus(
+                    "🎤 Voice recognition could not start. You can still use text chat."
+                );
+
+            }
+
+        };
+
+
+    recognition.onend =
+        function() {
+
+            isListening =
+                false;
+
+        };
+
+}
+
+
+/* =========================================================
+   START VOICE
+========================================================= */
+
+function startPrinceAI() {
+
+    if (!recognition) {
+
+        setupVoiceRecognition();
+
+    }
+
+
+    if (!recognition) {
+
+        alert(
+            "Voice recognition is not supported in this browser. Please use the text box."
+        );
+
+        return;
+
+    }
+
+
+    if (isListening) {
+
+        try {
+
+            recognition.stop();
+
+        }
+
+        catch (error) {
+
+            console.log(error);
+
+        }
+
+        return;
+
+    }
+
+
+    try {
+
+        recognition.start();
+
+    }
+
+    catch (error) {
+
+        console.log(
+            "Could not start microphone:",
+            error
+        );
+
+        showStatus(
+            "🎤 Could not start the microphone. Please try again."
+        );
+
+    }
+
+}
+
+
+/* =========================================================
+   NEW CHAT
+========================================================= */
+
+function newChat() {
+
+    const chatBox =
+        getElement("chatBox");
+
+
+    if (!chatBox) return;
+
+
+    chatBox.innerHTML = `
+
+        <div class="message bot-message">
+
+            👋 Hello again!
+
+            <br><br>
+
+            I am <strong>Prince AI</strong>,
+            your 
