@@ -6,15 +6,6 @@
 
 
 // ===============================
-// OPEN PRINCE AI
-// ===============================
-
-function openPrinceAI() {
-    window.location.href = "prince-ai.html";
-}
-
-
-// ===============================
 // REGISTER SERVICE WORKER
 // ===============================
 
@@ -24,7 +15,9 @@ if ("serviceWorker" in navigator) {
 
         try {
 
-            await navigator.serviceWorker.register("service-worker.js");
+            await navigator.serviceWorker.register(
+                "service-worker.js"
+            );
 
             console.log("✅ Service Worker Registered");
 
@@ -48,15 +41,19 @@ if ("serviceWorker" in navigator) {
 
 document.addEventListener("DOMContentLoaded", () => {
 
-    const searchBtn = document.getElementById("searchBtn");
-    const searchBox = document.getElementById("searchBox");
+    const searchBtn =
+        document.getElementById("searchBtn");
+
+    const searchBox =
+        document.getElementById("searchBox");
 
     if (!searchBtn || !searchBox) return;
 
 
     searchBtn.addEventListener("click", () => {
 
-        const place = searchBox.value.trim().toLowerCase();
+        const place =
+            searchBox.value.trim().toLowerCase();
 
 
         if (place === "") {
@@ -76,21 +73,21 @@ document.addEventListener("DOMContentLoaded", () => {
 
         else if (place === "ltb2") {
 
-            alert("LTB2 page coming soon.");
+            window.location.href = "ltb2.html";
 
         }
 
 
         else if (place === "ltb3") {
 
-            alert("LTB3 page coming soon.");
+            window.location.href = "ltb3.html";
 
         }
 
 
         else if (place === "ltb4") {
 
-            alert("LTB4 page coming soon.");
+            window.location.href = "ltb4.html";
 
         }
 
@@ -100,7 +97,9 @@ document.addEventListener("DOMContentLoaded", () => {
             place === "university library"
         ) {
 
-            alert("University Library details coming soon.");
+            alert(
+                "University Library details coming soon."
+            );
 
         }
 
@@ -110,7 +109,9 @@ document.addEventListener("DOMContentLoaded", () => {
             place === "admin"
         ) {
 
-            alert("Administration details coming soon.");
+            alert(
+                "Administration details coming soon."
+            );
 
         }
 
@@ -132,7 +133,8 @@ document.addEventListener("DOMContentLoaded", () => {
 
 document.addEventListener("DOMContentLoaded", () => {
 
-    const scanBtn = document.getElementById("scanBtn");
+    const scanBtn =
+        document.getElementById("scanBtn");
 
     if (!scanBtn) return;
 
@@ -141,20 +143,26 @@ document.addEventListener("DOMContentLoaded", () => {
 
         if (typeof Html5Qrcode === "undefined") {
 
-            alert("QR Scanner library is not loaded.");
+            alert(
+                "QR Scanner library is not loaded."
+            );
+
             return;
 
         }
 
 
-        const qrScanner = new Html5Qrcode("reader");
+        const qrScanner =
+            new Html5Qrcode("reader");
 
 
         try {
 
             await qrScanner.start(
 
-                { facingMode: "environment" },
+                {
+                    facingMode: "environment"
+                },
 
                 {
                     fps: 10,
@@ -164,7 +172,9 @@ document.addEventListener("DOMContentLoaded", () => {
                 async (decodedText) => {
 
                     const scanResult =
-                        document.getElementById("scanResult");
+                        document.getElementById(
+                            "scanResult"
+                        );
 
 
                     if (scanResult) {
@@ -181,14 +191,17 @@ document.addEventListener("DOMContentLoaded", () => {
                     await qrScanner.stop();
 
 
-                    // If QR code contains a website link,
-                    // open it automatically.
                     if (
-                        decodedText.startsWith("http://") ||
-                        decodedText.startsWith("https://")
+                        decodedText.startsWith(
+                            "http://"
+                        ) ||
+                        decodedText.startsWith(
+                            "https://"
+                        )
                     ) {
 
-                        window.location.href = decodedText;
+                        window.location.href =
+                            decodedText;
 
                     }
 
@@ -198,7 +211,10 @@ document.addEventListener("DOMContentLoaded", () => {
 
         } catch (error) {
 
-            console.error("QR Scanner Error:", error);
+            console.error(
+                "QR Scanner Error:",
+                error
+            );
 
             alert(
                 "Unable to start camera. Please allow camera permission."
@@ -219,44 +235,55 @@ function requestNotificationPermission() {
 
     if (!("Notification" in window)) {
 
-        alert("This browser does not support notifications.");
+        alert(
+            "This browser does not support notifications."
+        );
+
         return;
 
     }
 
 
-    Notification.requestPermission().then(permission => {
+    Notification.requestPermission().then(
+        permission => {
 
-        if (permission === "granted") {
+            if (permission === "granted") {
 
-            navigator.serviceWorker.ready.then(registration => {
+                navigator.serviceWorker.ready.then(
+                    registration => {
 
-                registration.showNotification(
-                    "🎓 University of Kabianga",
-                    {
-                        body: "Notifications enabled successfully.",
-                        icon: "logo.jpg",
-                        badge: "logo.jpg"
+                        registration.showNotification(
+                            "🎓 University of Kabianga",
+                            {
+                                body:
+                                    "Notifications enabled successfully.",
+                                icon: "logo.jpg",
+                                badge: "logo.jpg"
+                            }
+                        );
+
                     }
                 );
 
-            });
+            }
+
+            else {
+
+                alert(
+                    "Notification permission denied."
+                );
+
+            }
 
         }
-
-        else {
-
-            alert("Notification permission denied.");
-
-        }
-
-    });
+    );
 
 }
 
 
 // Make available to HTML onclick
-window.requestNotificationPermission = requestNotificationPermission;
+window.requestNotificationPermission =
+    requestNotificationPermission;
 
 
 // ===============================
@@ -265,8 +292,24 @@ window.requestNotificationPermission = requestNotificationPermission;
 
 function openLeadershipDirectory() {
 
-    window.location.href = "leadership.html";
+    window.location.href =
+        "leadership.html";
 
 }
 
-window.openLeadershipDirectory = openLeadershipDirectory;
+window.openLeadershipDirectory =
+    openLeadershipDirectory;
+
+
+// ===============================
+// PRINCE AI
+// ===============================
+// IMPORTANT:
+// Prince AI is opened directly from
+// home.html using:
+// <a href="prince-ai.html">
+// No JavaScript redirection is needed here.
+
+console.log(
+    "✅ UOK Smart Campus Navigator main script loaded."
+);
