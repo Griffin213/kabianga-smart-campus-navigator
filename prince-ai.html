@@ -1,507 +1,343 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="theme-color" content="#0b5ed7">
-    <title>Prince AI | UOK Smart Campus</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <style>
-        :root {
-            --primary-color: #0b5ed7;
-            --primary-hover: #084298;
-            --secondary-color: #198754;
-            --secondary-hover: #146c43;
-            --bg-gradient: linear-gradient(135deg, #eef5ff, #dbeafe);
-            --header-gradient: linear-gradient(135deg, #0b5ed7, #084298);
-            --text-dark: #222222;
-            --text-muted: #666666;
-            --card-bg: #ffffff;
-            --chat-bg: #f5f8fc;
-            --border-color: #cbd5e1;
-            --shadow-subtle: 0 6px 25px rgba(0, 0, 0, 0.08);
-            --radius-main: 16px;
-            --radius-msg: 12px;
-        }
+<title>Prince AI | University of Kabianga</title>
 
-        * {
-            box-sizing: border-box;
-            margin: 0;
-            padding: 0;
-        }
+<style>
+*{
+    box-sizing:border-box;
+    margin:0;
+    padding:0;
+}
 
-        body {
-            font-family: system-ui, -apple-system, "Segoe UI", Roboto, Arial, sans-serif;
-            background: var(--bg-gradient);
-            min-height: 100vh;
-            color: var(--text-dark);
-            display: flex;
-            flex-direction: column;
-        }
+body{
+    font-family:Arial,Helvetica,sans-serif;
+    background:#eef5ff;
+    min-height:100vh;
+}
 
-        /* HEADER */
-        .header {
-            background: var(--header-gradient);
-            color: #ffffff;
-            padding: 18px 15px;
-            text-align: center;
-            box-shadow: 0 3px 12px rgba(0, 0, 0, 0.15);
-        }
+.header{
+    background:linear-gradient(135deg,#0b5ed7,#084298);
+    color:white;
+    text-align:center;
+    padding:20px 15px;
+}
 
-        .header h1 {
-            font-size: 1.35rem;
-            margin-bottom: 4px;
-            font-weight: 700;
-        }
+.header h1{
+    font-size:26px;
+    margin-bottom:6px;
+}
 
-        .header p {
-            font-size: 0.85rem;
-            opacity: 0.95;
-        }
+.header p{
+    font-size:14px;
+}
 
-        /* MAIN CONTAINER */
-        .container {
-            width: 100%;
-            max-width: 800px;
-            margin: 0 auto;
-            padding: 16px;
-            flex: 1;
-        }
+.container{
+    max-width:850px;
+    margin:auto;
+    padding:15px;
+}
 
-        /* CARD */
-        .ai-card {
-            background: var(--card-bg);
-            border-radius: var(--radius-main);
-            padding: 20px;
-            box-shadow: var(--shadow-subtle);
-        }
+.card{
+    background:white;
+    border-radius:18px;
+    overflow:hidden;
+    box-shadow:0 5px 20px rgba(0,0,0,.15);
+}
 
-        /* TITLE SECTION */
-        .ai-title {
-            text-align: center;
-            margin-bottom: 12px;
-        }
+.status{
+    padding:12px;
+    text-align:center;
+    background:#e8f1ff;
+    color:#084298;
+    font-weight:bold;
+    border-bottom:1px solid #d5e4ff;
+}
 
-        .ai-icon {
-            font-size: 48px;
-            line-height: 1;
-            margin-bottom: 6px;
-        }
+.chat{
+    height:460px;
+    overflow-y:auto;
+    padding:18px;
+    background:#f8fbff;
+}
 
-        .ai-title h2 {
-            color: var(--primary-color);
-            font-size: 1.5rem;
-            margin-bottom: 2px;
-        }
+.message{
+    max-width:85%;
+    padding:13px 15px;
+    margin-bottom:12px;
+    border-radius:15px;
+    line-height:1.5;
+    white-space:pre-wrap;
+}
 
-        .ai-title p {
-            color: var(--text-muted);
-            font-size: 0.875rem;
-        }
+.bot{
+    background:#e3efff;
+    color:#222;
+    border-bottom-left-radius:4px;
+}
 
-        /* STATUS BADGE */
-        .status {
-            background: #eef5ff;
-            border-left: 4px solid var(--primary-color);
-            padding: 10px 12px;
-            border-radius: 6px;
-            font-size: 0.825rem;
-            margin-bottom: 15px;
-            color: #1e293b;
-            display: flex;
-            align-items: center;
-            gap: 6px;
-        }
+.user{
+    background:#0b5ed7;
+    color:white;
+    margin-left:auto;
+    border-bottom-right-radius:4px;
+}
 
-        /* CHAT WINDOW */
-        .chat-box {
-            height: 380px;
-            overflow-y: auto;
-            background: var(--chat-bg);
-            border: 1px solid #dbe3ef;
-            border-radius: var(--radius-msg);
-            padding: 15px;
-            margin-bottom: 15px;
-            scroll-behavior: smooth;
-        }
+.quick{
+    padding:12px;
+    display:flex;
+    flex-wrap:wrap;
+    gap:8px;
+    border-top:1px solid #ddd;
+}
 
-        /* MESSAGES */
-        .message {
-            margin-bottom: 12px;
-            padding: 10px 14px;
-            border-radius: var(--radius-msg);
-            line-height: 1.45;
-            font-size: 0.925rem;
-            max-width: 85%;
-            word-wrap: break-word;
-            animation: fadeIn 0.2s ease-in-out;
-        }
+.quick button{
+    border:1px solid #0b5ed7;
+    background:white;
+    color:#0b5ed7;
+    padding:9px 12px;
+    border-radius:20px;
+    cursor:pointer;
+}
 
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(4px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
+.quick button:active{
+    background:#0b5ed7;
+    color:white;
+}
 
-        .user-message {
-            background: var(--primary-color);
-            color: #ffffff;
-            margin-left: auto;
-            border-bottom-right-radius: 2px;
-        }
+.input-area{
+    padding:12px;
+    display:flex;
+    gap:8px;
+    background:white;
+    border-top:1px solid #ddd;
+}
 
-        .bot-message {
-            background: #ffffff;
-            color: var(--text-dark);
-            border: 1px solid #dce3ec;
-            margin-right: auto;
-            border-bottom-left-radius: 2px;
-        }
+.input-area input{
+    flex:1;
+    min-width:0;
+    padding:14px;
+    border:1px solid #aaa;
+    border-radius:12px;
+    font-size:16px;
+    outline:none;
+}
 
-        /* INPUT REGION */
-        .input-area {
-            display: flex;
-            gap: 8px;
-            align-items: center;
-        }
+.input-area input:focus{
+    border-color:#0b5ed7;
+}
 
-        .input-area input {
-            flex: 1;
-            min-width: 0;
-            padding: 12px 14px;
-            border: 1px solid var(--border-color);
-            border-radius: 10px;
-            font-size: 0.95rem;
-            outline: none;
-            transition: border-color 0.2s, box-shadow 0.2s;
-        }
+.button{
+    border:none;
+    border-radius:12px;
+    padding:0 16px;
+    font-size:15px;
+    font-weight:bold;
+    cursor:pointer;
+}
 
-        .input-area input:focus {
-            border-color: var(--primary-color);
-            box-shadow: 0 0 0 3px rgba(11, 94, 215, 0.15);
-        }
+.button:active{
+    transform:scale(.96);
+}
 
-        /* BUTTONS */
-        button {
-            border: none;
-            cursor: pointer;
-            font-size: 0.9rem;
-            font-weight: 600;
-            border-radius: 10px;
-            transition: background 0.2s, transform 0.1s;
-        }
+.send{
+    background:#0b5ed7;
+    color:white;
+}
 
-        button:active {
-            transform: scale(0.97);
-        }
+.mic{
+    background:#198754;
+    color:white;
+    min-width:55px;
+}
 
-        .send-btn {
-            background: var(--primary-color);
-            color: #ffffff;
-            padding: 12px 18px;
-        }
+.actions{
+    display:flex;
+    gap:10px;
+    padding:12px;
+    background:white;
+    border-top:1px solid #ddd;
+}
 
-        .send-btn:hover {
-            background: var(--primary-hover);
-        }
+.action{
+    flex:1;
+    border:none;
+    padding:13px;
+    border-radius:10px;
+    font-weight:bold;
+    cursor:pointer;
+}
 
-        .voice-btn {
-            background: var(--secondary-color);
-            color: #ffffff;
-            padding: 12px 14px;
-        }
+.clear{
+    background:#ffc107;
+    color:#222;
+}
 
-        .voice-btn:hover {
-            background: var(--secondary-hover);
-        }
+.back{
+    background:#6c757d;
+    color:white;
+}
 
-        .voice-btn.listening {
-            background: #dc3545;
-            animation: pulse 1s infinite alternate;
-        }
+.footer{
+    text-align:center;
+    color:#555;
+    font-size:13px;
+    padding:20px;
+}
 
-        @keyframes pulse {
-            from { opacity: 1; }
-            to { opacity: 0.6; }
-        }
+@media(max-width:600px){
 
-        /* ACTION BUTTONS */
-        .actions {
-            display: flex;
-            gap: 10px;
-            margin-top: 12px;
-        }
+    .header h1{
+        font-size:22px;
+    }
 
-        .action-btn {
-            flex: 1;
-            padding: 10px;
-            background: #e9eef5;
-            color: var(--text-dark);
-        }
+    .chat{
+        height:430px;
+    }
 
-        .action-btn:hover {
-            background: #dce4ef;
-        }
+    .message{
+        max-width:92%;
+    }
 
-        .back-btn {
-            background: #6c757d;
-            color: #ffffff;
-        }
+    .input-area{
+        flex-wrap:wrap;
+    }
 
-        .back-btn:hover {
-            background: #5c636a;
-        }
+    .input-area input{
+        flex-basis:100%;
+        width:100%;
+    }
 
-        .new-btn {
-            background: var(--primary-color);
-            color: #ffffff;
-        }
-
-        .new-btn:hover {
-            background: var(--primary-hover);
-        }
-
-        /* QUICK SUGGESTIONS */
-        .quick-title {
-            margin-top: 16px;
-            margin-bottom: 8px;
-            font-size: 0.875rem;
-            font-weight: 600;
-            color: #475569;
-        }
-
-        .quick-buttons {
-            display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            gap: 8px;
-        }
-
-        .quick-btn {
-            background: #eef5ff;
-            color: var(--primary-hover);
-            border: 1px solid #cbdcf5;
-            padding: 8px 10px;
-            font-size: 0.8rem;
-            text-align: left;
-            border-radius: 8px;
-        }
-
-        .quick-btn:hover {
-            background: #dbeafe;
-        }
-
-        /* FOOTER */
-        .footer {
-            text-align: center;
-            margin: 20px 0 10px;
-            font-size: 0.775rem;
-            color: var(--text-muted);
-            line-height: 1.4;
-        }
-
-        /* MOBILE OPTIMIZATIONS */
-        @media (max-width: 600px) {
-            .container {
-                padding: 10px;
-            }
-
-            .ai-card {
-                padding: 14px;
-            }
-
-            .chat-box {
-                height: 340px;
-            }
-
-            .quick-buttons {
-                grid-template-columns: 1fr;
-            }
-        }
-    </style>
+    .button{
+        height:48px;
+        flex:1;
+    }
+}
+</style>
 </head>
 
 <body>
 
-    <header class="header">
-        <h1>UNIVERSITY OF KABIANGA</h1>
-        <p>Smart Campus Navigation System</p>
-    </header>
+<header class="header">
+    <h1>🤖 Prince AI</h1>
+    <p>University of Kabianga Smart Campus Navigator</p>
+</header>
 
-    <main class="container">
-        <div class="ai-card">
+<div class="container">
 
-            <div class="ai-title">
-                <div class="ai-icon">🤖</div>
-                <h2>Prince AI</h2>
-                <p>University of Kabianga Smart Campus Assistant</p>
-            </div>
+<div class="card">
 
-            <div id="status" class="status">
-                🟢 Prince AI is ready. Ask me anything about the campus.
-            </div>
+<div id="status" class="status">
+    🟢 Prince AI is ready
+</div>
 
-            <div id="chatBox" class="chat-box" aria-live="polite">
-                <div class="message bot-message">
-                    👋 Hello! I am <strong>Prince AI</strong>.<br><br>
-                    I can help you find buildings, lecture halls, offices, and general University of Kabianga campus information.<br><br>
-                    Try asking: <strong>"Where is LTB3?"</strong>
-                </div>
-            </div>
+<div id="chatBox" class="chat">
 
-            <div class="input-area">
-                <input type="text" id="userMessage" placeholder="Ask Prince AI..." autocomplete="off">
-                <button id="voiceBtn" class="voice-btn" type="button" title="Voice Search">🎤</button>
-                <button id="sendBtn" class="send-btn" type="button">Send</button>
-            </div>
+<div class="message bot">
+Hello! 👋 I am Prince AI, the University of Kabianga Smart Campus Assistant.
 
-            <div class="actions">
-                <button id="newChatBtn" class="action-btn new-btn" type="button">🔄 New Chat</button>
-                <button id="backBtn" class="action-btn back-btn" type="button">← Back</button>
-            </div>
+Ask me about:
+• Campus locations
+• LTB1, LTB2, LTB3 and LTB4
+• LTB3 floors
+• University leadership
+• Offices
+• Library
+• Main Gate
+• School of Business
 
-            <div class="quick-title">Quick Questions</div>
-            <div class="quick-buttons">
-                <button class="quick-btn" type="button" data-question="Where is LTB1?">📍 Where is LTB1?</button>
-                <button class="quick-btn" type="button" data-question="Where is LTB2?">📍 Where is LTB2?</button>
-                <button class="quick-btn" type="button" data-question="Where is LTB3?">📍 Where is LTB3?</button>
-                <button class="quick-btn" type="button" data-question="Who is the Vice Chancellor?">👨‍💼 Who is the VC?</button>
-                <button class="quick-btn" type="button" data-question="Where is the library?">📚 Where is the Library?</button>
-                <button class="quick-btn" type="button" data-question="Where is the cafeteria?">🍽️ Where is the Cafeteria?</button>
-            </div>
+How can I help you?
+</div>
 
-        </div>
+</div>
 
-        <footer class="footer">
-            University of Kabianga Smart Campus Navigator<br>
-            Prince AI<br>
-            Developed by Griffin Kipruttoh &amp; David Dodi
-        </footer>
-    </main>
+<div class="quick">
 
-    <script>
-        document.addEventListener("DOMContentLoaded", () => {
-            const chatBox = document.getElementById("chatBox");
-            const userInput = document.getElementById("userMessage");
-            const sendBtn = document.getElementById("sendBtn");
-            const voiceBtn = document.getElementById("voiceBtn");
-            const newChatBtn = document.getElementById("newChatBtn");
-            const backBtn = document.getElementById("backBtn");
-            const statusBox = document.getElementById("status");
-            const quickBtns = document.querySelectorAll(".quick-btn");
+<button type="button" data-question="Where is LTB1?">
+📍 LTB1
+</button>
 
-            // Knowledge base matching rules
-            const campusKnowledge = [
-                { keywords: ["ltb1", "ltb 1"], response: "📍 **LTB1 (Lecture Theatre Building 1)** is located adjacent to the Main Academic Block, directly opposite the Central Science Laboratories." },
-                { keywords: ["ltb2", "ltb 2"], response: "📍 **LTB2** is situated in the main lecture complex right next to LTB1." },
-                { keywords: ["ltb3", "ltb 3"], response: "📍 **LTB3** is located within the main academic zone, close to the School of Education block." },
-                { keywords: ["library", "books"], response: "📚 **The University Library** is located centrally within the Main Campus, directly facing the Administration Block." },
-                { keywords: ["cafeteria", "mess", "food", "eat"], response: "🍽️ **The Student Cafeteria** is located near the student accommodation hostels, behind the Student Union Office." },
-                { keywords: ["vc", "vice chancellor", "head"], response: "👨‍💼 The Vice-Chancellor's office is located on the 1st Floor of the **Main Administration Block**." },
-                { keywords: ["hostel", "hall", "accommodation"], response: "🏠 Student Hostels are situated on the Southern section of the Main Campus." },
-                { keywords: ["administration", "admin"], response: "🏛️ The **Administration Block** is located near the main entrance gate." }
-            ];
+<button type="button" data-question="Where is LTB2?">
+📍 LTB2
+</button>
 
-            function appendMessage(text, sender) {
-                const msgDiv = document.createElement("div");
-                msgDiv.classList.add("message", sender === "user" ? "user-message" : "bot-message");
-                msgDiv.innerHTML = text.replace(/\n/g, "<br>");
-                chatBox.appendChild(msgDiv);
-                chatBox.scrollTop = chatBox.scrollHeight;
-            }
+<button type="button" data-question="Where is LTB3?">
+📍 LTB3
+</button>
 
-            function processQuery(query) {
-                if (!query.trim()) return;
+<button type="button" data-question="Where is LTB4?">
+📍 LTB4
+</button>
 
-                appendMessage(query, "user");
-                userInput.value = "";
+<button type="button" data-question="Who is the Vice Chancellor?">
+👨‍🎓 VC
+</button>
 
-                // Local lookup logic
-                const cleanQuery = query.toLowerCase();
-                let foundResponse = null;
+<button type="button" data-question="Tell me about LTB3 floors">
+🏢 LTB3 Floors
+</button>
 
-                for (const item of campusKnowledge) {
-                    if (item.keywords.some(kw => cleanQuery.includes(kw))) {
-                        foundResponse = item.response;
-                        break;
-                    }
-                }
+</div>
 
-                setTimeout(() => {
-                    if (foundResponse) {
-                        appendMessage(foundResponse, "bot");
-                    } else {
-                        appendMessage(`I couldn't find a direct location match for "${query}". Try asking about **LTB1**, **Library**, **Cafeteria**, or the **Administration Block**.`, "bot");
-                    }
-                }, 400);
-            }
+<div class="input-area">
 
-            // Event Listeners
-            sendBtn.addEventListener("click", () => processQuery(userInput.value));
+<input
+    id="userMessage"
+    type="text"
+    placeholder="Ask Prince AI..."
+    autocomplete="off"
+>
 
-            userInput.addEventListener("keydown", (e) => {
-                if (e.key === "Enter") processQuery(userInput.value);
-            });
+<button
+    id="voiceBtn"
+    class="button mic"
+    type="button">
+🎤
+</button>
 
-            quickBtns.forEach(btn => {
-                btn.addEventListener("click", () => {
-                    const question = btn.getAttribute("data-question");
-                    processQuery(question);
-                });
-            });
+<button
+    id="sendBtn"
+    class="button send"
+    type="button">
+Send
+</button>
 
-            newChatBtn.addEventListener("click", () => {
-                chatBox.innerHTML = `
-                    <div class="message bot-message">
-                        👋 Hello! I am <strong>Prince AI</strong>.<br><br>
-                        Chat reset. Ask me anything about the campus.
-                    </div>
-                `;
-            });
+</div>
 
-            backBtn.addEventListener("click", () => {
-                if (window.history.length > 1) {
-                    window.history.back();
-                } else {
-                    alert("No previous page in history.");
-                }
-            });
+<div class="actions">
 
-            // Web Speech API Integration
-            if ("webkitSpeechRecognition" in window || "SpeechRecognition" in window) {
-                const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
-                const recognition = new SpeechRecognition();
-                recognition.continuous = false;
-                recognition.interimResults = false;
+<button
+    id="clearBtn"
+    class="action clear"
+    type="button">
+🗑 Clear Chat
+</button>
 
-                voiceBtn.addEventListener("click", () => {
-                    recognition.start();
-                    voiceBtn.classList.add("listening");
-                    statusBox.textContent = "🎙️ Listening... Speak into your microphone.";
-                });
+<button
+    id="backBtn"
+    class="action back"
+    type="button">
+← Back
+</button>
 
-                recognition.onresult = (event) => {
-                    const speechResult = event.results[0][0].transcript;
-                    userInput.value = speechResult;
-                    processQuery(speechResult);
-                };
+</div>
 
-                recognition.onerror = () => {
-                    statusBox.textContent = "⚠️ Could not capture audio. Please try typing.";
-                    voiceBtn.classList.remove("listening");
-                };
+</div>
 
-                recognition.onend = () => {
-                    voiceBtn.classList.remove("listening");
-                    statusBox.textContent = "🟢 Prince AI is ready. Ask me anything about the campus.";
-                };
-            } else {
-                voiceBtn.addEventListener("click", () => {
-                    alert("Voice input is not supported in your browser.");
-                });
-            }
-        });
-    </script>
+<div class="footer">
+University of Kabianga Smart Campus Navigator<br>
+Prince AI Assistant<br><br>
+Developed by Griffin Kipruttoh & David Dodi
+</div>
+
+</div>
+
+
+<!-- IMPORTANT: ONLY ONE JAVASCRIPT FILE -->
+<script src="prince-ai.js?v=200"></script>
 
 </body>
-    </html>
-    
+</html>
