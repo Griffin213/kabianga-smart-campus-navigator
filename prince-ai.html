@@ -7,337 +7,235 @@
 <title>Prince AI | University of Kabianga</title>
 
 <style>
-*{
-    box-sizing:border-box;
-    margin:0;
-    padding:0;
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
 }
 
-body{
-    font-family:Arial,Helvetica,sans-serif;
-    background:#eef5ff;
-    min-height:100vh;
+body {
+    font-family: Arial, Helvetica, sans-serif;
+    background: #eef5ff;
+    min-height: 100vh;
+    color: #222;
 }
 
-.header{
-    background:linear-gradient(135deg,#0b5ed7,#084298);
-    color:white;
-    text-align:center;
-    padding:20px 15px;
+/* =========================
+   HEADER
+========================= */
+
+header {
+    background: linear-gradient(135deg, #0b5ed7, #084298);
+    color: white;
+    text-align: center;
+    padding: 22px 15px;
 }
 
-.header h1{
-    font-size:26px;
-    margin-bottom:6px;
+header h1 {
+    font-size: 24px;
+    margin-bottom: 6px;
 }
 
-.header p{
-    font-size:14px;
+header p {
+    font-size: 14px;
 }
 
-.container{
-    max-width:850px;
-    margin:auto;
-    padding:15px;
+/* =========================
+   MAIN
+========================= */
+
+.container {
+    width: 95%;
+    max-width: 700px;
+    margin: 20px auto;
 }
 
-.card{
-    background:white;
-    border-radius:18px;
-    overflow:hidden;
-    box-shadow:0 5px 20px rgba(0,0,0,.15);
+/* =========================
+   AI CARD
+========================= */
+
+.ai-card {
+    background: white;
+    border-radius: 18px;
+    padding: 20px;
+    box-shadow: 0 5px 20px rgba(0,0,0,0.12);
 }
 
-.status{
-    padding:12px;
-    text-align:center;
-    background:#e8f1ff;
-    color:#084298;
-    font-weight:bold;
-    border-bottom:1px solid #d5e4ff;
+.ai-title {
+    text-align: center;
+    color: #0b5ed7;
+    margin-bottom: 8px;
+    font-size: 28px;
 }
 
-.chat{
-    height:460px;
-    overflow-y:auto;
-    padding:18px;
-    background:#f8fbff;
+.status {
+    text-align: center;
+    color: green;
+    font-size: 14px;
+    margin-bottom: 15px;
 }
 
-.message{
-    max-width:85%;
-    padding:13px 15px;
-    margin-bottom:12px;
-    border-radius:15px;
-    line-height:1.5;
-    white-space:pre-wrap;
+/* =========================
+   CHAT AREA
+========================= */
+
+.chat-box {
+    height: 380px;
+    overflow-y: auto;
+    background: #f7f9fc;
+    border: 1px solid #ddd;
+    border-radius: 14px;
+    padding: 15px;
+    margin-bottom: 15px;
 }
 
-.bot{
-    background:#e3efff;
-    color:#222;
-    border-bottom-left-radius:4px;
+.message {
+    margin-bottom: 12px;
+    padding: 12px 14px;
+    border-radius: 12px;
+    line-height: 1.5;
+    word-wrap: break-word;
 }
 
-.user{
-    background:#0b5ed7;
-    color:white;
-    margin-left:auto;
-    border-bottom-right-radius:4px;
+.bot {
+    background: #e8f1ff;
+    border-left: 4px solid #0b5ed7;
 }
 
-.quick{
-    padding:12px;
-    display:flex;
-    flex-wrap:wrap;
-    gap:8px;
-    border-top:1px solid #ddd;
+.user {
+    background: #dff5e5;
+    border-left: 4px solid #198754;
+    text-align: right;
 }
 
-.quick button{
-    border:1px solid #0b5ed7;
-    background:white;
-    color:#0b5ed7;
-    padding:9px 12px;
-    border-radius:20px;
-    cursor:pointer;
+/* =========================
+   QUICK QUESTIONS
+========================= */
+
+.quick-title {
+    font-weight: bold;
+    margin-bottom: 8px;
 }
 
-.quick button:active{
-    background:#0b5ed7;
-    color:white;
+.quick-buttons {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-bottom: 15px;
 }
 
-.input-area{
-    padding:12px;
-    display:flex;
-    gap:8px;
-    background:white;
-    border-top:1px solid #ddd;
+.quick-buttons button {
+    background: #eef5ff;
+    border: 1px solid #0b5ed7;
+    color: #0b5ed7;
+    padding: 9px 12px;
+    border-radius: 20px;
+    cursor: pointer;
 }
 
-.input-area input{
-    flex:1;
-    min-width:0;
-    padding:14px;
-    border:1px solid #aaa;
-    border-radius:12px;
-    font-size:16px;
-    outline:none;
+.quick-buttons button:hover {
+    background: #0b5ed7;
+    color: white;
 }
 
-.input-area input:focus{
-    border-color:#0b5ed7;
+/* =========================
+   INPUT
+========================= */
+
+.input-area {
+    display: flex;
+    gap: 8px;
+    margin-bottom: 12px;
 }
 
-.button{
-    border:none;
-    border-radius:12px;
-    padding:0 16px;
-    font-size:15px;
-    font-weight:bold;
-    cursor:pointer;
+.input-area input {
+    flex: 1;
+    padding: 13px;
+    border: 1px solid #bbb;
+    border-radius: 10px;
+    font-size: 16px;
+    outline: none;
 }
 
-.button:active{
-    transform:scale(.96);
+.input-area input:focus {
+    border-color: #0b5ed7;
 }
 
-.send{
-    background:#0b5ed7;
-    color:white;
+.input-area button {
+    border: none;
+    border-radius: 10px;
+    padding: 0 15px;
+    cursor: pointer;
+    font-size: 18px;
 }
 
-.mic{
-    background:#198754;
-    color:white;
-    min-width:55px;
+.mic-btn {
+    background: #198754;
+    color: white;
 }
 
-.actions{
-    display:flex;
-    gap:10px;
-    padding:12px;
-    background:white;
-    border-top:1px solid #ddd;
+.send-btn {
+    background: #0b5ed7;
+    color: white;
 }
 
-.action{
-    flex:1;
-    border:none;
-    padding:13px;
-    border-radius:10px;
-    font-weight:bold;
-    cursor:pointer;
+/* =========================
+   ACTION BUTTONS
+========================= */
+
+.actions {
+    display: flex;
+    gap: 10px;
 }
 
-.clear{
-    background:#ffc107;
-    color:#222;
+.actions button {
+    flex: 1;
+    padding: 12px;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+    font-size: 15px;
 }
 
-.back{
-    background:#6c757d;
-    color:white;
+.clear-btn {
+    background: #dc3545;
+    color: white;
 }
 
-.footer{
-    text-align:center;
-    color:#555;
-    font-size:13px;
-    padding:20px;
+.back-btn {
+    background: #6c757d;
+    color: white;
 }
 
-@media(max-width:600px){
+/* =========================
+   FOOTER
+========================= */
 
-    .header h1{
-        font-size:22px;
+footer {
+    text-align: center;
+    padding: 20px;
+    color: #555;
+    font-size: 13px;
+}
+
+@media (max-width: 500px) {
+
+    header h1 {
+        font-size: 20px;
     }
 
-    .chat{
-        height:430px;
+    .ai-title {
+        font-size: 24px;
     }
 
-    .message{
-        max-width:92%;
+    .chat-box {
+        height: 350px;
     }
 
-    .input-area{
-        flex-wrap:wrap;
+    .input-area {
+        flex-wrap: wrap;
     }
 
-    .input-area input{
-        flex-basis:100%;
-        width:100%;
-    }
-
-    .button{
-        height:48px;
-        flex:1;
-    }
-}
-</style>
-</head>
-
-<body>
-
-<header class="header">
-    <h1>🤖 Prince AI</h1>
-    <p>University of Kabianga Smart Campus Navigator</p>
-</header>
-
-<div class="container">
-
-<div class="card">
-
-<div id="status" class="status">
-    🟢 Prince AI is ready
-</div>
-
-<div id="chatBox" class="chat">
-
-<div class="message bot">
-Hello! 👋 I am Prince AI, the University of Kabianga Smart Campus Assistant.
-
-Ask me about:
-• Campus locations
-• LTB1, LTB2, LTB3 and LTB4
-• LTB3 floors
-• University leadership
-• Offices
-• Library
-• Main Gate
-• School of Business
-
-How can I help you?
-</div>
-
-</div>
-
-<div class="quick">
-
-<button type="button" data-question="Where is LTB1?">
-📍 LTB1
-</button>
-
-<button type="button" data-question="Where is LTB2?">
-📍 LTB2
-</button>
-
-<button type="button" data-question="Where is LTB3?">
-📍 LTB3
-</button>
-
-<button type="button" data-question="Where is LTB4?">
-📍 LTB4
-</button>
-
-<button type="button" data-question="Who is the Vice Chancellor?">
-👨‍🎓 VC
-</button>
-
-<button type="button" data-question="Tell me about LTB3 floors">
-🏢 LTB3 Floors
-</button>
-
-</div>
-
-<div class="input-area">
-
-<input
-    id="userMessage"
-    type="text"
-    placeholder="Ask Prince AI..."
-    autocomplete="off"
->
-
-<button
-    id="voiceBtn"
-    class="button mic"
-    type="button">
-🎤
-</button>
-
-<button
-    id="sendBtn"
-    class="button send"
-    type="button">
-Send
-</button>
-
-</div>
-
-<div class="actions">
-
-<button
-    id="clearBtn"
-    class="action clear"
-    type="button">
-🗑 Clear Chat
-</button>
-
-<button
-    id="backBtn"
-    class="action back"
-    type="button">
-← Back
-</button>
-
-</div>
-
-</div>
-
-<div class="footer">
-University of Kabianga Smart Campus Navigator<br>
-Prince AI Assistant<br><br>
-Developed by Griffin Kipruttoh & David Dodi
-</div>
-
-</div>
-
-
-<!-- IMPORTANT: ONLY ONE JAVASCRIPT FILE -->
-<script src="prince-ai.js?v=200"></script>
-
-</body>
-</html>
+    .input-area input {
+        width: 100
