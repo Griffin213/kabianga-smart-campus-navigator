@@ -7,235 +7,989 @@
 <title>Prince AI | University of Kabianga</title>
 
 <style>
-
-* {
-    box-sizing: border-box;
-    margin: 0;
-    padding: 0;
+*{
+    box-sizing:border-box;
+    margin:0;
+    padding:0;
 }
 
-body {
-    font-family: Arial, Helvetica, sans-serif;
-    background: #eef5ff;
-    min-height: 100vh;
-    color: #222;
+body{
+    font-family:Arial,Helvetica,sans-serif;
+    background:#eef5ff;
+    min-height:100vh;
+    color:#222;
 }
 
-/* =========================
-   HEADER
-========================= */
-
-header {
-    background: linear-gradient(135deg, #0b5ed7, #084298);
-    color: white;
-    text-align: center;
-    padding: 22px 15px;
+.header{
+    background:linear-gradient(135deg,#0b5ed7,#084298);
+    color:white;
+    padding:20px 15px;
+    text-align:center;
+    box-shadow:0 3px 10px rgba(0,0,0,.2);
 }
 
-header h1 {
-    font-size: 24px;
-    margin-bottom: 6px;
+.logo{
+    width:75px;
+    height:75px;
+    object-fit:contain;
+    background:white;
+    border-radius:50%;
+    padding:5px;
+    margin-bottom:8px;
 }
 
-header p {
-    font-size: 14px;
+.header h1{
+    font-size:21px;
+    margin-bottom:5px;
 }
 
-/* =========================
-   MAIN
-========================= */
-
-.container {
-    width: 95%;
-    max-width: 700px;
-    margin: 20px auto;
+.header p{
+    font-size:13px;
+    opacity:.95;
 }
 
-/* =========================
-   AI CARD
-========================= */
-
-.ai-card {
-    background: white;
-    border-radius: 18px;
-    padding: 20px;
-    box-shadow: 0 5px 20px rgba(0,0,0,0.12);
+.container{
+    max-width:700px;
+    margin:auto;
+    padding:15px;
 }
 
-.ai-title {
-    text-align: center;
-    color: #0b5ed7;
-    margin-bottom: 8px;
-    font-size: 28px;
+.ai-card{
+    background:white;
+    border-radius:18px;
+    overflow:hidden;
+    box-shadow:0 5px 20px rgba(0,0,0,.12);
 }
 
-.status {
-    text-align: center;
-    color: green;
-    font-size: 14px;
-    margin-bottom: 15px;
+.ai-top{
+    background:linear-gradient(135deg,#0b5ed7,#084298);
+    color:white;
+    padding:18px;
+    text-align:center;
 }
 
-/* =========================
-   CHAT AREA
-========================= */
-
-.chat-box {
-    height: 380px;
-    overflow-y: auto;
-    background: #f7f9fc;
-    border: 1px solid #ddd;
-    border-radius: 14px;
-    padding: 15px;
-    margin-bottom: 15px;
+.ai-top h2{
+    font-size:24px;
+    margin-bottom:5px;
 }
 
-.message {
-    margin-bottom: 12px;
-    padding: 12px 14px;
-    border-radius: 12px;
-    line-height: 1.5;
-    word-wrap: break-word;
+.status{
+    font-size:13px;
+    background:rgba(255,255,255,.15);
+    display:inline-block;
+    padding:6px 12px;
+    border-radius:20px;
+    margin-top:6px;
 }
 
-.bot {
-    background: #e8f1ff;
-    border-left: 4px solid #0b5ed7;
+.chat{
+    padding:15px;
+    height:390px;
+    overflow-y:auto;
+    background:#f7faff;
 }
 
-.user {
-    background: #dff5e5;
-    border-left: 4px solid #198754;
-    text-align: right;
+.message{
+    margin-bottom:12px;
+    display:flex;
 }
 
-/* =========================
+.message.bot{
+    justify-content:flex-start;
+}
+
+.message.user{
+    justify-content:flex-end;
+}
+
+.bubble{
+    max-width:85%;
+    padding:11px 14px;
+    border-radius:15px;
+    line-height:1.5;
+    font-size:14px;
+    white-space:pre-line;
+}
+
+.bot .bubble{
+    background:#e4efff;
+    color:#123;
+    border-bottom-left-radius:4px;
+}
+
+.user .bubble{
+    background:#0b5ed7;
+    color:white;
+    border-bottom-right-radius:4px;
+}
+
+.quick-title{
+    padding:12px 15px 5px;
+    font-weight:bold;
+    color:#084298;
+}
+
+.quick{
+    display:flex;
+    flex-wrap:wrap;
+    gap:7px;
+    padding:10px 15px 15px;
+}
+
+.quick button{
+    border:none;
+    background:#e8f1ff;
+    color:#084298;
+    border:1px solid #bcd4fa;
+    border-radius:20px;
+    padding:8px 12px;
+    cursor:pointer;
+    font-size:13px;
+}
+
+.quick button:active{
+    transform:scale(.97);
+}
+
+.input-area{
+    padding:12px;
+    border-top:1px solid #ddd;
+    background:white;
+}
+
+.input-row{
+    display:flex;
+    gap:7px;
+}
+
+.input-row input{
+    flex:1;
+    padding:13px;
+    border:1px solid #bbb;
+    border-radius:10px;
+    font-size:15px;
+    outline:none;
+}
+
+.input-row input:focus{
+    border-color:#0b5ed7;
+}
+
+.btn{
+    border:none;
+    border-radius:10px;
+    padding:0 15px;
+    font-size:14px;
+    cursor:pointer;
+    color:white;
+}
+
+.send{
+    background:#0b5ed7;
+}
+
+.mic{
+    background:#198754;
+}
+
+.actions{
+    display:flex;
+    gap:8px;
+    margin-top:9px;
+}
+
+.action{
+    flex:1;
+    padding:11px;
+    border:none;
+    border-radius:10px;
+    cursor:pointer;
+    font-size:14px;
+}
+
+.clear{
+    background:#dc3545;
+    color:white;
+}
+
+.back{
+    background:#6c757d;
+    color:white;
+}
+
+.footer{
+    text-align:center;
+    font-size:12px;
+    color:#666;
+    padding:20px 10px;
+}
+
+.info{
+    margin:12px 15px;
+    padding:10px;
+    background:#fff8df;
+    border-left:4px solid #d39e00;
+    border-radius:5px;
+    font-size:12px;
+    color:#555;
+}
+</style>
+</head>
+
+<body>
+
+<div class="header">
+
+    <img src="logo.jpg"
+         class="logo"
+         alt="University of Kabianga Logo"
+         onerror="this.style.display='none'">
+
+    <h1>UNIVERSITY OF KABIANGA</h1>
+
+    <p>Smart Campus Navigation System</p>
+
+</div>
+
+<div class="container">
+
+<div class="ai-card">
+
+    <div class="ai-top">
+
+        <h2>🤖 Prince AI</h2>
+
+        <div class="status" id="status">
+            🟢 Prince AI is ready
+        </div>
+
+    </div>
+
+    <div class="info">
+        Ask Prince AI about University of Kabianga,
+        university leadership, buildings, lecture halls,
+        offices and campus facilities.
+    </div>
+
+    <div class="chat" id="chat">
+
+        <div class="message bot">
+            <div class="bubble">
+Hello! 👋
+
+I am Prince AI, the University of Kabianga Smart Campus Assistant.
+
+You can ask me about:
+• University leadership
+• LTB1, LTB2, LTB3 and LTB4
+• LTB3 floors and offices
+• University Library
+• Main Gate
+• School of Business
+
+How can I help you today?
+            </div>
+        </div>
+
+    </div>
+
+    <div class="quick-title">
+        Quick Questions
+    </div>
+
+    <div class="quick">
+
+        <button onclick="askQuick('Who is the Vice Chancellor?')">
+            👨‍💼 VC
+        </button>
+
+        <button onclick="askQuick('Who is the DVC?')">
+            🎓 DVC
+        </button>
+
+        <button onclick="askQuick('Tell me about LTB1')">
+            🏫 LTB1
+        </button>
+
+        <button onclick="askQuick('Tell me about LTB2')">
+            🏫 LTB2
+        </button>
+
+        <button onclick="askQuick('Tell me about LTB3')">
+            🏫 LTB3
+        </button>
+
+        <button onclick="askQuick('Tell me about LTB4')">
+            🏫 LTB4
+        </button>
+
+        <button onclick="askQuick('What is on LTB3 Ground Floor?')">
+            Floor 1
+        </button>
+
+        <button onclick="askQuick('What is on LTB3 First Floor?')">
+            Floor 2
+        </button>
+
+        <button onclick="askQuick('What is on LTB3 Second Floor?')">
+            Floor 3
+        </button>
+
+        <button onclick="askQuick('Where is the library?')">
+            📚 Library
+        </button>
+
+    </div>
+
+    <div class="input-area">
+
+        <div class="input-row">
+
+            <input
+                type="text"
+                id="userInput"
+                placeholder="Ask Prince AI..."
+                autocomplete="off"
+            >
+
+            <button
+                class="btn mic"
+                id="micBtn"
+                onclick="startVoiceInput()"
+                title="Voice input">
+                🎤
+            </button>
+
+            <button
+                class="btn send"
+                onclick="sendMessage()">
+                Send
+            </button>
+
+        </div>
+
+        <div class="actions">
+
+            <button
+                class="action clear"
+                onclick="clearChat()">
+                🗑️ Clear Chat
+            </button>
+
+            <button
+                class="action back"
+                onclick="goBack()">
+                ← Back
+            </button>
+
+        </div>
+
+    </div>
+
+</div>
+
+<div class="footer">
+
+    <p><strong>Prince AI</strong></p>
+
+    <p>
+        University of Kabianga Smart Campus Navigation System
+    </p>
+
+    <p>
+        Developed by Griffin Kipruttoh &amp; David Dodi
+    </p>
+
+</div>
+
+</div>
+
+
+<script>
+
+/* =====================================================
+   PRINCE AI
+   STANDALONE VERSION
+   NO NAVIGATION
+   NO GPS
+   NO FIREBASE
+   NO EXTERNAL JAVASCRIPT
+   ===================================================== */
+
+
+/* -----------------------------
+   ELEMENTS
+----------------------------- */
+
+const chat = document.getElementById("chat");
+const userInput = document.getElementById("userInput");
+const statusText = document.getElementById("status");
+
+
+/* -----------------------------
+   KNOWLEDGE DATABASE
+----------------------------- */
+
+const knowledge = [
+
+{
+    keywords:["hello","hi","hey","good morning","good afternoon","good evening"],
+    answer:
+`Hello! 👋
+
+I am Prince AI, your University of Kabianga Smart Campus Assistant.
+
+Ask me about university leadership, buildings, lecture halls, offices or campus facilities.`
+},
+
+{
+    keywords:["who are you","what are you","prince ai"],
+    answer:
+`I am Prince AI 🤖, the smart campus information assistant for the University of Kabianga.
+
+I can provide information about university leadership, buildings, lecture halls, offices and campus facilities.`
+},
+
+{
+    keywords:["vice chancellor","vc","prof erick koech","erick koech"],
+    answer:
+`The Vice Chancellor of the University of Kabianga is:
+
+Prof. Erick Koech, Ph.D., MBS.`
+},
+
+{
+    keywords:["dvc","academic and student affairs","fredrick nyongesa kassilly","nyongesa kassilly"],
+    answer:
+`The Deputy Vice Chancellor responsible for Academic and Student Affairs is:
+
+Prof. Dr. Fredrick Nyongesa Kassilly.`
+},
+
+{
+    keywords:["planning","research","development","research and development","maurice owino oduor"],
+    answer:
+`Planning, Research & Development is under:
+
+Prof. Maurice Owino Oduor.`
+},
+
+{
+    keywords:["registrar academic","cecilia sang"],
+    answer:
+`Registrar, Academic Affairs:
+
+Dr. Cecilia Sang.`
+},
+
+{
+    keywords:["registrar administration","peter k kimalel","peter kimalel"],
+    answer:
+`Registrar, Administration:
+
+Mr. Peter K. Kimalel.`
+},
+
+{
+    keywords:["dean students","dean of students","peter ngugi"],
+    answer:
+`Dean of Students:
+
+Dr. Peter Ngugi.`
+},
+
+{
+    keywords:["director ict","ict","geoffrey sowek"],
+    answer:
+`Director, ICT:
+
+Mr. Geoffrey Sowek.`
+},
+
+{
+    keywords:["finance officer","finance","willy koech"],
+    answer:
+`Finance Officer:
+
+CPA Willy Koech.`
+},
+
+{
+    keywords:["ltb1"],
+    answer:
+`LTB1 is one of the lecture and teaching buildings at the University of Kabianga.
+
+It contains lecture halls used for teaching and learning.
+
+For more detailed room information, additional campus data can be added as it becomes available.`
+},
+
+{
+    keywords:["ltb2"],
+    answer:
+`LTB2 is one of the Lecture and Teaching Buildings at the University of Kabianga.
+
+It is part of the campus teaching and learning facilities.`
+},
+
+{
+    keywords:["ltb3"],
+    answer:
+`LTB3 is a major Lecture and Teaching Building at the University of Kabianga.
+
+LTB3 contains offices, lecture halls, the Senate Chamber, the Micro Teaching Lab and School of Business offices across its floors.
+
+You can ask me about a specific LTB3 floor.`
+},
+
+{
+    keywords:["ltb4"],
+    answer:
+`LTB4 is one of the Lecture and Teaching Buildings at the University of Kabianga.
+
+It forms part of the university's teaching and learning facilities.`
+},
+
+{
+    keywords:["ltb3 ground","ground floor ltb3","ltb3 ground floor"],
+    answer:
+`LTB3 — Ground Floor:
+
+• Dean, School of Education
+• HOD, Curriculum and Instruction
+• HOD, Physiology and Foundations
+• LH1
+• LH2`
+},
+
+{
+    keywords:["ltb3 first","first floor ltb3","ltb3 first floor"],
+    answer:
+`LTB3 — First Floor:
+
+• Senate Chamber
+• LH3
+• Micro Teaching Lab
+• School of Business Offices
+
+School of Business offices include:
+• Finance Office
+• Dean, School of Business Office
+• HODs Office`
+},
+
+{
+    keywords:["ltb3 second","second floor ltb3","ltb3 second floor"],
+    answer:
+`LTB3 — Second Floor:
+
+• Director of Gender Office
+• LH5
+• LH6
+• Director of Postgraduate Studies Office`
+},
+
+{
+    keywords:["ltb3 third","third floor ltb3","ltb3 third floor"],
+    answer:
+`LTB3 — Third Floor:
+
+• LH7
+• LH8`
+},
+
+{
+    keywords:["library","university library"],
+    answer:
+`The University Library provides learning resources, research materials and study spaces for students and staff.
+
+It is an important facility for learning, teaching and research at the University of Kabianga.`
+},
+
+{
+    keywords:["main gate","gate","entrance"],
+    answer:
+`The Main Gate is the principal entrance point to the University of Kabianga campus.
+
+The Smart Campus Navigator can be used to help users identify campus facilities from the gate.`
+},
+
+{
+    keywords:["school of business","business school"],
+    answer:
+`The School of Business has offices located in LTB3.
+
+The School of Business offices are on the First Floor of LTB3.
+
+They include the Finance Office, Dean School of Business Office and HODs Office.`
+},
+
+{
+    keywords:["lecture hall","lecture halls","lh1","lh2","lh3","lh5","lh6","lh7","lh8"],
+    answer:
+`The University of Kabianga has several lecture halls located within its teaching buildings.
+
+LTB3 includes:
+• LH1
+• LH2
+• LH3
+• LH5
+• LH6
+• LH7
+• LH8`
+},
+
+{
+    keywords:["senate chamber","senate"],
+    answer:
+`The Senate Chamber is located on the First Floor of LTB3.`
+},
+
+{
+    keywords:["micro teaching","micro teaching lab"],
+    answer:
+`The Micro Teaching Lab is located on the First Floor of LTB3.`
+},
+
+{
+    keywords:["gender office","director of gender"],
+    answer:
+`The Director of Gender Office is located on the Second Floor of LTB3.`
+},
+
+{
+    keywords:["postgraduate","director of postgraduate"],
+    answer:
+`The Director of Postgraduate Studies Office is located on the Second Floor of LTB3.`
+},
+
+{
+    keywords:["thank you","thanks"],
+    answer:
+`You're welcome! 😊
+
+I am always ready to help you navigate and understand the University of Kabianga campus.`
+}
+
+];
+
+
+/* -----------------------------
+   ADD BOT MESSAGE
+----------------------------- */
+
+function addBotMessage(text){
+
+    const message = document.createElement("div");
+
+    message.className = "message bot";
+
+    message.innerHTML =
+        `<div class="bubble">${escapeHtml(text)}</div>`;
+
+    chat.appendChild(message);
+
+    scrollChat();
+}
+
+
+/* -----------------------------
+   ADD USER MESSAGE
+----------------------------- */
+
+function addUserMessage(text){
+
+    const message = document.createElement("div");
+
+    message.className = "message user";
+
+    message.innerHTML =
+        `<div class="bubble">${escapeHtml(text)}</div>`;
+
+    chat.appendChild(message);
+
+    scrollChat();
+}
+
+
+/* -----------------------------
+   ESCAPE TEXT
+----------------------------- */
+
+function escapeHtml(text){
+
+    const div = document.createElement("div");
+
+    div.textContent = text;
+
+    return div.innerHTML;
+}
+
+
+/* -----------------------------
+   SCROLL CHAT
+----------------------------- */
+
+function scrollChat(){
+
+    chat.scrollTop = chat.scrollHeight;
+}
+
+
+/* -----------------------------
+   FIND ANSWER
+----------------------------- */
+
+function getAnswer(question){
+
+    const text = question.toLowerCase().trim();
+
+    if(!text){
+        return "Please type a question first.";
+    }
+
+    let bestAnswer = null;
+    let bestScore = 0;
+
+    for(const item of knowledge){
+
+        let score = 0;
+
+        for(const keyword of item.keywords){
+
+            if(text.includes(keyword.toLowerCase())){
+
+                score += keyword.length;
+
+            }
+
+        }
+
+        if(score > bestScore){
+
+            bestScore = score;
+            bestAnswer = item.answer;
+
+        }
+
+    }
+
+    if(bestAnswer){
+
+        return bestAnswer;
+
+    }
+
+    return `I don't have that information yet.
+
+Try asking me about:
+
+• The Vice Chancellor
+• DVC
+• Registrar
+• Dean of Students
+• LTB1
+• LTB2
+• LTB3
+• LTB3 floors
+• LTB4
+• Library
+• Main Gate
+• School of Business`;
+}
+
+
+/* -----------------------------
+   SEND MESSAGE
+----------------------------- */
+
+function sendMessage(){
+
+    const question = userInput.value.trim();
+
+    if(!question){
+
+        userInput.focus();
+
+        return;
+
+    }
+
+    addUserMessage(question);
+
+    userInput.value = "";
+
+    statusText.textContent = "🟢 Prince AI is thinking...";
+
+    setTimeout(function(){
+
+        const answer = getAnswer(question);
+
+        addBotMessage(answer);
+
+        statusText.textContent = "🟢 Prince AI is ready";
+
+    },300);
+
+}
+
+
+/* -----------------------------
    QUICK QUESTIONS
-========================= */
+----------------------------- */
 
-.quick-title {
-    font-weight: bold;
-    margin-bottom: 8px;
+function askQuick(question){
+
+    userInput.value = question;
+
+    sendMessage();
+
 }
 
-.quick-buttons {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 8px;
-    margin-bottom: 15px;
+
+/* -----------------------------
+   CLEAR CHAT
+----------------------------- */
+
+function clearChat(){
+
+    chat.innerHTML = "";
+
+    addBotMessage(
+`Chat cleared successfully. 🧹
+
+Hello again! I am Prince AI.
+
+How can I help you?`
+    );
+
+    statusText.textContent = "🟢 Prince AI is ready";
+
 }
 
-.quick-buttons button {
-    background: #eef5ff;
-    border: 1px solid #0b5ed7;
-    color: #0b5ed7;
-    padding: 9px 12px;
-    border-radius: 20px;
-    cursor: pointer;
-}
 
-.quick-buttons button:hover {
-    background: #0b5ed7;
-    color: white;
-}
+/* -----------------------------
+   BACK BUTTON
+----------------------------- */
 
-/* =========================
-   INPUT
-========================= */
+function goBack(){
 
-.input-area {
-    display: flex;
-    gap: 8px;
-    margin-bottom: 12px;
-}
+    if(document.referrer){
 
-.input-area input {
-    flex: 1;
-    padding: 13px;
-    border: 1px solid #bbb;
-    border-radius: 10px;
-    font-size: 16px;
-    outline: none;
-}
+        history.back();
 
-.input-area input:focus {
-    border-color: #0b5ed7;
-}
+    }else{
 
-.input-area button {
-    border: none;
-    border-radius: 10px;
-    padding: 0 15px;
-    cursor: pointer;
-    font-size: 18px;
-}
+        window.location.href = "home.html";
 
-.mic-btn {
-    background: #198754;
-    color: white;
-}
-
-.send-btn {
-    background: #0b5ed7;
-    color: white;
-}
-
-/* =========================
-   ACTION BUTTONS
-========================= */
-
-.actions {
-    display: flex;
-    gap: 10px;
-}
-
-.actions button {
-    flex: 1;
-    padding: 12px;
-    border: none;
-    border-radius: 10px;
-    cursor: pointer;
-    font-size: 15px;
-}
-
-.clear-btn {
-    background: #dc3545;
-    color: white;
-}
-
-.back-btn {
-    background: #6c757d;
-    color: white;
-}
-
-/* =========================
-   FOOTER
-========================= */
-
-footer {
-    text-align: center;
-    padding: 20px;
-    color: #555;
-    font-size: 13px;
-}
-
-@media (max-width: 500px) {
-
-    header h1 {
-        font-size: 20px;
     }
 
-    .ai-title {
-        font-size: 24px;
+}
+
+
+/* -----------------------------
+   ENTER KEY
+----------------------------- */
+
+userInput.addEventListener("keydown",function(event){
+
+    if(event.key === "Enter"){
+
+        event.preventDefault();
+
+        sendMessage();
+
     }
 
-    .chat-box {
-        height: 350px;
+});
+
+
+/* -----------------------------
+   VOICE INPUT
+----------------------------- */
+
+function startVoiceInput(){
+
+    const SpeechRecognition =
+        window.SpeechRecognition ||
+        window.webkitSpeechRecognition;
+
+    if(!SpeechRecognition){
+
+        addBotMessage(
+`Voice recognition is not supported by this browser.
+
+Please use Google Chrome on Android and allow microphone permission.`
+        );
+
+        return;
+
     }
 
-    .input-area {
-        flex-wrap: wrap;
-    }
+    const recognition = new SpeechRecognition();
 
-    .input-area input {
-        width: 100
+    recognition.lang = "en-KE";
+
+    recognition.interimResults = false;
+
+    recognition.continuous = false;
+
+    statusText.textContent = "🎤 Listening...";
+
+    recognition.start();
+
+    recognition.onresult = function(event){
+
+        const text =
+            event.results[0][0].transcript;
+
+        userInput.value = text;
+
+        statusText.textContent =
+            "🟢 Voice captured";
+
+        sendMessage();
+
+    };
+
+    recognition.onerror = function(event){
+
+        console.log("Voice error:",event.error);
+
+        statusText.textContent =
+            "🟢 Prince AI is ready";
+
+        if(event.error === "not-allowed"){
+
+            addBotMessage(
+                "Microphone permission was denied. Please allow microphone access in Chrome."
+            );
+
+        }
+
+    };
+
+    recognition.onend = function(){
+
+        statusText.textContent =
+            "🟢 Prince AI is ready";
+
+    };
+
+}
+
+
+/* -----------------------------
+   PAGE TEST
+----------------------------- */
+
+console.log("Prince AI standalone version loaded successfully.");
+
+statusText.textContent =
+    "🟢 JavaScript is working";
+
+
+</script>
+
+</body>
+</html>
