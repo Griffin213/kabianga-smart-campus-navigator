@@ -825,12 +825,15 @@ function sendMessage(){
 
         const answer = getAnswer(question);
 
-        addBotMessage(answer);
+addBotMessage(answer);
 
-        statusText.textContent = "🟢 Prince AI is ready";
+speak(answer);
 
-    },300);
+statusText.textContent = "🔊 Prince AI is speaking...";
 
+setTimeout(function(){
+    statusText.textContent = "🟢 Prince AI is ready";
+}, 1000);
 }
 
 
@@ -959,7 +962,7 @@ Please use Google Chrome on Android and allow microphone permission.`
         statusText.textContent =
             "🟢 Prince AI is ready";
 
-        if(event.error === "not-allowed"){
+        if(event.error === "not-oallowed"){
 
             addBotMessage(
                 "Microphone permission was denied. Please allow microphone access in Chrome."
@@ -977,7 +980,55 @@ Please use Google Chrome on Android and allow microphone permission.`
     };
 
 }
+/* -----------------------------
+   PRINCE AI VOICE
+----------------------------- */
 
+function speak(text){
+
+    if(!("speechSynthesis" in window)){
+
+        console.log("Speech synthesis is not supported.");
+
+        return;
+
+    }
+
+    window.speechSynthesis.cancel();
+
+    const speech = new SpeechSynthesisUtterance(text);
+
+    speech.lang = "en-KE";
+    speech.rate = 0.95;
+    speech.pitch = 1;
+    speech.volume = 1;
+
+    speech.onstart = function(){
+
+        statusText.textContent =
+            "🔊 Prince AI is speaking...";
+
+    };
+
+    speech.onend = function(){
+
+        statusText.textContent =
+            "🟢 Prince AI is ready";
+
+    };
+
+    speech.onerror = function(event){
+
+        console.log("Speech error:", event);
+
+        statusText.textContent =
+            "🟢 Prince AI is ready";
+
+    };
+
+    window.speechSynthesis.speak(speech);
+
+}
 
 /* -----------------------------
    PAGE TEST
