@@ -1,579 +1,339 @@
-<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><meta name="viewport"
-content="width=device-width, initial-scale=1.0">
-
-<title>Prince AI | UOK Smart Campus</title><link rel="stylesheet" href="style.css"><style>
-
-/* =========================
-   PRINCE AI CHAT
-========================= */
-
-.chat-page {
-    min-height: 100vh;
-    display: flex;
-    flex-direction: column;
-    background: #f4f6f9;
-}
-
-/* HEADER */
-
-.chat-header {
-    background: linear-gradient(
-        135deg,
-        #0b5ed7,
-        #198754
-    );
-
-    color: white;
-    padding: 18px;
-    text-align: center;
-    position: relative;
-
-    box-shadow:
-        0 3px 10px rgba(0,0,0,.2);
-}
-
-.chat-header h2 {
-    margin: 5px 0;
-}
-
-.chat-header p {
-    margin: 0;
-    opacity: .9;
-}
-
-/* BACK BUTTON */
-
-.back-btn,
-.new-btn {
-    position: absolute;
-
-    background: rgba(255,255,255,.2);
-    color: white;
-
-    border: none;
-
-    padding: 9px 12px;
-
-    border-radius: 8px;
-
-    cursor: pointer;
-
-    font-size: 14px;
-}
-
-.back-btn {
-    left: 15px;
-    top: 18px;
-}
-
-.new-btn {
-    right: 15px;
-    top: 18px;
-}
-
-/* CHAT BOX */
-
-.chat-box {
-    flex: 1;
-
-    padding: 20px;
-
-    overflow-y: auto;
-
-    max-width: 900px;
-
-    width: 100%;
-
-    margin: auto;
-}
-
-/* MESSAGES */
-
-.bot-message {
-    background: white;
-
-    padding: 15px;
-
-    border-radius: 15px 15px 15px 3px;
-
-    box-shadow:
-        0 2px 8px rgba(0,0,0,.1);
-
-    margin-bottom: 15px;
-
-    max-width: 80%;
-
-    line-height: 1.6;
-}
-
-.user-message {
-    background: #0b5ed7;
-
-    color: white;
-
-    padding: 14px;
-
-    border-radius: 15px 15px 3px 15px;
-
-    margin: 10px 0 10px auto;
-
-    max-width: 80%;
-
-    line-height: 1.5;
-}
-
-/* NAVIGATE BUTTON CREATED BY PRINCE AI */
-
-.prince-navigation-btn {
-    display: inline-block;
-
-    margin-top: 12px;
-
-    padding: 11px 16px;
-
-    background: #198754;
-
-    color: white;
-
-    text-decoration: none;
-
-    border-radius: 9px;
-
-    font-weight: bold;
-
-    cursor: pointer;
-}
-
-.prince-navigation-btn:hover {
-    opacity: .9;
-}
-
-/* INPUT */
-
-.chat-input {
-    width: 100%;
-
-    max-width: 900px;
-
-    margin: auto;
-
-    padding: 15px;
-
-    display: flex;
-
-    gap: 8px;
-
-    background: white;
-
-    border-top: 1px solid #ddd;
-}
-
-.chat-input input {
-    flex: 1;
-
-    padding: 13px;
-
-    border: 1px solid #ccc;
-
-    border-radius: 10px;
-
-    font-size: 16px;
-
-    outline: none;
-}
-
-.chat-input input:focus {
-    border-color: #0b5ed7;
-}
-
-/* BUTTONS */
-
-.chat-input button {
-    border: none;
-
-    border-radius: 10px;
-
-    padding: 0 16px;
-
-    min-width: 52px;
-
-    font-size: 18px;
-
-    cursor: pointer;
-
-    transition: .2s;
-}
-
-.chat-input button:active {
-    transform: scale(.95);
-}
-
-#voiceBtn {
-    background: #198754;
-
-    color: white;
-}
-
-#voiceBtn.listening {
-    background: #dc3545 !important;
-}
-
-#sendBtn {
-    background: #0b5ed7;
-
-    color: white;
-}
-
-#sendBtn:disabled {
-    opacity: .6;
-}
-
-/* MOBILE */
-
-@media(max-width:600px) {
-
-    .chat-header h2 {
-        font-size: 20px;
-    }
-
-    .back-btn,
-    .new-btn {
-        position: static;
-
-        margin: 3px;
-    }
-
-    .chat-header {
-        padding: 12px;
-    }
-
-    .chat-box {
-        padding: 12px;
-    }
-
-    .bot-message,
-    .user-message {
-        max-width: 90%;
-    }
-
-    .chat-input {
-        padding: 10px;
-    }
-
-    .chat-input button {
-        min-width: 48px;
-
-        padding: 0 12px;
-    }
-
-}
-
-</style></head><body><div class="chat-page"><!-- =========================
-     HEADER
-========================== -->
-
-<div class="chat-header">
-
-    <button
-        type="button"
-        id="backBtn"
-        class="back-btn">
-
-        ← Home
-
-    </button>
-
-
-    <button
-        type="button"
-        id="newChatBtn"
-        class="new-btn">
-
-        ➕ New Chat
-
-    </button>
-
-
-    <h2>
-        🤖 Prince AI
-    </h2>
-
-    <p>
-        Your Smart Campus Assistant
-    </p>
-
-</div>
-
-
-<!-- =========================
-     CHAT
-========================== -->
-
-<div
-    id="chatBox"
-    class="chat-box">
-
-    <div class="bot-message">
-
-        👋 Hello! Welcome to the
-        <strong>University of Kabianga.</strong>
-
-        <br><br>
-
-        I am <strong>Prince AI</strong> 🤖.
-
-        <br><br>
-
-        I can help you with:
-
-        <br>📍 Find lecture halls
-
-        <br>🏢 Find departments
-
-        <br>📚 Find offices
-
-        <br>🗺️ Campus navigation
-
-        <br>🎓 University information
-
-        <br>❓ General campus questions.
-
-        <br><br>
-
-        You can type your question or use the 🎤 microphone.
-
-        <br><br>
-
-        What would you like to know?
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <meta name="theme-color" content="#0b5ed7">
+
+    <title>Prince AI | UOK Smart Campus</title>
+
+    <link rel="stylesheet" href="style.css?v=3">
+
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            font-family: Arial, Helvetica, sans-serif;
+            background: #eef5ff;
+            min-height: 100vh;
+        }
+
+        .top-header {
+            background: linear-gradient(135deg, #0b5ed7, #084298);
+            color: white;
+            padding: 18px 15px;
+            text-align: center;
+            box-shadow: 0 3px 10px rgba(0,0,0,0.2);
+        }
+
+        .top-header h1 {
+            margin: 0;
+            font-size: 24px;
+        }
+
+        .top-header p {
+            margin: 6px 0 0;
+            font-size: 14px;
+            opacity: 0.95;
+        }
+
+        .page-container {
+            width: 100%;
+            max-width: 700px;
+            margin: auto;
+            padding: 15px;
+        }
+
+        .ai-card {
+            background: white;
+            border-radius: 18px;
+            box-shadow: 0 4px 18px rgba(0,0,0,0.12);
+            overflow: hidden;
+            margin-top: 10px;
+        }
+
+        .ai-header {
+            background: linear-gradient(135deg, #0b5ed7, #084298);
+            color: white;
+            padding: 20px;
+            text-align: center;
+        }
+
+        .ai-icon {
+            font-size: 45px;
+            margin-bottom: 5px;
+        }
+
+        .ai-header h2 {
+            margin: 5px 0;
+            font-size: 25px;
+        }
+
+        .ai-header p {
+            margin: 5px 0;
+            font-size: 14px;
+        }
+
+        #chatBox {
+            height: 55vh;
+            min-height: 350px;
+            overflow-y: auto;
+            padding: 15px;
+            background: #f7faff;
+        }
+
+        .message {
+            max-width: 85%;
+            padding: 12px 15px;
+            margin: 10px 0;
+            border-radius: 15px;
+            line-height: 1.5;
+            word-wrap: break-word;
+        }
+
+        .user-message {
+            margin-left: auto;
+            background: #0b5ed7;
+            color: white;
+            border-bottom-right-radius: 4px;
+        }
+
+        .bot-message {
+            margin-right: auto;
+            background: white;
+            color: #222;
+            border: 1px solid #dce7f7;
+            border-bottom-left-radius: 4px;
+        }
+
+        .bot-message a {
+            text-decoration: none;
+        }
+
+        .input-area {
+            padding: 12px;
+            background: white;
+            border-top: 1px solid #ddd;
+        }
+
+        .input-row {
+            display: flex;
+            gap: 8px;
+            align-items: center;
+        }
+
+        #userMessage {
+            flex: 1;
+            min-width: 0;
+            padding: 13px;
+            border: 2px solid #d8e2f0;
+            border-radius: 12px;
+            outline: none;
+            font-size: 16px;
+        }
+
+        #userMessage:focus {
+            border-color: #0b5ed7;
+        }
+
+        .action-btn {
+            border: none;
+            border-radius: 12px;
+            min-width: 48px;
+            height: 48px;
+            cursor: pointer;
+            font-size: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        #voiceBtn {
+            background: #198754;
+            color: white;
+        }
+
+        #voiceBtn.listening {
+            background: #dc3545;
+        }
+
+        #sendBtn {
+            background: #0b5ed7;
+            color: white;
+        }
+
+        .bottom-buttons {
+            display: flex;
+            gap: 10px;
+            padding: 12px;
+            background: white;
+        }
+
+        .bottom-buttons button {
+            flex: 1;
+            border: none;
+            padding: 12px;
+            border-radius: 10px;
+            cursor: pointer;
+            font-weight: bold;
+        }
+
+        #backBtn {
+            background: #6c757d;
+            color: white;
+        }
+
+        #newChatBtn {
+            background: #198754;
+            color: white;
+        }
+
+        .navigate-btn {
+            display: inline-block;
+            background: #198754;
+            color: white !important;
+            padding: 10px 15px;
+            margin-top: 10px;
+            border-radius: 9px;
+            font-weight: bold;
+        }
+
+        .welcome-message {
+            text-align: center;
+            color: #555;
+            padding: 15px;
+        }
+
+        @media (max-width: 500px) {
+            .top-header h1 {
+                font-size: 20px;
+            }
+
+            .ai-header h2 {
+                font-size: 22px;
+            }
+
+            #chatBox {
+                height: 52vh;
+            }
+
+            .message {
+                max-width: 90%;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+<header class="top-header">
+    <h1>UNIVERSITY OF KABIANGA</h1>
+    <p>Smart Campus Navigation System</p>
+</header>
+
+<div class="page-container">
+
+    <div class="ai-card">
+
+        <div class="ai-header">
+            <div class="ai-icon">🤖</div>
+
+            <h2>Prince AI</h2>
+
+            <p>
+                Your University of Kabianga Smart Campus Assistant
+            </p>
+        </div>
+
+        <div id="chatBox">
+
+            <div class="welcome-message">
+                <strong>Welcome to Prince AI 👋</strong>
+                <br><br>
+
+                Ask me about:
+                <br>
+                📍 Campus locations
+                <br>
+                🏫 LTB buildings
+                <br>
+                👨‍💼 University leadership
+                <br>
+                🧭 Navigation
+                <br>
+                🎓 University information
+            </div>
+
+        </div>
+
+        <div class="input-area">
+
+            <div class="input-row">
+
+                <input
+                    type="text"
+                    id="userMessage"
+                    placeholder="Ask Prince AI..."
+                    autocomplete="off"
+                >
+
+                <button
+                    type="button"
+                    id="voiceBtn"
+                    class="action-btn"
+                    title="Use microphone"
+                >
+                    🎤
+                </button>
+
+                <button
+                    type="button"
+                    id="sendBtn"
+                    class="action-btn"
+                    title="Send message"
+                >
+                    ➤
+                </button>
+
+            </div>
+
+        </div>
+
+        <div class="bottom-buttons">
+
+            <button
+                type="button"
+                id="backBtn"
+            >
+                ← Back
+            </button>
+
+            <button
+                type="button"
+                id="newChatBtn"
+            >
+                + New Chat
+            </button>
+
+        </div>
 
     </div>
 
 </div>
 
+<!-- IMPORTANT:
+     knowledge.js must load BEFORE prince-ai.js
+-->
 
-<!-- =========================
-     INPUT
-========================== -->
+<script src="knowledge.js?v=3"></script>
 
-<div class="chat-input">
+<script src="prince-ai.js?v=3"></script>
 
-    <input
-        type="text"
-        id="userMessage"
-        placeholder="Ask Prince AI..."
-        autocomplete="off"
-        enterkeyhint="send">
-
-
-    <button
-        type="button"
-        id="voiceBtn"
-        title="Talk to Prince AI"
-        aria-label="Talk to Prince AI">
-
-        🎤
-
-    </button>
-
-
-    <button
-        type="button"
-        id="sendBtn"
-        title="Send message"
-        aria-label="Send message">
-
-        ➤
-
-    </button>
-
-</div>
-
-</div><!-- =========================
-     KNOWLEDGE DATABASE
-     ========================= --><script src="knowledge.js?v=2"></script><!-- =========================
-     PRINCE AI
-     ========================= --><script src="prince-ai.js?v=2"></script><!-- =========================
-     BUTTON CONNECTION
-     ========================= --><script>
-
-document.addEventListener("DOMContentLoaded", function () {
-
-    console.log("🤖 Prince AI page loaded.");
-
-    const sendBtn =
-        document.getElementById("sendBtn");
-
-    const voiceBtn =
-        document.getElementById("voiceBtn");
-
-    const input =
-        document.getElementById("userMessage");
-
-    const backBtn =
-        document.getElementById("backBtn");
-
-    const newChatBtn =
-        document.getElementById("newChatBtn");
-
-
-    /* =========================
-       SEND BUTTON
-    ========================== */
-
-    if (sendBtn) {
-
-        sendBtn.addEventListener("click", function () {
-
-            console.log("📨 Send button clicked.");
-
-            if (typeof window.sendMessage === "function") {
-
-                window.sendMessage();
-
-            } else {
-
-                console.error(
-                    "❌ sendMessage() is not available."
-                );
-
-                alert(
-                    "Prince AI could not load correctly. Please refresh the page."
-                );
-
-            }
-
-        });
-
-    }
-
-
-    /* =========================
-       MICROPHONE BUTTON
-    ========================== */
-
-    if (voiceBtn) {
-
-        voiceBtn.addEventListener("click", function () {
-
-            console.log("🎤 Microphone button clicked.");
-
-            if (typeof window.startPrinceAI === "function") {
-
-                window.startPrinceAI();
-
-            } else {
-
-                console.error(
-                    "❌ startPrinceAI() is not available."
-                );
-
-                alert(
-                    "Prince AI microphone could not load. Please refresh the page."
-                );
-
-            }
-
-        });
-
-    }
-
-
-    /* =========================
-       ENTER KEY
-    ========================== */
-
-    if (input) {
-
-        input.addEventListener("keydown", function (event) {
-
-            if (event.key === "Enter") {
-
-                event.preventDefault();
-
-                if (typeof window.sendMessage === "function") {
-
-                    window.sendMessage();
-
-                }
-
-            }
-
-        });
-
-    }
-
-
-    /* =========================
-       HOME
-    ========================== */
-
-    if (backBtn) {
-
-        backBtn.addEventListener("click", function () {
-
-            if (typeof window.goHome === "function") {
-
-                window.goHome();
-
-            } else {
-
-                window.location.href = "index.html";
-
-            }
-
-        });
-
-    }
-
-
-    /* =========================
-       NEW CHAT
-    ========================== */
-
-    if (newChatBtn) {
-
-        newChatBtn.addEventListener("click", function () {
-
-            if (typeof window.newChat === "function") {
-
-                window.newChat();
-
-            }
-
-        });
-
-    }
-
-
-    /* =========================
-       CHECK PRINCE AI
-    ========================== */
-
-    console.log(
-        "sendMessage:",
-        typeof window.sendMessage
-    );
-
-    console.log(
-        "startPrinceAI:",
-        typeof window.startPrinceAI
-    );
-
-    console.log(
-        "newChat:",
-        typeof window.newChat
-    );
-
-    console.log(
-        "goHome:",
-        typeof window.goHome
-    );
-
-    console.log(
-        "campusKnowledge:",
-        typeof window.campusKnowledge
-    );
-
-});
-
-</script></body></html>
+</body>
+</html>
