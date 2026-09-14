@@ -853,5 +853,496 @@ function getAnswer(question) {
                 "responsibil",
                 "duty",
                 "duties",
+                                "functions",
+                "role",
+                "what does",
+                "what is the role"
+            ])
+        ) {
+
+            return knowledge.research_duties;
+
+        }
+
+        return knowledge.research;
+
+    }
+
+
+    /* =====================================================
+       REGISTRAR ACADEMIC AFFAIRS
+    ===================================================== */
+
+    if (
+        containsAny(q, [
+            "registrar academic",
+            "registrar academic affairs",
+            "academic registrar",
+            "cecilia sang"
+        ])
+    ) {
+
+        if (
+            containsAny(q, [
+                "responsibil",
+                "duty",
+                "duties",
                 "function",
+                "functions",
+                "role",
+                "what does",
+                "what is the role"
+            ])
+        ) {
+
+            return knowledge.registrar_academic_duties;
+
+        }
+
+        return knowledge.registrar_academic;
+
+    }
+
+
+    /* =====================================================
+       REGISTRAR ADMINISTRATION
+    ===================================================== */
+
+    if (
+        containsAny(q, [
+            "registrar administration",
+            "registrar admin",
+            "administration registrar",
+            "peter k kimalel",
+            "peter kimalel"
+        ])
+    ) {
+
+        if (
+            containsAny(q, [
+                "responsibil",
+                "duty",
+                "duties",
+                "function",
+                "functions",
+                "role",
+                "what does",
+                "what is the role"
+            ])
+        ) {
+
+            return knowledge.registrar_admin_duties;
+
+        }
+
+        return knowledge.registrar_admin;
+
+    }
+
+
+    /* =====================================================
+       DEAN OF STUDENTS
+    ===================================================== */
+
+    if (
+        containsAny(q, [
+            "dean of students",
+            "dean students",
+            "student dean",
+            "peter ngugi"
+        ])
+    ) {
+
+        if (
+            containsAny(q, [
+                "responsibil",
+                "duty",
+                "duties",
+                "function",
+                "functions",
+                "role",
+                "what does",
+                "what is the role"
+            ])
+        ) {
+
+            return knowledge.dean_duties;
+
+        }
+
+        return knowledge.dean;
+
+    }
+
+
+    /* =====================================================
+       DIRECTOR ICT
+    ===================================================== */
+
+    if (
+        containsAny(q, [
+            "director ict",
+            "director of ict",
+            "ict director",
+            "geoffrey sowek",
+            "information technology",
+            "ict office"
+        ])
+    ) {
+
+        if (
+            containsAny(q, [
+                "responsibil",
+                "duty",
+                "duties",
+                "function",
+                "functions",
+                "role",
+                "what does",
+                "what is the role"
+            ])
+        ) {
+
+            return knowledge.ict_duties;
+
+        }
+
+        return knowledge.ict;
+
+    }
+
+
+    /* =====================================================
+       FINANCE
+    ===================================================== */
+
+    if (
+        containsAny(q, [
+            "finance officer",
+            "finance office",
+            "finance",
+            "willy koech",
+            "cpa willy"
+        ])
+    ) {
+
+        if (
+            containsAny(q, [
+                "responsibil",
+                "duty",
+                "duties",
+                "function",
+                "functions",
+                "role",
+                "what does",
+                "what is the role"
+            ])
+        ) {
+
+            return knowledge.finance_duties;
+
+        }
+
+        return knowledge.finance;
+
+    }
+
+
+    /* =====================================================
+       SENATE
+    ===================================================== */
+
+    if (
+        containsAny(q, [
+            "senate",
+            "sanate",
+            "senate chamber",
+            "functions of senate",
+            "role of senate"
+        ])
+    ) {
+
+        if (
+            containsAny(q, [
+                "responsibil",
+                "duty",
+                "duties",
+                "function",
+                "functions",
+                "role",
+                "what does",
+                "what is the role",
+                "what does senate do"
+            ])
+        ) {
+
+            return knowledge.senate_duties;
+
+        }
+
+        if (
+            containsAny(q, [
+                "where is senate",
+                "where is the senate",
+                "senate chamber",
+                "location of senate"
+            ])
+        ) {
+
+            return knowledge.senate_chamber;
+
+        }
+
+        return knowledge.senate;
+
+    }
+
+
+    /* =====================================================
+       LIBRARY
+    ===================================================== */
+
+    if (
+        containsAny(q, [
+            "library",
+            "university library",
+            "where is the library",
+            "library location"
+        ])
+    ) {
+
+        if (
+            containsAny(q, [
+                "responsibil",
+                "duty",
+                "duties",
+                "function",
+                "functions",
+                "role",
+                "what does",
+                "services",
+                "what is the library"
+            ])
+        ) {
+
+            return knowledge.library_duties;
+
+        }
+
+        return knowledge.library;
+
+    }
+
+
+    /* =====================================================
+       MAIN GATE
+    ===================================================== */
+
+    if (
+        containsAny(q, [
+            "main gate",
+            "main entrance",
+            "university gate",
+            "gate",
+            "entrance"
+        ])
+    ) {
+
+        return knowledge.gate;
+
+    }
+
+
+    /* =====================================================
+       ADMISSIONS
+    ===================================================== */
+
+    if (
+        containsAny(q, [
+            "admissions",
+            "admission office",
+            "admissions office",
+            "admission"
+        ])
+    ) {
+
+        return knowledge.admissions;
+
+    }
+
+
+    /* =====================================================
+       EXAMINATIONS
+    ===================================================== */
+
+    if (
+        containsAny(q, [
+            "examination",
+            "examinations",
+            "exam office",
+            "exams office",
+            "exams"
+        ])
+    ) {
+
+        return knowledge.examinations;
+
+    }
+
+
+    /* =====================================================
+       POSTGRADUATE
+    ===================================================== */
+
+    if (
+        containsAny(q, [
+            "postgraduate",
+            "post graduate",
+            "director of postgraduate",
+            "postgraduate studies",
+            "postgraduate office"
+        ])
+    ) {
+
+        return knowledge.postgraduate;
+
+    }
+
+
+    /* =====================================================
+       GENDER
+    ===================================================== */
+
+    if (
+        containsAny(q, [
+            "gender",
+            "gender office",
+            "director of gender",
+            "gender director"
+        ])
+    ) {
+
+        return knowledge.gender;
+
+    }
+
+
+    /* =====================================================
+       LTB3 GROUND FLOOR
+    ===================================================== */
+
+    if (
+        containsAny(q, [
+            "ltb3 ground",
+            "ltb 3 ground",
+            "ground floor ltb3",
+            "ground floor ltb 3",
+            "ltb3 ground floor",
+            "ltb 3 ground floor"
+        ])
+    ) {
+
+        return knowledge.ltb3_ground;
+
+    }
+
+
+    /* =====================================================
+       LTB3 FIRST FLOOR
+    ===================================================== */
+
+    if (
+        containsAny(q, [
+            "ltb3 first",
+            "ltb 3 first",
+            "first floor ltb3",
+            "first floor ltb 3",
+            "ltb3 first floor",
+            "ltb 3 first floor"
+        ])
+    ) {
+
+        return knowledge.ltb3_first;
+
+    }
+
+
+    /* =====================================================
+       LTB3 SECOND FLOOR
+    ===================================================== */
+
+    if (
+        containsAny(q, [
+            "ltb3 second",
+            "ltb 3 second",
+            "second floor ltb3",
+            "second floor ltb 3",
+            "ltb3 second floor",
+            "ltb 3 second floor"
+        ])
+    ) {
+
+        return knowledge.ltb3_second;
+
+    }
+
+
+    /* =====================================================
+       LTB3 THIRD FLOOR
+    ===================================================== */
+
+    if (
+        containsAny(q, [
+            "ltb3 third",
+            "ltb 3 third",
+            "third floor ltb3",
+            "third floor ltb 3",
+            "ltb3 third floor",
+            "ltb 3 third floor"
+        ])
+    ) {
+
+        return knowledge.ltb3_third;
+
+    }
+
+
+    /* =====================================================
+       SCHOOL OF BUSINESS
+    ===================================================== */
+
+    if (
+        containsAny(q, [
+            "school of business",
+            "business school",
+            "business offices",
+            "school of business offices",
+            "business office",
+            "finance office ltb3",
+            "dean school of business",
+            "hods office"
+        ])
+    ) {
+
+        return knowledge.business;
+
+    }
+
+
+    /* =====================================================
+       LECTURE HALLS
+    ===================================================== */
+
+    if (
+        containsAny(q, [
+            "lecture hall",
+            "lecture halls",
+            "lh1",
+            "lh2",
+            "lh3",
+            "lh5",
+            "lh6",
+            "lh7",
+            "lh8",
+            "teaching
  
