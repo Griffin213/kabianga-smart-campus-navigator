@@ -1,0 +1,425 @@
+<!DOCTYPE html><html lang="en"><head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"><title>Emergency Services | UOK Smart Campus Navigator</title>
+
+<link rel="stylesheet" href="style.css">
+
+<meta name="theme-color" content="#b00020">
+
+<style>
+
+    body {
+        background: #eef5ff;
+    }
+
+    .emergency-header {
+        background: linear-gradient(135deg, #b00020, #e53935);
+        color: white;
+        padding: 30px 20px;
+        text-align: center;
+        border-radius: 0 0 25px 25px;
+        box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+    }
+
+    .emergency-header h1 {
+        margin: 0;
+        font-size: 28px;
+    }
+
+    .emergency-header p {
+        margin-top: 10px;
+        font-size: 15px;
+    }
+
+    .emergency-container {
+        max-width: 700px;
+        margin: auto;
+        padding: 20px;
+    }
+
+    .emergency-alert {
+        background: #fff3f3;
+        border-left: 5px solid #b00020;
+        padding: 15px;
+        margin-bottom: 20px;
+        border-radius: 8px;
+        color: #7a0015;
+    }
+
+    .emergency-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+        gap: 15px;
+    }
+
+    .emergency-card {
+        background: white;
+        padding: 20px 10px;
+        text-align: center;
+        border-radius: 15px;
+        box-shadow: 0 3px 10px rgba(0,0,0,0.08);
+        transition: 0.2s;
+    }
+
+    .emergency-card:hover {
+        transform: translateY(-3px);
+    }
+
+    .emergency-card .icon {
+        font-size: 35px;
+        margin-bottom: 10px;
+    }
+
+    .emergency-card h3 {
+        font-size: 16px;
+        margin: 8px 0;
+    }
+
+    .emergency-card p {
+        font-size: 13px;
+        color: #666;
+        min-height: 35px;
+    }
+
+    .call-btn {
+        display: inline-block;
+        background: #b00020;
+        color: white;
+        text-decoration: none;
+        padding: 10px 15px;
+        border-radius: 8px;
+        font-weight: bold;
+        font-size: 13px;
+        margin-top: 8px;
+    }
+
+    .call-btn:hover {
+        background: #7a0015;
+    }
+
+    .navigate-btn {
+        display: inline-block;
+        background: #0b5ed7;
+        color: white;
+        text-decoration: none;
+        padding: 10px 15px;
+        border-radius: 8px;
+        font-weight: bold;
+        font-size: 13px;
+        margin-top: 8px;
+    }
+
+    .section-title {
+        text-align: center;
+        margin: 30px 0 15px;
+        color: #333;
+    }
+
+    .safety-section {
+        background: white;
+        padding: 20px;
+        border-radius: 15px;
+        margin-top: 25px;
+        box-shadow: 0 3px 10px rgba(0,0,0,0.08);
+    }
+
+    .safety-section h3 {
+        color: #b00020;
+        margin-bottom: 10px;
+    }
+
+    .safety-section ul {
+        padding-left: 20px;
+        line-height: 1.8;
+    }
+
+    .back-home {
+        text-align: center;
+        margin: 30px 0;
+    }
+
+    .back-home a {
+        display: inline-block;
+        background: #084298;
+        color: white;
+        text-decoration: none;
+        padding: 12px 25px;
+        border-radius: 10px;
+        font-weight: bold;
+    }
+
+    footer {
+        text-align: center;
+        padding: 20px;
+        margin-top: 30px;
+        color: #666;
+    }
+
+</style>
+
+</head><body><header class="emergency-header">
+
+    <h1>🚨 EMERGENCY SERVICES</h1>
+
+    <p>
+        University of Kabianga Smart Campus Navigator
+    </p>
+
+    <p>
+        Quick access to emergency assistance and safety information.
+    </p>
+
+</header>
+
+
+<main class="emergency-container">
+
+
+    <div class="emergency-alert">
+
+        <strong>⚠️ Important:</strong>
+
+        In case of a serious emergency, contact the appropriate emergency service immediately.
+        Always provide your exact location when requesting assistance.
+
+    </div>
+
+
+    <h2 class="section-title">Emergency Contacts</h2>
+
+
+    <div class="emergency-grid">
+
+
+        <!-- HEALTH CENTRE -->
+
+        <div class="emergency-card">
+
+            <div class="icon">🏥</div>
+
+            <h3>University Health Centre</h3>
+
+            <p>Medical assistance and first aid services.</p>
+
+            <!-- Add official number when confirmed -->
+
+            <a href="#" class="call-btn">
+                📞 Call Health Centre
+            </a>
+
+        </div>
+
+
+        <!-- SECURITY -->
+
+        <div class="emergency-card">
+
+            <div class="icon">🛡️</div>
+
+            <h3>Campus Security</h3>
+
+            <p>Security assistance and incident reporting.</p>
+
+            <!-- Add official number when confirmed -->
+
+            <a href="#" class="call-btn">
+                📞 Call Security
+            </a>
+
+        </div>
+
+
+        <!-- MAIN GATE -->
+
+        <div class="emergency-card">
+
+            <div class="icon">🚪</div>
+
+            <h3>Main Gate Security</h3>
+
+            <p>Immediate assistance at the university entrance.</p>
+
+            <!-- Add official number when confirmed -->
+
+            <a href="#" class="call-btn">
+                📞 Call Main Gate
+            </a>
+
+        </div>
+
+
+        <!-- POLICE -->
+
+        <div class="emergency-card">
+
+            <div class="icon">🚓</div>
+
+            <h3>Police Emergency</h3>
+
+            <p>For serious security emergencies.</p>
+
+            <a href="tel:999" class="call-btn">
+                📞 Call 999
+            </a>
+
+        </div>
+
+
+        <!-- FIRE -->
+
+        <div class="emergency-card">
+
+            <div class="icon">🔥</div>
+
+            <h3>Fire Emergency</h3>
+
+            <p>Report fires and serious fire-related emergencies.</p>
+
+            <a href="tel:999" class="call-btn">
+                📞 Call 999
+            </a>
+
+        </div>
+
+
+        <!-- GENERAL -->
+
+        <div class="emergency-card">
+
+            <div class="icon">📱</div>
+
+            <h3>National Emergency</h3>
+
+            <p>General emergency assistance.</p>
+
+            <a href="tel:112" class="call-btn">
+                📞 Call 112
+            </a>
+
+        </div>
+
+
+    </div>
+
+
+    <h2 class="section-title">Find Emergency Locations</h2>
+
+
+    <div class="emergency-grid">
+
+
+        <div class="emergency-card">
+
+            <div class="icon">🏥</div>
+
+            <h3>University Health Centre</h3>
+
+            <p>Navigate to the nearest medical facility.</p>
+
+            <a href="campus-map.html" class="navigate-btn">
+                🗺️ Navigate
+            </a>
+
+        </div>
+
+
+        <div class="emergency-card">
+
+            <div class="icon">🛡️</div>
+
+            <h3>Campus Security Office</h3>
+
+            <p>Find security assistance around campus.</p>
+
+            <a href="campus-map.html" class="navigate-btn">
+                🗺️ Navigate
+            </a>
+
+        </div>
+
+
+        <div class="emergency-card">
+
+            <div class="icon">🚪</div>
+
+            <h3>Main Gate</h3>
+
+            <p>Navigate to the university main entrance.</p>
+
+            <a href="campus-map.html" class="navigate-btn">
+                🗺️ Navigate
+            </a>
+
+        </div>
+
+
+    </div>
+
+
+    <div class="safety-section">
+
+        <h3>🏥 Medical Emergency Safety Tips</h3>
+
+        <ul>
+            <li>Remain calm and assess the situation.</li>
+            <li>Contact the Health Centre or emergency services.</li>
+            <li>Provide your exact location.</li>
+            <li>Do not move an injured person unnecessarily.</li>
+            <li>Follow instructions from trained emergency personnel.</li>
+        </ul>
+
+    </div>
+
+
+    <div class="safety-section">
+
+        <h3>🔥 Fire Emergency Safety Tips</h3>
+
+        <ul>
+            <li>Raise the alarm immediately.</li>
+            <li>Leave the building using the nearest safe exit.</li>
+            <li>Do not use elevators during a fire emergency.</li>
+            <li>Move to the designated assembly point.</li>
+            <li>Do not return to the building until authorized.</li>
+        </ul>
+
+    </div>
+
+
+    <div class="safety-section">
+
+        <h3>🛡️ Security Emergency Safety Tips</h3>
+
+        <ul>
+            <li>Move away from danger to a safe location.</li>
+            <li>Contact campus security as soon as possible.</li>
+            <li>Avoid unnecessary confrontation.</li>
+            <li>Provide accurate information about the incident.</li>
+            <li>Follow instructions from security personnel.</li>
+        </ul>
+
+    </div>
+
+
+    <div class="back-home">
+
+        <a href="home.html">
+            ← Back to Smart Campus Navigator
+        </a>
+
+    </div>
+
+
+</main>
+
+
+<footer>
+
+    <p>© 2026 University of Kabianga</p>
+
+    <p>Smart Campus Navigation System</p>
+
+</footer>
+
+</body>
+  </html>
