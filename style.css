@@ -831,3 +831,39 @@ color:gray;
     }
 
 }
+/* ==========================================
+   EMERGENCY SERVICES HOMEPAGE BUTTON
+========================================== */
+
+.emergency-home-button {
+    display: block;
+    width: 100%;
+    max-width: 500px;
+    margin: 20px auto 5px;
+
+    background: linear-gradient(135deg, #b00020, #e53935);
+
+    color: white;
+    text-decoration: none;
+
+    text-align: center;
+
+    padding: 15px 20px;
+
+    border-radius: 12px;
+
+    font-size: 16px;
+    font-weight: bold;
+
+    box-shadow: 0 4px 10px rgba(176, 0, 32, 0.25);
+
+    transition: 0.3s;
+}
+
+.emergency-home-button:hover {
+    background: linear-gradient(135deg, #7a0015, #b00020);
+
+    transform: translateY(-2px);
+
+    box-shadow: 0 6px 15px rgba(176, 0, 32, 0.35);
+}
