@@ -900,3 +900,28 @@ color:gray;
 .digital-reception-button:active {
     transform: scale(0.98);
 }
+/* GAMES, SPORTS & CLUBS BUTTON */
+
+.sports-clubs-button {
+    display: inline-block;
+    width: auto;
+    max-width: 260px;
+    padding: 10px 18px;
+    margin: 8px auto;
+    background: #0b5ed7;
+    color: white;
+    text-decoration: none;
+    border-radius: 8px;
+    font-size: 15px;
+    font-weight: bold;
+    text-align: center;
+    cursor: pointer;
+}
+
+.sports-clubs-button:hover {
+    background: #084298;
+}
+
+.sports-clubs-button:active {
+    transform: scale(0.98);
+}
