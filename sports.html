@@ -1,0 +1,730 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+<meta charset="UTF-8">
+
+<meta name="viewport"
+      content="width=device-width, initial-scale=1.0">
+
+<title>Games, Sports & Clubs | University of Kabianga</title>
+
+<link rel="stylesheet" href="style.css">
+
+<style>
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: Arial, Helvetica, sans-serif;
+    background: linear-gradient(135deg, #eef5ff, #ffffff);
+    color: #222;
+    min-height: 100vh;
+}
+
+/* HEADER */
+
+header {
+    background: linear-gradient(135deg, #0b5ed7, #084298);
+    color: white;
+    text-align: center;
+    padding: 20px;
+    box-shadow: 0 3px 10px rgba(0,0,0,0.2);
+}
+
+header img {
+    width: 78px;
+    height: 78px;
+    object-fit: contain;
+    border-radius: 50%;
+    background: white;
+    padding: 5px;
+    margin-bottom: 8px;
+}
+
+header h1 {
+    font-size: 21px;
+    margin-bottom: 5px;
+}
+
+header p {
+    font-size: 14px;
+    opacity: 0.9;
+}
+
+
+/* MAIN CONTAINER */
+
+.container {
+    max-width: 950px;
+    margin: auto;
+    padding: 20px;
+}
+
+
+/* WELCOME */
+
+.welcome {
+    background: white;
+    padding: 25px;
+    border-radius: 15px;
+    text-align: center;
+    margin-bottom: 20px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.08);
+}
+
+.welcome h2 {
+    color: #084298;
+    margin-bottom: 10px;
+}
+
+.welcome p {
+    color: #555;
+    line-height: 1.6;
+}
+
+
+/* SECTION */
+
+.section {
+    background: white;
+    padding: 22px;
+    border-radius: 15px;
+    margin-bottom: 20px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.08);
+}
+
+.section h2 {
+    color: #084298;
+    margin-bottom: 18px;
+    border-bottom: 2px solid #eef5ff;
+    padding-bottom: 10px;
+}
+
+
+/* CATEGORY GRID */
+
+.category-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
+    gap: 15px;
+}
+
+
+/* CATEGORY CARD */
+
+.category-card {
+    background: #f8fbff;
+    border: 1px solid #dce7f7;
+    border-radius: 12px;
+    padding: 20px;
+    text-align: center;
+    transition: 0.3s;
+}
+
+.category-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+}
+
+.category-card .icon {
+    font-size: 40px;
+    margin-bottom: 10px;
+}
+
+.category-card h3 {
+    color: #0b5ed7;
+    margin-bottom: 8px;
+}
+
+.category-card p {
+    color: #555;
+    font-size: 14px;
+    line-height: 1.5;
+}
+
+
+/* SPORTS */
+
+.sports-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+    gap: 10px;
+}
+
+.sport {
+    background: #f5f9ff;
+    border: 1px solid #dce7f7;
+    padding: 15px 10px;
+    border-radius: 10px;
+    text-align: center;
+    font-weight: bold;
+    color: #084298;
+}
+
+
+/* CLUBS */
+
+.club-card {
+    background: #fafcff;
+    border: 1px solid #e1e7ef;
+    border-radius: 10px;
+    padding: 16px;
+    margin-bottom: 12px;
+}
+
+.club-card h3 {
+    color: #0b5ed7;
+    margin-bottom: 7px;
+}
+
+.club-card p {
+    color: #555;
+    font-size: 14px;
+    line-height: 1.5;
+}
+
+
+/* EVENTS */
+
+.event-card {
+    background: #fafcff;
+    border-left: 5px solid #0b5ed7;
+    padding: 15px;
+    margin-bottom: 12px;
+    border-radius: 8px;
+}
+
+.event-card h3 {
+    color: #084298;
+    margin-bottom: 6px;
+}
+
+.event-card p {
+    color: #555;
+    font-size: 14px;
+    line-height: 1.5;
+}
+
+
+/* NOTICE */
+
+.notice {
+    background: #eef5ff;
+    border-left: 5px solid #0b5ed7;
+    padding: 15px;
+    border-radius: 8px;
+    margin-top: 15px;
+}
+
+.notice strong {
+    color: #084298;
+}
+
+.notice p {
+    color: #555;
+    font-size: 14px;
+    line-height: 1.5;
+    margin-top: 5px;
+}
+
+
+/* BACK BUTTON */
+
+.back-btn {
+    display: block;
+    width: 100%;
+    max-width: 400px;
+    margin: 25px auto 5px;
+    padding: 14px;
+    border: none;
+    border-radius: 10px;
+    background: #0b5ed7;
+    color: white;
+    font-size: 15px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.back-btn:hover {
+    background: #084298;
+}
+
+
+/* FOOTER */
+
+footer {
+    text-align: center;
+    background: #084298;
+    color: white;
+    padding: 20px;
+    margin-top: 30px;
+    font-size: 13px;
+}
+
+footer p {
+    margin: 5px 0;
+}
+
+
+/* MOBILE */
+
+@media(max-width:600px) {
+
+    header h1 {
+        font-size: 17px;
+    }
+
+    .container {
+        padding: 12px;
+    }
+
+    .welcome {
+        padding: 20px;
+    }
+
+    .category-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .sports-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+}
+
+</style>
+
+</head>
+
+
+<body>
+
+
+<!-- HEADER -->
+
+<header>
+
+    <img src="logo.jpg"
+         alt="University of Kabianga Logo">
+
+    <h1>UNIVERSITY OF KABIANGA</h1>
+
+    <p>Games, Sports & Clubs</p>
+
+</header>
+
+
+
+<div class="container">
+
+
+    <!-- WELCOME -->
+
+    <div class="welcome">
+
+        <h2>🏆 Games, Sports & Clubs</h2>
+
+        <p>
+            Welcome to the University of Kabianga
+            student activities portal.
+            Explore games, sports, clubs, societies,
+            competitions and student activities.
+        </p>
+
+    </div>
+
+
+
+    <!-- MAIN CATEGORIES -->
+
+    <div class="section">
+
+        <h2>Explore</h2>
+
+        <div class="category-grid">
+
+
+            <div class="category-card">
+
+                <div class="icon">⚽</div>
+
+                <h3>Games & Sports</h3>
+
+                <p>
+                    Explore sporting activities,
+                    teams, training and competitions.
+                </p>
+
+            </div>
+
+
+            <div class="category-card">
+
+                <div class="icon">🎭</div>
+
+                <h3>Clubs & Societies</h3>
+
+                <p>
+                    Discover student clubs,
+                    societies and organizations.
+                </p>
+
+            </div>
+
+
+            <div class="category-card">
+
+                <div class="icon">🏆</div>
+
+                <h3>Competitions</h3>
+
+                <p>
+                    Follow tournaments,
+                    competitions and championships.
+                </p>
+
+            </div>
+
+
+            <div class="category-card">
+
+                <div class="icon">📅</div>
+
+                <h3>Activities & Events</h3>
+
+                <p>
+                    Find upcoming student activities
+                    and campus events.
+                </p>
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+
+    <!-- SPORTS -->
+
+    <div class="section">
+
+        <h2>⚽ Games & Sports</h2>
+
+        <div class="sports-grid">
+
+            <div class="sport">
+                ⚽ Football
+            </div>
+
+            <div class="sport">
+                🏀 Basketball
+            </div>
+
+            <div class="sport">
+                🏐 Volleyball
+            </div>
+
+            <div class="sport">
+                🏉 Rugby
+            </div>
+
+            <div class="sport">
+                🏃 Athletics
+            </div>
+
+            <div class="sport">
+                🤾 Handball
+            </div>
+
+            <div class="sport">
+                🏓 Table Tennis
+            </div>
+
+            <div class="sport">
+                🏸 Badminton
+            </div>
+
+            <div class="sport">
+                ♟️ Chess
+            </div>
+
+            <div class="sport">
+                🎯 Indoor Games
+            </div>
+
+        </div>
+
+
+        <div class="notice">
+
+            <strong>Sports Information</strong>
+
+            <p>
+                Official sports teams, training schedules,
+                fixtures, results and facilities can be
+                added as the university provides the
+                relevant information.
+            </p>
+
+        </div>
+
+    </div>
+
+
+
+    <!-- CLUBS -->
+
+    <div class="section">
+
+        <h2>🎭 Clubs & Societies</h2>
+
+
+        <div class="club-card">
+
+            <h3>💻 Academic & Professional Clubs</h3>
+
+            <p>
+                Student organizations supporting academic,
+                professional and career development.
+            </p>
+
+        </div>
+
+
+        <div class="club-card">
+
+            <h3>💡 Innovation & Technology Clubs</h3>
+
+            <p>
+                Clubs focused on innovation, technology,
+                entrepreneurship and digital skills.
+            </p>
+
+        </div>
+
+
+        <div class="club-card">
+
+            <h3>🌱 Environmental Clubs</h3>
+
+            <p>
+                Student activities supporting environmental
+                conservation and sustainability.
+            </p>
+
+        </div>
+
+
+        <div class="club-card">
+
+            <h3>🎨 Cultural & Creative Clubs</h3>
+
+            <p>
+                Music, drama, arts, culture and other
+                creative student activities.
+            </p>
+
+        </div>
+
+
+        <div class="club-card">
+
+            <h3>🤝 Community & Service Organizations</h3>
+
+            <p>
+                Student organizations involved in leadership,
+                community service and social development.
+            </p>
+
+        </div>
+
+    </div>
+
+
+
+    <!-- EVENTS -->
+
+    <div class="section">
+
+        <h2>📅 Upcoming Activities</h2>
+
+
+        <div class="event-card">
+
+            <h3>🏆 Sports Competitions</h3>
+
+            <p>
+                Upcoming tournaments and sporting
+                competitions can be displayed here.
+            </p>
+
+        </div>
+
+
+        <div class="event-card">
+
+            <h3>🎭 Club & Society Events</h3>
+
+            <p>
+                Club meetings, society events and
+                student activities can be published here.
+            </p>
+
+        </div>
+
+
+        <div class="event-card">
+
+            <h3>🏃 Training & Team Activities</h3>
+
+            <p>
+                Training schedules and team activities
+                can be added here.
+            </p>
+
+        </div>
+
+    </div>
+
+
+
+    <!-- SPORTS FACILITIES -->
+
+    <div class="section">
+
+        <h2>📍 Sports Facilities</h2>
+
+        <div class="category-grid">
+
+
+            <div class="category-card">
+
+                <div class="icon">🏟️</div>
+
+                <h3>Sports Grounds</h3>
+
+                <p>
+                    Information about university
+                    outdoor sports grounds.
+                </p>
+
+            </div>
+
+
+            <div class="category-card">
+
+                <div class="icon">🏀</div>
+
+                <h3>Indoor Facilities</h3>
+
+                <p>
+                    Information about indoor games
+                    and recreational facilities.
+                </p>
+
+            </div>
+
+
+            <div class="category-card">
+
+                <div class="icon">🏃</div>
+
+                <h3>Athletics Facilities</h3>
+
+                <p>
+                    Information about athletics
+                    and training areas.
+                </p>
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+
+    <!-- FUTURE DIGITAL FEATURES -->
+
+    <div class="section">
+
+        <h2>🚀 Future Digital Services</h2>
+
+        <div class="notice">
+
+            <strong>Coming Soon</strong>
+
+            <p>
+                This section can later support online
+                sports registration, club membership,
+                team selection, competition registration,
+                fixture notifications, results and
+                digital event announcements.
+            </p>
+
+        </div>
+
+    </div>
+
+
+
+    <!-- BACK TO HOME -->
+
+    <button
+        class="back-btn"
+        onclick="goHome()">
+
+        🏠 Back to Smart Campus Home
+
+    </button>
+
+
+</div>
+
+
+
+<!-- FOOTER -->
+
+<footer>
+
+    <p>
+        University of Kabianga Smart Campus Navigator
+    </p>
+
+    <p>
+        Games, Sports & Clubs
+    </p>
+
+    <p>
+        Digital Student Services
+    </p>
+
+</footer>
+
+
+
+<script>
+
+/* =================================
+   RETURN TO HOME.HTML
+================================= */
+
+function goHome() {
+
+    window.location.href = "home.html";
+
+}
+
+</script>
+
+
+</body>
+
+              </html>
