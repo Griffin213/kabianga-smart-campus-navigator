@@ -1,0 +1,627 @@
+<!DOCTYPE html><html lang="en"><head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0"><title>UOK Digital Reception | Smart Campus Navigator</title><link rel="stylesheet" href="style.css"><style>
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: Arial, Helvetica, sans-serif;
+    background: linear-gradient(135deg, #eef5ff, #ffffff);
+    color: #222;
+    min-height: 100vh;
+}
+
+/* HEADER */
+
+header {
+    background: linear-gradient(135deg, #0b5ed7, #084298);
+    color: white;
+    padding: 18px;
+    text-align: center;
+    box-shadow: 0 3px 10px rgba(0,0,0,0.2);
+}
+
+header img {
+    width: 75px;
+    height: 75px;
+    object-fit: contain;
+    border-radius: 50%;
+    background: white;
+    padding: 5px;
+    margin-bottom: 8px;
+}
+
+header h1 {
+    font-size: 21px;
+    margin-bottom: 5px;
+}
+
+header p {
+    font-size: 13px;
+    opacity: 0.9;
+}
+
+/* CONTAINER */
+
+.container {
+    max-width: 900px;
+    margin: auto;
+    padding: 20px;
+}
+
+/* WELCOME */
+
+.welcome {
+    background: white;
+    padding: 25px;
+    border-radius: 15px;
+    text-align: center;
+    margin-bottom: 20px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.08);
+}
+
+.welcome h2 {
+    color: #084298;
+    margin-bottom: 10px;
+}
+
+.welcome p {
+    color: #555;
+    line-height: 1.6;
+}
+
+/* SEARCH */
+
+.search-box {
+    margin: 20px 0;
+}
+
+.search-box input {
+    width: 100%;
+    padding: 15px;
+    border: 2px solid #dbe5f5;
+    border-radius: 10px;
+    font-size: 16px;
+    outline: none;
+}
+
+.search-box input:focus {
+    border-color: #0b5ed7;
+}
+
+/* BUTTON GRID */
+
+.menu-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+    gap: 15px;
+    margin-bottom: 25px;
+}
+
+.menu-btn {
+    border: none;
+    padding: 18px 10px;
+    border-radius: 12px;
+    background: white;
+    color: #084298;
+    font-size: 14px;
+    font-weight: bold;
+    cursor: pointer;
+    box-shadow: 0 3px 10px rgba(0,0,0,0.08);
+    transition: 0.3s;
+}
+
+.menu-btn:hover {
+    background: #0b5ed7;
+    color: white;
+    transform: translateY(-3px);
+}
+
+.menu-btn span {
+    display: block;
+    font-size: 25px;
+    margin-bottom: 8px;
+}
+
+/* SECTIONS */
+
+.section {
+    display: none;
+    background: white;
+    padding: 22px;
+    border-radius: 15px;
+    margin-bottom: 20px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.08);
+}
+
+.section h2 {
+    color: #084298;
+    margin-bottom: 15px;
+    border-bottom: 2px solid #eef5ff;
+    padding-bottom: 10px;
+}
+
+/* OFFICE CARDS */
+
+.office-card {
+    border: 1px solid #e2e8f0;
+    border-radius: 10px;
+    padding: 15px;
+    margin-bottom: 12px;
+    background: #fafcff;
+}
+
+.office-card h3 {
+    color: #0b5ed7;
+    margin-bottom: 6px;
+}
+
+.office-card p {
+    color: #555;
+    font-size: 14px;
+    margin-bottom: 8px;
+}
+
+.office-card button {
+    background: #0b5ed7;
+    color: white;
+    border: none;
+    padding: 9px 14px;
+    border-radius: 6px;
+    cursor: pointer;
+}
+
+/* CONTACTS */
+
+.contact-card {
+    background: #f5f9ff;
+    padding: 15px;
+    border-radius: 10px;
+    margin-bottom: 10px;
+}
+
+.contact-card strong {
+    color: #084298;
+}
+
+/* BACK BUTTON */
+
+.back-btn {
+    background: #6c757d;
+    color: white;
+    border: none;
+    padding: 10px 18px;
+    border-radius: 6px;
+    cursor: pointer;
+    margin-top: 10px;
+}
+
+/* FOOTER */
+
+footer {
+    text-align: center;
+    background: #084298;
+    color: white;
+    padding: 20px;
+    margin-top: 30px;
+    font-size: 13px;
+}
+
+footer a {
+    color: white;
+    text-decoration: underline;
+}
+
+/* MOBILE */
+
+@media(max-width:600px) {
+
+    header h1 {
+        font-size: 17px;
+    }
+
+    .container {
+        padding: 12px;
+    }
+
+    .welcome {
+        padding: 20px;
+    }
+
+}
+
+</style></head><body><header><img src="logo.jpg" alt="University of Kabianga Logo">
+
+<h1>UNIVERSITY OF KABIANGA</h1>
+
+<p>Smart Campus Digital Reception</p>
+
+</header><div class="container"><div class="welcome">
+
+    <h2>WELCOME TO UOK</h2>
+
+    <p>
+        Welcome to the University of Kabianga Smart Campus Navigator.
+        Find offices, buildings, university services and campus information
+        quickly and conveniently.
+    </p>
+
+</div>
+
+
+<!-- MAIN MENU -->
+
+<div class="menu-grid">
+
+    <button class="menu-btn" onclick="showSection('offices')">
+        <span>🏢</span>
+        Find an Office
+    </button>
+
+    <button class="menu-btn" onclick="showSection('buildings')">
+        <span>🏫</span>
+        Find a Building
+    </button>
+
+    <button class="menu-btn" onclick="showSection('leadership')">
+        <span>👥</span>
+        University Leadership
+    </button>
+
+    <button class="menu-btn" onclick="openMap()">
+        <span>🗺️</span>
+        Campus Map
+    </button>
+
+    <button class="menu-btn" onclick="showSection('contacts')">
+        <span>📞</span>
+        Important Contacts
+    </button>
+
+    <button class="menu-btn" onclick="openPrinceAI()">
+        <span>🤖</span>
+        Ask Prince AI
+    </button>
+
+</div>
+
+
+<!-- OFFICE SEARCH -->
+
+<div class="search-box">
+
+    <input
+        type="text"
+        id="officeSearch"
+        placeholder="Search for an office, building or service..."
+        onkeyup="searchOffices()">
+
+</div>
+
+
+<!-- OFFICES -->
+
+<div id="offices" class="section">
+
+    <h2>Find an Office</h2>
+
+    <div id="officeList">
+
+        <div class="office-card" data-name="vice chancellor vc administration">
+            <h3>Vice Chancellor's Office</h3>
+            <p>University Administration and Executive Management.</p>
+            <p><strong>Location:</strong> University Administration Facilities</p>
+            <button onclick="navigateTo('University Administration')">Navigate</button>
+        </div>
+
+        <div class="office-card" data-name="dvc academic student affairs">
+            <h3>DVC Academic & Student Affairs</h3>
+            <p>Deputy Vice Chancellor responsible for Academic and Student Affairs.</p>
+            <p><strong>Location:</strong> University Administration Facilities</p>
+            <button onclick="navigateTo('University Administration')">Navigate</button>
+        </div>
+
+        <div class="office-card" data-name="dvc planning research development">
+            <h3>DVC Planning, Research & Development</h3>
+            <p>Responsible for planning, research and institutional development.</p>
+            <p><strong>Location:</strong> University Administration Facilities</p>
+            <button onclick="navigateTo('University Administration')">Navigate</button>
+        </div>
+
+        <div class="office-card" data-name="registrar academic affairs">
+            <h3>Registrar Academic Affairs</h3>
+            <p>Academic registration, examinations and student academic services.</p>
+            <p><strong>Location:</strong> University Administration Facilities</p>
+            <button onclick="navigateTo('University Administration')">Navigate</button>
+        </div>
+
+        <div class="office-card" data-name="registrar administration">
+            <h3>Registrar Administration</h3>
+            <p>Administrative and institutional support services.</p>
+            <p><strong>Location:</strong> University Administration Facilities</p>
+            <button onclick="navigateTo('University Administration')">Navigate</button>
+        </div>
+
+        <div class="office-card" data-name="dean students">
+            <h3>Dean of Students</h3>
+            <p>Student welfare, guidance and student affairs services.</p>
+            <p><strong>Location:</strong> University Administration Facilities</p>
+            <button onclick="navigateTo('University Administration')">Navigate</button>
+        </div>
+
+        <div class="office-card" data-name="director ict information communication technology">
+            <h3>Director ICT</h3>
+            <p>Information and Communication Technology services.</p>
+            <p><strong>Location:</strong> University ICT Directorate</p>
+            <button onclick="navigateTo('ICT Directorate')">Navigate</button>
+        </div>
+
+        <div class="office-card" data-name="finance officer finance">
+            <h3>Finance Office</h3>
+            <p>Student finance and university financial services.</p>
+            <p><strong>Location:</strong> University Administration Facilities</p>
+            <button onclick="navigateTo('Finance Office')">Navigate</button>
+        </div>
+
+        <div class="office-card" data-name="director research">
+            <h3>Director of Research</h3>
+            <p>Research, innovation and institutional development services.</p>
+            <p><strong>Location:</strong> University Administration Facilities</p>
+            <button onclick="navigateTo('Director of Research Office')">Navigate</button>
+        </div>
+
+    </div>
+
+    <button class="back-btn" onclick="hideSections()">Back to Menu</button>
+
+</div>
+
+
+<!-- BUILDINGS -->
+
+<div id="buildings" class="section">
+
+    <h2>Campus Buildings</h2>
+
+    <div class="office-card">
+        <h3>Main Gate</h3>
+        <p>Main entrance and visitor access point.</p>
+        <button onclick="navigateTo('Main Gate')">Navigate</button>
+    </div>
+
+    <div class="office-card">
+        <h3>LTB1</h3>
+        <p>Lecture Teaching Block 1.</p>
+        <button onclick="navigateTo('LTB1')">View Building</button>
+    </div>
+
+    <div class="office-card">
+        <h3>LTB2</h3>
+        <p>Lecture Teaching Block 2.</p>
+        <button onclick="navigateTo('LTB2')">View Building</button>
+    </div>
+
+    <div class="office-card">
+        <h3>LTB3</h3>
+        <p>Lecture Teaching Block 3, including offices and lecture halls.</p>
+        <button onclick="navigateTo('LTB3')">View Building</button>
+    </div>
+
+    <div class="office-card">
+        <h3>LTB4</h3>
+        <p>Lecture Teaching Block 4.</p>
+        <button onclick="navigateTo('LTB4')">View Building</button>
+    </div>
+
+    <div class="office-card">
+        <h3>University Library</h3>
+        <p>Learning resources, research materials and study spaces.</p>
+        <button onclick="navigateTo('University Library')">Navigate</button>
+    </div>
+
+    <button class="back-btn" onclick="hideSections()">Back to Menu</button>
+
+</div>
+
+
+<!-- LEADERSHIP -->
+
+<div id="leadership" class="section">
+
+    <h2>University Leadership</h2>
+
+    <div class="office-card">
+        <h3>Prof. Erick Koech, Ph.D, MBS</h3>
+        <p>Vice Chancellor, University of Kabianga.</p>
+    </div>
+
+    <div class="office-card">
+        <h3>Prof. Dr. Fredrick Nyongesa Kassilly</h3>
+        <p>Deputy Vice Chancellor – Academic & Student Affairs.</p>
+    </div>
+
+    <div class="office-card">
+        <h3>Prof. Maurice Owino Oduor</h3>
+        <p>Deputy Vice Chancellor – Planning, Research & Development.</p>
+    </div>
+
+    <div class="office-card">
+        <h3>Dr. Cecilia Sang</h3>
+        <p>Registrar – Academic Affairs.</p>
+    </div>
+
+    <div class="office-card">
+        <h3>Mr. Peter K. Kimalel</h3>
+        <p>Registrar – Administration.</p>
+    </div>
+
+    <div class="office-card">
+        <h3>Dr. Peter Ngugi</h3>
+        <p>Dean of Students.</p>
+    </div>
+
+    <div class="office-card">
+        <h3>Mr. Geoffrey Sowek</h3>
+        <p>Director ICT.</p>
+    </div>
+
+    <div class="office-card">
+        <h3>CPA Willy Koech</h3>
+        <p>Finance Officer.</p>
+    </div>
+
+    <button class="back-btn" onclick="hideSections()">Back to Menu</button>
+
+</div>
+
+
+<!-- CONTACTS -->
+
+<div id="contacts" class="section">
+
+    <h2>Important University Contacts</h2>
+
+    <div class="contact-card">
+        <strong>University Main Gate</strong>
+        <p>Visitor reception and general campus access.</p>
+    </div>
+
+    <div class="contact-card">
+        <strong>University Administration</strong>
+        <p>For general institutional inquiries and official services.</p>
+    </div>
+
+    <div class="contact-card">
+        <strong>ICT Directorate</strong>
+        <p>For technical support and digital services.</p>
+    </div>
+
+    <div class="contact-card">
+        <strong>Dean of Students Office</strong>
+        <p>For student welfare and support services.</p>
+    </div>
+
+    <div class="contact-card">
+        <strong>University Health Centre</strong>
+        <p>For medical assistance and health-related services.</p>
+    </div>
+
+    <button class="back-btn" onclick="hideSections()">Back to Menu</button>
+
+</div>
+
+</div><footer><p>University of Kabianga Smart Campus Navigator</p>
+
+<p>Powered by Prince AI</p>
+
+<p>Developed by Griffin Kipruttoh & David Dodi</p>
+
+</footer><script>
+
+/* SHOW SECTION */
+
+function showSection(sectionId) {
+
+    document.querySelectorAll('.section').forEach(section => {
+        section.style.display = 'none';
+    });
+
+    document.getElementById(sectionId).style.display = 'block';
+
+    document.getElementById(sectionId).scrollIntoView({
+        behavior: 'smooth'
+    });
+
+}
+
+
+/* HIDE ALL SECTIONS */
+
+function hideSections() {
+
+    document.querySelectorAll('.section').forEach(section => {
+        section.style.display = 'none';
+    });
+
+    window.scrollTo({
+        top: 0,
+        behavior: 'smooth'
+    });
+
+}
+
+
+/* SEARCH OFFICES */
+
+function searchOffices() {
+
+    const input = document.getElementById('officeSearch').value.toLowerCase();
+
+    const cards = document.querySelectorAll('.office-card');
+
+    cards.forEach(card => {
+
+        const name = card.getAttribute('data-name');
+
+        if (!name || name.includes(input)) {
+
+            card.style.display = 'block';
+
+        } else {
+
+            card.style.display = 'none';
+
+        }
+
+    });
+
+    if (input.length > 0) {
+
+        document.getElementById('offices').style.display = 'block';
+
+    }
+
+}
+
+
+/* NAVIGATION */
+
+function navigateTo(destination) {
+
+    const confirmation = confirm(
+        "You selected: " + destination +
+        "\n\nWould you like to open the campus navigation system?"
+    );
+
+    if (confirmation) {
+
+        window.location.href = "campus.html";
+
+    }
+
+}
+
+
+/* OPEN MAP */
+
+function openMap() {
+
+    window.location.href = "campus.html";
+
+}
+
+
+/* OPEN PRINCE AI */
+
+function openPrinceAI() {
+
+    window.location.href = "prince.html";
+
+}
+
+</script></body>
+  </html>
