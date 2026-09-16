@@ -1,0 +1,720 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+<meta charset="UTF-8">
+
+<meta name="viewport"
+      content="width=device-width, initial-scale=1.0">
+
+<meta name="theme-color"
+      content="#0b5ed7">
+
+<title>
+Visitor Sign-In | University of Kabianga
+</title>
+
+<link rel="stylesheet"
+      href="style.css">
+
+<link rel="manifest"
+      href="manifest.json">
+
+<link rel="apple-touch-icon"
+      href="logo.jpg">
+
+<style>
+
+/* =========================================
+   VISITOR SIGN-IN PAGE
+========================================= */
+
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    font-family: Arial, Helvetica, sans-serif;
+    background: #eef5ff;
+    color: #222;
+}
+
+/* =========================================
+   HEADER
+========================================= */
+
+header {
+    background: linear-gradient(135deg, #0b5ed7, #084298);
+    color: white;
+    text-align: center;
+    padding: 20px 15px;
+    position: relative;
+}
+
+.logo {
+    width: 85px;
+    height: 85px;
+    object-fit: contain;
+    border-radius: 50%;
+    background: white;
+    padding: 5px;
+}
+
+header h1 {
+    margin: 10px 0 5px;
+    font-size: 24px;
+}
+
+.subtitle {
+    margin: 0;
+    font-size: 15px;
+}
+
+/* =========================================
+   MAIN CONTAINER
+========================================= */
+
+.container {
+    width: 94%;
+    max-width: 700px;
+    margin: 25px auto;
+}
+
+/* =========================================
+   BACK BUTTON
+========================================= */
+
+.back-button {
+    display: inline-block;
+    text-decoration: none;
+    background: #084298;
+    color: white;
+    padding: 10px 16px;
+    border-radius: 8px;
+    margin-bottom: 18px;
+    font-weight: bold;
+}
+
+.back-button:hover {
+    background: #063577;
+}
+
+/* =========================================
+   INTRO CARD
+========================================= */
+
+.intro-card {
+    background: white;
+    border-radius: 15px;
+    padding: 22px;
+    margin-bottom: 20px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.10);
+    border-top: 5px solid #0b5ed7;
+}
+
+.intro-card h2 {
+    margin-top: 0;
+    color: #084298;
+}
+
+.intro-card p {
+    line-height: 1.6;
+}
+
+/* =========================================
+   FORM CARD
+========================================= */
+
+.form-card {
+    background: white;
+    border-radius: 15px;
+    padding: 25px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.10);
+}
+
+.form-card h2 {
+    color: #084298;
+    margin-top: 0;
+}
+
+/* =========================================
+   FORM GROUP
+========================================= */
+
+.form-group {
+    margin-bottom: 18px;
+}
+
+.form-group label {
+    display: block;
+    font-weight: bold;
+    margin-bottom: 7px;
+}
+
+.required {
+    color: red;
+}
+
+.form-group input,
+.form-group select,
+.form-group textarea {
+    width: 100%;
+    padding: 13px;
+    border: 1px solid #bbb;
+    border-radius: 8px;
+    font-size: 15px;
+    font-family: Arial, Helvetica, sans-serif;
+    outline: none;
+    background: white;
+}
+
+.form-group input:focus,
+.form-group select:focus,
+.form-group textarea:focus {
+    border-color: #0b5ed7;
+    box-shadow: 0 0 0 2px rgba(11,94,215,0.12);
+}
+
+.form-group textarea {
+    min-height: 90px;
+    resize: vertical;
+}
+
+/* =========================================
+   TWO COLUMN FORM
+========================================= */
+
+.form-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 15px;
+}
+
+/* =========================================
+   SUBMIT BUTTON
+========================================= */
+
+.submit-button {
+    width: 100%;
+    border: none;
+    background: #0b5ed7;
+    color: white;
+    padding: 15px;
+    border-radius: 9px;
+    font-size: 17px;
+    font-weight: bold;
+    cursor: pointer;
+    margin-top: 10px;
+}
+
+.submit-button:hover {
+    background: #084298;
+}
+
+/* =========================================
+   CLEAR BUTTON
+========================================= */
+
+.clear-button {
+    width: 100%;
+    border: 1px solid #999;
+    background: white;
+    color: #333;
+    padding: 12px;
+    border-radius: 9px;
+    font-size: 15px;
+    cursor: pointer;
+    margin-top: 10px;
+}
+
+/* =========================================
+   INFORMATION NOTICE
+========================================= */
+
+.notice {
+    background: #fff8dc;
+    border-left: 5px solid #d4a017;
+    padding: 14px;
+    border-radius: 8px;
+    margin-top: 20px;
+    line-height: 1.5;
+}
+
+/* =========================================
+   SUCCESS MESSAGE
+========================================= */
+
+#successMessage {
+    display: none;
+    background: #e8f7ed;
+    border: 1px solid #2e8b57;
+    color: #176b3a;
+    padding: 20px;
+    border-radius: 12px;
+    margin-top: 20px;
+    text-align: center;
+}
+
+#successMessage h3 {
+    margin-top: 0;
+}
+
+.reference-number {
+    font-weight: bold;
+    font-size: 20px;
+    margin: 10px 0;
+}
+
+/* =========================================
+   FOOTER
+========================================= */
+
+footer {
+    text-align: center;
+    padding: 25px 15px;
+    margin-top: 30px;
+    background: #084298;
+    color: white;
+    font-size: 14px;
+}
+
+/* =========================================
+   MOBILE
+========================================= */
+
+@media (max-width: 600px) {
+
+    header h1 {
+        font-size: 20px;
+    }
+
+    .form-row {
+        grid-template-columns: 1fr;
+        gap: 0;
+    }
+
+    .form-card {
+        padding: 18px;
+    }
+
+    .container {
+        width: 95%;
+    }
+}
+
+</style>
+
+</head>
+
+
+<body>
+
+
+<!-- =========================================
+     HEADER
+========================================= -->
+
+<header>
+
+<img src="logo.jpg"
+     alt="University of Kabianga Logo"
+     class="logo">
+
+<h1>
+UNIVERSITY OF KABIANGA
+</h1>
+
+<p class="subtitle">
+Smart Campus Navigation System
+</p>
+
+</header>
+
+
+<!-- =========================================
+     MAIN
+========================================= -->
+
+<main class="container">
+
+
+<a href="visitor.html"
+   class="back-button">
+
+← Back to Digital Reception
+
+</a>
+
+
+<!-- =========================================
+     INTRODUCTION
+========================================= -->
+
+<section class="intro-card">
+
+<h2>
+📝 Digital Visitor Sign-In
+</h2>
+
+<p>
+Welcome to the University of Kabianga.
+Please complete the visitor registration form below
+before proceeding into the campus.
+</p>
+
+<p>
+Your sign-in time will be recorded automatically
+when this system is connected to the university's
+digital visitor register.
+</p>
+
+</section>
+
+
+<!-- =========================================
+     VISITOR FORM
+========================================= -->
+
+<section class="form-card">
+
+<h2>
+Visitor Information
+</h2>
+
+<form id="visitorForm">
+
+
+<!-- FULL NAME -->
+
+<div class="form-group">
+
+<label for="fullName">
+Full Name <span class="required">*</span>
+</label>
+
+<input
+type="text"
+id="fullName"
+name="fullName"
+placeholder="Enter your full name"
+required
+>
+
+</div>
+
+
+<!-- PHONE + ID -->
+
+<div class="form-row">
+
+<div class="form-group">
+
+<label for="phone">
+Phone Number <span class="required">*</span>
+</label>
+
+<input
+type="tel"
+id="phone"
+name="phone"
+placeholder="e.g. 0712345678"
+required
+>
+
+</div>
+
+
+<div class="form-group">
+
+<label for="idNumber">
+National ID / Passport <span class="required">*</span>
+</label>
+
+<input
+type="text"
+id="idNumber"
+name="idNumber"
+placeholder="Enter ID or passport number"
+required
+>
+
+</div>
+
+</div>
+
+
+<!-- INSTITUTION -->
+
+<div class="form-group">
+
+<label for="institution">
+Institution / Company
+</label>
+
+<input
+type="text"
+id="institution"
+name="institution"
+placeholder="e.g. University, Company, Organization"
+>
+
+</div>
+
+
+<!-- PERSON / OFFICE VISITING -->
+
+<div class="form-group">
+
+<label for="visiting">
+Person / Office Being Visited <span class="required">*</span>
+</label>
+
+<input
+type="text"
+id="visiting"
+name="visiting"
+placeholder="e.g. Registrar Academic Affairs"
+required
+>
+
+</div>
+
+
+<!-- PURPOSE -->
+
+<div class="form-group">
+
+<label for="purpose">
+Purpose of Visit <span class="required">*</span>
+</label>
+
+<select
+id="purpose"
+name="purpose"
+required
+>
+
+<option value="">
+-- Select purpose --
+</option>
+
+<option value="Meeting">
+Meeting
+</option>
+
+<option value="Official Business">
+Official Business
+</option>
+
+<option value="Academic Inquiry">
+Academic Inquiry
+</option>
+
+<option value="Admissions">
+Admissions
+</option>
+
+<option value="Student Affairs">
+Student Affairs
+</option>
+
+<option value="Research">
+Research
+</option>
+
+<option value="Delivery">
+Delivery
+</option>
+
+<option value="Interview">
+Interview
+</option>
+
+<option value="Other">
+Other
+</option>
+
+</select>
+
+</div>
+
+
+<!-- PURPOSE DETAILS -->
+
+<div class="form-group">
+
+<label for="details">
+Additional Details
+</label>
+
+<textarea
+id="details"
+name="details"
+placeholder="Provide any additional information about your visit..."
+></textarea>
+
+</div>
+
+
+<!-- VEHICLE -->
+
+<div class="form-group">
+
+<label for="vehicle">
+Vehicle Registration Number
+</label>
+
+<input
+type="text"
+id="vehicle"
+name="vehicle"
+placeholder="Optional - e.g. KDA 123A"
+>
+
+</div>
+
+
+<!-- SUBMIT -->
+
+<button
+type="submit"
+class="submit-button"
+>
+
+📝 Sign In Visitor
+
+</button>
+
+
+<button
+type="reset"
+class="clear-button"
+>
+
+Clear Form
+
+</button>
+
+
+</form>
+
+
+<!-- =========================================
+     NOTICE
+========================================= -->
+
+<div class="notice">
+
+<strong>🔒 Privacy Notice</strong>
+
+<br>
+
+Visitor information should only be accessed
+by authorized University of Kabianga staff
+responsible for visitor management and security.
+
+</div>
+
+
+<!-- =========================================
+     SUCCESS
+========================================= -->
+
+<div id="successMessage">
+
+<h3>
+✅ Visitor Form Completed
+</h3>
+
+<p>
+The visitor information has been captured
+successfully.
+</p>
+
+<p>
+Reference Number:
+</p>
+
+<div class="reference-number"
+     id="referenceNumber">
+</div>
+
+<p>
+Please proceed to the reception/security desk
+for further assistance.
+</p>
+
+</div>
+
+
+</section>
+
+
+</main>
+
+
+<!-- =========================================
+     FOOTER
+========================================= -->
+
+<footer>
+
+<p>
+© 2026 University of Kabianga
+</p>
+
+<p>
+Developed by Griffin Kipruttoh & David Dodi
+</p>
+
+</footer>
+
+
+<!-- =========================================
+     TEMPORARY FORM SCRIPT
+========================================= -->
+
+<script>
+
+document
+.getElementById("visitorForm")
+.addEventListener("submit", function(event) {
+
+    event.preventDefault();
+
+    /*
+       Temporary demonstration only.
+
+       Firebase storage will be connected
+       in the next step.
+    */
+
+    const reference =
+        "UOK-VIS-" +
+        Date.now().toString().slice(-8);
+
+    document
+    .getElementById("referenceNumber")
+    .textContent = reference;
+
+    document
+    .getElementById("successMessage")
+    .style.display = "block";
+
+    document
+    .getElementById("successMessage")
+    .scrollIntoView({
+        behavior: "smooth"
+    });
+
+    this.reset();
+
+});
+
+</script>
+
+
+</body>
+
+</html>
