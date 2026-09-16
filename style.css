@@ -867,3 +867,36 @@ color:gray;
 
     box-shadow: 0 6px 15px rgba(176, 0, 32, 0.35);
 }
+/* DIGITAL RECEPTION BUTTON */
+.digital-reception-button {
+    display: block;
+    width: 90%;
+    max-width: 500px;
+    margin: 15px auto;
+    padding: 15px 20px;
+
+    background: linear-gradient(135deg, #0b5ed7, #084298);
+    color: white !important;
+
+    text-align: center;
+    text-decoration: none;
+
+    font-size: 18px;
+    font-weight: bold;
+
+    border-radius: 12px;
+    border: none;
+
+    box-shadow: 0 5px 12px rgba(0, 0, 0, 0.20);
+
+    transition: 0.3s ease;
+}
+
+.digital-reception-button:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 7px 15px rgba(0, 0, 0, 0.25);
+}
+
+.digital-reception-button:active {
+    transform: scale(0.98);
+}
