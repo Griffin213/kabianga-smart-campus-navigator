@@ -2,55 +2,103 @@
 <html lang="en">
 
 <head>
+
 <meta charset="UTF-8">
+
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>University of Kabianga Smart Campus Navigator</title>
+<title>University of Kabianga Main Campus | Smart Campus Navigator</title>
 
 <link rel="stylesheet" href="style.css">
+
 <link rel="manifest" href="manifest.json">
 
 <meta name="theme-color" content="#0b5ed7">
+
 <link rel="apple-touch-icon" href="logo.jpg">
 
 </head>
 
+
 <body>
+
 
 <header>
 
-<img src="logo.jpg"
-     alt="University of Kabianga Logo"
-     class="logo">
+<!-- BACK TO CAMPUS SELECTION -->
 
-<h1>UNIVERSITY OF KABIANGA</h1>
+<a
+href="campuses.html"
+style="
+position:absolute;
+left:15px;
+top:15px;
+background:rgba(255,255,255,0.15);
+color:white;
+padding:8px 12px;
+border-radius:8px;
+text-decoration:none;
+font-size:13px;
+font-weight:bold;
+">
+
+← Campuses
+
+</a>
+
+
+<img
+src="logo.jpg"
+alt="University of Kabianga Logo"
+class="logo"
+>
+
+
+<h1>
+UNIVERSITY OF KABIANGA
+</h1>
+
 
 <p class="subtitle">
-    Smart Campus Navigation System
+Main Campus • Smart Campus Navigation System
 </p>
+
+
 
 <details class="settings-container">
 
-<summary class="menu-btn">⋮</summary>
+<summary class="menu-btn">
+⋮
+</summary>
+
 
 <div class="admin-menu">
+
 
 <a href="admin.html">
 🔐 Administrator Login
 </a>
 
+
 <a href="prince-ai.html">
 🤖 About Prince AI
 </a>
 
-<a href="#"
-   onclick="requestNotificationPermission(); return false;">
+
+<a
+href="#"
+onclick="requestNotificationPermission(); return false;"
+>
+
 🔔 Enable Notifications
+
 </a>
+
 
 <a href="#">
 📞 Contact ICT
 </a>
+
 
 </div>
 
@@ -59,301 +107,575 @@
 </header>
 
 
+
 <main>
+
+
+<!-- ================================
+     HERO
+================================ -->
+
 
 <section class="hero">
 
-<h2>Welcome!</h2>
+
+<h2>
+Welcome to Main Campus!
+</h2>
+
 
 <p>
-Find lecture halls, offices and important places around the University of Kabianga quickly and easily.
+
+Find lecture halls, offices and important
+places around the University of Kabianga
+Main Campus quickly and easily.
+
 </p>
 
+
+
 <input
+
 type="text"
+
 id="searchBox"
+
 placeholder="Search LTB1, Library, Administration..."
+
 >
+
+
 
 <div class="buttons">
 
+
 <button id="searchBtn">
+
 🔍 Search Venue
+
 </button>
+
+
 
 <a href="scan.html">
-<button>📷 Scan QR Code</button>
-</a>
-<a href="prince-ai.html">
-    <button type="button">
-        🤖 Chat with Prince AI
-    </button>
+
+<button type="button">
+
+📷 Scan QR Code
+
+</button>
+
 </a>
 
-<a href="visitor.html" class="digital-reception-button">
-    🏢 Digital Reception
-</a>
-<a href="timetable.html">
-<button>
-📅 My Timetable
+
+
+<a href="prince-ai.html">
+
+<button type="button">
+
+🤖 Chat with Prince AI
+
 </button>
+
 </a>
+
+
+
+<a
+href="visitor.html"
+class="digital-reception-button"
+>
+
+🏢 Digital Reception
+
+</a>
+
+
+
+<a href="timetable.html">
+
+<button type="button">
+
+📅 My Timetable
+
+</button>
+
+</a>
+
+
+
 <!-- GAMES, SPORTS & CLUBS -->
 
-<button class="menu-btn"
-        onclick="openSportsClubs()">
+<button
+class="menu-btn"
+onclick="openSportsClubs()"
+>
 
-    <span>🏆</span>
+<span>
+🏆
+</span>
 
-    Games, Sports & Clubs
+Games, Sports & Clubs
 
 </button>
-<a href="emergency.html" class="emergency-home-button">
+
+
+
+<a
+href="emergency.html"
+class="emergency-home-button"
+>
+
 🚨 EMERGENCY SERVICES
+
 </a>
 
+
 </div>
+
 
 
 <a href="leadership.html">
 
 <button type="button">
+
 🏛️ University Leadership Directory
+
 </button>
 
 </a>
 
-</div>
 
 </section>
+
+
+
+<!-- ================================
+     ANNOUNCEMENT
+================================ -->
 
 
 <section class="announcement-card">
 
+
 <h2>
+
 📢 Latest University Announcement
+
 </h2>
+
+
 
 <div id="announcementBox">
 
+
 <h3 id="announcementTitle">
+
 University of Kabianga
+
 </h3>
 
+
+
 <p id="announcementMessage">
+
 No announcements available.
+
 </p>
 
+
+
 <small id="announcementDate">
+
 Waiting for updates...
+
 </small>
+
+
 
 <div
 id="announcementImages"
-class="announcement-images">
-</div>
+class="announcement-images"
+>
 
 </div>
+
+
+</div>
+
 
 </section>
 
 
+
+<!-- ================================
+     POPULAR VENUES
+================================ -->
+
+
 <section>
+
 
 <h2>
 Popular Venues
 </h2>
 
+
+
 <div class="cards">
 
 
+<!-- LTB1 -->
+
+
 <div class="card">
+
 
 <h3>
 🏫 LTB1
 </h3>
 
+
 <p>
 Lecture Theatre Block 1
 </p>
 
+
 <a href="ltb1.html">
 
 <button type="button">
+
 View Details
+
 </button>
 
 </a>
 
+
 </div>
 
 
+
+<!-- LTB2 -->
+
+
 <div class="card">
+
 
 <h3>
 🏫 LTB2
 </h3>
 
+
 <p>
 Lecture Theatre Block 2
 </p>
 
+
 <a href="ltb2.html">
 
 <button type="button">
+
 View Details
+
 </button>
 
 </a>
 
+
 </div>
 
 
+
+<!-- LTB3 -->
+
+
 <div class="card">
+
 
 <h3>
 🏫 LTB3
 </h3>
 
+
 <p>
 Lecture Theatre Block 3
 </p>
 
+
 <a href="ltb3.html">
 
 <button type="button">
+
 View Details
+
 </button>
 
 </a>
 
+
 </div>
 
 
+
+<!-- LTB4 -->
+
+
 <div class="card">
+
 
 <h3>
 🏫 LTB4
 </h3>
 
+
 <p>
 Lecture Theatre Block 4
 </p>
 
+
 <a href="ltb4.html">
 
 <button type="button">
+
 View Details
+
 </button>
 
 </a>
 
+
 </div>
+
+
 </div>
 
 </section>
 
 
+
+<!-- ================================
+     CAMPUS MAP
+================================ -->
+
+
 <section class="map-section">
+
 
 <h2>
 Campus Map
 </h2>
 
+
 <p>
-Tap below to navigate around the University of Kabianga campus.
+
+Tap below to navigate around the
+University of Kabianga Main Campus.
+
 </p>
 
+
+
 <div class="campus-map">
+
 
 <a href="campus-map.html">
 
 <button type="button">
+
 🗺️ Open Campus Map
+
 </button>
 
 </a>
 
+
 </div>
+
 
 </section>
 
 
+
+<!-- ================================
+     ABOUT PROJECT
+================================ -->
+
+
 <section class="about">
+
 
 <h2>
 About This Project
 </h2>
 
+
 <p>
 
-This Smart Campus Navigation System helps students,
-staff and visitors locate lecture halls, offices and
-important facilities around the University of Kabianga.
+This Smart Campus Navigation System helps
+students, staff and visitors locate lecture
+halls, offices and important facilities
+around the University of Kabianga Main Campus.
+
+</p>
+
+
+<p>
 
 Future updates will include:
 
 </p>
 
+
+
 <ul>
+
 
 <li>
 📷 QR Code Navigation
 </li>
 
+
 <li>
 🗺 Interactive Campus Map
 </li>
+
 
 <li>
 🚶 Walking Directions
 </li>
 
+
 <li>
 🔍 Smart Venue Search
 </li>
+
 
 <li>
 📍 Indoor Navigation
 </li>
 
+
 </ul>
+
 
 </section>
 
+
+
+<!-- ================================
+     SWITCH CAMPUS
+================================ -->
+
+
+<section
+style="
+text-align:center;
+margin:25px 0;
+"
+>
+
+
+<a
+href="campuses.html"
+style="
+display:inline-block;
+padding:12px 20px;
+background:#0b5ed7;
+color:white;
+text-decoration:none;
+border-radius:10px;
+font-weight:bold;
+"
+>
+
+🏫 Switch Campus
+
+</a>
+
+
+</section>
+
+
 </main>
 
+
+
+<!-- ================================
+     FOOTER
+================================ -->
+
+
 <footer>
+
 
 <p>
 © 2026 University of Kabianga
 </p>
 
+
 <p>
-Developed by Griffin Kipruttoh & David Dodi
+Developed by Griffin Kipruttoh &amp; David Dodi
 </p>
+
 
 <p>
 Project Mentor: Dr. James Mbugua
 </p>
 
+
 <p>
 Powered/Proposed by: Team Elites
 </p>
 
+
 </footer>
 
-<script type="module" src="firebase.js"></script>
 
-<script type="module" src="script.js"></script>
 
-<script src="knowledge.js"></script>
+<!-- ================================
+     SCRIPTS
+================================ -->
 
-<script src="prince-ai.js"></script>
 
-<script type="module" src="announcements.js"></script>
+<script
+type="module"
+src="firebase.js"
+></script>
 
-<script type="module" src="notifications.js"></script>
+
+
+<script
+type="module"
+src="script.js"
+></script>
+
+
+
+<script
+src="knowledge.js"
+></script>
+
+
+
+<script
+src="prince-ai.js"
+></script>
+
+
+
+<script
+type="module"
+src="announcements.js"
+></script>
+
+
+
+<script
+type="module"
+src="notifications.js"
+></script>
+
 
 </body>
 
