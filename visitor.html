@@ -232,6 +232,29 @@ header p {
 
 
 /* ================================
+   VC OFFICE PHOTO
+================================ */
+
+.vc-office-image {
+    width: 100%;
+    max-width: 520px;
+    height: 280px;
+    object-fit: cover;
+    display: block;
+    margin: 15px auto;
+    border-radius: 12px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+}
+
+.vc-office-caption {
+    text-align: center;
+    color: #666;
+    font-size: 13px;
+    margin-bottom: 15px;
+}
+
+
+/* ================================
    CONTACTS
 ================================ */
 
@@ -310,6 +333,10 @@ footer p {
     .menu-btn {
         padding: 15px 8px;
         font-size: 13px;
+    }
+
+    .vc-office-image {
+        height: 220px;
     }
 
 }
@@ -464,10 +491,22 @@ footer p {
     <div id="officeList">
 
 
+        <!-- VICE CHANCELLOR -->
+
         <div class="office-card"
              data-name="vice chancellor vc administration">
 
             <h3>Vice Chancellor's Office</h3>
+
+            <img
+                src="vc-office.jpg"
+                alt="Vice Chancellor's Office - University of Kabianga"
+                class="vc-office-image"
+            >
+
+            <p class="vc-office-caption">
+                Vice Chancellor's Office, University of Kabianga
+            </p>
 
             <p>
                 University Administration and Executive Management.
@@ -479,7 +518,7 @@ footer p {
             </p>
 
             <button onclick="navigateTo('University Administration')">
-                Navigate
+                📍 Navigate
             </button>
 
         </div>
@@ -635,10 +674,16 @@ footer p {
         </div>
 
 
+        <!-- DIRECTOR RESEARCH -->
+
         <div class="office-card"
              data-name="director research">
 
             <h3>Director of Research</h3>
+
+            <p class="leader-name">
+                Prof. Issa Mwamzandi
+            </p>
 
             <p>
                 Research, innovation and institutional development services.
@@ -782,6 +827,8 @@ footer p {
     <h2>University Leadership</h2>
 
 
+    <!-- VICE CHANCELLOR -->
+
     <div class="office-card">
 
         <h3>Prof. Erick Koech, Ph.D, MBS</h3>
@@ -789,6 +836,20 @@ footer p {
         <p>
             Vice Chancellor, University of Kabianga.
         </p>
+
+        <img
+            src="vc-office.jpg"
+            alt="Vice Chancellor's Office - University of Kabianga"
+            class="vc-office-image"
+        >
+
+        <p class="vc-office-caption">
+            Vice Chancellor's Office, University of Kabianga
+        </p>
+
+        <button onclick="navigateTo('University Administration')">
+            📍 Navigate to VC Office
+        </button>
 
     </div>
 
@@ -865,6 +926,17 @@ footer p {
 
         <p>
             Finance Officer.
+        </p>
+
+    </div>
+
+
+    <div class="office-card">
+
+        <h3>Prof. Issa Mwamzandi</h3>
+
+        <p>
+            Director of Research.
         </p>
 
     </div>
@@ -967,6 +1039,14 @@ footer p {
 
     <p>
         Developed by Griffin Kipruttoh & David Dodi
+    </p>
+
+    <p>
+        Project Mentor: Dr. James Mbugua
+    </p>
+
+    <p>
+        Powered/Proposed by: Team Elites
     </p>
 
 </footer>
@@ -1079,62 +1159,4 @@ function searchOffices() {
 
     if (input.length > 0) {
 
-        document.getElementById('offices').style.display = 'block';
-
-    }
-
-}
-
-
-/* =================================
-   NAVIGATION
-================================= */
-
-function navigateTo(destination) {
-
-    const confirmation = confirm(
-
-        "You selected: " +
-        destination +
-        "\n\nWould you like to open the campus navigation system?"
-
-    );
-
-
-    if (confirmation) {
-
-        window.location.href = "campus.html";
-
-    }
-
-}
-
-
-/* =================================
-   OPEN CAMPUS MAP
-================================= */
-
-function openMap() {
-
-    window.location.href = "campus.html";
-
-}
-
-
-/* =================================
-   OPEN PRINCE AI
-================================= */
-
-function openPrinceAI() {
-
-    window.location.href = "prince-ai.html";
-
-}
-
-
-</script>
-
-
-</body>
-
-</html>
+        document.
