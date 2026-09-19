@@ -9,7 +9,16 @@
 
 <title>Welcome | University of Kabianga</title>
 
+<meta name="theme-color" content="#0b5ed7">
+
+<link rel="apple-touch-icon" href="logo.jpg">
+
+
 <style>
+
+/* ========================================
+   GENERAL
+======================================== */
 
 *{
     margin:0;
@@ -17,65 +26,301 @@
     box-sizing:border-box;
 }
 
+html,
+body{
+    width:100%;
+    height:100%;
+}
+
 body{
     overflow:hidden;
-    animation:fadeIn 1s;
+    font-family:Arial, Helvetica, sans-serif;
+    background:#071a33;
 }
 
-img{
-    width:100%;
-    height:100vh;
-    object-fit:cover;
-    animation:slowZoom 8s ease-in-out forwards;
-}
 
-.overlay{
-    position:absolute;
+/* ========================================
+   BACKGROUND
+======================================== */
+
+.background{
+
+    position:fixed;
+
     top:0;
     left:0;
+
     width:100%;
     height:100%;
 
-    background:rgba(0,0,0,.35);
+    object-fit:cover;
+
+    z-index:0;
+
+    animation:slowZoom 9s ease-in-out forwards;
+
+}
+
+
+/* ========================================
+   BACKGROUND OVERLAY
+======================================== */
+
+.background-overlay{
+
+    position:fixed;
+
+    top:0;
+    left:0;
+
+    width:100%;
+    height:100%;
+
+    background:
+        linear-gradient(
+            135deg,
+            rgba(3,27,58,.78),
+            rgba(11,94,215,.45),
+            rgba(0,0,0,.62)
+        );
+
+    z-index:1;
+
+}
+
+
+/* ========================================
+   WELCOME CONTENT
+======================================== */
+
+.overlay{
+
+    position:relative;
+
+    width:100%;
+    height:100vh;
 
     display:flex;
+
     flex-direction:column;
+
     justify-content:center;
+
     align-items:center;
 
-    color:white;
     text-align:center;
 
-    transition:opacity 0.8s ease;
+    color:white;
+
+    padding:20px;
+
+    z-index:2;
+
+    animation:fadeIn 1.2s ease;
+
 }
+
+
+/* ========================================
+   LOGO
+======================================== */
+
+.logo{
+
+    width:105px;
+    height:105px;
+
+    object-fit:contain;
+
+    background:white;
+
+    padding:8px;
+
+    border-radius:50%;
+
+    margin-bottom:20px;
+
+    box-shadow:
+        0 8px 30px rgba(0,0,0,.45);
+
+    animation:
+        logoAppear 1.3s ease;
+
+}
+
+
+/* ========================================
+   UNIVERSITY NAME
+======================================== */
 
 .overlay h1{
-    font-size:40px;
+
+    font-size:
+        clamp(28px,6vw,48px);
+
+    font-weight:800;
+
+    letter-spacing:.5px;
+
     margin-bottom:10px;
+
+    text-shadow:
+        0 3px 12px rgba(0,0,0,.7);
+
 }
 
-.overlay p{
-    font-size:22px;
+
+/* ========================================
+   SYSTEM NAME
+======================================== */
+
+.overlay h2{
+
+    font-size:
+        clamp(17px,4vw,26px);
+
+    font-weight:600;
+
+    margin-bottom:12px;
+
+    text-shadow:
+        0 2px 8px rgba(0,0,0,.7);
+
 }
+
+
+/* ========================================
+   DESCRIPTION
+======================================== */
+
+.description{
+
+    max-width:650px;
+
+    font-size:
+        clamp(14px,3vw,18px);
+
+    line-height:1.6;
+
+    color:#f1f5ff;
+
+    margin-bottom:18px;
+
+}
+
+
+/* ========================================
+   LOADING MESSAGE
+======================================== */
+
+.loading-message{
+
+    font-size:13px;
+
+    color:rgba(255,255,255,.85);
+
+    margin-top:5px;
+
+}
+
+
+/* ========================================
+   LOADING DOTS
+======================================== */
+
+.loading-dots{
+
+    display:inline-flex;
+
+    gap:4px;
+
+    margin-left:5px;
+
+}
+
+
+.loading-dots span{
+
+    width:5px;
+    height:5px;
+
+    border-radius:50%;
+
+    background:white;
+
+    animation:dotPulse 1.2s infinite;
+
+}
+
+
+.loading-dots span:nth-child(2){
+
+    animation-delay:.2s;
+
+}
+
+
+.loading-dots span:nth-child(3){
+
+    animation-delay:.4s;
+
+}
+
+
+/* ========================================
+   DEVELOPER INFORMATION
+======================================== */
 
 .developer{
+
     position:absolute;
-    bottom:20px;
+
+    bottom:18px;
+
     left:0;
+
     width:100%;
+
+    padding:0 15px;
 
     text-align:center;
 
     color:white;
 
-    font-size:16px;
-    line-height:1.6;
+    font-size:12px;
+
+    line-height:1.7;
+
+    text-shadow:
+        0 2px 7px rgba(0,0,0,.75);
+
 }
 
-.developer p{
-    font-size:16px;
-    margin-bottom:5px;
+
+.developer strong{
+
+    font-size:13px;
+
 }
+
+
+.mentor{
+
+    margin-top:2px;
+
+}
+
+
+.team{
+
+    margin-top:2px;
+
+}
+
+
+/* ========================================
+   ANIMATIONS
+======================================== */
 
 @keyframes fadeIn{
 
@@ -89,6 +334,7 @@ img{
 
 }
 
+
 @keyframes slowZoom{
 
     from{
@@ -96,7 +342,115 @@ img{
     }
 
     to{
-        transform:scale(1.1);
+        transform:scale(1.08);
+    }
+
+}
+
+
+@keyframes logoAppear{
+
+    from{
+
+        opacity:0;
+
+        transform:
+            scale(.6)
+            rotate(-8deg);
+
+    }
+
+    to{
+
+        opacity:1;
+
+        transform:
+            scale(1)
+            rotate(0deg);
+
+    }
+
+}
+
+
+@keyframes dotPulse{
+
+    0%,
+    100%{
+
+        opacity:.3;
+
+        transform:
+            translateY(0);
+
+    }
+
+    50%{
+
+        opacity:1;
+
+        transform:
+            translateY(-2px);
+
+    }
+
+}
+
+
+/* ========================================
+   MOBILE
+======================================== */
+
+@media(max-width:600px){
+
+    .logo{
+
+        width:88px;
+        height:88px;
+
+        margin-bottom:17px;
+
+    }
+
+
+    .overlay h1{
+
+        font-size:27px;
+
+    }
+
+
+    .overlay h2{
+
+        font-size:18px;
+
+    }
+
+
+    .description{
+
+        max-width:350px;
+
+        font-size:14px;
+
+        margin-bottom:15px;
+
+    }
+
+
+    .developer{
+
+        bottom:11px;
+
+        font-size:10px;
+
+    }
+
+
+    .developer strong{
+
+        font-size:11px;
+
     }
 
 }
@@ -108,50 +462,127 @@ img{
 
 <body>
 
+
+<!-- ========================================
+     BACKGROUND IMAGE
+======================================== -->
+
 <img
-src="welcome.jpg"
-alt="University of Kabianga"
+    src="welcome.jpg"
+    alt="University of Kabianga Campus"
+    class="background"
 >
 
 
+<!-- ========================================
+     BLUE/DARK OVERLAY
+======================================== -->
+
+<div class="background-overlay"></div>
+
+
+<!-- ========================================
+     WELCOME CONTENT
+======================================== -->
+
 <div class="overlay">
 
+
+    <!-- UNIVERSITY LOGO -->
+
+    <img
+        src="logo.jpg"
+        alt="University of Kabianga Logo"
+        class="logo"
+    >
+
+
+    <!-- UNIVERSITY NAME -->
+
     <h1>
-        Welcome to University of Kabianga
+
+        UNIVERSITY OF KABIANGA
+
     </h1>
 
-    <p>
+
+    <!-- SYSTEM NAME -->
+
+    <h2>
+
         Smart Campus Navigation System
+
+    </h2>
+
+
+    <!-- WELCOME MESSAGE -->
+
+    <p class="description">
+
+        Welcome to the digital gateway for
+        navigating the University of Kabianga
+        campuses, facilities, lecture halls
+        and offices.
+
     </p>
 
 
+    <!-- LOADING MESSAGE -->
+
+    <p class="loading-message">
+
+        Preparing your campus experience
+
+        <span class="loading-dots">
+
+            <span></span>
+            <span></span>
+            <span></span>
+
+        </span>
+
+    </p>
+
+
+    <!-- ====================================
+         DEVELOPER INFORMATION
+    ==================================== -->
+
     <div class="developer">
+
 
         <p>
             Developed by
         </p>
 
-        <strong>
-            Griffin Kipruttoh
-        </strong>
-
-        <br>
 
         <strong>
-            David Dodi
+            Griffin Kipruttoh &amp; David Dodi
         </strong>
 
-        <br>
 
-        <p>
-            Project Mentor: Dr. James Mbugua
+        <p class="mentor">
+
+            Project Mentor:
+            <strong>
+                Dr. James Mbugua
+            </strong>
+
         </p>
 
-        <p>
-            Powered/Proposed by: Team Elites
+
+        <p class="team">
+
+            Powered/Proposed by:
+            <strong>
+                Team Elites
+            </strong>
+
         </p>
+
 
     </div>
+
 
 </div>
 
@@ -159,32 +590,52 @@ alt="University of Kabianga"
 <script>
 
 /*
-========================================
-WELCOME SCREEN
-========================================
+==================================================
+UNIVERSITY OF KABIANGA
+SMART CAMPUS NAVIGATION SYSTEM
 
-After 4 seconds:
+WELCOME FLOW
 
-Welcome/Splash
-        ↓
-Campus Selection
-        ↓
+index.html
+     ↓
+Welcome / Splash Screen
+     ↓
 campuses.html
-========================================
+     ↓
+Select Campus
+     ↓
+Main Campus / Town Campus / Kapkatet Campus
+==================================================
 */
+
+
+/* ========================================
+   WAIT 4 SECONDS
+======================================== */
 
 setTimeout(function(){
 
+
+    /*
+       Begin smooth fade-out
+    */
+
     document.querySelector(".overlay").style.opacity = "0";
 
-    document.querySelector("img").style.opacity = "0";
+    document.querySelector(".background").style.opacity = "0";
 
+
+    /*
+       Give the fade animation time to finish
+       before opening campus selection.
+    */
 
     setTimeout(function(){
 
         window.location.href = "campuses.html";
 
     },800);
+
 
 },4000);
 
