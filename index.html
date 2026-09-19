@@ -1,11 +1,8 @@
-<!DOCTYPE html>
-<html>
+<!DOCTYPE html><html>
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Welcome</title>
-
-<style>
+<title>Welcome</title><style>
 *{
     margin:0;
     padding:0;
@@ -69,34 +66,27 @@ img{
     from{opacity:0;}
     to{opacity:1;}
 }
-    @keyframes slowZoom{
+
+@keyframes slowZoom{
     from{
         transform:scale(1);
     }
     to{
         transform:scale(1.1);
     }
-    }
-</style>
-</head>
+}
+</style></head><body><img src="welcome.jpg"><div class="overlay">
+    <h1>Welcome to University of Kabianga</h1><p>Smart Campus Navigation System</p>
 
-<body>
-
-<img src="welcome.jpg">
-
-<div class="overlay">
-    <h1>Welcome to University of Kabianga</h1>
-
-    <p>Smart Campus Navigation System</p>
-
-    <div class="developer">
-        <p>Developed by</p>
-        <strong>Griffin Kipruttoh</strong><br>
-        <strong>David Dodi</strong>
-    </div>
+<div class="developer">
+    <p>Developed by</p>
+    <strong>Griffin Kipruttoh</strong><br>
+    <strong>David Dodi</strong><br>
+    <p>Project Mentor: Dr. James Mbugua</p>
+    <p>Powered/Proposed by: Team Elites</p>
 </div>
 
-<script>
+</div><script>
 setTimeout(function(){
 
     document.querySelector(".overlay").style.opacity = "0";
@@ -107,7 +97,5 @@ setTimeout(function(){
     },800);
 
 },4000);
-</script>
-
-</body>
+</script></body>
 </html>
