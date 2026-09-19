@@ -1,0 +1,871 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Select Campus | University of Kabianga Smart Campus Navigator</title>
+
+    <meta name="theme-color" content="#0b5ed7">
+
+    <style>
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Arial, Helvetica, sans-serif;
+            min-height: 100vh;
+
+            background:
+                linear-gradient(
+                    rgba(238,245,255,0.94),
+                    rgba(238,245,255,0.97)
+                ),
+                url("logo.jpg") center/cover fixed;
+
+            color: #123;
+        }
+
+        /* ================================
+           HEADER
+        ================================= */
+
+        header {
+            background: linear-gradient(
+                135deg,
+                #0b5ed7,
+                #084298
+            );
+
+            color: white;
+            padding: 20px;
+            text-align: center;
+
+            box-shadow: 0 4px 15px rgba(0,0,0,0.18);
+        }
+
+        .logo {
+            width: 78px;
+            height: 78px;
+
+            object-fit: contain;
+
+            background: white;
+
+            border-radius: 50%;
+
+            padding: 5px;
+
+            margin-bottom: 8px;
+        }
+
+        header h1 {
+            font-size: 21px;
+            margin-bottom: 5px;
+            letter-spacing: 0.5px;
+        }
+
+        header p {
+            font-size: 14px;
+            opacity: 0.93;
+        }
+
+
+        /* ================================
+           MAIN
+        ================================= */
+
+        main {
+            width: 100%;
+            max-width: 1100px;
+
+            margin: auto;
+
+            padding: 35px 18px 45px;
+        }
+
+
+        /* ================================
+           WELCOME
+        ================================= */
+
+        .welcome {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        .welcome h2 {
+            color: #084298;
+
+            font-size: 29px;
+
+            margin-bottom: 10px;
+        }
+
+        .welcome p {
+            max-width: 720px;
+
+            margin: auto;
+
+            line-height: 1.6;
+
+            color: #555;
+
+            font-size: 15px;
+        }
+
+
+        /* ================================
+           CAMPUS GRID
+        ================================= */
+
+        .campus-grid {
+
+            display: grid;
+
+            grid-template-columns:
+                repeat(3, 1fr);
+
+            gap: 22px;
+
+            margin-top: 30px;
+        }
+
+
+        /* ================================
+           CAMPUS CARD
+        ================================= */
+
+        .campus-card {
+
+            background: rgba(255,255,255,0.97);
+
+            border-radius: 18px;
+
+            overflow: hidden;
+
+            box-shadow:
+                0 8px 25px rgba(0,0,0,0.12);
+
+            border:
+                1px solid rgba(11,94,215,0.12);
+
+            transition:
+                transform 0.3s ease,
+                box-shadow 0.3s ease;
+
+            display: flex;
+
+            flex-direction: column;
+        }
+
+        .campus-card:hover {
+
+            transform: translateY(-7px);
+
+            box-shadow:
+                0 14px 30px rgba(0,0,0,0.18);
+        }
+
+
+        /* ================================
+           CAMPUS TOP
+        ================================= */
+
+        .campus-top {
+
+            height: 145px;
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: center;
+
+            background:
+                linear-gradient(
+                    135deg,
+                    #0b5ed7,
+                    #084298
+                );
+
+            color: white;
+
+            font-size: 65px;
+        }
+
+        .town .campus-top {
+
+            background:
+                linear-gradient(
+                    135deg,
+                    #1769aa,
+                    #0b3d91
+                );
+        }
+
+        .kapkatet .campus-top {
+
+            background:
+                linear-gradient(
+                    135deg,
+                    #6b4f24,
+                    #8a6a32
+                );
+        }
+
+
+        /* ================================
+           CAMPUS CONTENT
+        ================================= */
+
+        .campus-content {
+
+            padding: 22px;
+
+            text-align: center;
+
+            flex: 1;
+        }
+
+        .campus-content h3 {
+
+            font-size: 22px;
+
+            color: #084298;
+
+            margin-bottom: 10px;
+        }
+
+        .campus-content p {
+
+            font-size: 14px;
+
+            color: #666;
+
+            line-height: 1.6;
+
+            min-height: 67px;
+        }
+
+
+        /* ================================
+           STATUS
+        ================================= */
+
+        .status {
+
+            display: inline-block;
+
+            margin-top: 12px;
+
+            padding: 5px 10px;
+
+            border-radius: 20px;
+
+            font-size: 11px;
+
+            font-weight: bold;
+        }
+
+        .available {
+
+            background: #dff6e5;
+
+            color: #147a32;
+        }
+
+        .development {
+
+            background: #fff2cc;
+
+            color: #8a6500;
+        }
+
+
+        /* ================================
+           CAMPUS BUTTON
+        ================================= */
+
+        .campus-button {
+
+            display: block;
+
+            width: 100%;
+
+            margin-top: 18px;
+
+            padding: 13px;
+
+            border: none;
+
+            border-radius: 10px;
+
+            background: #0b5ed7;
+
+            color: white;
+
+            text-decoration: none;
+
+            font-weight: bold;
+
+            font-size: 15px;
+
+            cursor: pointer;
+
+            transition: 0.25s ease;
+        }
+
+        .campus-button:hover {
+
+            background: #084298;
+        }
+
+        .town .campus-button {
+
+            background: #1769aa;
+        }
+
+        .town .campus-button:hover {
+
+            background: #0b3d91;
+        }
+
+        .kapkatet .campus-button {
+
+            background: #6b4f24;
+        }
+
+        .kapkatet .campus-button:hover {
+
+            background: #4d3719;
+        }
+
+
+        /* ================================
+           PROJECT CREDITS
+        ================================= */
+
+        .project-credits {
+
+            margin: 45px auto 0;
+
+            max-width: 850px;
+
+            background:
+                linear-gradient(
+                    135deg,
+                    rgba(255,255,255,0.98),
+                    rgba(245,249,255,0.98)
+                );
+
+            border-radius: 18px;
+
+            padding: 25px 20px;
+
+            text-align: center;
+
+            box-shadow:
+                0 7px 25px rgba(0,0,0,0.10);
+
+            border-top:
+                4px solid #0b5ed7;
+        }
+
+        .project-credits h3 {
+
+            color: #084298;
+
+            font-size: 19px;
+
+            margin-bottom: 20px;
+        }
+
+        .credits-grid {
+
+            display: grid;
+
+            grid-template-columns:
+                repeat(3, 1fr);
+
+            gap: 15px;
+        }
+
+        .credit-box {
+
+            padding: 15px 10px;
+
+            border-radius: 12px;
+
+            background: #eef5ff;
+
+            border:
+                1px solid #d5e5ff;
+        }
+
+        .credit-box span {
+
+            display: block;
+
+            font-size: 11px;
+
+            text-transform: uppercase;
+
+            letter-spacing: 0.7px;
+
+            color: #666;
+
+            margin-bottom: 7px;
+
+            font-weight: bold;
+        }
+
+        .credit-box strong {
+
+            display: block;
+
+            color: #084298;
+
+            font-size: 15px;
+
+        }
+
+
+        /* ================================
+           BACK BUTTON
+        ================================= */
+
+        .back-area {
+
+            text-align: center;
+
+            margin-top: 30px;
+        }
+
+        .back-button {
+
+            display: inline-block;
+
+            text-decoration: none;
+
+            color: #084298;
+
+            font-weight: bold;
+
+            padding: 10px 18px;
+
+            border:
+                1px solid #084298;
+
+            border-radius: 9px;
+
+            transition: 0.25s;
+        }
+
+        .back-button:hover {
+
+            background: #084298;
+
+            color: white;
+        }
+
+
+        /* ================================
+           FOOTER
+        ================================= */
+
+        footer {
+
+            text-align: center;
+
+            padding: 22px 15px;
+
+            background: #084298;
+
+            color: white;
+
+            font-size: 12px;
+
+            line-height: 1.7;
+        }
+
+        footer strong {
+
+            color: #ffd966;
+        }
+
+
+        /* ================================
+           MOBILE
+        ================================= */
+
+        @media (max-width: 850px) {
+
+            .campus-grid {
+
+                grid-template-columns: 1fr;
+
+                max-width: 500px;
+
+                margin-left: auto;
+
+                margin-right: auto;
+            }
+
+            .credits-grid {
+
+                grid-template-columns: 1fr;
+            }
+
+            .welcome h2 {
+
+                font-size: 25px;
+            }
+
+            .campus-top {
+
+                height: 130px;
+            }
+        }
+
+    </style>
+
+</head>
+
+
+<body>
+
+
+    <!-- ================================
+         HEADER
+    ================================= -->
+
+    <header>
+
+        <img
+            src="logo.jpg"
+            alt="University of Kabianga Logo"
+            class="logo"
+        >
+
+        <h1>
+            UNIVERSITY OF KABIANGA
+        </h1>
+
+        <p>
+            Smart Campus Navigator
+        </p>
+
+    </header>
+
+
+
+    <!-- ================================
+         MAIN CONTENT
+    ================================= -->
+
+    <main>
+
+
+        <section class="welcome">
+
+            <h2>
+                Select Your Campus
+            </h2>
+
+            <p>
+
+                Welcome to the University of Kabianga
+                Smart Campus Navigator.
+
+                Select the campus you want to explore
+                and find buildings, offices, lecture halls,
+                services and other important locations.
+
+            </p>
+
+        </section>
+
+
+
+        <!-- ================================
+             CAMPUS OPTIONS
+        ================================= -->
+
+        <section class="campus-grid">
+
+
+            <!-- MAIN CAMPUS -->
+
+            <div class="campus-card main-campus">
+
+                <div class="campus-top">
+                    🏫
+                </div>
+
+                <div class="campus-content">
+
+                    <h3>
+                        Main Campus
+                    </h3>
+
+                    <p>
+
+                        Navigate the main University of
+                        Kabianga campus, including lecture
+                        halls, offices, library,
+                        administration and other facilities.
+
+                    </p>
+
+                    <span class="status available">
+
+                        NAVIGATION AVAILABLE
+
+                    </span>
+
+                    <a
+                        href="main-campus.html"
+                        class="campus-button"
+                    >
+
+                        Enter Main Campus →
+
+                    </a>
+
+                </div>
+
+            </div>
+
+
+
+            <!-- TOWN CAMPUS -->
+
+            <div class="campus-card town">
+
+                <div class="campus-top">
+                    🏢
+                </div>
+
+                <div class="campus-content">
+
+                    <h3>
+                        Town Campus
+                    </h3>
+
+                    <p>
+
+                        Explore University of Kabianga
+                        Town Campus and quickly locate
+                        its facilities, offices and
+                        learning spaces.
+
+                    </p>
+
+                    <span class="status development">
+
+                        BEING DEVELOPED
+
+                    </span>
+
+                    <a
+                        href="town-campus.html"
+                        class="campus-button"
+                    >
+
+                        Enter Town Campus →
+
+                    </a>
+
+                </div>
+
+            </div>
+
+
+
+            <!-- KAPKATET CAMPUS -->
+
+            <div class="campus-card kapkatet">
+
+                <div class="campus-top">
+                    🎓
+                </div>
+
+                <div class="campus-content">
+
+                    <h3>
+                        Kapkatet Campus
+                    </h3>
+
+                    <p>
+
+                        Explore Kapkatet Campus facilities,
+                        lecture rooms, offices and other
+                        important destinations.
+
+                    </p>
+
+                    <span class="status development">
+
+                        BEING DEVELOPED
+
+                    </span>
+
+                    <a
+                        href="kapkatet-campus.html"
+                        class="campus-button"
+                    >
+
+                        Enter Kapkatet Campus →
+
+                    </a>
+
+                </div>
+
+            </div>
+
+
+        </section>
+
+
+
+        <!-- ================================
+             PROJECT CREDITS
+        ================================= -->
+
+        <section class="project-credits">
+
+            <h3>
+                Project Information
+            </h3>
+
+            <div class="credits-grid">
+
+
+                <!-- MENTOR -->
+
+                <div class="credit-box">
+
+                    <span>
+                        Project Mentor
+                    </span>
+
+                    <strong>
+                        Dr James Mbugua
+                    </strong>
+
+                </div>
+
+
+
+                <!-- DEVELOPERS -->
+
+                <div class="credit-box">
+
+                    <span>
+                        Developers
+                    </span>
+
+                    <strong>
+                        Griffin Kipruttoh
+                        &amp;
+                        David Dodi
+                    </strong>
+
+                </div>
+
+
+
+                <!-- TEAM -->
+
+                <div class="credit-box">
+
+                    <span>
+                        Powered / Proposed By
+                    </span>
+
+                    <strong>
+                        Team Elites
+                    </strong>
+
+                </div>
+
+
+            </div>
+
+        </section>
+
+
+
+        <!-- ================================
+             BACK BUTTON
+        ================================= -->
+
+        <div class="back-area">
+
+            <a
+                href="index.html"
+                class="back-button"
+            >
+
+                ← Back to Welcome
+
+            </a>
+
+        </div>
+
+
+    </main>
+
+
+
+    <!-- ================================
+         FOOTER
+    ================================= -->
+
+    <footer>
+
+        <strong>
+            University of Kabianga
+        </strong>
+
+        <br>
+
+        Smart Campus Navigator
+
+        <br><br>
+
+        Digital navigation for a smarter campus experience.
+
+        <br><br>
+
+        Project Mentor:
+        <strong>Dr James Mbugua</strong>
+
+        <br>
+
+        Developers:
+        <strong>
+            Griffin Kipruttoh &amp; David Dodi
+        </strong>
+
+        <br>
+
+        Powered / Proposed by:
+        <strong>
+            Team Elites
+        </strong>
+
+    </footer>
+
+
+</body>
+
+  </html>
