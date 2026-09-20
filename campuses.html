@@ -80,8 +80,6 @@ header{
 }
 
 
-/* HEADER DECORATION */
-
 header::before{
 
     content:"";
@@ -290,50 +288,18 @@ main{
 
 
 /* ========================================
-   CAMPUS TOP
+   CAMPUS PHOTO
 ======================================== */
 
-.campus-top{
-
-    height:155px;
-
-    display:flex;
-
-    flex-direction:column;
-
-    justify-content:center;
-
-    align-items:center;
-
-    color:white;
-
-    font-size:60px;
+.campus-photo{
 
     position:relative;
 
-}
+    width:100%;
 
+    height:205px;
 
-/* TOP LABEL */
-
-.campus-label{
-
-    font-size:11px;
-
-    letter-spacing:1px;
-
-    margin-top:7px;
-
-    font-weight:bold;
-
-    opacity:.9;
-
-}
-
-
-/* MAIN */
-
-.main-campus .campus-top{
+    overflow:hidden;
 
     background:
         linear-gradient(
@@ -345,9 +311,102 @@ main{
 }
 
 
-/* TOWN */
+.campus-photo img{
 
-.town .campus-top{
+    width:100%;
+
+    height:100%;
+
+    object-fit:cover;
+
+    display:block;
+
+    transition:
+        transform .6s ease;
+
+}
+
+
+.campus-card:hover
+.campus-photo img{
+
+    transform:
+        scale(1.06);
+
+}
+
+
+/* ========================================
+   PHOTO OVERLAY
+======================================== */
+
+.photo-overlay{
+
+    position:absolute;
+
+    left:0;
+    right:0;
+    bottom:0;
+
+    padding:
+        45px 18px 16px;
+
+    color:white;
+
+    background:
+        linear-gradient(
+            transparent,
+            rgba(0,0,0,.78)
+        );
+
+}
+
+
+.photo-overlay h3{
+
+    font-size:22px;
+
+    margin-bottom:4px;
+
+    text-shadow:
+        0 2px 6px rgba(0,0,0,.65);
+
+}
+
+
+.photo-overlay span{
+
+    font-size:10px;
+
+    font-weight:bold;
+
+    letter-spacing:.7px;
+
+}
+
+
+/* ========================================
+   IMAGE PLACEHOLDER
+   FOR TOWN CAMPUS
+======================================== */
+
+.photo-placeholder{
+
+    width:100%;
+
+    height:100%;
+
+    display:flex;
+
+    flex-direction:column;
+
+    justify-content:center;
+
+    align-items:center;
+
+    color:white;
+
+    text-align:center;
 
     background:
         linear-gradient(
@@ -359,16 +418,22 @@ main{
 }
 
 
-/* KAPKATET */
+.photo-placeholder .icon{
 
-.kapkatet .campus-top{
+    font-size:65px;
 
-    background:
-        linear-gradient(
-            135deg,
-            #6b4f24,
-            #8a6a32
-        );
+    margin-bottom:8px;
+
+}
+
+
+.photo-placeholder p{
+
+    font-size:12px;
+
+    font-weight:bold;
+
+    opacity:.9;
 
 }
 
@@ -384,17 +449,6 @@ main{
     text-align:center;
 
     flex:1;
-
-}
-
-
-.campus-content h3{
-
-    font-size:23px;
-
-    color:#084298;
-
-    margin-bottom:10px;
 
 }
 
@@ -480,8 +534,7 @@ main{
 
     font-size:15px;
 
-    transition:
-        .25s ease;
+    transition:.25s ease;
 
 }
 
@@ -529,7 +582,7 @@ main{
 
 
 /* ========================================
-   FUTURE CAMPUS NOTICE
+   FUTURE NOTE
 ======================================== */
 
 .future-note{
@@ -806,21 +859,9 @@ footer strong{
 
     }
 
-    .welcome h2{
+    .campus-photo{
 
-        font-size:27px;
-
-    }
-
-    .campus-top{
-
-        height:135px;
-
-    }
-
-    .campus-content{
-
-        padding:21px;
+        height:190px;
 
     }
 
@@ -880,7 +921,9 @@ footer strong{
 <main>
 
 
-    <!-- WELCOME -->
+    <!-- ====================================
+         WELCOME
+    ==================================== -->
 
     <section class="welcome">
 
@@ -921,34 +964,42 @@ footer strong{
     <section class="campus-grid">
 
 
-        <!-- ================================
+        <!-- =================================
              MAIN CAMPUS
-        ================================= -->
+        ================================== -->
 
         <div class="campus-card main-campus">
 
 
-            <div class="campus-top">
+            <div class="campus-photo">
 
-                🏫
 
-                <span class="campus-label">
+                <img
+                    src="main-campus.jpg"
+                    alt="University of Kabianga Main Campus"
+                >
 
-                    FULL NAVIGATION SYSTEM
 
-                </span>
+                <div class="photo-overlay">
+
+
+                    <h3>
+                        Main Campus
+                    </h3>
+
+
+                    <span>
+                        UNIVERSITY OF KABIANGA
+                    </span>
+
+
+                </div>
+
 
             </div>
 
 
             <div class="campus-content">
-
-
-                <h3>
-
-                    Main Campus
-
-                </h3>
 
 
                 <p>
@@ -985,34 +1036,53 @@ footer strong{
 
 
 
-        <!-- ================================
+        <!-- =================================
              TOWN CAMPUS
-        ================================= -->
+        ================================== -->
 
         <div class="campus-card town">
 
 
-            <div class="campus-top">
+            <div class="campus-photo">
 
-                🏢
 
-                <span class="campus-label">
+                <div class="photo-placeholder">
 
-                    CAMPUS SYSTEM
 
-                </span>
+                    <div class="icon">
+                        🏢
+                    </div>
+
+
+                    <p>
+                        TOWN CAMPUS PHOTO
+                        COMING SOON
+                    </p>
+
+
+                </div>
+
+
+                <div class="photo-overlay">
+
+
+                    <h3>
+                        Town Campus
+                    </h3>
+
+
+                    <span>
+                        UNIVERSITY OF KABIANGA
+                    </span>
+
+
+                </div>
+
 
             </div>
 
 
             <div class="campus-content">
-
-
-                <h3>
-
-                    Town Campus
-
-                </h3>
 
 
                 <p>
@@ -1044,8 +1114,8 @@ footer strong{
 
                 <div class="future-note">
 
-                    Navigation features will be
-                    activated as campus data is added.
+                    Campus photo and navigation
+                    data will be added.
 
                 </div>
 
@@ -1057,34 +1127,42 @@ footer strong{
 
 
 
-        <!-- ================================
+        <!-- =================================
              KAPKATET CAMPUS
-        ================================= -->
+        ================================== -->
 
         <div class="campus-card kapkatet">
 
 
-            <div class="campus-top">
+            <div class="campus-photo">
 
-                🎓
 
-                <span class="campus-label">
+                <img
+                    src="kapkatet-campus.jpg"
+                    alt="University of Kabianga Kapkatet Campus"
+                >
 
-                    CAMPUS SYSTEM
 
-                </span>
+                <div class="photo-overlay">
+
+
+                    <h3>
+                        Kapkatet Campus
+                    </h3>
+
+
+                    <span>
+                        UNIVERSITY OF KABIANGA
+                    </span>
+
+
+                </div>
+
 
             </div>
 
 
             <div class="campus-content">
-
-
-                <h3>
-
-                    Kapkatet Campus
-
-                </h3>
 
 
                 <p>
@@ -1134,7 +1212,7 @@ footer strong{
 
     <!-- ====================================
          PROJECT INFORMATION
-    ================================= -->
+    ==================================== -->
 
     <section class="project-credits">
 
@@ -1199,7 +1277,7 @@ footer strong{
 
     <!-- ====================================
          PROJECT VISION
-    ================================= -->
+    ==================================== -->
 
     <section class="vision">
 
@@ -1229,7 +1307,7 @@ footer strong{
 
     <!-- ====================================
          BACK
-    ================================= -->
+    ==================================== -->
 
     <div class="back-area">
 
@@ -1308,4 +1386,4 @@ footer strong{
 
 </body>
 
-            </html>
+</html>
