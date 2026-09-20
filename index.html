@@ -7,12 +7,13 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Welcome | University of Kabianga</title>
+<title>Welcome | University of Kabianga Smart Campus Navigator</title>
 
 <meta name="theme-color" content="#0b5ed7">
 
-<link rel="apple-touch-icon" href="logo.jpg">
+<link rel="manifest" href="./manifest.json">
 
+<link rel="apple-touch-icon" href="./logo.jpg">
 
 <style>
 
@@ -90,7 +91,7 @@ body{
 
 
 /* ========================================
-   WELCOME CONTENT
+   CONTENT
 ======================================== */
 
 .overlay{
@@ -115,6 +116,10 @@ body{
     padding:20px;
 
     z-index:2;
+
+    opacity:1;
+
+    transition:opacity .8s ease;
 
     animation:fadeIn 1.2s ease;
 
@@ -143,8 +148,7 @@ body{
     box-shadow:
         0 8px 30px rgba(0,0,0,.45);
 
-    animation:
-        logoAppear 1.3s ease;
+    animation:logoAppear 1.3s ease;
 
 }
 
@@ -210,7 +214,7 @@ body{
 
 
 /* ========================================
-   LOADING MESSAGE
+   LOADING
 ======================================== */
 
 .loading-message{
@@ -223,10 +227,6 @@ body{
 
 }
 
-
-/* ========================================
-   LOADING DOTS
-======================================== */
 
 .loading-dots{
 
@@ -464,19 +464,15 @@ body{
 
 
 <!-- ========================================
-     BACKGROUND IMAGE
+     BACKGROUND
 ======================================== -->
 
 <img
-    src="welcome.jpg"
+    src="./welcome.jpg?v=41"
     alt="University of Kabianga Campus"
     class="background"
 >
 
-
-<!-- ========================================
-     BLUE/DARK OVERLAY
-======================================== -->
 
 <div class="background-overlay"></div>
 
@@ -488,34 +484,22 @@ body{
 <div class="overlay">
 
 
-    <!-- UNIVERSITY LOGO -->
-
     <img
-        src="logo.jpg"
+        src="./logo.jpg?v=41"
         alt="University of Kabianga Logo"
         class="logo"
     >
 
 
-    <!-- UNIVERSITY NAME -->
-
     <h1>
-
         UNIVERSITY OF KABIANGA
-
     </h1>
 
 
-    <!-- SYSTEM NAME -->
-
     <h2>
-
         Smart Campus Navigation System
-
     </h2>
 
-
-    <!-- WELCOME MESSAGE -->
 
     <p class="description">
 
@@ -526,8 +510,6 @@ body{
 
     </p>
 
-
-    <!-- LOADING MESSAGE -->
 
     <p class="loading-message">
 
@@ -545,21 +527,18 @@ body{
 
 
     <!-- ====================================
-         DEVELOPER INFORMATION
+         PROJECT INFORMATION
     ==================================== -->
 
     <div class="developer">
-
 
         <p>
             Developed by
         </p>
 
-
         <strong>
             Griffin Kipruttoh &amp; David Dodi
         </strong>
-
 
         <p class="mentor">
 
@@ -570,7 +549,6 @@ body{
 
         </p>
 
-
         <p class="team">
 
             Powered/Proposed by:
@@ -579,7 +557,6 @@ body{
             </strong>
 
         </p>
-
 
     </div>
 
@@ -591,48 +568,80 @@ body{
 
 /*
 ==================================================
-UNIVERSITY OF KABIANGA
-SMART CAMPUS NAVIGATION SYSTEM
+UOK SMART CAMPUS NAVIGATOR
 
-WELCOME FLOW
-
-index.html
-     ↓
-Welcome / Splash Screen
-     ↓
-campuses.html
-     ↓
-Select Campus
-     ↓
-Main Campus / Town Campus / Kapkatet Campus
+WELCOME
+   ↓
+CAMPUS SELECTION
+   ↓
+MAIN / TOWN / KAPKATET
 ==================================================
 */
 
 
 /* ========================================
-   WAIT 4 SECONDS
+   SERVICE WORKER REGISTRATION
+======================================== */
+
+if ("serviceWorker" in navigator) {
+
+    window.addEventListener("load", function(){
+
+        navigator.serviceWorker
+            .register("./service-worker.js")
+            .then(function(registration){
+
+                console.log(
+                    "✅ UOK Service Worker registered:",
+                    registration.scope
+                );
+
+            })
+            .catch(function(error){
+
+                console.error(
+                    "❌ Service Worker registration failed:",
+                    error
+                );
+
+            });
+
+    });
+
+}
+
+
+/* ========================================
+   WELCOME → CAMPUS SELECTION
 ======================================== */
 
 setTimeout(function(){
 
+    const overlay =
+        document.querySelector(".overlay");
 
-    /*
-       Begin smooth fade-out
-    */
-
-    document.querySelector(".overlay").style.opacity = "0";
-
-    document.querySelector(".background").style.opacity = "0";
+    const background =
+        document.querySelector(".background");
 
 
-    /*
-       Give the fade animation time to finish
-       before opening campus selection.
-    */
+    if (overlay) {
+
+        overlay.style.opacity = "0";
+
+    }
+
+
+    if (background) {
+
+        background.style.opacity = "0";
+
+    }
+
 
     setTimeout(function(){
 
-        window.location.href = "campuses.html";
+        window.location.href =
+            "./campuses.html?v=41";
 
     },800);
 
