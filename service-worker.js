@@ -2,21 +2,37 @@
 // UNIVERSITY OF KABIANGA
 // SMART CAMPUS NAVIGATOR
 // SERVICE WORKER
+// VERSION 41
 // ==========================================
 
-const CACHE_NAME = "uok-campus-v40";
+const CACHE_NAME = "uok-campus-v41";
+
+
+// ==========================================
+// FILES TO CACHE
+// ==========================================
 
 const urlsToCache = [
+
     "./",
-    "index.html",
-    "home.html",
-    "prince-ai.html",
-    "prince-ai.js",
-    "knowledge.js",
-    "script.js",
-    "style.css",
-    "logo.jpg",
-    "welcome.jpg"
+
+    "./index.html",
+    "./campuses.html",
+    "./main-campus.html",
+
+    "./prince-ai.html",
+    "./prince-ai.js",
+    "./knowledge.js",
+    "./script.js",
+    "./style.css",
+
+    "./manifest.json",
+
+    "./logo.jpg",
+    "./welcome.jpg",
+    "./main-campus.jpg",
+    "./kapkatet-campus.jpg"
+
 ];
 
 
@@ -27,10 +43,10 @@ const urlsToCache = [
 self.addEventListener("install", event => {
 
     console.log(
-        "✅ UOK Service Worker v40 installing..."
+        "✅ UOK Service Worker v41 installing..."
     );
 
-    // Activate the new service worker immediately
+    // Activate immediately
     self.skipWaiting();
 
     event.waitUntil(
@@ -59,7 +75,7 @@ self.addEventListener("install", event => {
 self.addEventListener("activate", event => {
 
     console.log(
-        "✅ UOK Service Worker v40 activated."
+        "✅ UOK Service Worker v41 activated."
     );
 
     event.waitUntil(
@@ -87,6 +103,8 @@ self.addEventListener("activate", event => {
 
                         }
 
+                        return null;
+
                     })
 
                 );
@@ -111,16 +129,29 @@ self.addEventListener("activate", event => {
 self.addEventListener("fetch", event => {
 
     const request = event.request;
-    const url = request.url;
+
+
+    // Only handle GET requests
+    if (
+        request.method !== "GET"
+    ) {
+
+        return;
+
+    }
+
+
+    const url = new URL(
+        request.url
+    );
 
 
     // ======================================
-    // ONLY HANDLE HTTP/HTTPS REQUESTS
+    // ONLY HANDLE THIS WEBSITE
     // ======================================
 
     if (
-        !url.startsWith("http://") &&
-        !url.startsWith("https://")
+        url.origin !== self.location.origin
     ) {
 
         return;
@@ -129,35 +160,22 @@ self.addEventListener("fetch", event => {
 
 
     // ======================================
-    // DO NOT CACHE EXTERNAL SERVICES
+    // HTML / NAVIGATION
+    // NETWORK FIRST
     // ======================================
 
     if (
-        url.includes("firebase") ||
-        url.includes("firestore.googleapis.com") ||
-        url.includes("googleapis.com") ||
-        url.includes("gstatic.com")
-    ) {
 
-        return;
+        request.destination === "document"
 
-    }
+        ||
 
+        url.pathname.endsWith(".html")
 
-    // ======================================
-    // ALWAYS GET IMPORTANT APP FILES
-    // FROM NETWORK FIRST
-    // ======================================
+        ||
 
-    if (
-        url.includes("home.html") ||
-        url.includes("index.html") ||
-        url.includes("prince-ai.html") ||
-        url.includes("prince-ai.js") ||
-        url.includes("knowledge.js") ||
-        url.includes("script.js") ||
-        url.includes("style.css") ||
-        url.includes("service-worker.js")
+        url.pathname.endsWith("/")
+
     ) {
 
         event.respondWith(
@@ -193,8 +211,7 @@ self.addEventListener("fetch", event => {
                 .catch(() => {
 
                     console.log(
-                        "⚠️ Network unavailable. Using cached:",
-                        url
+                        "⚠️ Network unavailable."
                     );
 
                     return caches.match(
@@ -211,7 +228,7 @@ self.addEventListener("fetch", event => {
 
 
     // ======================================
-    // OTHER FILES
+    // STATIC FILES
     // CACHE FIRST
     // ======================================
 
@@ -221,7 +238,9 @@ self.addEventListener("fetch", event => {
 
             .then(cachedResponse => {
 
-                if (cachedResponse) {
+                if (
+                    cachedResponse
+                ) {
 
                     return cachedResponse;
 
@@ -264,18 +283,22 @@ self.addEventListener("fetch", event => {
 
 
 // ==========================================
-// FORCE ALL OPEN TABS TO UPDATE
+// FORCE UPDATE
 // ==========================================
 
-self.addEventListener("message", event => {
+self.addEventListener(
+    "message",
+    event => {
 
-    if (
-        event.data &&
-        event.data.action === "SKIP_WAITING"
-    ) {
+        if (
+            event.data &&
+            event.data.action ===
+            "SKIP_WAITING"
+        ) {
 
-        self.skipWaiting();
+            self.skipWaiting();
+
+        }
 
     }
-
-});
+);
