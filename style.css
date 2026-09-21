@@ -931,58 +931,117 @@ color:gray;
 
 .uok-ai-home{
     width:100%;
-    margin:0;
+    margin:0 0 20px 0;
 }
 
+
+/* BLUE UOK AI BUTTON */
+
 .uok-ai-button{
-    display:block;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+
     width:100%;
+
+    min-height:64px;
+
     background:#0b5ed7;
-    color:white;
-    text-decoration:none;
+
+    color:white !important;
+
+    text-decoration:none !important;
+
     text-align:center;
-    padding:18px 15px;
+
+    padding:16px 15px;
+
     border-radius:14px;
+
     font-size:20px;
+
     font-weight:800;
+
     box-shadow:0 6px 15px rgba(0,0,0,0.12);
+
     transition:0.2s ease;
 }
 
+
+/* HOVER / TOUCH */
+
 .uok-ai-button:hover{
     background:#084298;
+    color:white !important;
     transform:translateY(-2px);
 }
 
+
+/* DESCRIPTION */
+
 .uok-ai-description{
     background:#f3f7ff;
-    color:#444;
+
+    color:#333;
+
     padding:15px 17px;
-    margin:10px 0 12px;
+
+    margin:10px 0 0 0;
+
     border-radius:12px;
+
     border-left:4px solid #0b5ed7;
+
     font-size:14px;
-    line-height:1.6;
+
+    line-height:1.55;
+
     text-align:left;
 }
 
+
 .uok-ai-description strong{
+    display:block;
+
     color:#0b5ed7;
+
     font-size:15px;
+
+    margin-bottom:7px;
 }
+
+
+.uok-ai-description p{
+    margin:6px 0;
+}
+
+
+/* AI FEATURES */
 
 .uok-ai-features{
+
     display:flex;
+
     flex-wrap:wrap;
+
     gap:7px;
-    margin-bottom:5px;
+
+    margin-top:12px;
 }
 
+
 .uok-ai-features span{
+
     background:#e7f0ff;
+
     color:#084298;
-    padding:7px 9px;
+
+    padding:7px 10px;
+
     border-radius:20px;
+
     font-size:12px;
+
     font-weight:700;
+
 }
