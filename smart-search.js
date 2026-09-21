@@ -165,6 +165,31 @@
                 "administration block"
             ]
         },
+       {
+    id: "health-centre",
+    name: "University Health Centre",
+    fullName: "University of Kabianga Health Centre / Clinic",
+    icon: "🏥",
+    location: "Main Campus",
+    description:
+        "The University Health Centre provides health and medical services to the University community. It is located to the left of the Main Gate when entering the Main Campus.",
+
+    page: "health-centre.html",
+
+    aliases: [
+        "health centre",
+        "health center",
+        "university health centre",
+        "university health center",
+        "clinic",
+        "university clinic",
+        "uok clinic",
+        "uok health centre",
+        "medical centre",
+        "medical center",
+        "hospital"
+    ]
+},
 
         {
             id: "main-gate",
