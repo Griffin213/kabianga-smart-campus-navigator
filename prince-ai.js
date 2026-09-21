@@ -1,19 +1,14 @@
 // ======================================================
 // 🤖 UOK AI
 // UNIVERSITY OF KABIANGA SMART CAMPUS NAVIGATOR
-// STABLE VERSION 405
+// VERSION 406
 // ======================================================
 
 (function () {
 
     "use strict";
 
-    console.log("🤖 UOK AI v405 loading...");
-
-
-    // ==================================================
-    // VARIABLES
-    // ==================================================
+    console.log("🤖 UOK AI v406 loading...");
 
     let chatBox = null;
     let userInput = null;
@@ -68,11 +63,12 @@
     function findKnowledge(question) {
 
         if (
-            typeof window.campusKnowledge === "undefined"
+            typeof campusKnowledge === "undefined" ||
+            !campusKnowledge
         ) {
 
-            console.warn(
-                "⚠️ campusKnowledge is not available."
+            console.error(
+                "❌ UOK AI: campusKnowledge was not loaded."
             );
 
             return null;
@@ -85,7 +81,7 @@
 
 
         const entries =
-            Object.values(window.campusKnowledge);
+            Object.values(campusKnowledge);
 
 
         let bestMatch = null;
@@ -141,9 +137,9 @@
             normalizeText(question);
 
 
-        // ----------------------------------------------
+        // ==============================================
         // GREETINGS
-        // ----------------------------------------------
+        // ==============================================
 
         if (
             text === "hi" ||
@@ -162,9 +158,9 @@
         }
 
 
-        // ----------------------------------------------
+        // ==============================================
         // THANK YOU
-        // ----------------------------------------------
+        // ==============================================
 
         if (
             text.includes("thank you") ||
@@ -180,9 +176,9 @@
         }
 
 
-        // ----------------------------------------------
+        // ==============================================
         // WHO ARE YOU
-        // ----------------------------------------------
+        // ==============================================
 
         if (
             text.includes("who are you") ||
@@ -200,9 +196,9 @@
         }
 
 
-        // ----------------------------------------------
+        // ==============================================
         // HELP
-        // ----------------------------------------------
+        // ==============================================
 
         if (
             text === "help" ||
@@ -220,21 +216,23 @@
         }
 
 
-        // ----------------------------------------------
-        // HEALTH CENTRE
-        // ----------------------------------------------
+        // ==============================================
+        // HEALTH CENTRE DIRECTIONS
+        // ==============================================
 
         if (
             text.includes("health centre") ||
             text.includes("health center")
         ) {
 
-            const item =
-                window.campusKnowledge &&
-                window.campusKnowledge.healthCentre;
+            if (
+                typeof campusKnowledge !== "undefined" &&
+                campusKnowledge.healthCentre
+            ) {
 
+                const item =
+                    campusKnowledge.healthCentre;
 
-            if (item) {
 
                 if (item.directions) {
 
@@ -246,6 +244,7 @@
 
                 }
 
+
                 return item.info;
 
             }
@@ -253,22 +252,25 @@
         }
 
 
-        // ----------------------------------------------
-        // VC OFFICE
-        // ----------------------------------------------
+        // ==============================================
+        // VC OFFICE DIRECTIONS
+        // ==============================================
 
         if (
             text.includes("vc office") ||
             text.includes("vice chancellor office") ||
-            text.includes("vice chancellors office")
+            text.includes("vice chancellors office") ||
+            text.includes("vice chancellor")
         ) {
 
-            const item =
-                window.campusKnowledge &&
-                window.campusKnowledge.viceChancellorOffice;
+            if (
+                typeof campusKnowledge !== "undefined" &&
+                campusKnowledge.viceChancellorOffice
+            ) {
 
+                const item =
+                    campusKnowledge.viceChancellorOffice;
 
-            if (item) {
 
                 if (item.directions) {
 
@@ -280,6 +282,7 @@
 
                 }
 
+
                 return item.info;
 
             }
@@ -287,9 +290,9 @@
         }
 
 
-        // ----------------------------------------------
-        // LTB3 FLOORS
-        // ----------------------------------------------
+        // ==============================================
+        // LTB3 GROUND FLOOR
+        // ==============================================
 
         if (
             text.includes("ltb3") ||
@@ -298,59 +301,70 @@
 
             if (
                 text.includes("ground floor") &&
-                window.campusKnowledge &&
-                window.campusKnowledge.ltb3GroundFloor
+                campusKnowledge.ltb3GroundFloor
             ) {
 
-                return window.campusKnowledge
+                return campusKnowledge
                     .ltb3GroundFloor.info;
 
             }
 
 
+            // ==========================================
+            // LTB3 FIRST FLOOR
+            // ==========================================
+
             if (
                 text.includes("first floor") &&
-                window.campusKnowledge &&
-                window.campusKnowledge.ltb3FirstFloor
+                campusKnowledge.ltb3FirstFloor
             ) {
 
-                return window.campusKnowledge
+                return campusKnowledge
                     .ltb3FirstFloor.info;
 
             }
 
 
+            // ==========================================
+            // LTB3 SECOND FLOOR
+            // ==========================================
+
             if (
                 text.includes("second floor") &&
-                window.campusKnowledge &&
-                window.campusKnowledge.ltb3SecondFloor
+                campusKnowledge.ltb3SecondFloor
             ) {
 
-                return window.campusKnowledge
+                return campusKnowledge
                     .ltb3SecondFloor.info;
 
             }
 
 
+            // ==========================================
+            // LTB3 THIRD FLOOR
+            // ==========================================
+
             if (
                 text.includes("third floor") &&
-                window.campusKnowledge &&
-                window.campusKnowledge.ltb3ThirdFloor
+                campusKnowledge.ltb3ThirdFloor
             ) {
 
-                return window.campusKnowledge
+                return campusKnowledge
                     .ltb3ThirdFloor.info;
 
             }
 
 
+            // ==========================================
+            // GENERAL LTB3 FLOOR INFORMATION
+            // ==========================================
+
             if (
                 text.includes("floor") &&
-                window.campusKnowledge &&
-                window.campusKnowledge.ltb3Floors
+                campusKnowledge.ltb3Floors
             ) {
 
-                return window.campusKnowledge
+                return campusKnowledge
                     .ltb3Floors.info;
 
             }
@@ -358,24 +372,27 @@
         }
 
 
-        // ----------------------------------------------
-        // GENERAL KNOWLEDGE
-        // ----------------------------------------------
+        // ==============================================
+        // GENERAL KNOWLEDGE SEARCH
+        // ==============================================
 
         const result =
             findKnowledge(question);
 
 
-        if (result && result.info) {
+        if (
+            result &&
+            result.info
+        ) {
 
             return result.info;
 
         }
 
 
-        // ----------------------------------------------
-        // DEFAULT
-        // ----------------------------------------------
+        // ==============================================
+        // DEFAULT RESPONSE
+        // ==============================================
 
         return (
             "I’m sorry, I don't have that information yet. " +
@@ -447,7 +464,7 @@
 
 
     // ==================================================
-    // SCROLL
+    // SCROLL CHAT
     // ==================================================
 
     function scrollChat() {
@@ -472,10 +489,6 @@
 
 
         if (!userInput || !chatBox) {
-
-            console.error(
-                "❌ UOK AI: Chat elements not found."
-            );
 
             return;
 
@@ -525,10 +538,6 @@
 
         if (!userInput) {
 
-            console.error(
-                "❌ UOK AI: Input box not found."
-            );
-
             return;
 
         }
@@ -552,7 +561,11 @@
         getElements();
 
 
-        if (!chatBox) return;
+        if (!chatBox) {
+
+            return;
+
+        }
 
 
         chatBox.innerHTML = "";
@@ -693,14 +706,6 @@
 
                 }
 
-
-                if (status) {
-
-                    status.textContent =
-                        "🟢 UOK AI is ready";
-
-                }
-
             };
 
 
@@ -711,14 +716,6 @@
                     "Voice recognition error:",
                     event.error
                 );
-
-
-                if (status) {
-
-                    status.textContent =
-                        "🟢 UOK AI is ready";
-
-                }
 
             };
 
@@ -761,26 +758,10 @@
         getElements();
 
 
-        console.log(
-            "🤖 UOK AI v405 initializing..."
-        );
-
-
-        if (!chatBox) {
+        if (!chatBox || !userInput) {
 
             console.error(
-                "❌ UOK AI: chatBox not found."
-            );
-
-            return;
-
-        }
-
-
-        if (!userInput) {
-
-            console.error(
-                "❌ UOK AI: userInput not found."
+                "❌ UOK AI interface not found."
             );
 
             return;
@@ -845,7 +826,7 @@
 
 
         console.log(
-            "✅ UOK AI v405 is ready."
+            "✅ UOK AI v406 is ready."
         );
 
     }
