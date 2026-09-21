@@ -2,10 +2,10 @@
 // UNIVERSITY OF KABIANGA
 // SMART CAMPUS NAVIGATOR
 // SERVICE WORKER
-// VERSION 42
+// VERSION 43
 // ==========================================
 
-const CACHE_NAME = "uok-campus-v42";
+const CACHE_NAME = "uok-campus-v43";
 
 
 // ==========================================
