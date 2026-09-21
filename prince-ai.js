@@ -1,296 +1,23 @@
 // ======================================================
-// 🤖 PRINCE AI
+// 🤖 UOK AI
 // UNIVERSITY OF KABIANGA SMART CAMPUS NAVIGATOR
-// VERSION 300
+// VERSION 400
 //
-// IMPORTANT:
-// This file contains NO GPS.
-// This file contains NO map navigation.
-// This file contains NO routing.
-// This file contains NO location tracking.
+// This file controls:
+// - Chat
+// - Knowledge search
+// - Quick questions
+// - Voice input
+// - Text-to-speech
 //
-// It is only the Prince AI information assistant.
+// University information is stored in knowledge.js.
 // ======================================================
 
-console.log("Prince AI v300 loading...");
-
-
-// ======================================================
-// UNIVERSITY KNOWLEDGE
-// ======================================================
-
-const princeKnowledge = {
-
-    // --------------------------------------------------
-    // VICE CHANCELLOR
-    // --------------------------------------------------
-
-    vc: {
-        keywords: [
-            "vice chancellor",
-            "vc",
-            "chancellor"
-        ],
-
-        answer:
-        "The Vice Chancellor of the University of Kabianga is Prof. Erick Koech, Ph.D., MBS."
-    },
-
-
-    // --------------------------------------------------
-    // DVC
-    // --------------------------------------------------
-
-    dvc: {
-        keywords: [
-            "dvc",
-            "academic and student affairs",
-            "dvc academic"
-        ],
-
-        answer:
-        "The Deputy Vice Chancellor responsible for Academic and Student Affairs is Prof. Dr. Fredrick Nyongesa Kassilly."
-    },
-
-
-    // --------------------------------------------------
-    // PLANNING
-    // --------------------------------------------------
-
-    planning: {
-        keywords: [
-            "planning",
-            "research",
-            "development",
-            "planning research",
-            "research development"
-        ],
-
-        answer:
-        "Planning, Research and Development is under Prof. Maurice Owino Oduor."
-    },
-
-
-    // --------------------------------------------------
-    // REGISTRAR ACADEMIC
-    // --------------------------------------------------
-
-    registrarAcademic: {
-        keywords: [
-            "registrar academic",
-            "registrar academics",
-            "academic registrar"
-        ],
-
-        answer:
-        "The Registrar responsible for Academic Affairs is Dr. Cecilia Sang."
-    },
-
-
-    // --------------------------------------------------
-    // REGISTRAR ADMINISTRATION
-    // --------------------------------------------------
-
-    registrarAdministration: {
-        keywords: [
-            "registrar administration",
-            "administration registrar"
-        ],
-
-        answer:
-        "The Registrar responsible for Administration is Mr. Peter K. Kimalel."
-    },
-
-
-    // --------------------------------------------------
-    // DEAN OF STUDENTS
-    // --------------------------------------------------
-
-    deanStudents: {
-        keywords: [
-            "dean of students",
-            "student dean",
-            "dean students"
-        ],
-
-        answer:
-        "The Dean of Students is Dr. Peter Ngugi."
-    },
-
-
-    // --------------------------------------------------
-    // ICT
-    // --------------------------------------------------
-
-    ict: {
-        keywords: [
-            "director ict",
-            "ict director",
-            "ict"
-        ],
-
-        answer:
-        "The Director of ICT is Mr. Geoffrey Sowek."
-    },
-
-
-    // --------------------------------------------------
-    // FINANCE
-    // --------------------------------------------------
-
-    finance: {
-        keywords: [
-            "finance officer",
-            "finance",
-            "financial officer"
-        ],
-
-        answer:
-        "The Finance Officer is CPA Willy Koech."
-    },
-
-
-    // --------------------------------------------------
-    // LTB1
-    // --------------------------------------------------
-
-    ltb1: {
-        keywords: [
-            "ltb1",
-            "ltb 1",
-            "lecture theatre 1",
-            "lecture theatre one"
-        ],
-
-        answer:
-        "LTB1 is one of the lecture and learning facilities at the University of Kabianga. You can use the Smart Campus Navigator to access its available information."
-    },
-
-
-    // --------------------------------------------------
-    // LTB2
-    // --------------------------------------------------
-
-    ltb2: {
-        keywords: [
-            "ltb2",
-            "ltb 2",
-            "lecture theatre 2",
-            "lecture theatre two"
-        ],
-
-        answer:
-        "LTB2 is one of the lecture and learning facilities at the University of Kabianga."
-    },
-
-
-    // --------------------------------------------------
-    // LTB3
-    // --------------------------------------------------
-
-    ltb3: {
-        keywords: [
-            "ltb3",
-            "ltb 3",
-            "lecture theatre 3",
-            "lecture theatre three"
-        ],
-
-        answer:
-        "LTB3 is a major academic and administrative building at the University of Kabianga. It contains lecture halls, offices and other facilities across several floors."
-    },
-
-
-    // --------------------------------------------------
-    // LTB4
-    // --------------------------------------------------
-
-    ltb4: {
-        keywords: [
-            "ltb4",
-            "ltb 4",
-            "lecture theatre 4",
-            "lecture theatre four"
-        ],
-
-        answer:
-        "LTB4 is one of the lecture and learning facilities at the University of Kabianga."
-    },
-
-
-    // --------------------------------------------------
-    // LTB3 FLOORS
-    // --------------------------------------------------
-
-    ltb3Floors: {
-        keywords: [
-            "ltb3 floors",
-            "ltb 3 floors",
-            "inside ltb3",
-            "inside ltb 3",
-            "ltb3 offices",
-            "ltb 3 offices",
-            "ltb3 building",
-            "ltb 3 building"
-        ],
-
-        answer:
-        "LTB3 has several floors. Ground Floor: Dean School of Education, HOD Curriculum and Instruction, HOD Physiology and Foundations, LH1 and LH2. First Floor: Senate Chamber, LH3, Micro Teaching Lab and School of Business Offices, including the Finance Office, Dean School of Business Office and HODs Office. Second Floor: Director of Gender Office, LH5, LH6 and Director of Postgraduate Studies Office. Third Floor: LH7 and LH8."
-    },
-
-
-    // --------------------------------------------------
-    // LIBRARY
-    // --------------------------------------------------
-
-    library: {
-        keywords: [
-            "library",
-            "university library"
-        ],
-
-        answer:
-        "The University Library provides learning resources, research materials and study spaces for students and staff."
-    },
-
-
-    // --------------------------------------------------
-    // MAIN GATE
-    // --------------------------------------------------
-
-    gate: {
-        keywords: [
-            "main gate",
-            "gate",
-            "entrance",
-            "campus gate"
-        ],
-
-        answer:
-        "The Main Gate is the primary entrance and access point to the University of Kabianga campus."
-    },
-
-
-    // --------------------------------------------------
-    // SCHOOL OF BUSINESS
-    // --------------------------------------------------
-
-    business: {
-        keywords: [
-            "school of business",
-            "business school",
-            "business offices"
-        ],
-
-        answer:
-        "The School of Business has offices in LTB3. The LTB3 School of Business offices include the Finance Office, Dean School of Business Office and HODs Office."
-    }
-
-};
+console.log("UOK AI v400 loading...");
 
 
 // ======================================================
-// GET DOM ELEMENTS
+// DOM ELEMENTS
 // ======================================================
 
 let chatBox;
@@ -308,35 +35,38 @@ let status;
 
 document.addEventListener("DOMContentLoaded", function () {
 
-    console.log("Prince AI v300 initialized.");
+    console.log("UOK AI v400 initializing...");
 
     chatBox = document.getElementById("chatBox");
     userInput = document.getElementById("userInput");
     sendBtn = document.getElementById("sendBtn");
     clearBtn = document.getElementById("clearBtn");
     backBtn = document.getElementById("backBtn");
-    voiceBtn = document.getElementById("voiceBtn");
+
+    // Support BOTH possible microphone IDs
+    voiceBtn =
+        document.getElementById("micBtn") ||
+        document.getElementById("voiceBtn");
+
     status = document.getElementById("status");
 
 
     // --------------------------------------------------
-    // CHECK ELEMENTS
+    // CHECK REQUIRED ELEMENTS
     // --------------------------------------------------
 
     if (!chatBox || !userInput || !sendBtn || !clearBtn || !backBtn) {
 
-        console.error("Prince AI: Required HTML elements are missing.");
-
-        if (status) {
-            status.textContent = "🔴 Prince AI failed to load";
-        }
+        console.log(
+            "UOK AI interface not found on this page. AI engine remains available."
+        );
 
         return;
     }
 
 
     // --------------------------------------------------
-    // SEND BUTTON
+    // SEND
     // --------------------------------------------------
 
     sendBtn.addEventListener("click", function () {
@@ -347,7 +77,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
 
     // --------------------------------------------------
-    // CLEAR BUTTON
+    // CLEAR
     // --------------------------------------------------
 
     clearBtn.addEventListener("click", function () {
@@ -358,7 +88,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
 
     // --------------------------------------------------
-    // BACK BUTTON
+    // BACK
     // --------------------------------------------------
 
     backBtn.addEventListener("click", function () {
@@ -369,7 +99,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
 
     // --------------------------------------------------
-    // ENTER KEY
+    // ENTER
     // --------------------------------------------------
 
     userInput.addEventListener("keydown", function (event) {
@@ -401,16 +131,16 @@ document.addEventListener("DOMContentLoaded", function () {
 
 
     // --------------------------------------------------
-    // FINAL STATUS
+    // READY
     // --------------------------------------------------
 
     if (status) {
 
-        status.textContent = "🟢 Prince AI is ready";
+        status.textContent = "🟢 UOK AI is ready";
 
     }
 
-    console.log("Prince AI v300 is ready.");
+    console.log("UOK AI v400 is ready.");
 
 });
 
@@ -436,7 +166,7 @@ function sendMessage() {
     }
 
 
-    // Show user message
+    // Show user question
 
     addUserMessage(question);
 
@@ -446,12 +176,12 @@ function sendMessage() {
     userInput.value = "";
 
 
-    // Generate answer
+    // Find answer
 
     const answer = getAnswer(question);
 
 
-    // Small delay for natural response
+    // Natural response delay
 
     setTimeout(function () {
 
@@ -484,19 +214,134 @@ function askQuick(question) {
 
 
 // ======================================================
-// FIND ANSWER
+// NORMALIZE TEXT
+// ======================================================
+
+function normalizeText(text) {
+
+    return String(text || "")
+        .toLowerCase()
+        .replace(/[’']/g, "")
+        .replace(/[^\w\s]/g, " ")
+        .replace(/\s+/g, " ")
+        .trim();
+
+}
+
+
+// ======================================================
+// FIND KNOWLEDGE
+// ======================================================
+
+function findKnowledge(question) {
+
+    if (
+        typeof campusKnowledge === "undefined" ||
+        !campusKnowledge
+    ) {
+
+        console.error(
+            "UOK AI: campusKnowledge is not available."
+        );
+
+        return null;
+
+    }
+
+
+    const text = normalizeText(question);
+
+
+    // --------------------------------------------------
+    // BUILD SEARCH LIST
+    // --------------------------------------------------
+
+    const entries = Object.values(campusKnowledge);
+
+
+    const matches = [];
+
+
+    entries.forEach(function (item) {
+
+        if (!item || !Array.isArray(item.keywords)) {
+
+            return;
+
+        }
+
+
+        item.keywords.forEach(function (keyword) {
+
+            const normalizedKeyword =
+                normalizeText(keyword);
+
+
+            if (!normalizedKeyword) {
+
+                return;
+
+            }
+
+
+            if (text.includes(normalizedKeyword)) {
+
+                matches.push({
+
+                    item: item,
+
+                    keyword: normalizedKeyword,
+
+                    length: normalizedKeyword.length
+
+                });
+
+            }
+
+        });
+
+    });
+
+
+    // --------------------------------------------------
+    // NO MATCH
+    // --------------------------------------------------
+
+    if (matches.length === 0) {
+
+        return null;
+
+    }
+
+
+    // --------------------------------------------------
+    // LONGEST / MOST SPECIFIC MATCH FIRST
+    // --------------------------------------------------
+
+    matches.sort(function (a, b) {
+
+        return b.length - a.length;
+
+    });
+
+
+    return matches[0].item;
+
+}
+
+
+// ======================================================
+// GET ANSWER
 // ======================================================
 
 function getAnswer(question) {
 
-    const text = question
-        .toLowerCase()
-        .trim();
+    const text = normalizeText(question);
 
 
-    // --------------------------------------------------
+    // ==================================================
     // GREETINGS
-    // --------------------------------------------------
+    // ==================================================
 
     if (
         text === "hi" ||
@@ -507,92 +352,230 @@ function getAnswer(question) {
         text.includes("good evening")
     ) {
 
-        return "Hello! 👋 I am Prince AI, the University of Kabianga Smart Campus Assistant. How can I help you?";
+        return (
+            "Hello! 👋 I am UOK AI, the University of Kabianga " +
+            "Smart Campus Assistant. How can I help you?"
+        );
 
     }
 
 
-    // --------------------------------------------------
+    // ==================================================
     // THANK YOU
-    // --------------------------------------------------
+    // ==================================================
 
     if (
         text.includes("thank you") ||
-        text.includes("thanks")
+        text === "thanks" ||
+        text.includes("thank u")
     ) {
 
-        return "You're welcome! 😊 I am always happy to help with University of Kabianga information.";
+        return (
+            "You're welcome! 😊 I am happy to help you with " +
+            "University of Kabianga information."
+        );
 
     }
 
 
-    // --------------------------------------------------
+    // ==================================================
+    // WHO ARE YOU?
+    // ==================================================
+
+    if (
+        text.includes("who are you") ||
+        text.includes("what are you") ||
+        text.includes("your name")
+    ) {
+
+        return (
+            "I am UOK AI 🤖, the University of Kabianga " +
+            "Smart Campus Assistant. I can help you find " +
+            "campus information, buildings, offices, services " +
+            "and important University information."
+        );
+
+    }
+
+
+    // ==================================================
     // HELP
-    // --------------------------------------------------
+    // ==================================================
 
     if (
         text === "help" ||
-        text.includes("what can you do")
+        text.includes("what can you do") ||
+        text.includes("how can you help")
     ) {
 
-        return "I can provide information about University of Kabianga leadership, LTB1, LTB2, LTB3, LTB4, LTB3 floors, the Library, Main Gate and School of Business.";
+        return (
+            "I can help you with University of Kabianga " +
+            "buildings, lecture halls, offices, leadership, " +
+            "student services, LTB3 floors, the Library, " +
+            "Health Centre, Main Gate and other campus information."
+        );
 
     }
 
 
-    // --------------------------------------------------
-    // SPECIFIC LTB3 FLOOR QUESTION
-    // --------------------------------------------------
+    // ==================================================
+    // DIRECTIONS — HEALTH CENTRE
+    // ==================================================
 
     if (
-        text.includes("floor") &&
-        text.includes("ltb3")
+        text.includes("where is the health centre") ||
+        text.includes("where is the health center") ||
+        text.includes("location of health centre") ||
+        text.includes("location of health center") ||
+        text.includes("how do i get to the health centre") ||
+        text.includes("how do i get to the health center")
     ) {
 
-        return princeKnowledge.ltb3Floors.answer;
+        const item = campusKnowledge.healthCentre;
 
-    }
+        if (item && item.directions) {
 
+            return (
+                item.info +
+                "\n\nDirections:\n• " +
+                item.directions.join("\n• ")
+            );
+
+        }
+            // ==================================================
+    // DIRECTIONS — VC OFFICE
+    // ==================================================
 
     if (
-        text.includes("floor") &&
-        text.includes("ltb 3")
+        text.includes("where is the vc office") ||
+        text.includes("where is the vice chancellor office") ||
+        text.includes("where is the vice chancellors office") ||
+        text.includes("location of vc office") ||
+        text.includes("location of vice chancellor office") ||
+        text.includes("how do i get to the vc office") ||
+        text.includes("how do i get to the vice chancellor office") ||
+        text.includes("how can i get to the vc office") ||
+        text.includes("directions to the vc office") ||
+        text.includes("directions to the vice chancellor office")
     ) {
 
-        return princeKnowledge.ltb3Floors.answer;
+        const item =
+            campusKnowledge.viceChancellorOffice;
 
-    }
+        if (item && item.directions) {
 
-
-    // --------------------------------------------------
-    // CHECK KNOWLEDGE
-    // --------------------------------------------------
-
-    const categories = Object.values(princeKnowledge);
-
-
-    for (let i = 0; i < categories.length; i++) {
-
-        const item = categories[i];
-
-        for (let j = 0; j < item.keywords.length; j++) {
-
-            if (text.includes(item.keywords[j])) {
-
-                return item.answer;
-
-            }
+            return (
+                item.info +
+                "\n\nDirections:\n• " +
+                item.directions.join("\n• ")
+            );
 
         }
 
     }
 
 
-    // --------------------------------------------------
-    // DEFAULT ANSWER
-    // --------------------------------------------------
+    // ==================================================
+    // LTB3 FLOOR QUESTIONS
+    // ==================================================
 
-    return "I’m sorry, I don't have that information yet. Please ask me about University of Kabianga leadership, LTB1, LTB2, LTB3, LTB4, LTB3 floors, the Library, Main Gate or School of Business.";
+    if (
+        text.includes("ground floor") &&
+        text.includes("ltb3")
+    ) {
+
+        return campusKnowledge.ltb3GroundFloor.info;
+
+    }
+
+
+    if (
+        text.includes("ground floor") &&
+        text.includes("ltb 3")
+    ) {
+
+        return campusKnowledge.ltb3GroundFloor.info;
+
+    }
+
+
+    if (
+        text.includes("first floor") &&
+        (
+            text.includes("ltb3") ||
+            text.includes("ltb 3")
+        )
+    ) {
+
+        return campusKnowledge.ltb3FirstFloor.info;
+
+    }
+
+
+    if (
+        text.includes("second floor") &&
+        (
+            text.includes("ltb3") ||
+            text.includes("ltb 3")
+        )
+    ) {
+
+        return campusKnowledge.ltb3SecondFloor.info;
+
+    }
+
+
+    if (
+        text.includes("third floor") &&
+        (
+            text.includes("ltb3") ||
+            text.includes("ltb 3")
+        )
+    ) {
+
+        return campusKnowledge.ltb3ThirdFloor.info;
+
+    }
+
+
+    if (
+        text.includes("floor") &&
+        (
+            text.includes("ltb3") ||
+            text.includes("ltb 3")
+        )
+    ) {
+
+        return campusKnowledge.ltb3Floors.info;
+
+    }
+
+
+    // ==================================================
+    // GENERAL KNOWLEDGE SEARCH
+    // ==================================================
+
+    const result = findKnowledge(question);
+
+
+    if (result) {
+
+        return result.info;
+
+    }
+
+
+    // ==================================================
+    // DEFAULT RESPONSE
+    // ==================================================
+
+    return (
+        "I’m sorry, I don't have that information yet. " +
+        "You can ask me about University buildings, LTB1, " +
+        "LTB2, LTB3, LTB4, LTB3 floors, the Library, " +
+        "Health Centre, Main Gate, VC Office, University " +
+        "leadership, student services and other campus information."
+    );
 
 }
 
@@ -608,6 +591,7 @@ function addUserMessage(message) {
         return;
 
     }
+
 
     const div = document.createElement("div");
 
@@ -634,6 +618,7 @@ function addBotMessage(message) {
 
     }
 
+
     const div = document.createElement("div");
 
     div.className = "message bot";
@@ -655,7 +640,8 @@ function scrollChat() {
 
     if (chatBox) {
 
-        chatBox.scrollTop = chatBox.scrollHeight;
+        chatBox.scrollTop =
+            chatBox.scrollHeight;
 
     }
 
@@ -674,10 +660,11 @@ function clearChat() {
 
     }
 
+
     chatBox.innerHTML = "";
 
     addBotMessage(
-        "Hello again! 👋 I am Prince AI. How can I help you?"
+        "Hello again! 👋 I am UOK AI. How can I help you?"
     );
 
 }
@@ -706,11 +693,13 @@ function speak(text) {
 
     }
 
+
     try {
 
         window.speechSynthesis.cancel();
 
-        const speech = new SpeechSynthesisUtterance(text);
+        const speech =
+            new SpeechSynthesisUtterance(text);
 
         speech.lang = "en-KE";
 
@@ -722,7 +711,10 @@ function speak(text) {
 
     } catch (error) {
 
-        console.log("Speech error:", error);
+        console.log(
+            "UOK AI speech error:",
+            error
+        );
 
     }
 
@@ -743,7 +735,8 @@ function startVoiceInput() {
     if (!SpeechRecognition) {
 
         alert(
-            "Voice input is not supported by this browser. Please use Google Chrome."
+            "Voice input is not supported by this browser. " +
+            "Please use Google Chrome."
         );
 
         return;
@@ -751,7 +744,8 @@ function startVoiceInput() {
     }
 
 
-    const recognition = new SpeechRecognition();
+    const recognition =
+        new SpeechRecognition();
 
     recognition.lang = "en-KE";
 
@@ -762,59 +756,78 @@ function startVoiceInput() {
 
     if (status) {
 
-        status.textContent = "🎤 Listening...";
+        status.textContent =
+            "🎤 Listening...";
 
     }
 
 
-    recognition.start();
+    try {
+
+        recognition.start();
+
+    } catch (error) {
+
+        console.log(
+            "Voice start error:",
+            error
+        );
+
+    }
 
 
-    recognition.onresult = function (event) {
+    recognition.onresult =
+        function (event) {
 
-        const transcript =
-            event.results[0][0].transcript;
+            const transcript =
+                event.results[0][0].transcript;
 
+            if (userInput) {
 
-        if (userInput) {
+                userInput.value =
+                    transcript;
 
-            userInput.value = transcript;
+            }
 
-        }
+            if (status) {
 
+                status.textContent =
+                    "🟢 UOK AI is ready";
 
-        if (status) {
+            }
 
-            status.textContent = "🟢 Prince AI is ready";
-
-        }
-
-    };
-
-
-    recognition.onerror = function (event) {
-
-        console.log("Voice recognition error:", event.error);
+        };
 
 
-        if (status) {
+    recognition.onerror =
+        function (event) {
 
-            status.textContent = "🟢 Prince AI is ready";
+            console.log(
+                "Voice recognition error:",
+                event.error
+            );
 
-        }
+            if (status) {
 
-    };
+                status.textContent =
+                    "🟢 UOK AI is ready";
+
+            }
+
+        };
 
 
-    recognition.onend = function () {
+    recognition.onend =
+        function () {
 
-        if (status) {
+            if (status) {
 
-            status.textContent = "🟢 Prince AI is ready";
+                status.textContent =
+                    "🟢 UOK AI is ready";
 
-        }
+            }
 
-    };
+        };
 
 }
 
@@ -823,17 +836,23 @@ function startVoiceInput() {
 // GLOBAL FUNCTIONS
 // ======================================================
 
-window.sendMessage = sendMessage;
+window.sendMessage =
+    sendMessage;
 
-window.clearChat = clearChat;
+window.clearChat =
+    clearChat;
 
-window.goBack = goBack;
+window.goBack =
+    goBack;
 
-window.askQuick = askQuick;
+window.askQuick =
+    askQuick;
 
-window.getAnswer = getAnswer;
+window.getAnswer =
+    getAnswer;
 
-window.startVoiceInput = startVoiceInput;
+window.startVoiceInput =
+    startVoiceInput;
 
 
 // ======================================================
@@ -841,5 +860,5 @@ window.startVoiceInput = startVoiceInput;
 // ======================================================
 
 console.log(
-    "Prince AI v300 loaded successfully — navigation removed."
+    "UOK AI v400 loaded successfully."
 );
