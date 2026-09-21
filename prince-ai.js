@@ -1,9 +1,9 @@
 // ======================================================
 // 🤖 UOK AI
 // UNIVERSITY OF KABIANGA SMART CAMPUS NAVIGATOR
-// VERSION 400
+// VERSION 401
 //
-// This file controls:
+// Controls:
 // - Chat
 // - Knowledge search
 // - Quick questions
@@ -13,20 +13,20 @@
 // University information is stored in knowledge.js.
 // ======================================================
 
-console.log("UOK AI v400 loading...");
+console.log("🤖 UOK AI v401 loading...");
 
 
 // ======================================================
 // DOM ELEMENTS
 // ======================================================
 
-let chatBox;
-let userInput;
-let sendBtn;
-let clearBtn;
-let backBtn;
-let voiceBtn;
-let status;
+let chatBox = null;
+let userInput = null;
+let sendBtn = null;
+let clearBtn = null;
+let backBtn = null;
+let voiceBtn = null;
+let status = null;
 
 
 // ======================================================
@@ -35,7 +35,7 @@ let status;
 
 document.addEventListener("DOMContentLoaded", function () {
 
-    console.log("UOK AI v400 initializing...");
+    console.log("🤖 UOK AI v401 initializing...");
 
     chatBox = document.getElementById("chatBox");
     userInput = document.getElementById("userInput");
@@ -43,7 +43,7 @@ document.addEventListener("DOMContentLoaded", function () {
     clearBtn = document.getElementById("clearBtn");
     backBtn = document.getElementById("backBtn");
 
-    // Support BOTH possible microphone IDs
+    // Support both possible microphone IDs
     voiceBtn =
         document.getElementById("micBtn") ||
         document.getElementById("voiceBtn");
@@ -51,23 +51,23 @@ document.addEventListener("DOMContentLoaded", function () {
     status = document.getElementById("status");
 
 
-    // --------------------------------------------------
-    // CHECK REQUIRED ELEMENTS
-    // --------------------------------------------------
+    // ==================================================
+    // CHECK INTERFACE
+    // ==================================================
 
     if (!chatBox || !userInput || !sendBtn || !clearBtn || !backBtn) {
 
         console.log(
-            "UOK AI interface not found on this page. AI engine remains available."
+            "ℹ️ UOK AI chat interface not found on this page."
         );
 
         return;
     }
 
 
-    // --------------------------------------------------
-    // SEND
-    // --------------------------------------------------
+    // ==================================================
+    // SEND BUTTON
+    // ==================================================
 
     sendBtn.addEventListener("click", function () {
 
@@ -76,9 +76,9 @@ document.addEventListener("DOMContentLoaded", function () {
     });
 
 
-    // --------------------------------------------------
-    // CLEAR
-    // --------------------------------------------------
+    // ==================================================
+    // CLEAR BUTTON
+    // ==================================================
 
     clearBtn.addEventListener("click", function () {
 
@@ -87,9 +87,9 @@ document.addEventListener("DOMContentLoaded", function () {
     });
 
 
-    // --------------------------------------------------
-    // BACK
-    // --------------------------------------------------
+    // ==================================================
+    // BACK BUTTON
+    // ==================================================
 
     backBtn.addEventListener("click", function () {
 
@@ -98,9 +98,9 @@ document.addEventListener("DOMContentLoaded", function () {
     });
 
 
-    // --------------------------------------------------
-    // ENTER
-    // --------------------------------------------------
+    // ==================================================
+    // ENTER KEY
+    // ==================================================
 
     userInput.addEventListener("keydown", function (event) {
 
@@ -115,9 +115,9 @@ document.addEventListener("DOMContentLoaded", function () {
     });
 
 
-    // --------------------------------------------------
+    // ==================================================
     // MICROPHONE
-    // --------------------------------------------------
+    // ==================================================
 
     if (voiceBtn) {
 
@@ -130,9 +130,9 @@ document.addEventListener("DOMContentLoaded", function () {
     }
 
 
-    // --------------------------------------------------
-    // READY
-    // --------------------------------------------------
+    // ==================================================
+    // READY STATUS
+    // ==================================================
 
     if (status) {
 
@@ -140,7 +140,8 @@ document.addEventListener("DOMContentLoaded", function () {
 
     }
 
-    console.log("UOK AI v400 is ready.");
+
+    console.log("✅ UOK AI v401 is ready.");
 
 });
 
@@ -151,13 +152,15 @@ document.addEventListener("DOMContentLoaded", function () {
 
 function sendMessage() {
 
-    if (!userInput) {
+    if (!userInput || !chatBox) {
 
         return;
 
     }
 
+
     const question = userInput.value.trim();
+
 
     if (question === "") {
 
@@ -166,23 +169,19 @@ function sendMessage() {
     }
 
 
-    // Show user question
-
+    // Show user message
     addUserMessage(question);
 
 
     // Clear input
-
     userInput.value = "";
 
 
     // Find answer
-
     const answer = getAnswer(question);
 
 
     // Natural response delay
-
     setTimeout(function () {
 
         addBotMessage(answer);
@@ -205,6 +204,7 @@ function askQuick(question) {
         return;
 
     }
+
 
     userInput.value = question;
 
@@ -241,7 +241,7 @@ function findKnowledge(question) {
     ) {
 
         console.error(
-            "UOK AI: campusKnowledge is not available."
+            "❌ UOK AI: campusKnowledge is not available."
         );
 
         return null;
@@ -251,20 +251,18 @@ function findKnowledge(question) {
 
     const text = normalizeText(question);
 
-
-    // --------------------------------------------------
-    // BUILD SEARCH LIST
-    // --------------------------------------------------
-
-    const entries = Object.values(campusKnowledge);
-
+    const entries =
+        Object.values(campusKnowledge);
 
     const matches = [];
 
 
     entries.forEach(function (item) {
 
-        if (!item || !Array.isArray(item.keywords)) {
+        if (
+            !item ||
+            !Array.isArray(item.keywords)
+        ) {
 
             return;
 
@@ -303,10 +301,6 @@ function findKnowledge(question) {
     });
 
 
-    // --------------------------------------------------
-    // NO MATCH
-    // --------------------------------------------------
-
     if (matches.length === 0) {
 
         return null;
@@ -314,10 +308,7 @@ function findKnowledge(question) {
     }
 
 
-    // --------------------------------------------------
-    // LONGEST / MOST SPECIFIC MATCH FIRST
-    // --------------------------------------------------
-
+    // Most specific match first
     matches.sort(function (a, b) {
 
         return b.length - a.length;
@@ -336,7 +327,8 @@ function findKnowledge(question) {
 
 function getAnswer(question) {
 
-    const text = normalizeText(question);
+    const text =
+        normalizeText(question);
 
 
     // ==================================================
@@ -428,12 +420,19 @@ function getAnswer(question) {
         text.includes("location of health centre") ||
         text.includes("location of health center") ||
         text.includes("how do i get to the health centre") ||
-        text.includes("how do i get to the health center")
+        text.includes("how do i get to the health center") ||
+        text.includes("directions to the health centre") ||
+        text.includes("directions to the health center")
     ) {
 
-        const item = campusKnowledge.healthCentre;
+        const item =
+            campusKnowledge.healthCentre;
 
-        if (item && item.directions) {
+
+        if (
+            item &&
+            item.directions
+        ) {
 
             return (
                 item.info +
@@ -442,7 +441,11 @@ function getAnswer(question) {
             );
 
         }
-            // ==================================================
+
+    } // ✅ IMPORTANT: closes Health Centre section
+
+
+    // ==================================================
     // DIRECTIONS — VC OFFICE
     // ==================================================
 
@@ -462,7 +465,11 @@ function getAnswer(question) {
         const item =
             campusKnowledge.viceChancellorOffice;
 
-        if (item && item.directions) {
+
+        if (
+            item &&
+            item.directions
+        ) {
 
             return (
                 item.info +
@@ -476,28 +483,33 @@ function getAnswer(question) {
 
 
     // ==================================================
-    // LTB3 FLOOR QUESTIONS
+    // LTB3 GROUND FLOOR
     // ==================================================
 
     if (
         text.includes("ground floor") &&
-        text.includes("ltb3")
+        (
+            text.includes("ltb3") ||
+            text.includes("ltb 3")
+        )
     ) {
 
-        return campusKnowledge.ltb3GroundFloor.info;
+        if (
+            campusKnowledge.ltb3GroundFloor
+        ) {
+
+            return campusKnowledge
+                .ltb3GroundFloor
+                .info;
+
+        }
 
     }
 
 
-    if (
-        text.includes("ground floor") &&
-        text.includes("ltb 3")
-    ) {
-
-        return campusKnowledge.ltb3GroundFloor.info;
-
-    }
-
+    // ==================================================
+    // LTB3 FIRST FLOOR
+    // ==================================================
 
     if (
         text.includes("first floor") &&
@@ -507,10 +519,22 @@ function getAnswer(question) {
         )
     ) {
 
-        return campusKnowledge.ltb3FirstFloor.info;
+        if (
+            campusKnowledge.ltb3FirstFloor
+        ) {
+
+            return campusKnowledge
+                .ltb3FirstFloor
+                .info;
+
+        }
 
     }
 
+
+    // ==================================================
+    // LTB3 SECOND FLOOR
+    // ==================================================
 
     if (
         text.includes("second floor") &&
@@ -520,10 +544,22 @@ function getAnswer(question) {
         )
     ) {
 
-        return campusKnowledge.ltb3SecondFloor.info;
+        if (
+            campusKnowledge.ltb3SecondFloor
+        ) {
+
+            return campusKnowledge
+                .ltb3SecondFloor
+                .info;
+
+        }
 
     }
 
+
+    // ==================================================
+    // LTB3 THIRD FLOOR
+    // ==================================================
 
     if (
         text.includes("third floor") &&
@@ -533,10 +569,22 @@ function getAnswer(question) {
         )
     ) {
 
-        return campusKnowledge.ltb3ThirdFloor.info;
+        if (
+            campusKnowledge.ltb3ThirdFloor
+        ) {
+
+            return campusKnowledge
+                .ltb3ThirdFloor
+                .info;
+
+        }
 
     }
 
+
+    // ==================================================
+    // LTB3 FLOORS
+    // ==================================================
 
     if (
         text.includes("floor") &&
@@ -546,7 +594,15 @@ function getAnswer(question) {
         )
     ) {
 
-        return campusKnowledge.ltb3Floors.info;
+        if (
+            campusKnowledge.ltb3Floors
+        ) {
+
+            return campusKnowledge
+                .ltb3Floors
+                .info;
+
+        }
 
     }
 
@@ -555,7 +611,8 @@ function getAnswer(question) {
     // GENERAL KNOWLEDGE SEARCH
     // ==================================================
 
-    const result = findKnowledge(question);
+    const result =
+        findKnowledge(question);
 
 
     if (result) {
@@ -593,11 +650,17 @@ function addUserMessage(message) {
     }
 
 
-    const div = document.createElement("div");
+    const div =
+        document.createElement("div");
 
-    div.className = "message user";
 
-    div.textContent = message;
+    div.className =
+        "message user";
+
+
+    div.textContent =
+        message;
+
 
     chatBox.appendChild(div);
 
@@ -619,11 +682,17 @@ function addBotMessage(message) {
     }
 
 
-    const div = document.createElement("div");
+    const div =
+        document.createElement("div");
 
-    div.className = "message bot";
 
-    div.textContent = message;
+    div.className =
+        "message bot";
+
+
+    div.textContent =
+        message;
+
 
     chatBox.appendChild(div);
 
@@ -663,6 +732,7 @@ function clearChat() {
 
     chatBox.innerHTML = "";
 
+
     addBotMessage(
         "Hello again! 👋 I am UOK AI. How can I help you?"
     );
@@ -676,7 +746,9 @@ function clearChat() {
 
 function goBack() {
 
-    window.location.href = "home.html";
+    // Return to the Main Campus page
+    window.location.href =
+        "main-campus.html";
 
 }
 
@@ -687,7 +759,9 @@ function goBack() {
 
 function speak(text) {
 
-    if (!("speechSynthesis" in window)) {
+    if (
+        !("speechSynthesis" in window)
+    ) {
 
         return;
 
@@ -698,16 +772,27 @@ function speak(text) {
 
         window.speechSynthesis.cancel();
 
+
         const speech =
             new SpeechSynthesisUtterance(text);
 
-        speech.lang = "en-KE";
 
-        speech.rate = 0.95;
+        speech.lang =
+            "en-KE";
 
-        speech.pitch = 1;
 
-        window.speechSynthesis.speak(speech);
+        speech.rate =
+            0.95;
+
+
+        speech.pitch =
+            1;
+
+
+        window.speechSynthesis.speak(
+            speech
+        );
+
 
     } catch (error) {
 
@@ -747,11 +832,17 @@ function startVoiceInput() {
     const recognition =
         new SpeechRecognition();
 
-    recognition.lang = "en-KE";
 
-    recognition.continuous = false;
+    recognition.lang =
+        "en-KE";
 
-    recognition.interimResults = false;
+
+    recognition.continuous =
+        false;
+
+
+    recognition.interimResults =
+        false;
 
 
     if (status) {
@@ -782,12 +873,14 @@ function startVoiceInput() {
             const transcript =
                 event.results[0][0].transcript;
 
+
             if (userInput) {
 
                 userInput.value =
                     transcript;
 
             }
+
 
             if (status) {
 
@@ -806,6 +899,7 @@ function startVoiceInput() {
                 "Voice recognition error:",
                 event.error
             );
+
 
             if (status) {
 
@@ -839,17 +933,22 @@ function startVoiceInput() {
 window.sendMessage =
     sendMessage;
 
+
 window.clearChat =
     clearChat;
+
 
 window.goBack =
     goBack;
 
+
 window.askQuick =
     askQuick;
 
+
 window.getAnswer =
     getAnswer;
+
 
 window.startVoiceInput =
     startVoiceInput;
@@ -860,5 +959,4 @@ window.startVoiceInput =
 // ======================================================
 
 console.log(
-    "UOK AI v400 loaded successfully."
-);
+    "✅ UOK AI v401
