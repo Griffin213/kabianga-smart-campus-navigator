@@ -925,3 +925,64 @@ color:gray;
 .sports-clubs-button:active {
     transform: scale(0.98);
 }
+/* ========================================
+   UOK AI HOME SECTION
+======================================== */
+
+.uok-ai-home{
+    width:100%;
+    margin:0;
+}
+
+.uok-ai-button{
+    display:block;
+    width:100%;
+    background:#0b5ed7;
+    color:white;
+    text-decoration:none;
+    text-align:center;
+    padding:18px 15px;
+    border-radius:14px;
+    font-size:20px;
+    font-weight:800;
+    box-shadow:0 6px 15px rgba(0,0,0,0.12);
+    transition:0.2s ease;
+}
+
+.uok-ai-button:hover{
+    background:#084298;
+    transform:translateY(-2px);
+}
+
+.uok-ai-description{
+    background:#f3f7ff;
+    color:#444;
+    padding:15px 17px;
+    margin:10px 0 12px;
+    border-radius:12px;
+    border-left:4px solid #0b5ed7;
+    font-size:14px;
+    line-height:1.6;
+    text-align:left;
+}
+
+.uok-ai-description strong{
+    color:#0b5ed7;
+    font-size:15px;
+}
+
+.uok-ai-features{
+    display:flex;
+    flex-wrap:wrap;
+    gap:7px;
+    margin-bottom:5px;
+}
+
+.uok-ai-features span{
+    background:#e7f0ff;
+    color:#084298;
+    padding:7px 9px;
+    border-radius:20px;
+    font-size:12px;
+    font-weight:700;
+}
