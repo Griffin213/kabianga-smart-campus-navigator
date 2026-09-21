@@ -953,10 +953,11 @@ window.getAnswer =
 window.startVoiceInput =
     startVoiceInput;
 
-
 // ======================================================
 // FINISHED
 // ======================================================
 
 console.log(
-    "✅ UOK AI v401
+    "✅ UOK AI v401 loaded successfully."
+);
+
