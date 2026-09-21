@@ -2,10 +2,10 @@
 // UNIVERSITY OF KABIANGA
 // SMART CAMPUS NAVIGATOR
 // SERVICE WORKER
-// VERSION 41
+// VERSION 42
 // ==========================================
 
-const CACHE_NAME = "uok-campus-v41";
+const CACHE_NAME = "uok-campus-v42";
 
 
 // ==========================================
@@ -23,7 +23,13 @@ const urlsToCache = [
     "./prince-ai.html",
     "./prince-ai.js",
     "./knowledge.js",
+
     "./script.js",
+    "./smart-search.js",
+    "./announcements.js",
+    "./notifications.js",
+
+    "./firebase.js",
     "./style.css",
 
     "./manifest.json",
@@ -43,7 +49,7 @@ const urlsToCache = [
 self.addEventListener("install", event => {
 
     console.log(
-        "✅ UOK Service Worker v41 installing..."
+        "✅ UOK Service Worker v42 installing..."
     );
 
     // Activate immediately
@@ -63,6 +69,15 @@ self.addEventListener("install", event => {
 
             })
 
+            .catch(error => {
+
+                console.error(
+                    "❌ Cache installation failed:",
+                    error
+                );
+
+            })
+
     );
 
 });
@@ -75,7 +90,7 @@ self.addEventListener("install", event => {
 self.addEventListener("activate", event => {
 
     console.log(
-        "✅ UOK Service Worker v41 activated."
+        "✅ UOK Service Worker v42 activated."
     );
 
     event.waitUntil(
@@ -131,7 +146,10 @@ self.addEventListener("fetch", event => {
     const request = event.request;
 
 
-    // Only handle GET requests
+    // ======================================
+    // ONLY HANDLE GET REQUESTS
+    // ======================================
+
     if (
         request.method !== "GET"
     ) {
@@ -211,7 +229,7 @@ self.addEventListener("fetch", event => {
                 .catch(() => {
 
                     console.log(
-                        "⚠️ Network unavailable."
+                        "⚠️ Network unavailable. Using cached page."
                     );
 
                     return caches.match(
@@ -301,4 +319,9 @@ self.addEventListener(
         }
 
     }
+);
+
+
+console.log(
+    "🚀 UOK Service Worker v42 loaded successfully."
 );
