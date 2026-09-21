@@ -90,7 +90,7 @@ self.addEventListener("install", event => {
 self.addEventListener("activate", event => {
 
     console.log(
-        "✅ UOK Service Worker v42 activated."
+        "✅ UOK Service Worker v43 activated."
     );
 
     event.waitUntil(
@@ -323,5 +323,5 @@ self.addEventListener(
 
 
 console.log(
-    "🚀 UOK Service Worker v42 loaded successfully."
+    "🚀 UOK Service Worker v43 loaded successfully."
 );
