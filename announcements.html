@@ -1,997 +1,736 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
+
 <meta charset="UTF-8">
+
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 <title>Announcements | UOK Admin</title>
 
+
 <style>
 
-* {
-    box-sizing: border-box;
-    margin: 0;
-    padding: 0;
+/* =========================================================
+   UOK ADMIN — ANNOUNCEMENT MANAGEMENT
+   ========================================================= */
+
+*{
+    box-sizing:border-box;
+    margin:0;
+    padding:0;
 }
 
-body {
-    font-family: Arial, Helvetica, sans-serif;
-    background: #f4f7fb;
-    color: #172033;
+
+body{
+    font-family:Arial,Helvetica,sans-serif;
+    background:#f4f7fb;
+    color:#172033;
 }
 
-.sidebar {
-    position: fixed;
-    left: 0;
-    top: 0;
-    width: 250px;
-    height: 100vh;
-    background: linear-gradient(180deg, #075fd5, #0647a5);
-    color: white;
-    padding: 25px 15px;
-    z-index: 1000;
-    overflow-y: auto;
+
+/* =========================================================
+   SIDEBAR
+   ========================================================= */
+
+.sidebar{
+
+    position:fixed;
+
+    left:0;
+    top:0;
+
+    width:250px;
+    height:100vh;
+
+    background:
+        linear-gradient(
+            180deg,
+            #075fd5,
+            #0647a5
+        );
+
+    color:white;
+
+    padding:25px 15px;
+
+    z-index:1000;
+
+    overflow-y:auto;
+
 }
 
-.sidebar h2 {
-    text-align: center;
-    font-size: 22px;
-    margin-bottom: 30px;
+
+.sidebar h2{
+
+    text-align:center;
+
+    font-size:22px;
+
+    margin-bottom:30px;
+
 }
 
-.sidebar a {
-    display: block;
-    color: white;
-    text-decoration: none;
-    padding: 14px 16px;
-    margin: 5px 0;
-    border-radius: 10px;
-    font-size: 16px;
+
+.sidebar a{
+
+    display:block;
+
+    color:white;
+
+    text-decoration:none;
+
+    padding:13px 16px;
+
+    margin:5px 0;
+
+    border-radius:10px;
+
+    font-size:15px;
+
 }
+
 
 .sidebar a:hover,
-.sidebar a.active {
-    background: rgba(255,255,255,0.2);
+.sidebar a.active{
+
+    background:
+        rgba(255,255,255,.18);
+
 }
 
-.sidebar .logout {
-    margin-top: 30px;
-    background: rgba(0,0,0,0.15);
+
+.sidebar .logout{
+
+    margin-top:30px;
+
+    background:
+        rgba(0,0,0,.15);
+
 }
 
-.main {
-    margin-left: 250px;
-    min-height: 100vh;
-    padding: 30px;
+
+/* =========================================================
+   MAIN
+   ========================================================= */
+
+.main{
+
+    margin-left:250px;
+
+    min-height:100vh;
+
+    padding:30px;
+
 }
 
-.topbar {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    background: white;
-    padding: 20px 25px;
-    border-radius: 16px;
-    margin-bottom: 25px;
-    box-shadow: 0 4px 18px rgba(0,0,0,0.05);
+
+/* =========================================================
+   TOP BAR
+   ========================================================= */
+
+.topbar{
+
+    display:flex;
+
+    justify-content:space-between;
+
+    align-items:center;
+
+    background:white;
+
+    padding:20px 25px;
+
+    border-radius:16px;
+
+    margin-bottom:25px;
+
+    box-shadow:
+        0 4px 18px
+        rgba(0,0,0,.05);
+
 }
 
-.topbar h1 {
-    color: #075dcc;
-    font-size: 28px;
+
+.topbar h1{
+
+    color:#075dcc;
+
+    font-size:27px;
+
 }
 
-.topbar p {
-    color: #697386;
-    margin-top: 5px;
+
+.topbar p{
+
+    color:#697386;
+
+    margin-top:5px;
+
+    font-size:14px;
+
 }
 
-.menu-btn {
-    display: none;
-    border: none;
-    background: #075dcc;
-    color: white;
-    padding: 10px 14px;
-    border-radius: 8px;
-    font-size: 20px;
+
+.menu-btn{
+
+    display:none;
+
+    border:none;
+
+    background:#075dcc;
+
+    color:white;
+
+    padding:10px 14px;
+
+    border-radius:8px;
+
+    font-size:20px;
+
 }
 
-.workspace {
-    display: grid;
-    grid-template-columns: minmax(0, 1.4fr) minmax(280px, 0.8fr);
-    gap: 25px;
-    align-items: start;
+
+/* =========================================================
+   WORKSPACE
+   ========================================================= */
+
+.workspace{
+
+    display:grid;
+
+    grid-template-columns:
+        minmax(0,1.35fr)
+        minmax(300px,.8fr);
+
+    gap:25px;
+
+    align-items:start;
+
 }
 
-.card {
-    background: white;
-    border-radius: 18px;
-    padding: 30px;
-    box-shadow: 0 5px 25px rgba(0,0,0,0.06);
-    margin-bottom: 25px;
+
+/* =========================================================
+   CARD
+   ========================================================= */
+
+.card{
+
+    background:white;
+
+    border-radius:18px;
+
+    padding:28px;
+
+    box-shadow:
+        0 5px 25px
+        rgba(0,0,0,.06);
+
+    margin-bottom:25px;
+
 }
 
-.card h2 {
-    color: #075dcc;
-    font-size: 24px;
-    margin-bottom: 8px;
+
+.card h2{
+
+    color:#075dcc;
+
+    font-size:22px;
+
+    margin-bottom:8px;
+
 }
 
-.card-subtitle {
-    color: #777;
-    margin-bottom: 25px;
+
+.card-subtitle{
+
+    color:#777;
+
+    margin-bottom:23px;
+
+    font-size:14px;
+
 }
 
-label {
-    display: block;
-    font-weight: bold;
-    font-size: 16px;
-    margin: 20px 0 8px;
+
+/* =========================================================
+   FORM
+   ========================================================= */
+
+label.form-label{
+
+    display:block;
+
+    font-weight:bold;
+
+    font-size:14px;
+
+    margin:19px 0 8px;
+
 }
+
+
+.optional{
+
+    color:#8a94a5;
+
+    font-size:11px;
+
+    font-weight:normal;
+
+}
+
 
 input,
 textarea,
-select {
-    width: 100%;
-    border: 1px solid #d9e0ea;
-    border-radius: 10px;
-    padding: 15px;
-    font-size: 16px;
-    outline: none;
-    font-family: inherit;
-    background: #fbfcfe;
+select{
+
+    width:100%;
+
+    border:
+        1px solid
+        #d9e0ea;
+
+    border-radius:10px;
+
+    padding:13px;
+
+    font-size:14px;
+
+    outline:none;
+
+    font-family:inherit;
+
+    background:#fbfcfe;
+
 }
 
-textarea {
-    min-height: 180px;
-    resize: vertical;
+
+textarea{
+
+    min-height:145px;
+
+    resize:vertical;
+
 }
+
 
 input:focus,
 textarea:focus,
-select:focus {
-    border-color: #075dcc;
-    box-shadow: 0 0 0 3px rgba(7,93,204,0.08);
-}
+select:focus{
 
-.upload-box {
-    border: 2px dashed #75a9e8;
-    border-radius: 14px;
-    padding: 30px;
-    text-align: center;
-    background: #f5f9ff;
-    cursor: pointer;
-    margin-top: 10px;
-}
+    border-color:#075dcc;
 
-.upload-box .icon {
-    font-size: 42px;
-    margin-bottom: 10px;
-}
-
-.upload-box h3 {
-    color: #075dcc;
-    margin-bottom: 8px;
-}
-
-.upload-box p {
-    color: #777;
-    font-size: 14px;
-}
-
-#photoInput {
-    display: none;
-}
-
-.preview-images {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
-    gap: 12px;
-    margin-top: 20px;
-}
-
-.preview-item {
-    position: relative;
-}
-
-.preview-item img {
-    width: 100%;
-    height: 120px;
-    object-fit: cover;
-    border-radius: 10px;
-}
-
-.remove-photo {
-    position: absolute;
-    top: 5px;
-    right: 5px;
-    border: none;
-    background: #dc3545;
-    color: white;
-    width: 26px;
-    height: 26px;
-    border-radius: 50%;
-    cursor: pointer;
-}
-
-.button-row {
-    display: flex;
-    gap: 12px;
-    margin-top: 25px;
-    flex-wrap: wrap;
-}
-
-button {
-    cursor: pointer;
-    border: none;
-    font-family: inherit;
-}
-
-.publish-btn {
-    background: #075dcc;
-    color: white;
-    padding: 15px 25px;
-    border-radius: 10px;
-    font-size: 16px;
-    font-weight: bold;
-}
-
-.publish-btn:disabled {
-    opacity: 0.6;
-    cursor: not-allowed;
-}
-
-.clear-btn {
-    background: #e9eef5;
-    color: #333;
-    padding: 15px 25px;
-    border-radius: 10px;
-    font-size: 16px;
-}
-
-.live-preview {
-    position: sticky;
-    top: 25px;
-}
-
-.preview-label {
-    color: #777;
-    font-size: 13px;
-    text-transform: uppercase;
-    letter-spacing: 1px;
-    margin-bottom: 15px;
-}
-
-.announcement-preview {
-    border: 1px solid #e3e8ef;
-    border-radius: 14px;
-    overflow: hidden;
-    background: white;
-}
-
-.preview-header {
-    background: linear-gradient(135deg, #075dcc, #083f91);
-    color: white;
-    padding: 20px;
-}
-
-.preview-header h3 {
-    font-size: 20px;
-}
-
-.preview-body {
-    padding: 20px;
-}
-
-.preview-body p {
-    color: #555;
-    line-height: 1.6;
-    white-space: pre-wrap;
-}
-
-.preview-date {
-    color: #888;
-    font-size: 13px;
-    margin-top: 15px;
-}
-
-.preview-photo {
-    width: 100%;
-    max-height: 220px;
-    object-fit: cover;
-    display: block;
-}
-
-.announcement-list {
-    display: grid;
-    gap: 15px;
-}
-
-.announcement-item {
-    background: white;
-    border: 1px solid #e1e7ef;
-    border-radius: 12px;
-    padding: 20px;
-}
-
-.announcement-item h3 {
-    color: #075dcc;
-    margin-bottom: 8px;
-}
-
-.announcement-item p {
-    color: #555;
-    line-height: 1.5;
-    white-space: pre-wrap;
-}
-
-.announcement-item small {
-    display: block;
-    color: #888;
-    margin-top: 12px;
-}
-
-.announcement-item img {
-    width: 100%;
-    max-height: 250px;
-    object-fit: cover;
-    border-radius: 10px;
-    margin-top: 12px;
-}
-
-.status-message {
-    margin-top: 15px;
-    padding: 12px;
-    border-radius: 8px;
-    display: none;
-    font-size: 14px;
-}
-
-.status-success {
-    background: #e8f7ee;
-    color: #177245;
-}
-
-.status-error {
-    background: #fdecec;
-    color: #a02020;
-}
-
-@media (max-width: 900px) {
-
-    .sidebar {
-        transform: translateX(-100%);
-        transition: 0.3s;
-    }
-
-    .sidebar.open {
-        transform: translateX(0);
-    }
-
-    .main {
-        margin-left: 0;
-        padding: 15px;
-    }
-
-    .menu-btn {
-        display: block;
-    }
-
-    .workspace {
-        grid-template-columns: 1fr;
-    }
-
-    .live-preview {
-        position: static;
-    }
-}
-
-@media (max-width: 500px) {
-
-    .main {
-        padding: 10px;
-    }
-
-    .topbar h1 {
-        font-size: 22px;
-    }
-
-    .card {
-        padding: 18px;
-    }
-
-    .button-row button {
-        width: 100%;
-    }
+    box-shadow:
+        0 0 0 3px
+        rgba(7,93,204,.08);
 
 }
 
-</style>
-</head>
 
-<body>
+/* =========================================================
+   TYPE SELECTOR
+   ========================================================= */
 
-<aside class="sidebar" id="sidebar">
+.type-grid{
 
-    <h2>UOK Admin</h2>
+    display:grid;
 
-    <a href="dashboard.html">Dashboard</a>
-    <a href="buildings.html">Buildings</a>
-    <a href="schools.html">Schools</a>
-    <a href="lecturers.html">Lecturers</a>
-    <a href="timetable.html">Timetable</a>
+    grid-template-columns:
+        repeat(3,1fr);
 
-    <a href="announcements.html" class="active">
-        Announcements
-    </a>
+    gap:10px;
 
-    <a href="ai-knowledge.html">Prince AI Knowledge</a>
-    <a href="students.html">Students</a>
-    <a href="settings.html">Settings</a>
-
-    <a href="admin.html" class="logout">Logout</a>
-
-</aside>
-
-
-<main class="main">
-
-    <div class="topbar">
-
-        <div>
-            <h1>University Announcements</h1>
-            <p>Publish official information for students and staff.</p>
-        </div>
-
-        <button class="menu-btn" onclick="toggleSidebar()">☰</button>
-
-    </div>
-
-
-    <div class="workspace">
-
-        <section>
-
-            <div class="card">
-
-                <h2>Create New Announcement</h2>
-
-                <p class="card-subtitle">
-                    Create an official announcement and optionally attach photos.
-                </p>
-
-                <form id="announcementForm">
-
-                    <label for="title">Announcement Title</label>
-
-                    <input
-                        type="text"
-                        id="title"
-                        placeholder="Example: Student Registration Notice"
-                        required
-                    >
-
-                    <label for="message">Announcement Message</label>
-
-                    <textarea
-                        id="message"
-                        placeholder="Type your official university announcement here..."
-                        required
-                    ></textarea>
-
-                    <label for="category">Announcement Category</label>
-
-                    <select id="category">
-
-                        <option value="General">General</option>
-                        <option value="Academic">Academic</option>
-                        <option value="Examinations">Examinations</option>
-                        <option value="Admissions">Admissions</option>
-                        <option value="Student Affairs">Student Affairs</option>
-                        <option value="Events">Events</option>
-                        <option value="Emergency">Emergency</option>
-
-                    </select>
-
-                    <label>Add Photos</label>
-
-                    <label class="upload-box" for="photoInput">
-
-                        <div class="icon">📷</div>
-
-                        <h3>Upload Announcement Photos</h3>
-
-                        <p>Tap here to select photos from your phone.</p>
-
-                        <p>JPG, PNG and JPEG images supported.</p>
-
-                    </label>
-
-                    <input
-                        type="file"
-                        id="photoInput"
-                        accept="image/*"
-                        multiple
-                    >
-
-                    <div id="previewImages" class="preview-images"></div>
-
-                    <div class="button-row">
-
-                        <button
-                            type="submit"
-                            class="publish-btn"
-                            id="publishBtn"
-                        >
-                            Publish Announcement
-                        </button>
-
-                        <button
-                            type="button"
-                            class="clear-btn"
-                            onclick="clearForm()"
-                        >
-                            Clear
-                        </button>
-
-                    </div>
-
-                    <div id="statusMessage" class="status-message"></div>
-
-                </form>
-
-            </div>
-
-
-            <div class="card">
-
-                <h2>Published Announcements</h2>
-
-                <p class="card-subtitle">
-                    Recent announcements published by administrators.
-                </p>
-
-                <div id="announcementList">
-                    <p style="color:#777;">
-                        Loading announcements...
-                    </p>
-                </div>
-
-            </div>
-
-        </section>
-
-
-        <aside class="live-preview">
-
-            <div class="card">
-
-                <div class="preview-label">
-                    Live Announcement Preview
-                </div>
-
-                <div class="announcement-preview">
-
-                    <div class="preview-header">
-
-                        <h3 id="previewTitle">
-                            Your Announcement Title
-                        </h3>
-
-                    </div>
-
-                    <div id="previewPhotoContainer"></div>
-
-                    <div class="preview-body">
-
-                        <p id="previewMessage">
-                            Your announcement message will appear here as you type.
-                        </p>
-
-                        <div class="preview-date" id="previewCategory">
-                            General Announcement
-                        </div>
-
-                    </div>
-
-                </div>
-
-            </div>
-
-        </aside>
-
-    </div>
-
-</main>
-
-
-<script type="module">
-
-import { db, storage } from "./firebase.js";
-
-import {
-    collection,
-    addDoc,
-    onSnapshot,
-    Timestamp
-} from "https://www.gstatic.com/firebasejs/12.16.0/firebase-firestore.js";
-
-import {
-    ref,
-    uploadBytes,
-    getDownloadURL
-} from "https://www.gstatic.com/firebasejs/12.16.0/firebase-storage.js";
-
-
-const form = document.getElementById("announcementForm");
-
-const titleInput = document.getElementById("title");
-const messageInput = document.getElementById("message");
-const categoryInput = document.getElementById("category");
-const photoInput = document.getElementById("photoInput");
-
-const previewImages = document.getElementById("previewImages");
-const previewTitle = document.getElementById("previewTitle");
-const previewMessage = document.getElementById("previewMessage");
-const previewCategory = document.getElementById("previewCategory");
-const previewPhotoContainer = document.getElementById("previewPhotoContainer");
-
-const publishBtn = document.getElementById("publishBtn");
-const statusMessage = document.getElementById("statusMessage");
-const announcementList = document.getElementById("announcementList");
-
-let selectedFiles = [];
-
-
-/* =========================
-   SIDEBAR
-========================= */
-
-window.toggleSidebar = function() {
-
-    document.getElementById("sidebar").classList.toggle("open");
-
-};
-
-
-/* =========================
-   LIVE PREVIEW
-========================= */
-
-titleInput.addEventListener("input", function() {
-
-    previewTitle.textContent =
-        titleInput.value || "Your Announcement Title";
-
-});
-
-messageInput.addEventListener("input", function() {
-
-    previewMessage.textContent =
-        messageInput.value ||
-        "Your announcement message will appear here.";
-
-});
-
-categoryInput.addEventListener("change", function() {
-
-    previewCategory.textContent =
-        categoryInput.value + " Announcement";
-
-});
-
-
-/* =========================
-   PHOTO SELECTION
-========================= */
-
-photoInput.addEventListener("change", function() {
-
-    selectedFiles = Array.from(photoInput.files);
-
-    showPhotoPreviews();
-
-});
-
-
-function showPhotoPreviews() {
-
-    previewImages.innerHTML = "";
-    previewPhotoContainer.innerHTML = "";
-
-    selectedFiles.forEach(function(file, index) {
-
-        const reader = new FileReader();
-
-        reader.onload = function(event) {
-
-            const wrapper = document.createElement("div");
-            wrapper.className = "preview-item";
-
-            const image = document.createElement("img");
-            image.src = event.target.result;
-
-            const removeButton = document.createElement("button");
-
-            removeButton.type = "button";
-            removeButton.className = "remove-photo";
-            removeButton.textContent = "×";
-
-            removeButton.onclick = function() {
-
-                selectedFiles.splice(index, 1);
-
-                showPhotoPreviews();
-
-            };
-
-            wrapper.appendChild(image);
-            wrapper.appendChild(removeButton);
-
-            previewImages.appendChild(wrapper);
-
-
-            if (index === 0) {
-
-                const previewImage = document.createElement("img");
-
-                previewImage.src = event.target.result;
-                previewImage.className = "preview-photo";
-
-                previewPhotoContainer.appendChild(previewImage);
-
-            }
-
-        };
-
-        reader.readAsDataURL(file);
-
-    });
+    margin-top:10px;
 
 }
 
 
-/* =========================
-   PUBLISH ANNOUNCEMENT
-========================= */
+.type-option{
 
-form.addEventListener("submit", async function(event) {
+    position:relative;
 
-    event.preventDefault();
+}
 
-    const title = titleInput.value.trim();
-    const message = messageInput.value.trim();
-    const category = categoryInput.value;
 
-    if (!title || !message) {
+.type-option input{
 
-        showStatus(
-            "Please enter both a title and message.",
-            "error"
+    position:absolute;
+
+    opacity:0;
+
+}
+
+
+.type-option label{
+
+    display:block;
+
+    padding:13px 8px;
+
+    text-align:center;
+
+    border:
+        1px solid
+        #dce3ed;
+
+    border-radius:12px;
+
+    background:#fafcff;
+
+    cursor:pointer;
+
+    font-size:12px;
+
+    font-weight:bold;
+
+}
+
+
+.type-option input:checked + label{
+
+    background:#edf5ff;
+
+    border-color:#075dcc;
+
+    color:#075dcc;
+
+}
+
+
+/* =========================================================
+   PRIORITY
+   ========================================================= */
+
+.priority-grid{
+
+    display:grid;
+
+    grid-template-columns:
+        repeat(3,1fr);
+
+    gap:10px;
+
+}
+
+
+.priority-option{
+
+    position:relative;
+
+}
+
+
+.priority-option input{
+
+    position:absolute;
+
+    opacity:0;
+
+}
+
+
+.priority-option label{
+
+    display:block;
+
+    padding:11px;
+
+    text-align:center;
+
+    border:
+        1px solid
+        #dce3ed;
+
+    border-radius:10px;
+
+    cursor:pointer;
+
+    font-size:12px;
+
+    font-weight:bold;
+
+}
+
+
+.priority-option input:checked + label{
+
+    border-color:#075dcc;
+
+    background:#edf5ff;
+
+    color:#075dcc;
+
+}
+
+
+/* =========================================================
+   UPLOAD BOX
+   ========================================================= */
+
+.upload-box{
+
+    border:
+        2px dashed
+        #75a9e8;
+
+    border-radius:14px;
+
+    padding:25px 15px;
+
+    text-align:center;
+
+    background:
+        linear-gradient(
+            135deg,
+            #f5f9ff,
+            #eef6ff
         );
 
-        return;
+    cursor:pointer;
+
+    margin-top:10px;
+
+    transition:
+        0.25s ease;
+
+}
+
+
+.upload-box:hover{
+
+    border-color:#075dcc;
+
+    background:#eaf3ff;
+
+    transform:translateY(-1px);
+
+}
+
+
+.upload-box:active{
+
+    transform:scale(0.99);
+
+}
+
+
+.upload-box .icon{
+
+    font-size:38px;
+
+    margin-bottom:8px;
+
+}
+
+
+.upload-box h3{
+
+    color:#075dcc;
+
+    margin-bottom:6px;
+
+    font-size:17px;
+
+}
+
+
+.upload-box p{
+
+    color:#777;
+
+    font-size:13px;
+
+    line-height:1.5;
+
+}
+
+
+/* =========================================================
+   HIDDEN PHOTO INPUT
+   ========================================================= */
+
+#photoInput{
+
+    display:none;
+
+}
+
+
+/* =========================================================
+   PHOTO PREVIEW GRID
+   ========================================================= */
+
+.preview-images{
+
+    display:grid;
+
+    grid-template-columns:
+        repeat(
+            auto-fit,
+            minmax(110px,1fr)
+        );
+
+    gap:10px;
+
+    margin-top:15px;
+
+}
+
+
+/* =========================================================
+   PHOTO PREVIEW ITEM
+   ========================================================= */
+
+.preview-item{
+
+    position:relative;
+
+}
+
+
+.preview-item img{
+
+    width:100%;
+
+    height:110px;
+
+    object-fit:cover;
+
+    border-radius:10px;
+
+    border:1px solid #e0e7f0;
+
+}
+
+
+/* =========================================================
+   REMOVE PHOTO BUTTON
+   ========================================================= */
+
+.remove-photo{
+
+    position:absolute;
+
+    top:5px;
+
+    right:5px;
+
+    border:none;
+
+    background:#dc3545;
+
+    color:white;
+
+    width:25px;
+
+    height:25px;
+
+    border-radius:50%;
+
+    cursor:pointer;
+
+    font-size:16px;
+
+    line-height:25px;
+
+    padding:0;
+
+}
+
+
+/* =========================================================
+   ANNOUNCEMENT IMAGE
+   ========================================================= */
+
+.announcement-photo{
+
+    width:100%;
+
+    max-height:320px;
+
+    object-fit:cover;
+
+    border-radius:12px;
+
+    margin-top:12px;
+
+    display:block;
+
+}
+
+
+/* =========================================================
+   MULTIPLE ANNOUNCEMENT PHOTOS
+   ========================================================= */
+
+.announcement-images{
+
+    display:grid;
+
+    grid-template-columns:
+        repeat(
+            auto-fit,
+            minmax(140px,1fr)
+        );
+
+    gap:10px;
+
+    margin-top:15px;
+
+}
+
+
+.announcement-images .announcement-photo{
+
+    height:150px;
+
+    object-fit:cover;
+
+    margin-top:0;
+
+}
+
+
+/* =========================================================
+   MOBILE
+   ========================================================= */
+
+@media(max-width:500px){
+
+    .upload-box{
+
+        padding:20px 12px;
 
     }
 
-    publishBtn.disabled = true;
-    publishBtn.textContent = "Publishing...";
 
-    try {
+    .upload-box .icon{
 
-        const photoUrls = [];
-
-        /*
-         * Upload photos if selected.
-         *
-         * Note:
-         * Firebase Storage requires Blaze billing
-         * in your current Firebase project.
-         */
-
-        if (selectedFiles.length > 0) {
-
-            for (const file of selectedFiles) {
-
-                const fileName =
-                    Date.now() + "_" +
-                    file.name.replace(/\s+/g, "_");
-
-                const storageRef = ref(
-                    storage,
-                    "announcements/" + fileName
-                );
-
-                await uploadBytes(storageRef, file);
-
-                const downloadURL =
-                    await getDownloadURL(storageRef);
-
-                photoUrls.push(downloadURL);
-
-            }
-
-        }
-
-
-        /*
-         * Save announcement in Firestore.
-         *
-         * Timestamp.now() is used instead of serverTimestamp()
-         * so the document is immediately sortable.
-         */
-
-        const announcementData = {
-
-            title: title,
-
-            message: message,
-
-            category: category,
-
-            photos: photoUrls,
-
-            time: new Date().toLocaleString(),
-
-            createdAt: Timestamp.now(),
-
-            notificationSent: false
-
-        };
-
-
-        const savedDocument = await addDoc(
-            collection(db, "announcements"),
-            announcementData
-        );
-
-
-        console.log(
-            "Announcement saved successfully:",
-            savedDocument.id
-        );
-
-
-        showStatus(
-            "Announcement published successfully. It has been saved permanently.",
-            "success"
-        );
-
-
-        /*
-         * DO NOT automatically clear the form.
-         * This prevents the announcement from appearing to disappear.
-         */
-
-        publishBtn.textContent = "Published Successfully";
-
-
-        setTimeout(function() {
-
-            publishBtn.textContent = "Publish Announcement";
-            publishBtn.disabled = false;
-
-        }, 2000);
-
-
-    } catch (error) {
-
-        console.error("Announcement error:", error);
-
-        let errorMessage = error.message;
-
-        if (
-            errorMessage.includes("storage") ||
-            errorMessage.includes("billing")
-        ) {
-
-            errorMessage =
-                "Photos require Firebase Storage billing. " +
-                "Please upgrade Firebase Storage or publish without photos.";
-
-        }
-
-        showStatus(
-            "Failed to publish announcement: " + errorMessage,
-            "error"
-        );
-
-        publishBtn.disabled = false;
-        publishBtn.textContent = "Publish Announcement";
+        font-size:34px;
 
     }
 
-});
+
+    .upload-box h3{
+
+        font-size:16px;
+
+    }
 
 
-/* =========================
-   LOAD ANNOUNCEMENTS
-========================= */
+    .upload-box p{
 
-onSnapshot(
-    collection(db, "announcements"),
+        font-size:12px;
 
-    function(snapshot) {
-
-        announcementList.innerHTML = "";
-
-        if (snapshot.empty) {
-
-            announcementList.innerHTML =
-                "<p style='color:#777;'>No announcements published yet.</p>";
-
-            return;
-
-        }
+    }
 
 
-        const announcements = [];
+    .preview-item img{
 
-        snapshot.forEach(function(docSnap) {
+        height:100px;
 
-            announcements.push({
+    }
 
-                id: docSnap.id,
-                ...docSnap.data()
-
-            });
-
-        });
-
-
-        /*
-         * Sort announcements on the phone/browser.
-         * This avoids Firestore index/orderBy problems.
-         */
-
-        announcements.sort(function(a, b) {
-
-            const dateA = getDateValue(a.createdAt);
-            const dateB = getDateValue(b.createdAt);
-
-            return dateB - dateA;
-
-        });
-
-
-        announcements.forEach(function(data) {
-
-            const item = document.createElement("div");
-
-            item.className = "announcement-item";
-
-
-            const title = document.createElement("h3");
-
-            title.textContent =
-                data.title || "Untitled Announcement";
-
-
-            const message = document.createElement("p");
-
-            message.textContent =
-                data.message || "";
-
-
-            const category = document.createElement("small");
-
-            category.textContent =
-                (data.category || "General") +
-                " • " +
-                (data.time || "Recently published");
-
-
-            item.appendChild(title);
-
-            item.appendChild(message);
-
-            item.appendChild(category);
-
-
-            /*
-             * Display photos saved in Firestore.
-             */
-
-            if (Array.isArray(data.photos) && data.photos.length > 0) {
-
-                data.photos.forEach(function(photoUr
+}
