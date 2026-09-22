@@ -1,7 +1,7 @@
 // ======================================================
 // 🤖 UOK AI
 // UNIVERSITY OF KABIANGA SMART CAMPUS NAVIGATOR
-// VERSION 402
+// VERSION 406
 //
 // Controls:
 // - Chat
@@ -9,13 +9,12 @@
 // - Quick questions
 // - Voice input
 // - Text-to-speech
-// - Student Finance directions
-// - Security Office directions
+// - Campus directions
 //
 // University information is stored in knowledge.js.
 // ======================================================
 
-console.log("🤖 UOK AI v402 loading...");
+console.log("🤖 UOK AI v406 loading...");
 
 
 // ======================================================
@@ -37,7 +36,7 @@ let status = null;
 
 document.addEventListener("DOMContentLoaded", function () {
 
-    console.log("🤖 UOK AI v402 initializing...");
+    console.log("🤖 UOK AI v406 initializing...");
 
     chatBox = document.getElementById("chatBox");
     userInput = document.getElementById("userInput");
@@ -45,6 +44,7 @@ document.addEventListener("DOMContentLoaded", function () {
     clearBtn = document.getElementById("clearBtn");
     backBtn = document.getElementById("backBtn");
 
+    // Support both microphone IDs
     voiceBtn =
         document.getElementById("micBtn") ||
         document.getElementById("voiceBtn");
@@ -137,12 +137,13 @@ document.addEventListener("DOMContentLoaded", function () {
 
     if (status) {
 
-        status.textContent = "🟢 UOK AI is ready";
+        status.textContent =
+            "🟢 UOK AI is ready";
 
     }
 
 
-    console.log("✅ UOK AI v402 is ready.");
+    console.log("✅ UOK AI v406 is ready.");
 
 });
 
@@ -160,7 +161,8 @@ function sendMessage() {
     }
 
 
-    const question = userInput.value.trim();
+    const question =
+        userInput.value.trim();
 
 
     if (question === "") {
@@ -170,14 +172,20 @@ function sendMessage() {
     }
 
 
+    // Show user message
     addUserMessage(question);
 
+
+    // Clear input
     userInput.value = "";
 
 
-    const answer = getAnswer(question);
+    // Find answer
+    const answer =
+        getAnswer(question);
 
 
+    // Natural response delay
     setTimeout(function () {
 
         addBotMessage(answer);
@@ -245,10 +253,13 @@ function findKnowledge(question) {
     }
 
 
-    const text = normalizeText(question);
+    const text =
+        normalizeText(question);
+
 
     const entries =
         Object.values(campusKnowledge);
+
 
     const matches = [];
 
@@ -278,7 +289,9 @@ function findKnowledge(question) {
             }
 
 
-            if (text.includes(normalizedKeyword)) {
+            if (
+                text.includes(normalizedKeyword)
+            ) {
 
                 matches.push({
 
@@ -304,6 +317,7 @@ function findKnowledge(question) {
     }
 
 
+    // Most specific match first
     matches.sort(function (a, b) {
 
         return b.length - a.length;
@@ -407,94 +421,6 @@ function getAnswer(question) {
 
 
     // ==================================================
-    // DIRECTIONS — STUDENT FINANCE
-    // ==================================================
-
-    if (
-        text.includes("student finance") ||
-        text.includes("student finance office")
-    ) {
-
-        const item =
-            campusKnowledge.studentFinance;
-
-
-        if (item) {
-
-            if (
-                text.includes("where") ||
-                text.includes("location") ||
-                text.includes("direction") ||
-                text.includes("get to") ||
-                text.includes("how do i") ||
-                text.includes("how can i")
-            ) {
-
-                if (item.directions) {
-
-                    return (
-                        item.info +
-                        "\n\nDirections:\n• " +
-                        item.directions.join("\n• ")
-                    );
-
-                }
-
-            }
-
-            return item.info;
-
-        }
-
-    }
-
-
-    // ==================================================
-    // DIRECTIONS — SECURITY OFFICES
-    // ==================================================
-
-    if (
-        text.includes("security office") ||
-        text.includes("security offices") ||
-        text.includes("university security") ||
-        text.includes("campus security")
-    ) {
-
-        const item =
-            campusKnowledge.securityOffice;
-
-
-        if (item) {
-
-            if (
-                text.includes("where") ||
-                text.includes("location") ||
-                text.includes("direction") ||
-                text.includes("get to") ||
-                text.includes("how do i") ||
-                text.includes("how can i")
-            ) {
-
-                if (item.directions) {
-
-                    return (
-                        item.info +
-                        "\n\nDirections:\n• " +
-                        item.directions.join("\n• ")
-                    );
-
-                }
-
-            }
-
-            return item.info;
-
-        }
-
-    }
-
-
-    // ==================================================
     // DIRECTIONS — HEALTH CENTRE
     // ==================================================
 
@@ -567,6 +493,82 @@ function getAnswer(question) {
 
 
     // ==================================================
+    // DIRECTIONS — STUDENT FINANCE
+    // ==================================================
+
+    if (
+        text.includes("student finance") ||
+        text.includes("where is student finance") ||
+        text.includes("where is the student finance") ||
+        text.includes("location of student finance") ||
+        text.includes("student finance location") ||
+        text.includes("directions to student finance") ||
+        text.includes("directions to the student finance") ||
+        text.includes("how do i get to student finance") ||
+        text.includes("how can i get to student finance")
+    ) {
+
+        const item =
+            campusKnowledge.studentFinance;
+
+
+        if (
+            item &&
+            item.directions
+        ) {
+
+            return (
+                item.info +
+                "\n\nDirections:\n• " +
+                item.directions.join("\n• ")
+            );
+
+        }
+
+    }
+
+
+    // ==================================================
+    // DIRECTIONS — SECURITY OFFICES
+    // ==================================================
+
+    if (
+        text.includes("security office") ||
+        text.includes("security offices") ||
+        text.includes("where is security") ||
+        text.includes("where is the security") ||
+        text.includes("where are the security offices") ||
+        text.includes("location of security office") ||
+        text.includes("location of security offices") ||
+        text.includes("security office location") ||
+        text.includes("directions to security") ||
+        text.includes("directions to the security office") ||
+        text.includes("how do i get to security") ||
+        text.includes("how do i get to the security office") ||
+        text.includes("how can i get to security")
+    ) {
+
+        const item =
+            campusKnowledge.securityOffice;
+
+
+        if (
+            item &&
+            item.directions
+        ) {
+
+            return (
+                item.info +
+                "\n\nDirections:\n• " +
+                item.directions.join("\n• ")
+            );
+
+        }
+
+    }
+
+
+    // ==================================================
     // LTB3 GROUND FLOOR
     // ==================================================
 
@@ -578,7 +580,9 @@ function getAnswer(question) {
         )
     ) {
 
-        if (campusKnowledge.ltb3GroundFloor) {
+        if (
+            campusKnowledge.ltb3GroundFloor
+        ) {
 
             return campusKnowledge
                 .ltb3GroundFloor
@@ -601,7 +605,9 @@ function getAnswer(question) {
         )
     ) {
 
-        if (campusKnowledge.ltb3FirstFloor) {
+        if (
+            campusKnowledge.ltb3FirstFloor
+        ) {
 
             return campusKnowledge
                 .ltb3FirstFloor
@@ -624,7 +630,9 @@ function getAnswer(question) {
         )
     ) {
 
-        if (campusKnowledge.ltb3SecondFloor) {
+        if (
+            campusKnowledge.ltb3SecondFloor
+        ) {
 
             return campusKnowledge
                 .ltb3SecondFloor
@@ -647,7 +655,9 @@ function getAnswer(question) {
         )
     ) {
 
-        if (campusKnowledge.ltb3ThirdFloor) {
+        if (
+            campusKnowledge.ltb3ThirdFloor
+        ) {
 
             return campusKnowledge
                 .ltb3ThirdFloor
@@ -670,7 +680,9 @@ function getAnswer(question) {
         )
     ) {
 
-        if (campusKnowledge.ltb3Floors) {
+        if (
+            campusKnowledge.ltb3Floors
+        ) {
 
             return campusKnowledge
                 .ltb3Floors
@@ -809,224 +821,4 @@ function clearChat() {
 
 
     addBotMessage(
-        "Hello again! 👋 I am UOK AI. How can I help you?"
-    );
-
-}
-
-
-// ======================================================
-// BACK
-// ======================================================
-
-function goBack() {
-
-    window.location.href =
-        "main-campus.html";
-
-}
-
-
-// ======================================================
-// TEXT TO SPEECH
-// ======================================================
-
-function speak(text) {
-
-    if (
-        !("speechSynthesis" in window)
-    ) {
-
-        return;
-
-    }
-
-
-    try {
-
-        window.speechSynthesis.cancel();
-
-
-        const speech =
-            new SpeechSynthesisUtterance(text);
-
-
-        speech.lang =
-            "en-KE";
-
-
-        speech.rate =
-            0.95;
-
-
-        speech.pitch =
-            1;
-
-
-        window.speechSynthesis.speak(
-            speech
-        );
-
-
-    } catch (error) {
-
-        console.log(
-            "UOK AI speech error:",
-            error
-        );
-
-    }
-
-}
-
-
-// ======================================================
-// VOICE INPUT
-// ======================================================
-
-function startVoiceInput() {
-
-    const SpeechRecognition =
-        window.SpeechRecognition ||
-        window.webkitSpeechRecognition;
-
-
-    if (!SpeechRecognition) {
-
-        alert(
-            "Voice input is not supported by this browser. " +
-            "Please use Google Chrome."
-        );
-
-        return;
-
-    }
-
-
-    const recognition =
-        new SpeechRecognition();
-
-
-    recognition.lang =
-        "en-KE";
-
-
-    recognition.continuous =
-        false;
-
-
-    recognition.interimResults =
-        false;
-
-
-    if (status) {
-
-        status.textContent =
-            "🎤 Listening...";
-
-    }
-
-
-    try {
-
-        recognition.start();
-
-    } catch (error) {
-
-        console.log(
-            "Voice start error:",
-            error
-        );
-
-    }
-
-
-    recognition.onresult =
-        function (event) {
-
-            const transcript =
-                event.results[0][0].transcript;
-
-
-            if (userInput) {
-
-                userInput.value =
-                    transcript;
-
-            }
-
-
-            if (status) {
-
-                status.textContent =
-                    "🟢 UOK AI is ready";
-
-            }
-
-        };
-
-
-    recognition.onerror =
-        function (event) {
-
-            console.log(
-                "Voice recognition error:",
-                event.error
-            );
-
-
-            if (status) {
-
-                status.textContent =
-                    "🟢 UOK AI is ready";
-
-            }
-
-        };
-
-
-    recognition.onend =
-        function () {
-
-            if (status) {
-
-                status.textContent =
-                    "🟢 UOK AI is ready";
-
-            }
-
-        };
-
-}
-
-
-// ======================================================
-// GLOBAL FUNCTIONS
-// ======================================================
-
-window.sendMessage =
-    sendMessage;
-
-window.clearChat =
-    clearChat;
-
-window.goBack =
-    goBack;
-
-window.askQuick =
-    askQuick;
-
-window.getAnswer =
-    getAnswer;
-
-window.startVoiceInput =
-    startVoiceInput;
-
-
-// ======================================================
-// FINISHED
-// ======================================================
-
-console.log(
-    "✅ UOK AI v402 loaded successfully."
-);
+        "Hello again! 👋
