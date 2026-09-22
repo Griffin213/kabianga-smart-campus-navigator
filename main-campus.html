@@ -9,13 +9,1303 @@
 
 <title>University of Kabianga Main Campus | Smart Campus Navigator</title>
 
-<link rel="stylesheet" href="style.css">
-
 <link rel="manifest" href="manifest.json">
 
-<meta name="theme-color" content="#0b5ed7">
+<meta name="theme-color" content="#0758c9">
 
 <link rel="apple-touch-icon" href="logo.jpg">
+
+
+<style>
+
+/* =========================================================
+   UNIVERSITY OF KABIANGA
+   SMART CAMPUS NAVIGATOR
+   MAIN CAMPUS — PROFESSIONAL MOBILE DESIGN
+   ========================================================= */
+
+
+:root{
+
+    --uok-blue:#0758c9;
+    --uok-dark:#0647a5;
+    --uok-light:#edf5ff;
+
+    --gold:#f4c430;
+
+    --text:#172033;
+    --muted:#697386;
+
+    --white:#ffffff;
+
+    --border:#e6edf5;
+
+    --danger:#d9273f;
+
+    --shadow:0 8px 25px rgba(20,48,90,.08);
+
+    --radius:18px;
+
+}
+
+
+*{
+
+    box-sizing:border-box;
+
+    margin:0;
+
+    padding:0;
+
+}
+
+
+html{
+
+    scroll-behavior:smooth;
+
+}
+
+
+body{
+
+    font-family:
+        Arial,
+        Helvetica,
+        sans-serif;
+
+    background:#f5f8fc;
+
+    color:var(--text);
+
+    line-height:1.5;
+
+}
+
+
+a{
+
+    text-decoration:none;
+
+    color:inherit;
+
+}
+
+
+button{
+
+    font-family:inherit;
+
+}
+
+
+/* =========================================================
+   HEADER
+   ========================================================= */
+
+
+.site-header{
+
+    position:relative;
+
+    overflow:hidden;
+
+    background:
+        linear-gradient(
+            145deg,
+            #0758c9,
+            #0a63d8,
+            #064aa9
+        );
+
+    color:white;
+
+    padding:
+        16px
+        16px
+        28px;
+
+    border-radius:
+        0
+        0
+        28px
+        28px;
+
+    box-shadow:
+        0 8px 25px
+        rgba(4,61,140,.18);
+
+}
+
+
+.site-header::after{
+
+    content:"";
+
+    position:absolute;
+
+    width:190px;
+
+    height:190px;
+
+    right:-90px;
+
+    top:-90px;
+
+    border:
+        35px solid
+        rgba(255,255,255,.06);
+
+    border-radius:50%;
+
+}
+
+
+.header-top{
+
+    position:relative;
+
+    z-index:2;
+
+    display:flex;
+
+    justify-content:space-between;
+
+    align-items:center;
+
+}
+
+
+.back-campus{
+
+    display:inline-flex;
+
+    align-items:center;
+
+    gap:5px;
+
+    padding:
+        8px
+        11px;
+
+    background:
+        rgba(255,255,255,.14);
+
+    border:
+        1px solid
+        rgba(255,255,255,.16);
+
+    border-radius:10px;
+
+    color:white;
+
+    font-size:12px;
+
+    font-weight:bold;
+
+}
+
+
+.menu-wrap{
+
+    position:relative;
+
+}
+
+
+.menu-btn{
+
+    list-style:none;
+
+    cursor:pointer;
+
+    width:38px;
+
+    height:38px;
+
+    display:grid;
+
+    place-items:center;
+
+    border-radius:12px;
+
+    background:
+        rgba(255,255,255,.13);
+
+    color:white;
+
+    font-size:23px;
+
+    font-weight:bold;
+
+}
+
+
+.menu-btn::-webkit-details-marker{
+
+    display:none;
+
+}
+
+
+.admin-menu{
+
+    position:absolute;
+
+    z-index:50;
+
+    right:0;
+
+    top:45px;
+
+    width:220px;
+
+    background:white;
+
+    border-radius:15px;
+
+    box-shadow:
+        0 18px 45px
+        rgba(0,0,0,.18);
+
+    overflow:hidden;
+
+}
+
+
+.admin-menu a{
+
+    display:block;
+
+    padding:12px 14px;
+
+    color:#263246;
+
+    font-size:13px;
+
+    font-weight:600;
+
+    border-bottom:
+        1px solid
+        #f0f3f7;
+
+}
+
+
+.admin-menu a:hover{
+
+    background:var(--uok-light);
+
+    color:var(--uok-blue);
+
+}
+
+
+.brand{
+
+    position:relative;
+
+    z-index:2;
+
+    text-align:center;
+
+    margin-top:18px;
+
+}
+
+
+.logo{
+
+    width:78px;
+
+    height:78px;
+
+    object-fit:contain;
+
+    border-radius:50%;
+
+    background:white;
+
+    padding:7px;
+
+    box-shadow:
+        0 8px 25px
+        rgba(0,0,0,.16);
+
+}
+
+
+.brand h1{
+
+    margin-top:12px;
+
+    font-size:22px;
+
+    line-height:1.15;
+
+    letter-spacing:.2px;
+
+}
+
+
+.brand p{
+
+    margin-top:5px;
+
+    color:#f8d75d;
+
+    font-size:12px;
+
+    font-weight:bold;
+
+}
+
+
+/* =========================================================
+   MAIN
+   ========================================================= */
+
+
+main{
+
+    width:
+        min(
+            calc(100% - 28px),
+            980px
+        );
+
+    margin:
+        0 auto;
+
+}
+
+
+.section{
+
+    margin-top:18px;
+
+}
+
+
+.card-shell{
+
+    background:white;
+
+    border:
+        1px solid
+        var(--border);
+
+    border-radius:var(--radius);
+
+    box-shadow:var(--shadow);
+
+}
+
+
+/* =========================================================
+   HERO
+   ========================================================= */
+
+
+.hero{
+
+    margin-top:-14px;
+
+    position:relative;
+
+    z-index:3;
+
+    overflow:hidden;
+
+}
+
+
+.hero-image{
+
+    height:178px;
+
+    position:relative;
+
+    overflow:hidden;
+
+    border-radius:
+        var(--radius)
+        var(--radius)
+        0
+        0;
+
+    background:#0a4da8;
+
+}
+
+
+.hero-image img{
+
+    width:100%;
+
+    height:100%;
+
+    object-fit:cover;
+
+    display:block;
+
+}
+
+
+.hero-image::after{
+
+    content:"";
+
+    position:absolute;
+
+    inset:0;
+
+    background:
+        linear-gradient(
+            180deg,
+            rgba(0,0,0,.02),
+            rgba(3,30,72,.74)
+        );
+
+}
+
+
+.hero-caption{
+
+    position:absolute;
+
+    z-index:2;
+
+    left:18px;
+
+    right:18px;
+
+    bottom:16px;
+
+    color:white;
+
+}
+
+
+.hero-caption small{
+
+    display:inline-block;
+
+    padding:
+        5px
+        8px;
+
+    border-radius:7px;
+
+    background:
+        rgba(7,88,201,.92);
+
+    font-size:10px;
+
+    font-weight:bold;
+
+    margin-bottom:7px;
+
+}
+
+
+.hero-caption h2{
+
+    font-size:22px;
+
+    line-height:1.15;
+
+}
+
+
+.hero-caption p{
+
+    margin-top:4px;
+
+    font-size:12px;
+
+    color:
+        rgba(255,255,255,.9);
+
+}
+
+
+.hero-content{
+
+    padding:17px;
+
+}
+
+
+.hero-intro{
+
+    font-size:13px;
+
+    color:var(--muted);
+
+    margin-bottom:13px;
+
+}
+
+
+/* =========================================================
+   UOK AI
+   ========================================================= */
+
+
+.primary-ai{
+
+    display:flex;
+
+    align-items:center;
+
+    gap:12px;
+
+    padding:14px;
+
+    border-radius:15px;
+
+    background:
+        linear-gradient(
+            135deg,
+            #0758c9,
+            #0c6ce5
+        );
+
+    color:white;
+
+    box-shadow:
+        0 9px 22px
+        rgba(7,88,201,.22);
+
+}
+
+
+.ai-icon{
+
+    width:42px;
+
+    height:42px;
+
+    flex:0 0 42px;
+
+    display:grid;
+
+    place-items:center;
+
+    border-radius:13px;
+
+    background:
+        rgba(255,255,255,.16);
+
+    font-size:21px;
+
+}
+
+
+.primary-ai strong{
+
+    display:block;
+
+    font-size:14px;
+
+}
+
+
+.primary-ai span{
+
+    display:block;
+
+    margin-top:2px;
+
+    font-size:11px;
+
+    opacity:.9;
+
+}
+
+
+.ai-arrow{
+
+    margin-left:auto;
+
+    font-size:20px;
+
+}
+
+
+/* =========================================================
+   SECTION HEADINGS
+   ========================================================= */
+
+
+.section-heading{
+
+    display:flex;
+
+    align-items:end;
+
+    justify-content:space-between;
+
+    margin-bottom:10px;
+
+    padding:0 2px;
+
+}
+
+
+.section-heading h2{
+
+    font-size:16px;
+
+    line-height:1.2;
+
+}
+
+
+.section-heading p{
+
+    font-size:10px;
+
+    color:var(--muted);
+
+}
+
+
+/* =========================================================
+   QUICK ACCESS
+   ========================================================= */
+
+
+.quick-grid{
+
+    display:grid;
+
+    grid-template-columns:
+        repeat(2,1fr);
+
+    gap:10px;
+
+}
+
+
+.quick-card{
+
+    min-height:78px;
+
+    display:flex;
+
+    align-items:center;
+
+    gap:10px;
+
+    padding:12px;
+
+    background:white;
+
+    border:
+        1px solid
+        var(--border);
+
+    border-radius:15px;
+
+    box-shadow:
+        0 7px 20px
+        rgba(24,52,92,.06);
+
+    transition:
+        transform .18s ease;
+
+}
+
+
+.quick-card:active{
+
+    transform:scale(.98);
+
+}
+
+
+.quick-icon{
+
+    width:38px;
+
+    height:38px;
+
+    flex:0 0 38px;
+
+    display:grid;
+
+    place-items:center;
+
+    border-radius:11px;
+
+    background:var(--uok-light);
+
+    font-size:19px;
+
+}
+
+
+.quick-card strong{
+
+    display:block;
+
+    font-size:12px;
+
+}
+
+
+.quick-card span{
+
+    display:block;
+
+    margin-top:2px;
+
+    color:var(--muted);
+
+    font-size:10px;
+
+}
+
+
+/* =========================================================
+   EMERGENCY
+   ========================================================= */
+
+
+.emergency{
+
+    display:flex;
+
+    align-items:center;
+
+    gap:12px;
+
+    padding:13px 15px;
+
+    background:#fff4f5;
+
+    border:
+        1px solid
+        #ffd9de;
+
+    border-radius:15px;
+
+}
+
+
+.emergency-icon{
+
+    width:39px;
+
+    height:39px;
+
+    display:grid;
+
+    place-items:center;
+
+    border-radius:11px;
+
+    background:#ffe1e5;
+
+    font-size:19px;
+
+}
+
+
+.emergency strong{
+
+    display:block;
+
+    font-size:13px;
+
+    color:#b91f35;
+
+}
+
+
+.emergency span{
+
+    display:block;
+
+    margin-top:2px;
+
+    color:#7d4a52;
+
+    font-size:10px;
+
+}
+
+
+.emergency-arrow{
+
+    margin-left:auto;
+
+    color:#b91f35;
+
+    font-size:18px;
+
+}
+
+
+/* =========================================================
+   ANNOUNCEMENTS
+   ========================================================= */
+
+
+.announcement{
+
+    padding:15px;
+
+}
+
+
+.announcement-title{
+
+    display:flex;
+
+    align-items:center;
+
+    gap:8px;
+
+    margin-bottom:11px;
+
+}
+
+
+.announcement-title h2{
+
+    font-size:16px;
+
+}
+
+
+.announcement-box{
+
+    padding:13px;
+
+    background:var(--uok-light);
+
+    border-left:
+        4px solid
+        var(--uok-blue);
+
+    border-radius:12px;
+
+}
+
+
+.announcement-box h3{
+
+    font-size:13px;
+
+    color:var(--uok-dark);
+
+}
+
+
+.announcement-box p{
+
+    margin-top:5px;
+
+    font-size:12px;
+
+    color:#4c5668;
+
+}
+
+
+.announcement-box small{
+
+    display:block;
+
+    margin-top:7px;
+
+    color:#8a94a5;
+
+    font-size:10px;
+
+}
+
+
+/* =========================================================
+   EXPLORE CAMPUS
+   ========================================================= */
+
+
+.venue-scroller{
+
+    display:flex;
+
+    gap:11px;
+
+    overflow-x:auto;
+
+    padding:
+        2px
+        2px
+        8px;
+
+    scroll-snap-type:x mandatory;
+
+}
+
+
+.venue-scroller::-webkit-scrollbar{
+
+    display:none;
+
+}
+
+
+.venue-card{
+
+    min-width:180px;
+
+    max-width:180px;
+
+    overflow:hidden;
+
+    scroll-snap-align:start;
+
+    background:white;
+
+    border:
+        1px solid
+        var(--border);
+
+    border-radius:15px;
+
+    box-shadow:
+        0 7px 20px
+        rgba(24,52,92,.06);
+
+}
+
+
+.venue-photo{
+
+    height:100px;
+
+    overflow:hidden;
+
+    background:#e9f1fb;
+
+}
+
+
+.venue-photo img{
+
+    width:100%;
+
+    height:100%;
+
+    object-fit:cover;
+
+    display:block;
+
+}
+
+
+.venue-info{
+
+    padding:10px;
+
+}
+
+
+.venue-info h3{
+
+    font-size:13px;
+
+}
+
+
+.venue-info p{
+
+    margin-top:2px;
+
+    color:var(--muted);
+
+    font-size:10px;
+
+}
+
+
+.venue-link{
+
+    display:inline-block;
+
+    margin-top:8px;
+
+    color:var(--uok-blue);
+
+    font-size:10px;
+
+    font-weight:800;
+
+}
+
+
+/* =========================================================
+   MAP
+   ========================================================= */
+
+
+.map-card{
+
+    padding:15px;
+
+}
+
+
+.map-card h2{
+
+    font-size:16px;
+
+}
+
+
+.map-card p{
+
+    margin-top:3px;
+
+    font-size:11px;
+
+    color:var(--muted);
+
+}
+
+
+.map-button{
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:center;
+
+    gap:8px;
+
+    margin-top:12px;
+
+    padding:12px;
+
+    background:var(--uok-blue);
+
+    color:white;
+
+    border-radius:12px;
+
+    font-size:12px;
+
+    font-weight:800;
+
+}
+
+
+/* =========================================================
+   ABOUT
+   ========================================================= */
+
+
+.about{
+
+    padding:16px;
+
+}
+
+
+.about h2{
+
+    font-size:16px;
+
+}
+
+
+.about p{
+
+    margin-top:8px;
+
+    color:var(--muted);
+
+    font-size:11px;
+
+}
+
+
+.feature-pills{
+
+    display:flex;
+
+    flex-wrap:wrap;
+
+    gap:7px;
+
+    margin-top:12px;
+
+}
+
+
+.feature-pills span{
+
+    padding:
+        7px
+        9px;
+
+    background:#f3f6fa;
+
+    border:
+        1px solid
+        var(--border);
+
+    border-radius:999px;
+
+    color:#566174;
+
+    font-size:9px;
+
+    font-weight:bold;
+
+}
+
+
+/* =========================================================
+   SWITCH CAMPUS
+   ========================================================= */
+
+
+.switch-campus{
+
+    display:block;
+
+    text-align:center;
+
+    padding:11px;
+
+    background:white;
+
+    border:
+        1px solid
+        #dce7f5;
+
+    border-radius:13px;
+
+    color:var(--uok-blue);
+
+    font-size:12px;
+
+    font-weight:800;
+
+}
+
+
+/* =========================================================
+   FOOTER
+   ========================================================= */
+
+
+footer{
+
+    margin-top:24px;
+
+    padding:
+        20px
+        15px
+        5px;
+
+    text-align:center;
+
+    color:#7a8596;
+
+    font-size:10px;
+
+}
+
+
+footer p{
+
+    margin:3px 0;
+
+}
+
+
+.footer-brand{
+
+    color:var(--uok-blue);
+
+    font-weight:800;
+
+    font-size:11px;
+
+    margin-bottom:6px;
+
+}
+
+
+/* =========================================================
+   DESKTOP / TABLET
+   ========================================================= */
+
+
+@media(min-width:700px){
+
+    .site-header{
+
+        padding-left:30px;
+
+        padding-right:30px;
+
+    }
+
+
+    .brand h1{
+
+        font-size:26px;
+
+    }
+
+
+    .hero-image{
+
+        height:270px;
+
+    }
+
+
+    .quick-grid{
+
+        grid-template-columns:
+            repeat(4,1fr);
+
+    }
+
+
+    .quick-card{
+
+        min-height:96px;
+
+        flex-direction:column;
+
+        align-items:flex-start;
+
+        justify-content:center;
+
+    }
+
+
+    .venue-card{
+
+        min-width:210px;
+
+        max-width:210px;
+
+    }
+
+}
+
+</style>
 
 </head>
 
@@ -23,86 +1313,110 @@
 <body>
 
 
-<header>
-
-<!-- BACK TO CAMPUS SELECTION -->
-
-<a
-href="campuses.html"
-style="
-position:absolute;
-left:15px;
-top:15px;
-background:rgba(255,255,255,0.15);
-color:white;
-padding:8px 12px;
-border-radius:8px;
-text-decoration:none;
-font-size:13px;
-font-weight:bold;
-">
-
-← Campuses
-
-</a>
+<!-- ======================================================
+     HEADER
+     ====================================================== -->
 
 
-<img
-src="logo.jpg"
-alt="University of Kabianga Logo"
-class="logo"
->
+<header class="site-header">
 
 
-<h1>
-UNIVERSITY OF KABIANGA
-</h1>
+    <div class="header-top">
 
 
-<p class="subtitle">
-Main Campus • Smart Campus Navigation System
-</p>
+        <a
+            href="campuses.html"
+            class="back-campus"
+        >
+
+            ← Campuses
+
+        </a>
+
+
+        <details class="menu-wrap">
+
+
+            <summary class="menu-btn">
+
+                ⋮
+
+            </summary>
+
+
+            <div class="admin-menu">
+
+
+                <a href="admin.html">
+
+                    🔐 Administrator Login
+
+                </a>
+
+
+                <a href="prince-ai.html">
+
+                    🤖 About UOK AI
+
+                </a>
+
+
+                <a
+                    href="#"
+                    onclick="
+                        requestNotificationPermission();
+                        return false;
+                    "
+                >
+
+                    🔔 Enable Notifications
+
+                </a>
+
+
+                <a href="#">
+
+                    📞 Contact ICT
+
+                </a>
+
+
+            </div>
+
+
+        </details>
+
+
+    </div>
 
 
 
-<details class="settings-container">
-
-<summary class="menu-btn">
-⋮
-</summary>
+    <div class="brand">
 
 
-<div class="admin-menu">
+        <img
+            src="logo.jpg"
+            alt="University of Kabianga Logo"
+            class="logo"
+        >
 
 
-<a href="admin.html">
-🔐 Administrator Login
-</a>
+        <h1>
+
+            UNIVERSITY OF KABIANGA
+
+        </h1>
 
 
-<a href="prince-ai.html">
-🤖 About Prince AI
-</a>
+        <p>
+
+            Main Campus • Smart Campus Navigation System
+
+        </p>
 
 
-<a
-href="#"
-onclick="requestNotificationPermission(); return false;"
->
+    </div>
 
-🔔 Enable Notifications
-
-</a>
-
-
-<a href="#">
-📞 Contact ICT
-</a>
-
-
-</div>
-
-</details>
 
 </header>
 
@@ -111,517 +1425,879 @@ onclick="requestNotificationPermission(); return false;"
 <main>
 
 
-<!-- ================================
+<!-- ======================================================
      HERO
-================================ -->
-
-
-<section class="hero">
-
-
-<h2>
-Welcome to Main Campus!
-</h2>
-
-
-<p>
-
-Find lecture halls, offices and important
-places around the University of Kabianga
-Main Campus quickly and easily.
-
-</p>
-
-
-
-<input
-
-type="text"
-
-id="searchBox"
-
-placeholder="Search LTB1, Library, Administration..."
-
->
-
-
-
-<div class="buttons">
-
-
-<button id="searchBtn">
-
-🔍 Search Venue
-
-</button>
-
-
-
-<a href="scan.html">
-
-<button type="button">
-
-📷 Scan QR Code
-
-</button>
-
-</a>
-
-
-
-<!-- ================================
-     UOK AI
-================================ -->
-
-<div class="uok-ai-home">
-
-    <a href="prince-ai.html" class="uok-ai-button">
-        🤖 Chat with UOK AI
-    </a>
-
-    <div class="uok-ai-description">
-
-        <strong>
-            Meet UOK AI — your smart University of Kabianga assistant.
-        </strong>
-
-        <p>
-            Ask about lecture halls, offices, buildings,
-            university services, campus facilities, directions
-            and important University information.
-        </p>
-
-        <p>
-            UOK AI can also help you find venues and guide
-            you to the right place.
-        </p>
-
-        <div class="uok-ai-features">
-
-            <span>📍 Find Venues</span>
-            <span>🏫 Campus Information</span>
-            <span>🧭 Get Directions</span>
-            <span>💬 Ask Questions</span>
-
-        </div>
-
-    </div>
-
-</div>
-
-
-
-<a
-href="visitor.html"
-class="digital-reception-button"
->
-
-🏢 Digital Reception
-
-</a>
-
-
-
-<a href="timetable.html">
-
-<button type="button">
-
-📅 My Timetable
-
-</button>
-
-</a>
-
-
-
-<!-- GAMES, SPORTS & CLUBS -->
-
-<button
-class="menu-btn"
-onclick="openSportsClubs()"
->
-
-<span>
-🏆
-</span>
-
-Games, Sports & Clubs
-
-</button>
-
-
-
-<a
-href="emergency.html"
-class="emergency-home-button"
->
-
-🚨 EMERGENCY SERVICES
-
-</a>
-
-
-</div>
-
-
-
-<a href="leadership.html">
-
-<button type="button">
-
-🏛️ University Leadership Directory
-
-</button>
-
-</a>
-
-
-</section>
-
-
-
-<!-- ================================
-     ANNOUNCEMENT
-================================ -->
-
-
-<section class="announcement-card">
-
-
-<h2>
-
-📢 Latest University Announcement
-
-</h2>
-
-
-
-<div id="announcementBox">
-
-
-<h3 id="announcementTitle">
-
-University of Kabianga
-
-</h3>
-
-
-
-<p id="announcementMessage">
-
-No announcements available.
-
-</p>
-
-
-
-<small id="announcementDate">
-
-Waiting for updates...
-
-</small>
-
-
-
-<div
-id="announcementImages"
-class="announcement-images"
->
-
-</div>
-
-
-</div>
-
-
-</section>
-
-
-
-<!-- ================================
-     POPULAR VENUES
-================================ -->
-
-
-<section>
-
-
-<h2>
-Popular Venues
-</h2>
-
-
-
-<div class="cards">
-
-
-<!-- LTB1 -->
-
-
-<div class="card">
-
-
-<h3>
-🏫 LTB1
-</h3>
-
-
-<p>
-Lecture Theatre Block 1
-</p>
-
-
-<a href="ltb1.html">
-
-<button type="button">
-
-View Details
-
-</button>
-
-</a>
-
-
-</div>
-
-
-
-<!-- LTB2 -->
-
-
-<div class="card">
-
-
-<h3>
-🏫 LTB2
-</h3>
-
-
-<p>
-Lecture Theatre Block 2
-</p>
-
-
-<a href="ltb2.html">
-
-<button type="button">
-
-View Details
-
-</button>
-
-</a>
-
-
-</div>
-
-
-
-<!-- LTB3 -->
-
-
-<div class="card">
-
-
-<h3>
-🏫 LTB3
-</h3>
-
-
-<p>
-Lecture Theatre Block 3
-</p>
-
-
-<a href="ltb3.html">
-
-<button type="button">
-
-View Details
-
-</button>
-
-</a>
-
-
-</div>
-
-
-
-<!-- LTB4 -->
-
-
-<div class="card">
-
-
-<h3>
-🏫 LTB4
-</h3>
-
-
-<p>
-Lecture Theatre Block 4
-</p>
-
-
-<a href="ltb4.html">
-
-<button type="button">
-
-View Details
-
-</button>
-
-</a>
-
-
-</div>
-
-
-</div>
-
-</section>
-
-
-
-<!-- ================================
-     CAMPUS MAP
-================================ -->
-
-
-<section class="map-section">
-
-
-<h2>
-Campus Map
-</h2>
-
-
-<p>
-
-Tap below to navigate around the
-University of Kabianga Main Campus.
-
-</p>
-
-
-
-<div class="campus-map">
-
-
-<a href="campus-map.html">
-
-<button type="button">
-
-🗺️ Open Campus Map
-
-</button>
-
-</a>
-
-
-</div>
-
-
-</section>
-
-
-
-<!-- ================================
-     ABOUT PROJECT
-================================ -->
-
-
-<section class="about">
-
-
-<h2>
-About This Project
-</h2>
-
-
-<p>
-
-This Smart Campus Navigation System helps
-students, staff and visitors locate lecture
-halls, offices and important facilities
-around the University of Kabianga Main Campus.
-
-</p>
-
-
-<p>
-
-Future updates will include:
-
-</p>
-
-
-
-<ul>
-
-
-<li>
-📷 QR Code Navigation
-</li>
-
-
-<li>
-🗺 Interactive Campus Map
-</li>
-
-
-<li>
-🚶 Walking Directions
-</li>
-
-
-<li>
-🔍 Smart Venue Search
-</li>
-
-
-<li>
-📍 Indoor Navigation
-</li>
-
-
-</ul>
-
-
-</section>
-
-
-
-<!-- ================================
-     SWITCH CAMPUS
-================================ -->
+     ====================================================== -->
 
 
 <section
-style="
-text-align:center;
-margin:25px 0;
-"
+    class="section card-shell hero"
 >
 
 
-<a
-href="campuses.html"
-style="
-display:inline-block;
-padding:12px 20px;
-background:#0b5ed7;
-color:white;
-text-decoration:none;
-border-radius:10px;
-font-weight:bold;
-"
+    <div class="hero-image">
+
+
+        <img
+            src="main-campus.jpg"
+            alt="University of Kabianga Main Campus"
+        >
+
+
+        <div class="hero-caption">
+
+
+            <small>
+
+                MAIN CAMPUS
+
+            </small>
+
+
+            <h2>
+
+                Welcome to UoK
+
+            </h2>
+
+
+            <p>
+
+                Your digital gateway around campus.
+
+            </p>
+
+
+        </div>
+
+
+    </div>
+
+
+
+    <div class="hero-content">
+
+
+        <p class="hero-intro">
+
+            Find information, services, facilities and
+            directions through one simple university platform.
+
+        </p>
+
+
+
+        <!-- UOK AI PRIMARY ACTION -->
+
+
+        <a
+            href="prince-ai.html"
+            class="primary-ai"
+        >
+
+
+            <div class="ai-icon">
+
+                🤖
+
+            </div>
+
+
+            <div>
+
+
+                <strong>
+
+                    Ask UOK AI
+
+                </strong>
+
+
+                <span>
+
+                    Venues • offices • services • directions
+
+                </span>
+
+
+            </div>
+
+
+            <div class="ai-arrow">
+
+                ›
+
+            </div>
+
+
+        </a>
+
+
+    </div>
+
+
+</section>
+
+
+
+            href="<!-- ======================================================
+     QUICK ACCESS
+     ====================================================== -->
+
+
+<section class="section">
+
+
+    <div class="section-heading">
+
+
+        <h2>
+
+            Quick Access
+
+        </h2>
+
+
+        <p>
+
+            Essential campus services
+
+        </p>
+
+
+    </div>
+
+
+
+    <div class="quick-grid">
+
+
+        <!-- QR -->
+
+
+        <a
+            href="scan.html"
+            class="quick-card"
+        >
+
+
+            <div class="quick-icon">
+
+                📷
+
+            </div>
+
+
+            <div>
+
+
+                <strong>
+
+                    Scan QR
+
+                </strong>
+
+
+                <span>
+
+                    Quick access
+
+                </span>
+
+
+            </div>
+
+
+        </a>
+
+
+
+        <!-- DIGITAL RECEPTION -->
+
+
+        <a
+            href="visitor.html"
+            class="quick-card"
+        >
+
+
+            <div class="quick-icon">
+
+                🏢
+
+            </div>
+
+
+            <div>
+
+
+                <strong>
+
+                    Digital Reception
+
+                </strong>
+
+
+                <span>
+
+                    Campus assistance
+
+                </span>
+
+
+            </div>
+
+
+        </a>
+
+
+
+        <!-- TIMETABLE -->
+
+
+        <a
+timetable.html"
+            class="quick-card"
+        >
+
+
+            <div class="quick-icon">
+
+                📅
+
+            </div>
+
+
+            <div>
+
+
+                <strong>
+
+                    My Timetable
+
+                </strong>
+
+
+                <span>
+
+                    Class schedule
+
+                </span>
+
+
+            </div>
+
+
+        </a>
+
+
+
+        <!-- LEADERSHIP -->
+
+
+        <a
+            href="leadership.html"
+            class="quick-card"
+        >
+
+
+            <div class="quick-icon">
+
+                👥
+
+            </div>
+
+
+            <div>
+
+
+                <strong>
+
+                    Leadership
+
+                </strong>
+
+
+                <span>
+
+                    University directory
+
+                </span>
+
+
+            </div>
+
+
+        </a>
+
+
+
+        <!-- SPORTS -->
+
+
+        <a
+            href="#"
+            class="quick-card"
+            onclick="
+                openSportsClubs();
+                return false;
+            "
+        >
+
+
+            <div class="quick-icon">
+
+                🏆
+
+            </div>
+
+
+            <div>
+
+
+                <strong>
+
+                    Sports & Clubs
+
+                </strong>
+
+
+                <span>
+
+                    Student life
+
+                </span>
+
+
+            </div>
+
+
+        </a>
+
+
+
+        <!-- MAP -->
+
+
+        <a
+            href="campus-map.html"
+            class="quick-card"
+        >
+
+
+            <div class="quick-icon">
+
+                🗺️
+
+            </div>
+
+
+            <div>
+
+
+                <strong>
+
+                    Campus Map
+
+                </strong>
+
+
+                <span>
+
+                    Explore locations
+
+                </span>
+
+
+            </div>
+
+
+        </a>
+
+
+    </div>
+
+
+</section>
+
+<!-- ======================================================
+     EMERGENCY SERVICES
+     ====================================================== -->
+
+<section class="section">
+
+
+    <a
+        href="emergency.html"
+        class="emergency"
+    >
+
+        <div class="emergency-icon">
+
+            🚨
+
+        </div>
+
+
+        <div>
+
+            <strong>
+
+                Emergency Services
+
+            </strong>
+
+
+            <span>
+
+                Get important emergency contacts and assistance
+
+            </span>
+
+        </div>
+
+
+        <div class="emergency-arrow">
+
+            ›
+
+        </div>
+
+    </a>
+
+
+</section>
+
+
+
+<!-- ======================================================
+     ANNOUNCEMENTS
+     ====================================================== -->
+
+<section
+    class="section card-shell announcement"
 >
 
-🏫 Switch Campus
 
-</a>
+    <div class="announcement-title">
+
+        <span>
+
+            📢
+
+        </span>
+
+
+        <h2>
+
+            Latest University Updates
+
+        </h2>
+
+    </div>
+
+
+
+    <div
+        id="announcementBox"
+        class="announcement-box"
+    >
+
+
+        <h3
+            id="announcementTitle"
+        >
+
+            University of Kabianga
+
+        </h3>
+
+
+        <p
+            id="announcementMessage"
+        >
+
+            No announcements available.
+
+        </p>
+
+
+        <small
+            id="announcementDate"
+        >
+
+            Waiting for updates...
+
+        </small>
+
+
+        <div
+            id="announcementImages"
+            class="announcement-images"
+        >
+
+        </div>
+
+
+    </div>
+
+
+</section>
+
+
+
+<!-- ======================================================
+     EXPLORE CAMPUS
+     ====================================================== -->
+
+<section class="section">
+
+
+    <div class="section-heading">
+
+        <h2>
+
+            Explore Campus
+
+        </h2>
+
+
+        <p>
+
+            Popular learning spaces
+
+        </p>
+
+    </div>
+
+
+
+    <div class="venue-scroller">
+
+
+        <!-- LTB1 -->
+
+        <article class="venue-card">
+
+
+            <div class="venue-photo">
+
+                <img
+                    src="main-campus.jpg"
+                    alt="University of Kabianga Main Campus"
+                >
+
+            </div>
+
+
+            <div class="venue-info">
+
+                <h3>
+
+                    LTB1
+
+                </h3>
+
+
+                <p>
+
+                    Lecture Theatre Block 1
+
+                </p>
+
+
+                <a
+                    href="ltb1.html"
+                    class="venue-link"
+                >
+
+                    View details →
+
+                </a>
+
+            </div>
+
+
+        </article>
+
+
+
+        <!-- LTB2 -->
+
+        <article class="venue-card">
+
+
+            <div class="venue-photo">
+
+                <img
+                    src="1000461288.jpg"
+                    alt="University of Kabianga Campus"
+                >
+
+            </div>
+
+
+            <div class="venue-info">
+
+                <h3>
+
+                    LTB2
+
+                </h3>
+
+
+                <p>
+
+                    Lecture Theatre Block 2
+
+                </p>
+
+
+                <a
+                    href="ltb2.html"
+                    class="venue-link"
+                >
+
+                    View details →
+
+                </a>
+
+            </div>
+
+
+        </article>
+
+
+
+        <!-- LTB3 -->
+
+        <article class="venue-card">
+
+
+            <div class="venue-photo">
+
+                <img
+                    src="main-campus.jpg"
+                    alt="University of Kabianga Main Campus"
+                >
+
+            </div>
+
+
+            <div class="venue-info">
+
+                <h3>
+
+                    LTB3
+
+                </h3>
+
+
+                <p>
+
+                    Lecture Theatre Block 3
+
+                </p>
+
+
+                <a
+                    href="ltb3.html"
+                    class="venue-link"
+                >
+
+                    View details →
+
+                </a>
+
+            </div>
+
+
+        </article>
+
+
+
+        <!-- LTB4 -->
+
+        <article class="venue-card">
+
+
+            <div class="venue-photo">
+
+                <img
+                    src="1000461288.jpg"
+                    alt="University of Kabianga Campus"
+                >
+
+            </div>
+
+
+            <div class="venue-info">
+
+                <h3>
+
+                    LTB4
+
+                </h3>
+
+
+                <p>
+
+                    Lecture Theatre Block 4
+
+                </p>
+
+
+                <a
+                    href="ltb4.html"
+                    class="venue-link"
+                >
+
+                    View details →
+
+                </a>
+
+            </div>
+
+
+        </article>
+
+
+    </div>
+
+
+</section>
+
+
+
+<!-- ======================================================
+     CAMPUS NAVIGATION
+     ====================================================== -->
+
+<section
+    class="section card-shell map-card"
+>
+
+
+    <h2>
+
+        Campus Navigation
+
+    </h2>
+
+
+    <p>
+
+        Explore mapped campus locations and available routes.
+
+    </p>
+
+
+    <a
+        href="campus-map.html"
+        class="map-button"
+    >
+
+        🗺️ Open Campus Map
+
+    </a>
+
+
+</section>
+
+
+
+<!-- ======================================================
+     ABOUT SMART CAMPUS NAVIGATOR
+     ====================================================== -->
+
+<section
+    class="section card-shell about"
+>
+
+
+    <h2>
+
+        Smart Campus Navigator
+
+    </h2>
+
+
+    <p>
+
+        A digital platform designed to make
+        University of Kabianga information and
+        campus navigation easier for students,
+        staff and visitors.
+
+    </p>
+
+
+    <div class="feature-pills">
+
+
+        <span>
+
+            📷 QR Access
+
+        </span>
+
+
+        <span>
+
+            🤖 UOK AI
+
+        </span>
+
+
+        <span>
+
+            🗺️ Campus Map
+
+        </span>
+
+
+        <span>
+    🧭 Directions
+
+</span>
+
+
+<span>
+
+    📢 Announcements
+
+</span>
+
+
+<span>
+
+    📱 Mobile Ready
+
+</span>
+
+
+</div>
+
+
+</section>
+
+
+
+<!-- ======================================================
+     SWITCH CAMPUS
+     ====================================================== -->
+
+<section class="section">
+
+
+    <a
+        href="campuses.html"
+        class="switch-campus"
+    >
+
+        🏫 Switch Campus
+
+    </a>
 
 
 </section>
@@ -631,62 +2307,78 @@ font-weight:bold;
 
 
 
-<!-- ================================
+<!-- ======================================================
      FOOTER
-================================ -->
-
+     ====================================================== -->
 
 <footer>
 
 
-<p>
-© 2026 University of Kabianga
-</p>
+    <div class="footer-brand">
+
+        University of Kabianga • Smart Campus Navigator
+
+    </div>
 
 
-<p>
-Developed by Griffin Kipruttoh &amp; David Dodi
-</p>
+    <p>
+
+        © 2026 University of Kabianga
+
+    </p>
 
 
-<p>
-Project Mentor: Dr. James Mbugua
-</p>
+    <p>
+
+        Developed by Griffin Kipruttoh &amp; David Dodi
+
+    </p>
 
 
-<p>
-Powered/Proposed by: Team Elites
-</p>
+    <p>
+
+        Project Mentor: Dr. James Mbugua
+
+    </p>
+
+
+    <p>
+
+        Powered/Proposed by: Team Elites
+
+    </p>
 
 
 </footer>
 
 
 
-<!-- ================================
-     SCRIPTS
-================================ -->
+<!-- ======================================================
+     JAVASCRIPT
+     ====================================================== -->
 
 <script
     type="module"
     src="firebase.js"
 ></script>
 
-<script src="smart-search.js"></script>
 
 <script
     type="module"
     src="script.js"
 ></script>
 
+
 <script src="knowledge.js"></script>
 
 <script src="prince-ai.js"></script>
+
 
 <script
     type="module"
     src="announcements.js"
 ></script>
+
 
 <script
     type="module"
@@ -697,3 +2389,4 @@ Powered/Proposed by: Team Elites
 </body>
 
 </html>
+           
