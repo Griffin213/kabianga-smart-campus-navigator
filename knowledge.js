@@ -843,8 +843,51 @@ const campusKnowledge = {
     }
 
 };
+studentFinance: {
+    name: "Student Finance",
 
+    keywords: [
+        "student finance",
+        "student finance office",
+        "finance office",
+        "where is student finance",
+        "location of student finance",
+        "student finance location"
+    ],
 
+    info:
+    "The Student Finance Office is located just before the University Pavilion Gate, opposite Hostel 1.",
+
+    directions: [
+        "Start from the Main Gate.",
+        "Proceed toward the University Pavilion Gate.",
+        "The Student Finance Office is located just before the University Pavilion Gate.",
+        "It is opposite Hostel 1."
+    ]
+},
+securityOffice: {
+    name: "Security Offices",
+
+    keywords: [
+        "security office",
+        "security offices",
+        "university security",
+        "campus security",
+        "where is security",
+        "where are the security offices",
+        "location of security office",
+        "security office location"
+    ],
+
+    info:
+    "The University Security Offices are located on the right side when entering through the Main Gate.",
+
+    directions: [
+        "Start from the Main Gate.",
+        "Enter through the Main Gate.",
+        "The Security Offices are located on your right from the Main Gate."
+    ]
+},
 // ======================================================
 // KNOWLEDGE DATABASE STATUS
 // ======================================================
