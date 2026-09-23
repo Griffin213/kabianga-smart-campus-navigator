@@ -1,0 +1,587 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+<meta charset="UTF-8">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Suggestion Box | University of Kabianga</title>
+
+<meta name="theme-color" content="#0758c9">
+
+<style>
+
+*{
+    box-sizing:border-box;
+    margin:0;
+    padding:0;
+}
+
+body{
+    font-family:Arial,Helvetica,sans-serif;
+    background:#edf5ff;
+    color:#172033;
+    min-height:100vh;
+}
+
+/* ================================
+   HEADER
+================================ */
+
+.header{
+    background:linear-gradient(135deg,#0758c9,#0647a5);
+    color:white;
+    padding:18px 16px 22px;
+    border-radius:0 0 22px 22px;
+    box-shadow:0 5px 18px rgba(0,0,0,.12);
+}
+
+.top{
+    display:flex;
+    align-items:center;
+    gap:12px;
+    margin-bottom:18px;
+}
+
+.back{
+    color:white;
+    text-decoration:none;
+    font-size:14px;
+    font-weight:600;
+}
+
+.brand{
+    display:flex;
+    align-items:center;
+    gap:12px;
+}
+
+.logo{
+    width:48px;
+    height:48px;
+    object-fit:contain;
+    background:white;
+    border-radius:50%;
+    padding:4px;
+}
+
+.brand h1{
+    font-size:17px;
+    line-height:1.2;
+}
+
+.brand p{
+    font-size:12px;
+    opacity:.9;
+    margin-top:3px;
+}
+
+/* ================================
+   MAIN
+================================ */
+
+.container{
+    width:min(680px,92%);
+    margin:22px auto 35px;
+}
+
+.card{
+    background:white;
+    border-radius:20px;
+    padding:20px;
+    box-shadow:0 8px 25px rgba(20,48,90,.08);
+}
+
+.intro{
+    text-align:center;
+    margin-bottom:20px;
+}
+
+.icon{
+    width:62px;
+    height:62px;
+    margin:0 auto 12px;
+    border-radius:18px;
+    background:#edf5ff;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    font-size:32px;
+}
+
+h2{
+    font-size:21px;
+    margin-bottom:7px;
+}
+
+.intro p{
+    color:#697386;
+    font-size:14px;
+    line-height:1.5;
+}
+
+/* ================================
+   FORM
+================================ */
+
+.form-group{
+    margin-bottom:17px;
+}
+
+label{
+    display:block;
+    font-size:14px;
+    font-weight:700;
+    margin-bottom:7px;
+}
+
+.required{
+    color:#d9273f;
+}
+
+input,
+select,
+textarea{
+    width:100%;
+    border:1px solid #dce5f0;
+    border-radius:12px;
+    padding:13px 14px;
+    font-size:14px;
+    font-family:inherit;
+    outline:none;
+    background:#fff;
+    color:#172033;
+    transition:.2s;
+}
+
+input:focus,
+select:focus,
+textarea:focus{
+    border-color:#0758c9;
+    box-shadow:0 0 0 3px rgba(7,88,201,.10);
+}
+
+textarea{
+    min-height:145px;
+    resize:vertical;
+}
+
+.helper{
+    color:#697386;
+    font-size:12px;
+    margin-top:5px;
+}
+
+/* ================================
+   ANONYMOUS OPTION
+================================ */
+
+.anonymous-box{
+    background:#f5f9ff;
+    border:1px solid #e2ebf7;
+    border-radius:14px;
+    padding:13px;
+    margin-bottom:18px;
+}
+
+.anonymous-label{
+    display:flex;
+    align-items:center;
+    gap:10px;
+    cursor:pointer;
+    margin:0;
+}
+
+.anonymous-label input{
+    width:18px;
+    height:18px;
+    accent-color:#0758c9;
+}
+
+.anonymous-text strong{
+    display:block;
+    font-size:14px;
+}
+
+.anonymous-text span{
+    display:block;
+    color:#697386;
+    font-size:12px;
+    margin-top:3px;
+}
+
+/* ================================
+   SUBMIT BUTTON
+================================ */
+
+.submit-btn{
+    width:100%;
+    border:none;
+    border-radius:13px;
+    padding:14px;
+    background:linear-gradient(135deg,#0758c9,#0647a5);
+    color:white;
+    font-size:15px;
+    font-weight:700;
+    cursor:pointer;
+    transition:.2s;
+}
+
+.submit-btn:hover{
+    transform:translateY(-1px);
+    box-shadow:0 7px 18px rgba(7,88,201,.22);
+}
+
+.submit-btn:disabled{
+    opacity:.65;
+    cursor:not-allowed;
+    transform:none;
+}
+
+/* ================================
+   STATUS
+================================ */
+
+.status{
+    display:none;
+    margin-top:16px;
+    padding:13px;
+    border-radius:12px;
+    font-size:13px;
+    text-align:center;
+    line-height:1.4;
+}
+
+.status.success{
+    display:block;
+    background:#eaf8ef;
+    color:#176b38;
+    border:1px solid #bfe7cc;
+}
+
+.status.error{
+    display:block;
+    background:#fff0f2;
+    color:#a51e31;
+    border:1px solid #f1c4cb;
+}
+
+/* ================================
+   PRIVACY NOTE
+================================ */
+
+.privacy{
+    margin-top:17px;
+    padding:13px;
+    border-radius:12px;
+    background:#f8fafc;
+    color:#697386;
+    font-size:11px;
+    line-height:1.5;
+    text-align:center;
+}
+
+/* ================================
+   FOOTER
+================================ */
+
+footer{
+    text-align:center;
+    color:#697386;
+    font-size:11px;
+    padding:0 20px 25px;
+}
+
+</style>
+
+</head>
+
+
+<body>
+
+
+<!-- ================================
+     HEADER
+================================ -->
+
+<header class="header">
+
+    <div class="top">
+
+        <a
+            href="main-campus.html"
+            class="back"
+        >
+
+            ← Back to Main Campus
+
+        </a>
+
+    </div>
+
+
+    <div class="brand">
+
+        <img
+            src="logo.jpg"
+            alt="University of Kabianga Logo"
+            class="logo"
+        >
+
+        <div>
+
+            <h1>
+                UNIVERSITY OF KABIANGA
+            </h1>
+
+            <p>
+                Smart Campus Navigation System
+            </p>
+
+        </div>
+
+    </div>
+
+</header>
+
+
+
+<!-- ================================
+     MAIN CONTENT
+================================ -->
+
+<main class="container">
+
+    <div class="card">
+
+
+        <div class="intro">
+
+            <div class="icon">
+                💡
+            </div>
+
+            <h2>
+                Suggestion Box
+            </h2>
+
+            <p>
+                Your ideas and feedback can help improve
+                services and the student experience at
+                the University of Kabianga.
+            </p>
+
+        </div>
+
+
+
+        <form id="suggestionForm">
+
+
+            <!-- TYPE -->
+
+            <div class="form-group">
+
+                <label for="type">
+                    Feedback Type
+                    <span class="required">*</span>
+                </label>
+
+                <select
+                    id="type"
+                    required
+                >
+
+                    <option value="">
+                        Select feedback type
+                    </option>
+
+                    <option value="Suggestion">
+                        Suggestion
+                    </option>
+
+                    <option value="Complaint">
+                        Complaint
+                    </option>
+
+                    <option value="Appreciation">
+                        Appreciation
+                    </option>
+
+                    <option value="Campus Improvement">
+                        Campus Improvement
+                    </option>
+
+                    <option value="Academic Services">
+                        Academic Services
+                    </option>
+
+                    <option value="ICT / Technology">
+                        ICT / Technology
+                    </option>
+
+                    <option value="Other">
+                        Other
+                    </option>
+
+                </select>
+
+            </div>
+
+
+
+            <!-- MESSAGE -->
+
+            <div class="form-group">
+
+                <label for="message">
+
+                    Your Message
+                    <span class="required">*</span>
+
+                </label>
+
+                <textarea
+                    id="message"
+                    placeholder="Write your suggestion, feedback or concern here..."
+                    required
+                ></textarea>
+
+                <div class="helper">
+
+                    Please provide clear and constructive feedback.
+
+                </div>
+
+            </div>
+
+
+
+            <!-- NAME -->
+
+            <div class="form-group">
+
+                <label for="name">
+                    Name
+                </label>
+
+                <input
+                    type="text"
+                    id="name"
+                    placeholder="Optional"
+                >
+
+            </div>
+
+
+
+            <!-- CONTACT -->
+
+            <div class="form-group">
+
+                <label for="contact">
+                    Email or Phone
+                </label>
+
+                <input
+                    type="text"
+                    id="contact"
+                    placeholder="Optional"
+                >
+
+            </div>
+
+
+
+            <!-- ANONYMOUS -->
+
+            <div class="anonymous-box">
+
+                <label class="anonymous-label">
+
+                    <input
+                        type="checkbox"
+                        id="anonymous"
+                    >
+
+                    <div class="anonymous-text">
+
+                        <strong>
+                            Submit anonymously
+                        </strong>
+
+                        <span>
+                            Your name and contact details will not be attached to the submission.
+                        </span>
+
+                    </div>
+
+                </label>
+
+            </div>
+
+
+
+            <!-- SUBMIT -->
+
+            <button
+                type="submit"
+                class="submit-btn"
+                id="submitBtn"
+            >
+
+                📤 Submit Feedback
+
+            </button>
+
+
+            <div
+                id="status"
+                class="status"
+            ></div>
+
+
+        </form>
+
+
+
+        <div class="privacy">
+
+            🔒 Your feedback is submitted to the University
+            suggestion system. Please avoid sharing passwords
+            or other sensitive personal information.
+
+        </div>
+
+
+    </div>
+
+</main>
+
+
+
+<footer>
+
+    University of Kabianga • Smart Campus Navigation System
+
+</footer>
+
+
+
+<!-- ================================
+     FIREBASE
+================================ -->
+
+<script type="module">
+
+import {
+    db
+} from "./firebase.js";
+
+import {
+    collection,
+    addDoc,
+    serverTimestamp
+} from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
