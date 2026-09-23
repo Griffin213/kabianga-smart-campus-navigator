@@ -1,0 +1,551 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+<meta charset="UTF-8">
+
+<meta name="viewport"
+      content="width=device-width, initial-scale=1.0">
+
+<title>University Information Portal | University of Kabianga</title>
+
+<meta name="theme-color"
+      content="#075dcc">
+
+<link rel="icon"
+      href="logo.jpg">
+
+<style>
+
+/* =====================================================
+   GENERAL
+===================================================== */
+
+*{
+    box-sizing:border-box;
+    margin:0;
+    padding:0;
+}
+
+body{
+    font-family:Arial,Helvetica,sans-serif;
+    background:#eef5ff;
+    color:#172033;
+    min-height:100vh;
+}
+
+
+/* =====================================================
+   HEADER
+===================================================== */
+
+.header{
+
+    background:linear-gradient(
+        135deg,
+        #075dcc,
+        #0647a5
+    );
+
+    color:white;
+
+    padding:18px 16px 35px;
+
+    text-align:center;
+
+    box-shadow:
+        0 5px 20px rgba(0,0,0,.12);
+}
+
+
+.logo{
+
+    width:72px;
+    height:72px;
+
+    object-fit:contain;
+
+    background:white;
+
+    border-radius:50%;
+
+    padding:5px;
+
+    margin-bottom:10px;
+}
+
+
+.header h1{
+
+    font-size:20px;
+
+    letter-spacing:.3px;
+
+    margin-bottom:5px;
+}
+
+
+.header p{
+
+    font-size:11px;
+
+    opacity:.9;
+
+}
+
+
+/* =====================================================
+   MAIN CARD
+===================================================== */
+
+.container{
+
+    width:min(
+        94%,
+        520px
+    );
+
+    margin:-18px auto 25px;
+
+    position:relative;
+}
+
+
+.portal-card{
+
+    background:white;
+
+    border-radius:18px;
+
+    padding:20px;
+
+    box-shadow:
+        0 8px 28px rgba(
+            20,
+            48,
+            90,
+            .10
+        );
+}
+
+
+.portal-title{
+
+    text-align:center;
+
+    margin-bottom:18px;
+}
+
+
+.portal-title h2{
+
+    font-size:18px;
+
+    color:#172033;
+
+    margin-bottom:6px;
+}
+
+
+.portal-title p{
+
+    color:#697386;
+
+    font-size:11px;
+
+    line-height:1.5;
+}
+
+
+/* =====================================================
+   LOGIN BUTTON
+===================================================== */
+
+.login-button{
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:center;
+
+    gap:10px;
+
+    width:100%;
+
+    min-height:48px;
+
+    background:#075dcc;
+
+    color:white;
+
+    text-decoration:none;
+
+    border-radius:11px;
+
+    font-size:13px;
+
+    font-weight:700;
+
+    transition:.2s ease;
+
+    box-shadow:
+        0 5px 15px
+        rgba(7,93,204,.18);
+}
+
+
+.login-button:hover{
+
+    background:#0647a5;
+
+    transform:translateY(-1px);
+}
+
+
+/* =====================================================
+   INFORMATION BOX
+===================================================== */
+
+.info-box{
+
+    margin-top:18px;
+
+    background:#f7faff;
+
+    border:1px solid #e3ebf7;
+
+    border-radius:13px;
+
+    padding:14px;
+}
+
+
+.info-box h3{
+
+    font-size:12px;
+
+    color:#075dcc;
+
+    margin-bottom:10px;
+}
+
+
+.info-item{
+
+    display:flex;
+
+    align-items:center;
+
+    gap:10px;
+
+    padding:8px 0;
+
+    border-bottom:1px solid #edf1f6;
+
+    font-size:11px;
+
+    color:#4b5563;
+}
+
+
+.info-item:last-child{
+
+    border-bottom:0;
+
+    padding-bottom:0;
+}
+
+
+.info-icon{
+
+    width:30px;
+
+    height:30px;
+
+    border-radius:8px;
+
+    background:#eaf2ff;
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:center;
+
+    flex-shrink:0;
+
+    font-size:14px;
+}
+
+
+/* =====================================================
+   SECURITY NOTICE
+===================================================== */
+
+.security{
+
+    margin-top:15px;
+
+    padding:11px;
+
+    border-radius:10px;
+
+    background:#fff8e6;
+
+    border:1px solid #f4df9c;
+
+    color:#795b00;
+
+    font-size:10px;
+
+    line-height:1.5;
+
+    text-align:center;
+}
+
+
+/* =====================================================
+   FOOTER
+===================================================== */
+
+.footer{
+
+    text-align:center;
+
+    color:#8a94a6;
+
+    font-size:9px;
+
+    padding:0 15px 20px;
+
+    line-height:1.5;
+}
+
+
+/* =====================================================
+   SMALL PHONES
+===================================================== */
+
+@media(max-width:380px){
+
+    .header{
+
+        padding-bottom:30px;
+    }
+
+    .logo{
+
+        width:62px;
+        height:62px;
+    }
+
+    .header h1{
+
+        font-size:18px;
+    }
+
+    .portal-card{
+
+        padding:16px;
+    }
+
+}
+
+</style>
+
+</head>
+
+
+<body>
+
+
+<!-- =====================================================
+     HEADER
+===================================================== -->
+
+<header class="header">
+
+    <img
+        src="logo.jpg"
+        alt="University of Kabianga Logo"
+        class="logo"
+    >
+
+    <h1>
+        UNIVERSITY OF KABIANGA
+    </h1>
+
+    <p>
+        Official University Information Portal
+    </p>
+
+</header>
+
+
+
+<!-- =====================================================
+     PORTAL
+===================================================== -->
+
+<main class="container">
+
+    <section class="portal-card">
+
+
+        <div class="portal-title">
+
+            <h2>
+                University Information Portal
+            </h2>
+
+            <p>
+                Authorized university staff can access
+                the information management system
+                from this portal.
+            </p>
+
+        </div>
+
+
+
+        <!-- LOGIN -->
+
+        <a
+            href="admin.html"
+            class="login-button"
+        >
+
+            🔐
+            Administrator Login
+
+        </a>
+
+
+
+        <!-- FEATURES -->
+
+        <div class="info-box">
+
+            <h3>
+                Portal Services
+            </h3>
+
+
+            <div class="info-item">
+
+                <div class="info-icon">
+                    📢
+                </div>
+
+                <span>
+                    Publish university announcements
+                </span>
+
+            </div>
+
+
+            <div class="info-item">
+
+                <div class="info-icon">
+                    📄
+                </div>
+
+                <span>
+                    Publish memos and official notices
+                </span>
+
+            </div>
+
+
+            <div class="info-item">
+
+                <div class="info-icon">
+                    🖼️
+                </div>
+
+                <span>
+                    Share university photos and updates
+                </span>
+
+            </div>
+
+
+            <div class="info-item">
+
+                <div class="info-icon">
+                    🔔
+                </div>
+
+                <span>
+                    Manage student notifications
+                </span>
+
+            </div>
+
+
+            <div class="info-item">
+
+                <div class="info-icon">
+                    💡
+                </div>
+
+                <span>
+                    Review student suggestions and feedback
+                </span>
+
+            </div>
+
+
+            <div class="info-item">
+
+                <div class="info-icon">
+                    🤖
+                </div>
+
+                <span>
+                    Manage UOK AI knowledge
+                </span>
+
+            </div>
+
+        </div>
+
+
+
+        <!-- SECURITY -->
+
+        <div class="security">
+
+            🔒 <strong>Authorized Access Only</strong><br>
+
+            This portal is intended for authorized
+            University of Kabianga administrators
+            and staff.
+
+        </div>
+
+
+    </section>
+
+</main>
+
+
+
+<!-- =====================================================
+     FOOTER
+===================================================== -->
+
+<footer class="footer">
+
+    University of Kabianga<br>
+
+    Smart Campus Navigation & Information System
+
+</footer>
+
+
+</body>
+
+          </html>
