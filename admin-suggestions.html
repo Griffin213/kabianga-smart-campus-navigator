@@ -1,0 +1,2280 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+<meta charset="UTF-8">
+
+<meta name="viewport"
+      content="width=device-width, initial-scale=1.0">
+
+<title>Suggestions | UOK Admin</title>
+
+<meta name="theme-color" content="#075dcc">
+
+
+<style>
+
+/* =====================================================
+   GLOBAL
+===================================================== */
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:Arial,Helvetica,sans-serif;
+}
+
+:root{
+    --blue:#075dcc;
+    --dark-blue:#0647a5;
+    --light-blue:#eef5ff;
+    --text:#172033;
+    --muted:#6b7280;
+    --white:#ffffff;
+    --border:#e5eaf1;
+    --green:#16803c;
+    --red:#d9273f;
+    --orange:#c56a00;
+    --shadow:0 8px 25px rgba(20,48,90,.08);
+}
+
+body{
+    background:#f4f7fb;
+    color:var(--text);
+    min-height:100vh;
+}
+
+
+/* =====================================================
+   SIDEBAR
+===================================================== */
+
+.sidebar{
+
+    position:fixed;
+
+    left:0;
+    top:0;
+
+    width:235px;
+    height:100vh;
+
+    background:linear-gradient(
+        180deg,
+        #075dcc 0%,
+        #0647a5 100%
+    );
+
+    color:white;
+
+    padding:20px 14px;
+
+    z-index:1000;
+
+    overflow-y:auto;
+
+    transition:.3s ease;
+}
+
+.sidebar-brand{
+
+    display:flex;
+
+    align-items:center;
+
+    gap:10px;
+
+    padding:8px 10px 22px;
+
+    border-bottom:1px solid rgba(255,255,255,.15);
+
+    margin-bottom:15px;
+}
+
+.sidebar-logo{
+
+    width:42px;
+    height:42px;
+
+    object-fit:contain;
+
+    background:white;
+
+    border-radius:10px;
+
+    padding:4px;
+}
+
+.sidebar-brand h2{
+
+    font-size:17px;
+
+    line-height:1.2;
+}
+
+.sidebar-brand span{
+
+    display:block;
+
+    font-size:10px;
+
+    opacity:.75;
+
+    margin-top:3px;
+}
+
+.sidebar nav a{
+
+    display:flex;
+
+    align-items:center;
+
+    gap:11px;
+
+    color:white;
+
+    text-decoration:none;
+
+    padding:11px 12px;
+
+    margin:4px 0;
+
+    border-radius:11px;
+
+    font-size:14px;
+
+    transition:.2s ease;
+}
+
+.sidebar nav a:hover{
+
+    background:rgba(255,255,255,.12);
+}
+
+.sidebar nav a.active{
+
+    background:rgba(255,255,255,.20);
+
+    font-weight:700;
+}
+
+.logout{
+
+    margin-top:15px !important;
+
+    border-top:1px solid rgba(255,255,255,.15);
+
+    padding-top:16px !important;
+
+    border-radius:0 !important;
+}
+
+
+/* =====================================================
+   MOBILE MENU
+===================================================== */
+
+.menu-button{
+
+    display:none;
+
+    position:fixed;
+
+    top:14px;
+    left:14px;
+
+    width:43px;
+    height:43px;
+
+    border:none;
+
+    border-radius:12px;
+
+    background:var(--blue);
+
+    color:white;
+
+    font-size:21px;
+
+    z-index:1100;
+
+    cursor:pointer;
+
+    box-shadow:0 5px 15px rgba(0,0,0,.15);
+}
+
+.overlay{
+
+    display:none;
+
+    position:fixed;
+
+    inset:0;
+
+    background:rgba(0,0,0,.4);
+
+    z-index:900;
+}
+
+
+/* =====================================================
+   MAIN
+===================================================== */
+
+.main{
+
+    margin-left:235px;
+
+    min-height:100vh;
+
+    padding:25px;
+
+    max-width:1500px;
+}
+
+
+/* =====================================================
+   TOP BAR
+===================================================== */
+
+.topbar{
+
+    display:flex;
+
+    justify-content:space-between;
+
+    align-items:center;
+
+    margin-bottom:20px;
+}
+
+.page-title h1{
+
+    font-size:25px;
+
+    margin-bottom:5px;
+}
+
+.page-title p{
+
+    color:var(--muted);
+
+    font-size:13px;
+}
+
+.back-button{
+
+    text-decoration:none;
+
+    background:white;
+
+    color:var(--blue);
+
+    border:1px solid var(--border);
+
+    padding:10px 14px;
+
+    border-radius:11px;
+
+    font-size:12px;
+
+    font-weight:700;
+
+    box-shadow:var(--shadow);
+}
+
+
+/* =====================================================
+   SUMMARY CARDS
+===================================================== */
+
+.summary{
+
+    display:grid;
+
+    grid-template-columns:
+        repeat(4,minmax(0,1fr));
+
+    gap:13px;
+
+    margin-bottom:20px;
+}
+
+.summary-card{
+
+    background:white;
+
+    border:1px solid var(--border);
+
+    border-radius:15px;
+
+    padding:15px;
+
+    box-shadow:var(--shadow);
+
+    display:flex;
+
+    align-items:center;
+
+    gap:11px;
+}
+
+.summary-icon{
+
+    width:40px;
+    height:40px;
+
+    border-radius:11px;
+
+    background:var(--light-blue);
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:center;
+
+    font-size:19px;
+}
+
+.summary-number{
+
+    font-size:22px;
+
+    font-weight:800;
+
+    color:var(--blue);
+}
+
+.summary-label{
+
+    font-size:10px;
+
+    color:var(--muted);
+
+    margin-top:3px;
+}
+
+
+/* =====================================================
+   FILTER PANEL
+===================================================== */
+
+.filter-panel{
+
+    background:white;
+
+    border:1px solid var(--border);
+
+    border-radius:16px;
+
+    padding:16px;
+
+    box-shadow:var(--shadow);
+
+    margin-bottom:18px;
+}
+
+.filter-row{
+
+    display:grid;
+
+    grid-template-columns:
+        1.5fr 1fr 1fr auto;
+
+    gap:10px;
+}
+
+.search-box,
+.filter-select{
+
+    width:100%;
+
+    border:1px solid var(--border);
+
+    background:#fbfcfe;
+
+    border-radius:10px;
+
+    padding:11px 12px;
+
+    outline:none;
+
+    font-size:12px;
+
+    color:var(--text);
+}
+
+.search-box:focus,
+.filter-select:focus{
+
+    border-color:var(--blue);
+
+    background:white;
+
+    box-shadow:0 0 0 3px rgba(7,93,204,.08);
+}
+
+.refresh-btn{
+
+    border:none;
+
+    background:var(--blue);
+
+    color:white;
+
+    padding:0 15px;
+
+    border-radius:10px;
+
+    cursor:pointer;
+
+    font-weight:700;
+}
+
+
+/* =====================================================
+   SUGGESTIONS
+===================================================== */
+
+.content-panel{
+
+    background:white;
+
+    border:1px solid var(--border);
+
+    border-radius:17px;
+
+    box-shadow:var(--shadow);
+
+    overflow:hidden;
+}
+
+.content-header{
+
+    display:flex;
+
+    justify-content:space-between;
+
+    align-items:center;
+
+    padding:17px 19px;
+
+    border-bottom:1px solid var(--border);
+}
+
+.content-header h2{
+
+    font-size:16px;
+}
+
+.content-header span{
+
+    font-size:11px;
+
+    color:var(--muted);
+}
+
+
+/* =====================================================
+   SUGGESTION ITEM
+===================================================== */
+
+.suggestion-list{
+
+    padding:0;
+}
+
+.suggestion{
+
+    padding:17px 19px;
+
+    border-bottom:1px solid #edf0f4;
+}
+
+.suggestion:last-child{
+
+    border-bottom:none;
+}
+
+.suggestion-top{
+
+    display:flex;
+
+    justify-content:space-between;
+
+    align-items:flex-start;
+
+    gap:15px;
+
+    margin-bottom:9px;
+}
+
+.suggestion-left{
+
+    display:flex;
+
+    align-items:center;
+
+    gap:10px;
+}
+
+.suggestion-icon{
+
+    width:40px;
+    height:40px;
+
+    border-radius:11px;
+
+    background:var(--light-blue);
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:center;
+
+    font-size:19px;
+
+    flex-shrink:0;
+}
+
+.suggestion-title{
+
+    font-size:13px;
+
+    font-weight:700;
+
+    margin-bottom:3px;
+}
+
+.suggestion-meta{
+
+    font-size:10px;
+
+    color:var(--muted);
+}
+
+.status{
+
+    display:inline-block;
+
+    padding:5px 9px;
+
+    border-radius:20px;
+
+    font-size:9px;
+
+    font-weight:700;
+
+    white-space:nowrap;
+}
+
+.status-new{
+
+    background:#e8f1ff;
+
+    color:var(--blue);
+}
+
+.status-reviewed{
+
+    background:#fff4dc;
+
+    color:var(--orange);
+}
+
+.status-resolved{
+
+    background:#e8f7ee;
+
+    color:var(--green);
+}
+
+.status-closed{
+
+    background:#f0f1f3;
+
+    color:#666;
+}
+
+.suggestion-message{
+
+    background:#f8fafc;
+
+    border-radius:10px;
+
+    padding:12px;
+
+    font-size:12px;
+
+    line-height:1.6;
+
+    color:#374151;
+
+    margin-bottom:10px;
+}
+
+.suggestion-details{
+
+    display:flex;
+
+    flex-wrap:wrap;
+
+    gap:8px;
+
+    margin-bottom:11px;
+}
+
+.detail{
+
+    font-size:9px;
+
+    background:#f3f6fa;
+
+    color:#64748b;
+
+    padding:5px 8px;
+
+    border-radius:7px;
+}
+
+.suggestion-actions{
+
+    display:flex;
+
+    gap:7px;
+
+    flex-wrap:wrap;
+}
+
+.action-btn{
+
+    border:1px solid var(--border);
+
+    background:white;
+
+    padding:7px 10px;
+
+    border-radius:8px;
+
+    font-size:10px;
+
+    font-weight:700;
+
+    cursor:pointer;
+
+    color:var(--text);
+}
+
+.action-btn:hover{
+
+    background:var(--light-blue);
+
+    border-color:#c8daf5;
+}
+
+.action-btn.primary{
+
+    background:var(--blue);
+
+    color:white;
+
+    border-color:var(--blue);
+}
+
+.action-btn.danger{
+
+    color:var(--red);
+}
+
+
+/* =====================================================
+   EMPTY STATE
+===================================================== */
+
+.empty-state{
+
+    text-align:center;
+
+    padding:55px 20px;
+
+    color:var(--muted);
+}
+
+.empty-icon{
+
+    font-size:42px;
+
+    margin-bottom:12px;
+}
+
+.empty-state h3{
+
+    color:var(--text);
+
+    font-size:16px;
+
+    margin-bottom:5px;
+}
+
+.empty-state p{
+
+    font-size:12px;
+}
+
+
+/* =====================================================
+   LOADING
+===================================================== */
+
+.loading{
+
+    text-align:center;
+
+    padding:45px 20px;
+
+    color:var(--muted);
+
+    font-size:13px;
+}
+
+
+/* =====================================================
+   FOOTER
+===================================================== */
+
+.footer{
+
+    text-align:center;
+
+    color:#8a94a6;
+
+    font-size:
+      10px;
+
+    padding:22px 0 5px;
+}
+
+
+/* =====================================================
+   TABLET
+===================================================== */
+
+@media(max-width:1000px){
+
+    .summary{
+
+        grid-template-columns:
+            repeat(2,minmax(0,1fr));
+    }
+
+    .filter-row{
+
+        grid-template-columns:
+            1fr 1fr;
+    }
+
+    .refresh-btn{
+
+        min-height:40px;
+    }
+
+}
+
+
+/* =====================================================
+   MOBILE
+===================================================== */
+
+@media(max-width:700px){
+
+    .sidebar{
+
+        width:250px;
+
+        transform:translateX(-100%);
+
+        box-shadow:8px 0 25px rgba(0,0,0,.15);
+    }
+
+    .sidebar.open{
+
+        transform:translateX(0);
+    }
+
+    .menu-button{
+
+        display:block;
+    }
+
+    .overlay.show{
+
+        display:block;
+    }
+
+    .main{
+
+        margin-left:0;
+
+        width:100%;
+
+        padding:16px;
+
+        padding-top:72px;
+    }
+
+    .topbar{
+
+        margin-bottom:16px;
+    }
+
+    .page-title{
+
+        padding-left:2px;
+    }
+
+    .page-title h1{
+
+        font-size:20px;
+    }
+
+    .page-title p{
+
+        font-size:11px;
+    }
+
+    .back-button{
+
+        display:none;
+    }
+
+    .summary{
+
+        grid-template-columns:
+            repeat(2,minmax(0,1fr));
+
+        gap:9px;
+    }
+
+    .summary-card{
+
+        padding:12px;
+
+        border-radius:13px;
+
+        gap:8px;
+    }
+
+    .summary-icon{
+
+        width:34px;
+
+        height:34px;
+
+        font-size:16px;
+    }
+
+    .summary-number{
+
+        font-size:19px;
+    }
+
+    .summary-label{
+
+        font-size:9px;
+    }
+
+    .filter-panel{
+
+        padding:12px;
+
+        border-radius:14px;
+    }
+
+    .filter-row{
+
+        grid-template-columns:1fr;
+    }
+
+    .refresh-btn{
+
+        min-height:40px;
+    }
+
+    .content-header{
+
+        padding:14px;
+    }
+
+    .content-header h2{
+
+        font-size:14px;
+    }
+
+    .suggestion{
+
+        padding:14px;
+    }
+
+    .suggestion-top{
+
+        gap:8px;
+    }
+
+    .suggestion-icon{
+
+        width:36px;
+
+        height:36px;
+
+        font-size:16px;
+    }
+
+    .suggestion-title{
+
+        font-size:12px;
+    }
+
+    .suggestion-message{
+
+        font-size:11px;
+
+        padding:10px;
+    }
+
+    .status{
+
+        font-size:8px;
+
+        padding:4px 7px;
+    }
+
+}
+
+
+/* =====================================================
+   VERY SMALL PHONES
+===================================================== */
+
+@media(max-width:380px){
+
+    .main{
+
+        padding:12px;
+
+        padding-top:68px;
+    }
+
+    .summary-card{
+
+        padding:9px;
+    }
+
+    .summary-icon{
+
+        width:30px;
+
+        height:30px;
+    }
+
+}
+
+
+/* =====================================================
+   END OF CSS
+===================================================== */
+
+</style>
+
+</head>
+
+
+<body>
+
+
+<!-- =====================================================
+     MOBILE MENU
+===================================================== -->
+
+<button
+    class="menu-button"
+    id="menuButton"
+    aria-label="Open navigation"
+>
+
+    ☰
+
+</button>
+
+
+<div
+    class="overlay"
+    id="overlay"
+></div>
+
+
+<!-- =====================================================
+     SIDEBAR
+===================================================== -->
+
+<aside
+    class="sidebar"
+    id="sidebar"
+>
+
+
+    <div class="sidebar-brand">
+
+        <img
+            src="logo.jpg"
+            alt="University of Kabianga"
+            class="sidebar-logo"
+        >
+
+        <div>
+
+            <h2>
+                UOK Admin
+            </h2>
+
+            <span>
+                Smart Campus Management
+            </span>
+
+        </div>
+
+    </div>
+
+
+    <nav>
+
+
+        <a href="dashboard.html">
+
+            🏠
+            <span>Dashboard</span>
+
+        </a>
+
+
+        <a href="buildings.html">
+
+            🏢
+            <span>Buildings</span>
+
+        </a>
+
+
+        <a href="schools.html">
+
+            🎓
+            <span>Schools</span>
+
+        </a>
+
+
+        <a href="lecturers.html">
+
+            👨‍🏫
+            <span>Lecturers</span>
+
+        </a>
+
+
+        <a href="timetable.html">
+
+            📅
+            <span>Timetable</span>
+
+        </a>
+
+
+        <a href="announcements.html">
+
+            📢
+            <span>Announcements</span>
+
+        </a>
+
+
+        <a href="ai-knowledge.html">
+
+            🤖
+            <span>UOK AI Knowledge</span>
+
+        </a>
+
+
+        <a href="students.html">
+
+            👨‍🎓
+            <span>Students</span>
+
+        </a>
+
+
+        <a
+            href="admin-suggestions.html"
+            class="active"
+        >
+
+            💡
+            <span>Suggestions</span>
+
+        </a>
+
+
+        <a href="settings.html">
+
+            ⚙️
+            <span>Settings</span>
+
+        </a>
+
+
+        <a
+            href="admin.html"
+            class="logout"
+        >
+
+            🚪
+            <span>Logout</span>
+
+        </a>
+
+
+    </nav>
+
+
+</aside>
+
+
+
+<!-- =====================================================
+     MAIN
+===================================================== -->
+
+<main class="main">
+
+
+    <div class="topbar">
+
+        <div class="page-title">
+
+            <h1>
+                Suggestion Box
+            </h1>
+
+            <p>
+                Review and manage campus feedback
+            </p>
+
+        </div>
+
+
+        <a
+            href="dashboard.html"
+            class="back-button"
+        >
+
+            ← Dashboard
+
+        </a>
+
+    </div>
+
+
+
+    <!-- SUMMARY -->
+
+    <section class="summary">
+
+
+        <div class="summary-card">
+
+            <div class="summary-icon">
+                💡
+            </div>
+
+            <div>
+
+                <div
+                    class="summary-number"
+                    id="totalSuggestions"
+                >
+                    0
+                </div>
+
+                <div class="summary-label">
+                    Total Feedback
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <div class="summary-card">
+
+            <div class="summary-icon">
+                🆕
+            </div>
+
+            <div>
+
+                <div
+                    class="summary-number"
+                    id="newSuggestions"
+                >
+                    0
+                </div>
+
+                <div class="summary-label">
+                    New
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <div class="summary-card">
+
+            <div class="summary-icon">
+                🔍
+            </div>
+
+            <div>
+
+                <div
+                    class="summary-number"
+                    id="reviewedSuggestions"
+                >
+                    0
+                </div>
+
+                <div class="summary-label">
+                    Reviewed
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <div class="summary-card">
+
+            <div class="summary-icon">
+                ✅
+            </div>
+
+            <div>
+
+                <div
+                    class="summary-number"
+                    id="resolvedSuggestions"
+                >
+                    0
+                </div>
+
+                <div class="summary-label">
+                    Resolved
+                </div>
+
+            </div>
+
+        </div>
+
+
+    </section>
+
+
+
+    <!-- FILTERS -->
+
+    <section class="filter-panel">
+
+        <div class="filter-row">
+
+
+            <input
+                type="search"
+                id="searchInput"
+                class="search-box"
+                placeholder="🔍 Search suggestions..."
+            >
+
+
+            <select
+                id="typeFilter"
+                class="filter-select"
+            >
+
+                <option value="all">
+                    All Categories
+                </option>
+
+                <option value="Suggestion">
+                    Suggestions
+                </option>
+
+                <option value="Complaint">
+                    Complaints
+                </option>
+
+                <option value="Appreciation">
+                    Appreciations
+                </option>
+
+                <option value="Campus Improvement">
+                    Campus Improvement
+                </option>
+
+                <option value="Academic Services">
+                    Academic Services
+                </option>
+
+                <option value="ICT/Technology">
+                    ICT / Technology
+                </option>
+
+                <option value="Other">
+                    Other
+                </option>
+
+            </select>
+
+
+            <select
+                id="statusFilter"
+                class="filter-select"
+            >
+
+                <option value="all">
+                    All Statuses
+                </option>
+
+                <option value="New">
+                    New
+                </option>
+
+                <option value="Reviewed">
+                    Reviewed
+                </option>
+
+                <option value="Resolved">
+                    Resolved
+                </option>
+
+                <option value="Closed">
+                    Closed
+                </option>
+
+            </select>
+
+
+            <button
+                class="refresh-btn"
+                id="refreshBtn"
+            >
+
+                ↻ Refresh
+
+            </button>
+
+
+        </div>
+
+    </section>
+
+
+
+    <!-- FEEDBACK LIST -->
+
+    <section class="content-panel">
+
+
+        <div class="content-header">
+
+            <h2>
+                Campus Feedback
+            </h2>
+
+            <span id="resultCount">
+                0 submissions
+            </span>
+
+        </div>
+
+
+        <div
+            class="suggestion-list"
+            id="suggestionList"
+        >
+
+            <div class="loading">
+
+                ⏳ Loading feedback...
+
+            </div>
+
+        </div>
+
+
+    </section>
+
+
+
+    <div class="footer">
+
+        University of Kabianga • Smart Campus Management System
+
+    </div>
+
+
+</main>
+
+
+
+<!-- =====================================================
+     FIREBASE
+===================================================== -->
+
+<script type="module">
+
+import { db } from "./firebase.js";
+
+import {
+    collection,
+    getDocs,
+    doc,
+    updateDoc,
+    deleteDoc,
+    query,
+    orderBy
+} from "https://www.gstatic.com/firebasejs/12.16.0/firebase-firestore.js";
+
+
+const suggestionList =
+    document.getElementById("suggestionList");
+
+const searchInput =
+    document.getElementById("searchInput");
+
+const typeFilter =
+    document.getElementById("typeFilter");
+
+const statusFilter =
+    document.getElementById("statusFilter");
+
+const refreshBtn =
+    document.getElementById("refreshBtn");
+
+const resultCount =
+    document.getElementById("resultCount");
+
+const totalSuggestions =
+    document.getElementById("totalSuggestions");
+
+const newSuggestions =
+    document.getElementById("newSuggestions");
+
+const reviewedSuggestions =
+    document.getElementById("reviewedSuggestions");
+
+const resolvedSuggestions =
+    document.getElementById("resolvedSuggestions");
+
+
+let allSuggestions = [];
+
+
+/* =====================================================
+   LOAD SUGGESTIONS
+===================================================== */
+
+async function loadSuggestions(){
+
+    suggestionList.innerHTML = `
+        <div class="loading">
+            ⏳ Loading feedback...
+        </div>
+    `;
+
+    try{
+
+        const suggestionsQuery =
+            query(
+                collection(db,"suggestions"),
+                orderBy("createdAt","desc")
+            );
+
+
+        const snapshot =
+            await getDocs(suggestionsQuery);
+
+
+        allSuggestions = [];
+
+
+        snapshot.forEach(function(item){
+
+            allSuggestions.push({
+
+                id:item.id,
+
+                ...item.data()
+
+            });
+
+        });
+
+
+        updateSummary();
+
+        displaySuggestions();
+
+
+    }catch(error){
+
+        console.error(
+            "Suggestions loading error:",
+            error
+        );
+
+
+        suggestionList.innerHTML = `
+
+            <div class="empty-state">
+
+                <div class="empty-icon">
+                    ⚠️
+                </div>
+
+                <h3>
+                    Unable to load feedback
+                </h3>
+
+                <p>
+                    ${escapeHTML(error.message)}
+                </p>
+
+            </div>
+
+        `;
+
+    }
+
+}
+
+
+/* =====================================================
+   SUMMARY
+===================================================== */
+
+function updateSummary(){
+
+    totalSuggestions.textContent =
+        allSuggestions.length;
+
+
+    newSuggestions.textContent =
+        allSuggestions.filter(
+            item =>
+                (item.status || "New")
+                === "New"
+        ).length;
+
+
+    reviewedSuggestions.textContent =
+        allSuggestions.filter(
+            item =>
+                item.status === "Reviewed"
+        ).length;
+
+
+    resolvedSuggestions.textContent =
+        allSuggestions.filter(
+            item =>
+                item.status === "Resolved"
+        ).length;
+
+}
+
+
+/* =====================================================
+   DISPLAY
+===================================================== */
+
+function displaySuggestions(){
+
+    const search =
+        searchInput.value
+            .trim()
+            .toLowerCase();
+
+
+    const type =
+        typeFilter.value;
+
+
+    const status =
+        statusFilter.value;
+
+
+    const filtered =
+        allSuggestions.filter(function(item){
+
+            const message =
+                String(
+                    item.message || ""
+                ).toLowerCase();
+
+
+            const name =
+                String(
+                    item.name || ""
+                ).toLowerCase();
+
+
+            const category =
+                String(
+                    item.type ||
+                    item.category ||
+                    ""
+                );
+
+
+            const itemStatus =
+                item.status || "New";
+
+
+            const matchesSearch =
+                !search ||
+                message.includes(search) ||
+                name.includes(search) ||
+                category
+                    .toLowerCase()
+                    .includes(search);
+
+
+            const matchesType =
+                type === "all" ||
+                category === type;
+
+
+            const matchesStatus =
+                status === "all" ||
+                itemStatus === status;
+
+
+            return (
+                matchesSearch &&
+                matchesType &&
+                matchesStatus
+            );
+
+        });
+
+
+    resultCount.textContent =
+        filtered.length +
+        (
+            filtered.length === 1
+            ? " submission"
+            : " submissions"
+        );
+
+
+    if(filtered.length === 0){
+
+        suggestionList.innerHTML = `
+
+            <div class="empty-state">
+
+                <div class="empty-icon">
+                    💡
+                </div>
+
+                <h3>
+                    No feedback found
+                </h3>          
+                <p>
+                There are no submissions matching your filters.
+            </p>
+
+        </div>
+
+    `;
+
+    return;
+
+}
+
+
+/* =====================================================
+   RENDER FILTERED RESULTS
+===================================================== */
+
+suggestionList.innerHTML =
+    filtered
+        .map(renderSuggestion)
+        .join("");
+
+
+attachActions();
+
+}
+
+
+/* =====================================================
+   RENDER INDIVIDUAL SUGGESTION
+===================================================== */
+
+function renderSuggestion(item){
+
+    const type =
+        item.type ||
+        item.category ||
+        "Suggestion";
+
+    const status =
+        item.status ||
+        "New";
+
+    const statusClass =
+        status.toLowerCase();
+
+    const anonymous =
+        item.anonymous === true;
+
+    const name =
+        anonymous
+        ? "Anonymous"
+        : (item.name || "Student");
+
+    const message =
+        item.message ||
+        "No message provided.";
+
+    const date =
+        formatDate(
+            item.createdAt ||
+            item.time
+        );
+
+    const icon =
+        getTypeIcon(type);
+
+
+    return `
+
+        <article
+            class="suggestion"
+            data-id="${escapeHTML(item.id)}"
+        >
+
+            <div class="suggestion-top">
+
+                <div class="suggestion-left">
+
+                    <div class="suggestion-icon">
+                        ${icon}
+                    </div>
+
+                    <div>
+
+                        <div class="suggestion-title">
+                            ${escapeHTML(type)}
+                        </div>
+
+                        <div class="suggestion-meta">
+                            ${escapeHTML(name)}
+                            •
+                            ${escapeHTML(date)}
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+                <span
+                    class="status status-${statusClass}"
+                >
+                    ${escapeHTML(status)}
+                </span>
+
+            </div>
+
+
+            <div class="suggestion-message">
+                ${escapeHTML(message)}
+            </div>
+
+
+            <div class="suggestion-details">
+
+                ${
+                    anonymous
+                    ? `
+                        <span class="detail">
+                            🔒 Anonymous
+                        </span>
+                    `
+                    : ""
+                }
+
+                ${
+                    item.email
+                    ? `
+                        <span class="detail">
+                            ✉️ ${escapeHTML(item.email)}
+                        </span>
+                    `
+                    : ""
+                }
+
+                ${
+                    item.phone
+                    ? `
+                        <span class="detail">
+                            📱 ${escapeHTML(item.phone)}
+                        </span>
+                    `
+                    : ""
+                }
+
+            </div>
+
+
+            <div class="suggestion-actions">
+
+                ${
+                    status !== "Reviewed"
+                    ? `
+                        <button
+                            class="action-btn"
+                            data-action="review"
+                            data-id="${escapeHTML(item.id)}"
+                        >
+                            🔍 Mark Reviewed
+                        </button>
+                    `
+                    : ""
+                }
+
+
+                ${
+                    status !== "Resolved"
+                    ? `
+                        <button
+                            class="action-btn primary"
+                            data-action="resolve"
+                            data-id="${escapeHTML(item.id)}"
+                        >
+                            ✅ Resolve
+                        </button>
+                    `
+                    : ""
+                }
+
+
+                ${
+                    status !== "Closed"
+                    ? `
+                        <button
+                            class="action-btn"
+                            data-action="close"
+                            data-id="${escapeHTML(item.id)}"
+                        >
+                            🔒 Close
+                        </button>
+                    `
+                    : ""
+                }
+
+
+                <button
+                    class="action-btn danger"
+                    data-action="delete"
+                    data-id="${escapeHTML(item.id)}"
+                >
+                    🗑️ Delete
+                </button>
+
+            </div>
+
+        </article>
+
+    `;
+
+}
+
+
+/* =====================================================
+   ATTACH ACTION BUTTONS
+===================================================== */
+
+function attachActions(){
+
+    document
+        .querySelectorAll("[data-action]")
+        .forEach(function(button){
+
+            button.addEventListener(
+                "click",
+                async function(){
+
+                    const action =
+                        this.dataset.action;
+
+                    const id =
+                        this.dataset.id;
+
+
+                    if(action === "delete"){
+
+                        await deleteSuggestion(id);
+
+                        return;
+
+                    }
+
+
+                    if(action === "review"){
+
+                        await updateStatus(
+                            id,
+                            "Reviewed"
+                        );
+
+                        return;
+
+                    }
+
+
+                    if(action === "resolve"){
+
+                        await updateStatus(
+                            id,
+                            "Resolved"
+                        );
+
+                        return;
+
+                    }
+
+
+                    if(action === "close"){
+
+                        await updateStatus(
+                            id,
+                            "Closed"
+                        );
+
+                    }
+
+                }
+            );
+
+        });
+
+}
+
+
+/* =====================================================
+   UPDATE STATUS
+===================================================== */
+
+async function updateStatus(id,newStatus){
+
+    try{
+
+        await updateDoc(
+            doc(
+                db,
+                "suggestions",
+                id
+            ),
+            {
+                status:newStatus
+            }
+        );
+
+
+        const item =
+            allSuggestions.find(
+                suggestion =>
+                    suggestion.id === id
+            );
+
+
+        if(item){
+
+            item.status = newStatus;
+
+        }
+
+
+        updateSummary();
+
+        displaySuggestions();
+
+
+    }catch(error){
+
+        console.error(
+            "Status update error:",
+            error
+        );
+
+        alert(
+            "Unable to update feedback:\n\n" +
+            error.message
+        );
+
+    }
+
+}
+
+
+/* =====================================================
+   DELETE SUGGESTION
+===================================================== */
+
+async function deleteSuggestion(id){
+
+    const confirmed =
+        confirm(
+            "Are you sure you want to delete this feedback?"
+        );
+
+
+    if(!confirmed){
+
+        return;
+
+    }
+
+
+    try{
+
+        await deleteDoc(
+            doc(
+                db,
+                "suggestions",
+                id
+            )
+        );
+
+
+        allSuggestions =
+            allSuggestions.filter(
+                item =>
+                    item.id !== id
+            );
+
+
+        updateSummary();
+
+        displaySuggestions();
+
+
+    }catch(error){
+
+        console.error(
+            "Delete error:",
+            error
+        );
+
+        alert(
+            "Unable to delete feedback:\n\n" +
+            error.message
+        );
+
+    }
+
+}
+
+
+/* =====================================================
+   CATEGORY ICON
+===================================================== */
+
+function getTypeIcon(type){
+
+    const icons = {
+
+        "Suggestion":"💡",
+
+        "Complaint":"⚠️",
+
+        "Appreciation":"❤️",
+
+        "Campus Improvement":"🏫",
+
+        "Academic Services":"📚",
+
+        "ICT/Technology":"💻",
+
+        "Other":"📝"
+
+    };
+
+
+    return icons[type] || "💡";
+
+}
+
+
+/* =====================================================
+   FORMAT DATE
+===================================================== */
+
+function formatDate(value){
+
+    if(!value){
+
+        return "Date unavailable";
+
+    }
+
+
+    try{
+
+        if(
+            value &&
+            typeof value.toDate === "function"
+        ){
+
+            return value
+                .toDate()
+                .toLocaleString();
+
+        }
+
+
+        return new Date(value)
+            .toLocaleString();
+
+    }catch(error){
+
+        return "Date unavailable";
+
+    }
+
+}
+
+
+/* =====================================================
+   ESCAPE HTML
+===================================================== */
+
+function escapeHTML(value){
+
+    return String(value)
+        .replace(/&/g,"&amp;")
+        .replace(/</g,"&lt;")
+        .replace(/>/g,"&gt;")
+        .replace(/"/g,"&quot;")
+        .replace(/'/g,"&#039;");
+
+}
+
+
+/* =====================================================
+   FILTER EVENTS
+===================================================== */
+
+searchInput.addEventListener(
+    "input",
+    displaySuggestions
+);
+
+typeFilter.addEventListener(
+    "change",
+    displaySuggestions
+);
+
+statusFilter.addEventListener(
+    "change",
+    displaySuggestions
+);
+
+refreshBtn.addEventListener(
+    "click",
+    loadSuggestions
+);
+
+
+/* =====================================================
+   MOBILE SIDEBAR
+===================================================== */
+
+const sidebar =
+    document.getElementById("sidebar");
+
+const menuButton =
+    document.getElementById("menuButton");
+
+const overlay =
+    document.getElementById("overlay");
+
+
+function openMenu(){
+
+    sidebar.classList.add("open");
+
+    overlay.classList.add("show");
+
+}
+
+
+function closeMenu(){
+
+    sidebar.classList.remove("open");
+
+    overlay.classList.remove("show");
+
+}
+
+
+menuButton.addEventListener(
+    "click",
+    openMenu
+);
+
+
+overlay.addEventListener(
+    "click",
+    closeMenu
+);
+
+
+document.querySelectorAll(
+    ".sidebar nav a"
+).forEach(function(link){
+
+    link.addEventListener(
+        "click",
+        closeMenu
+    );
+
+});
+
+
+/* =====================================================
+   START APPLICATION
+===================================================== */
+
+loadSuggestions();
+
+</script>
+
+</body>
+
+</html>
