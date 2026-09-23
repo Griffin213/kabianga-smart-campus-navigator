@@ -15,6 +15,10 @@ import {
     getStorage
 } from "https://www.gstatic.com/firebasejs/12.16.0/firebase-storage.js";
 
+import {
+    getAuth
+} from "https://www.gstatic.com/firebasejs/12.16.0/firebase-auth.js";
+
 
 // ==========================================
 // FIREBASE CONFIG
@@ -69,6 +73,14 @@ const storage = getStorage(app);
 
 
 // ==========================================
+// FIREBASE AUTHENTICATION
+// Used for Administrator Login
+// ==========================================
+
+const auth = getAuth(app);
+
+
+// ==========================================
 // DEBUG INFORMATION
 // ==========================================
 
@@ -78,9 +90,13 @@ console.log("✅ Firestore initialized");
 
 console.log("✅ Firebase Storage initialized");
 
+console.log("🔐 Firebase Authentication initialized");
+
 console.log("🔥 Firestore database:", db);
 
 console.log("📁 Firebase Storage:", storage);
+
+console.log("🔐 Firebase Auth:", auth);
 
 
 // ==========================================
@@ -89,5 +105,6 @@ console.log("📁 Firebase Storage:", storage);
 
 export {
     db,
-    storage
+    storage,
+    auth
 };
