@@ -122,9 +122,11 @@ button:disabled{
 
 <div class="login-box">
 
-    <img src="logo.jpg"
-         class="logo"
-         alt="University of Kabianga Logo">
+    <img
+        src="logo.jpg"
+        class="logo"
+        alt="University of Kabianga Logo"
+    >
 
     <h2>University of Kabianga</h2>
 
@@ -175,6 +177,10 @@ button:disabled{
 </div>
 
 
+<!-- =========================================
+     FIREBASE ADMIN LOGIN
+========================================= -->
+
 <script type="module">
 
 import { auth } from "./firebase.js";
@@ -197,7 +203,11 @@ const message =
     document.getElementById("message");
 
 
-loginButton.addEventListener("click", async function(){
+/* =========================================
+   LOGIN FUNCTION
+========================================= */
+
+async function loginAdmin(){
 
     const email =
         emailInput.value.trim();
@@ -205,6 +215,8 @@ loginButton.addEventListener("click", async function(){
     const password =
         passwordInput.value;
 
+
+    /* CHECK INPUT */
 
     if(!email || !password){
 
@@ -217,127 +229,7 @@ loginButton.addEventListener("click", async function(){
     }
 
 
-    loginButton.disabled = true;
-
-    loginButton.innerHTML =
-        "⏳ Signing in...";
-
-    message.innerHTML = "";
-
-
-    try{
-
-        await signInWithEmailAndPassword(
-            auth,
-            email,
-            password
-        );
-
-
-        message.style.color = "#16803c";
-
-        message.innerHTML =
-            "✅ Login successful. Opening dashboard...";
-
-
-        setTimeout(function(){
-
-            window.location.href =
-                "dashboard.html";
-
-        },700);
-
-
-    }catch(error){
-
-        console.error("LOGIN ERROR:",error);
-
-        message.style.color = "#d9273f";
-
-        if(error.code === "auth/invalid-credential"){
-
-            message.innerHTML =
-                "❌ Incorrect email or password.";
-
-        }else if(error.code === "auth/invalid-email"){
-
-            message.innerHTML =
-                "❌ Please enter a valid email address.";
-
-        }else if(error.code === "auth/too-many-requests"){
-
-            message.innerHTML =
-                "⚠️ Too many attempts. Please try again later.";
-
-        }else{
-
-            message.innerHTML =
-                "❌ Login failed: " + error.message;
-
-        }
-
-        loginButton.disabled = false;
-
-        loginButton.innerHTML =
-            "🔵 Login";
-
-    }
-
-});
-
-
-/* Allow pressing ENTER to login */
-
-passwordInput.addEventListener("keydown", function(event){
-
-    if(event.key === "Enter"){
-
-        loginButton.click();
-
-    }
-
-});
-
-
-<script type="module">
-
-import { auth } from "./firebase.js";
-
-import {
-    signInWithEmailAndPassword
-} from "https://www.gstatic.com/firebasejs/12.16.0/firebase-auth.js";
-
-
-const emailInput = document.getElementById("email");
-const passwordInput = document.getElementById("password");
-const loginButton = document.getElementById("loginButton");
-const message = document.getElementById("message");
-
-
-loginButton.addEventListener("click", async function () {
-
-    const email = emailInput.value.trim();
-    const password = passwordInput.value;
-
-
-    // ================================
-    // CHECK INPUT
-    // ================================
-
-    if (!email || !password) {
-
-        message.style.color = "#d9273f";
-
-        message.innerHTML =
-            "⚠️ Please enter your email and password.";
-
-        return;
-    }
-
-
-    // ================================
-    // START LOGIN
-    // ================================
+    /* START LOGIN */
 
     loginButton.disabled = true;
 
@@ -347,22 +239,22 @@ loginButton.addEventListener("click", async function () {
     message.style.color = "#687386";
 
     message.innerHTML =
-        "Connecting to Firebase...";
+        "Connecting securely...";
 
 
-    try {
+    console.log("================================");
+    console.log("🔐 UOK ADMIN LOGIN");
+    console.log("================================");
 
-        console.log("================================");
-        console.log("🔐 UOK ADMIN LOGIN");
-        console.log("================================");
-
-        console.log("Email:", email);
-        console.log("Firebase Auth:", auth);
+    console.log("Email:", email);
+    console.log("Firebase Auth:", auth);
 
 
-        // =========================================
-        // FIREBASE LOGIN
-        // =========================================
+    try{
+
+        /*
+         * Firebase login request
+         */
 
         const loginPromise =
             signInWithEmailAndPassword(
@@ -372,9 +264,9 @@ loginButton.addEventListener("click", async function () {
             );
 
 
-        // =========================================
-        // 15 SECOND TIMEOUT
-        // =========================================
+        /*
+         * 15 SECOND SAFETY TIMEOUT
+         */
 
         const timeoutPromise =
             new Promise((_, reject) => {
@@ -384,13 +276,17 @@ loginButton.addEventListener("click", async function () {
                     reject({
                         code: "login-timeout",
                         message:
-                            "Firebase did not respond within 15 seconds."
+                        "Firebase did not respond within 15 seconds."
                     });
 
-                }, 15000);
+                },15000);
 
             });
 
+
+        /*
+         * WAIT FOR FIREBASE
+         */
 
         const result =
             await Promise.race([
@@ -399,15 +295,20 @@ loginButton.addEventListener("click", async function () {
             ]);
 
 
-        // =========================================
-        // LOGIN SUCCESS
-        // =========================================
+        /*
+         * LOGIN SUCCESS
+         */
 
         console.log("✅ LOGIN SUCCESS");
-        console.log("User:", result.user);
+
+        console.log(
+            "Administrator:",
+            result.user.email
+        );
 
 
-        message.style.color = "#16803c";
+        message.style.color =
+            "#16803c";
 
         message.innerHTML =
             "✅ Login successful. Opening dashboard...";
@@ -417,51 +318,47 @@ loginButton.addEventListener("click", async function () {
             "✅ Logged In";
 
 
-        // =========================================
-        // OPEN DASHBOARD
-        // =========================================
+        /*
+         * OPEN ADMIN DASHBOARD
+         */
 
-        setTimeout(function () {
+        setTimeout(() => {
 
-            window.location.href =
-                "./dashboard.html";
+            window.location.replace(
+                "dashboard.html"
+            );
 
-        }, 700);
-
-
-    } catch (error) {
-
-        console.error("================================");
-        console.error("❌ LOGIN ERROR");
-        console.error("================================");
-
-        console.error("Error code:", error.code);
-        console.error("Error message:", error.message);
+        },700);
 
 
-        message.style.color = "#d9273f";
+    }catch(error){
+
+        console.error(
+            "❌ ADMIN LOGIN ERROR:",
+            error
+        );
 
 
-        // =========================================
-        // TIMEOUT
-        // =========================================
+        message.style.color =
+            "#d9273f";
 
-        if (error.code === "login-timeout") {
+
+        /* TIMEOUT */
+
+        if(error.code === "login-timeout"){
 
             message.innerHTML =
-                "❌ Firebase is not responding. Check your internet connection or Firebase configuration.";
+                "❌ Firebase is not responding. Check your internet connection.";
 
         }
 
 
-        // =========================================
-        // WRONG LOGIN
-        // =========================================
+        /* WRONG LOGIN */
 
-        else if (
+        else if(
             error.code === "auth/invalid-credential" ||
             error.code === "auth/wrong-password"
-        ) {
+        ){
 
             message.innerHTML =
                 "❌ Incorrect email or password.";
@@ -469,13 +366,11 @@ loginButton.addEventListener("click", async function () {
         }
 
 
-        // =========================================
-        // USER DOES NOT EXIST
-        // =========================================
+        /* USER NOT FOUND */
 
-        else if (
+        else if(
             error.code === "auth/user-not-found"
-        ) {
+        ){
 
             message.innerHTML =
                 "❌ Administrator account was not found.";
@@ -483,27 +378,23 @@ loginButton.addEventListener("click", async function () {
         }
 
 
-        // =========================================
-        // INVALID EMAIL
-        // =========================================
+        /* INVALID EMAIL */
 
-        else if (
+        else if(
             error.code === "auth/invalid-email"
-        ) {
+        ){
 
             message.innerHTML =
-                "❌ Invalid email address.";
+                "❌ Please enter a valid email address.";
 
         }
 
 
-        // =========================================
-        // UNAUTHORIZED DOMAIN
-        // =========================================
+        /* UNAUTHORIZED DOMAIN */
 
-        else if (
+        else if(
             error.code === "auth/unauthorized-domain"
-        ) {
+        ){
 
             message.innerHTML =
                 "❌ This website is not authorized in Firebase.";
@@ -511,13 +402,11 @@ loginButton.addEventListener("click", async function () {
         }
 
 
-        // =========================================
-        // TOO MANY ATTEMPTS
-        // =========================================
+        /* TOO MANY ATTEMPTS */
 
-        else if (
+        else if(
             error.code === "auth/too-many-requests"
-        ) {
+        ){
 
             message.innerHTML =
                 "⚠️ Too many login attempts. Try again later.";
@@ -525,11 +414,9 @@ loginButton.addEventListener("click", async function () {
         }
 
 
-        // =========================================
-        // OTHER ERROR
-        // =========================================
+        /* OTHER FIREBASE ERROR */
 
-        else {
+        else{
 
             message.innerHTML =
                 "❌ Firebase Error: " +
@@ -538,10 +425,7 @@ loginButton.addEventListener("click", async function () {
         }
 
 
-        // =========================================
-        // RESET BUTTON
-        // =========================================
-
+        /* RESET LOGIN BUTTON */
         loginButton.disabled = false;
 
         loginButton.innerHTML =
@@ -549,20 +433,30 @@ loginButton.addEventListener("click", async function () {
 
     }
 
-});
+}
 
 
-// =========================================
-// ENTER KEY LOGIN
-// =========================================
+/* =========================================
+   LOGIN BUTTON
+========================================= */
+
+loginButton.addEventListener(
+    "click",
+    loginAdmin
+);
+
+
+/* =========================================
+   ENTER KEY
+========================================= */
 
 passwordInput.addEventListener(
     "keydown",
-    function(event) {
+    function(event){
 
-        if (event.key === "Enter") {
+        if(event.key === "Enter"){
 
-            loginButton.click();
+            loginAdmin();
 
         }
 
@@ -570,5 +464,6 @@ passwordInput.addEventListener(
 );
 
 </script>
+
 </body>
 </html>
