@@ -298,7 +298,277 @@ passwordInput.addEventListener("keydown", function(event){
 
 });
 
-</script>
 
+<script type="module">
+
+import { auth } from "./firebase.js";
+
+import {
+    signInWithEmailAndPassword
+} from "https://www.gstatic.com/firebasejs/12.16.0/firebase-auth.js";
+
+
+const emailInput = document.getElementById("email");
+const passwordInput = document.getElementById("password");
+const loginButton = document.getElementById("loginButton");
+const message = document.getElementById("message");
+
+
+loginButton.addEventListener("click", async function () {
+
+    const email = emailInput.value.trim();
+    const password = passwordInput.value;
+
+
+    // ================================
+    // CHECK INPUT
+    // ================================
+
+    if (!email || !password) {
+
+        message.style.color = "#d9273f";
+
+        message.innerHTML =
+            "⚠️ Please enter your email and password.";
+
+        return;
+    }
+
+
+    // ================================
+    // START LOGIN
+    // ================================
+
+    loginButton.disabled = true;
+
+    loginButton.innerHTML =
+        "⏳ Signing in...";
+
+    message.style.color = "#687386";
+
+    message.innerHTML =
+        "Connecting to Firebase...";
+
+
+    try {
+
+        console.log("================================");
+        console.log("🔐 UOK ADMIN LOGIN");
+        console.log("================================");
+
+        console.log("Email:", email);
+        console.log("Firebase Auth:", auth);
+
+
+        // =========================================
+        // FIREBASE LOGIN
+        // =========================================
+
+        const loginPromise =
+            signInWithEmailAndPassword(
+                auth,
+                email,
+                password
+            );
+
+
+        // =========================================
+        // 15 SECOND TIMEOUT
+        // =========================================
+
+        const timeoutPromise =
+            new Promise((_, reject) => {
+
+                setTimeout(() => {
+
+                    reject({
+                        code: "login-timeout",
+                        message:
+                            "Firebase did not respond within 15 seconds."
+                    });
+
+                }, 15000);
+
+            });
+
+
+        const result =
+            await Promise.race([
+                loginPromise,
+                timeoutPromise
+            ]);
+
+
+        // =========================================
+        // LOGIN SUCCESS
+        // =========================================
+
+        console.log("✅ LOGIN SUCCESS");
+        console.log("User:", result.user);
+
+
+        message.style.color = "#16803c";
+
+        message.innerHTML =
+            "✅ Login successful. Opening dashboard...";
+
+
+        loginButton.innerHTML =
+            "✅ Logged In";
+
+
+        // =========================================
+        // OPEN DASHBOARD
+        // =========================================
+
+        setTimeout(function () {
+
+            window.location.href =
+                "./dashboard.html";
+
+        }, 700);
+
+
+    } catch (error) {
+
+        console.error("================================");
+        console.error("❌ LOGIN ERROR");
+        console.error("================================");
+
+        console.error("Error code:", error.code);
+        console.error("Error message:", error.message);
+
+
+        message.style.color = "#d9273f";
+
+
+        // =========================================
+        // TIMEOUT
+        // =========================================
+
+        if (error.code === "login-timeout") {
+
+            message.innerHTML =
+                "❌ Firebase is not responding. Check your internet connection or Firebase configuration.";
+
+        }
+
+
+        // =========================================
+        // WRONG LOGIN
+        // =========================================
+
+        else if (
+            error.code === "auth/invalid-credential" ||
+            error.code === "auth/wrong-password"
+        ) {
+
+            message.innerHTML =
+                "❌ Incorrect email or password.";
+
+        }
+
+
+        // =========================================
+        // USER DOES NOT EXIST
+        // =========================================
+
+        else if (
+            error.code === "auth/user-not-found"
+        ) {
+
+            message.innerHTML =
+                "❌ Administrator account was not found.";
+
+        }
+
+
+        // =========================================
+        // INVALID EMAIL
+        // =========================================
+
+        else if (
+            error.code === "auth/invalid-email"
+        ) {
+
+            message.innerHTML =
+                "❌ Invalid email address.";
+
+        }
+
+
+        // =========================================
+        // UNAUTHORIZED DOMAIN
+        // =========================================
+
+        else if (
+            error.code === "auth/unauthorized-domain"
+        ) {
+
+            message.innerHTML =
+                "❌ This website is not authorized in Firebase.";
+
+        }
+
+
+        // =========================================
+        // TOO MANY ATTEMPTS
+        // =========================================
+
+        else if (
+            error.code === "auth/too-many-requests"
+        ) {
+
+            message.innerHTML =
+                "⚠️ Too many login attempts. Try again later.";
+
+        }
+
+
+        // =========================================
+        // OTHER ERROR
+        // =========================================
+
+        else {
+
+            message.innerHTML =
+                "❌ Firebase Error: " +
+                (error.message || "Unknown error");
+
+        }
+
+
+        // =========================================
+        // RESET BUTTON
+        // =========================================
+
+        loginButton.disabled = false;
+
+        loginButton.innerHTML =
+            "🔵 Login";
+
+    }
+
+});
+
+
+// =========================================
+// ENTER KEY LOGIN
+// =========================================
+
+passwordInput.addEventListener(
+    "keydown",
+    function(event) {
+
+        if (event.key === "Enter") {
+
+            loginButton.click();
+
+        }
+
+    }
+);
+
+</script>
 </body>
 </html>
